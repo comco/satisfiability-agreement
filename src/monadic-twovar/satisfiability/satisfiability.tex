@@ -2,15 +2,15 @@
 
 Let $\uUS\szu = \seq{\suu1,\suu2,\dots,\suu\szu}$ be an unary predicate
 signature having length $\szu$.
-Let $\eES\nex = \seq{\see1,\see2,\dots,\see\nex}$ be a binary predicate
-consisting of $\nex$ builtin equivalence symbols in refinement.
-Let $\uesigS\szu\nex = \uUS\szu + \eES\nex$, so $\uesigS\szu\nex$ is a generic
-predicate signature for the logics $\Lvp\Fo20\Eea\nex\agrefine$ and
-$\Lvp\Fo21\Eea\nex\agrefine$.
+Let $\eES\sze = \seq{\see1,\see2,\dots,\see\sze}$ be a binary predicate
+consisting of $\sze$ builtin equivalence symbols in refinement.
+Let $\uesigS\szu\sze = \uUS\szu + \eES\sze$, so $\uesigS\szu\sze$ is a generic
+predicate signature for the logics $\Lvp\Fo20\Eea\sze\agrefine$ and
+$\Lvp\Fo21\Eea\sze\agrefine$.
 
 \begin{remark}\label{rem:twovar-granular}
-Let $\szu, \nex \in \Nats$ such that $\nex \geq 2$ and consider
-$\sigS = \uesigS\szu\nex$.
+Let $\szu, \sze \in \Nats$ such that $\sze \geq 2$ and consider
+$\sigS = \uesigS\szu\sze$.
 Abbreviate $\sd = \see1$ and $\se = \see2$.
 Let $\StrA$ be a $\sigS$-structure.
 There is $\StrB \subseteq \StrA$ such that
@@ -33,15 +33,15 @@ $3.(3^{2^\szu}-1)$ $\relD$-classes included in $\eclX$.
 Recall from \cref{sec:granularity} that the finest equivalence relation in a
 $\gr$-granular structure can be simulated by introducing $\bsz\gr$ fresh unary
 predicate symbols.
-By induction on $\nex$ we get:
+By induction on $\sze$ we get:
 \begin{corollary}\label{cor:twovar-sub-1}
-Let $\szu,\nex \in \Nats$ such that $\nex \geq 2$.
-Then $\vFoF2{\uesigS\szu\nex}$ has the finite model property and
+Let $\szu,\sze \in \Nats$ such that $\sze \geq 2$.
+Then $\vFoF2{\uesigS\szu\sze}$ has the finite model property and
 \[
-  \FinASat\vFoF2{\uesigS\szu\nex} \red\cP
-  \FinASat\vFoF2{\uesigS\szup\nexp}.
+  \FinASat\vFoF2{\uesigS\szu\sze} \red\cP
+  \FinASat\vFoF2{\uesigS\szup\szep}.
 \]
-where $\nexp = \nex - 1$, $\szup = \szu + \bsz\gr$ and
+where $\szep = \sze - 1$, $\szup = \szu + \bsz\gr$ and
 $\gr = 3.(3^{2^\szu} - 1)$.
 \end{corollary}
 
@@ -74,16 +74,16 @@ $9.2^\szu.(3^{2^\szu}-1)$.
 When the number of unary predicate symbols is constant $\szu$, independent of
 the length of the formulas, we get:
 \begin{proposition}
-The logic $\Lvp\Fo20\Eea\nex\agrefine$ has the finite model
+The logic $\Lvp\Fo20\Eea\sze\agrefine$ has the finite model
 property and its (finite) satisfiability problem is in $\cP$.
 
 By \cref{prop:global-to-refine-n} and \cref{prop:local-to-refine-n},
 the same holds for the logics
-$\Lvp\Fo20\Eea\nex\agglobal$ and 
-$\Lvp\Fo20\Eea\nex\aglocal$.
+$\Lvp\Fo20\Eea\sze\agglobal$ and 
+$\Lvp\Fo20\Eea\sze\aglocal$.
 \end{proposition}
 
-For $\szu \in \Nats$ and $\nex \in \pNats$, let $\gr = 3.(3^{2^\szu}-1)$
+For $\szu \in \Nats$ and $\sze \in \pNats$, let $\gr = 3.(3^{2^\szu}-1)$
 and $\szup = \szu + \bsz{\gr}$.
 Since
 \[
@@ -92,38 +92,38 @@ Since
    8^\szu,
 \]
 we have $\szup < 9^\szu$.
-By induction on $\nex$, the logic $\Lvp\Fo21\Eea\nex\agrefine$ has the
-finite model property and for $\nexp = \nex-1$
+By induction on $\sze$, the logic $\Lvp\Fo21\Eea\sze\agrefine$ has the
+finite model property and for $\szep = \sze-1$
 \[
-\FinASat\Lvp\Fo21\Eea\nex\agrefine \red\cExpTime
-\FinASat\Lvp\Fo21\Eea\nexp\agrefine.
+\FinASat\Lvp\Fo21\Eea\sze\agrefine \red\cExpTime
+\FinASat\Lvp\Fo21\Eea\szep\agrefine.
 \]
 Since the even stronger logic $\Lvp\Fo2\nopow\Eea1\agrefine$ has the
 finite model property and its (finite) satisfiability problem is
 $\cNExpTime$-complete~\cite{kieronski2005small}, we get:
 \begin{proposition}
-The logic $\Lvp\Fo21\Eea\nex\agrefine$ has the finite model property and
-its (finite) satisfiability problem is in $\ceNExpTime\nex$.
+The logic $\Lvp\Fo21\Eea\sze\agrefine$ has the finite model property and
+its (finite) satisfiability problem is in $\ceNExpTime\sze$.
 
 By \cref{prop:global-to-refine-n} and \cref{prop:local-to-refine-n},
 the same holds for the logics
-$\Lvp\Fo21\Eea\nex\agglobal$ and $\Lvp\Fo21\Eea\nex\aglocal$.
+$\Lvp\Fo21\Eea\sze\agglobal$ and $\Lvp\Fo21\Eea\sze\aglocal$.
 \end{proposition}
 
 If we allow unboundedly many unary predicate symbols, $\szu$ is on the order of
 the length of the formula, and we get:
 \begin{proposition}
-The logic $\Lvp\Fo21\Eea\nonex\agrefine$ has the finite model property and its
+The logic $\Lvp\Fo21\Eea\nosze\agrefine$ has the finite model property and its
 (finite) satisfiability problem is in $\cElementary$.
 
 By \cref{prop:global-to-refine} and \cref{prop:local-to-refine},
-this also holds for the logics $\Lvp\Fo21\Eea\nonex\agglobal$
-and $\Lvp\Fo21\Eea\nonex\aglocal$.
-Trivially, this also holds for the logics $\Lvp\Fo20\Eea\nonex\agrefine$,
-$\Lvp\Fo20\Eea\nonex\agglobal$ and $\Lvp\Fo20\Eea\nonex\aglocal$.
+this also holds for the logics $\Lvp\Fo21\Eea\nosze\agglobal$
+and $\Lvp\Fo21\Eea\nosze\aglocal$.
+Trivially, this also holds for the logics $\Lvp\Fo20\Eea\nosze\agrefine$,
+$\Lvp\Fo20\Eea\nosze\agglobal$ and $\Lvp\Fo20\Eea\nosze\aglocal$.
 \end{proposition}
 
 % TODO: better complexity
 Using finer methods, we will give much better estimates for the complexity of
-the (finite) satisfiability problems for $\Lvp\Fo21\Eea\nex\agrefine$,
-$\Lvp\Fo21\Eea\nonex\agrefine$ and $\Lvp\Fo20\Eea\nonex\agrefine$.
+the (finite) satisfiability problems for $\Lvp\Fo21\Eea\sze\agrefine$,
+$\Lvp\Fo21\Eea\nosze\agrefine$ and $\Lvp\Fo20\Eea\nosze\agrefine$.

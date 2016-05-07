@@ -1,71 +1,71 @@
 % Agreement between many equivalence relations
-Let $\nex$ be a positive natural number.
+Let $\sze$ be a positive natural number.
 \begin{definition}
-Let $\seq{\relEE1, \relEE2, \dots, \relEE\nex} \subseteq \domAA$ be
+Let $\seq{\relEE1, \relEE2, \dots, \relEE\sze} \subseteq \domAA$ be
 a sequence of equivalence relations on $\domA$.
 
 The sequence is in \emph{refinement} if $\relEE1 \subseteq \relEE2 \subseteq
-\dots \subseteq \relEE\nex$.
+\dots \subseteq \relEE\sze$.
 
 The sequence is in \emph{global agreement} if the equivalence relations form a
-chain under inclusion, that is for all $\ii, \jj \in [1, \nex]$,
+chain under inclusion, that is for all $\ii, \jj \in [1, \sze]$,
 either $\relEE\ii \subseteq \relEE\jj$ or $\relEE\jj \subseteq \relEE\ii$.
 Equivalently, there is a (not necessarily unique) permutation
-$\permnu \in \Perms\nex$ such that
+$\permnu \in \Perms\sze$ such that
 $\relEE{\permnu(1)} \subseteq \relEE{\permnu(2)} \subseteq \dots \subseteq
-\relEE{\permnu(\nex)}$.
+\relEE{\permnu(\sze)}$.
 
 The sequence is in \emph{local agreement} if for every element $\ea \in \domA$,
-the equivalence classes $\relEE1[\ea], \relEE2[\ea], \dots, \relEE\nex[\ea]$ form
+the equivalence classes $\relEE1[\ea], \relEE2[\ea], \dots, \relEE\sze[\ea]$ form
 a chain under inclusion.
 Equivalently, no two equivalence classes $\relEE\ii[\ea]$ and $\relEE\jj[\eb]$
 properly intersect.
 \end{definition}
 
-Let $\ES = \seq{\see1, \see2, \dots, \see\nex}$ be a predicate signature
-consisting of $\nex$ binary predicate symbols.
+Let $\ES = \seq{\see1, \see2, \dots, \see\sze}$ be a predicate signature
+consisting of $\sze$ binary predicate symbols.
 Let $\StrA$ be an $\ES$-structure and suppose that the symbols $\see\ii$ are
 interpreted as equivalence relations on $\domA$. Let 
 $\relEE\ii = \at\StrA{\see\ii}$.
 \begin{definition}
 Define the $\vFoF2\ES$-sentence $\gls{frefine-many}$ by:
 \[
-  \frefine{\see1,\see2,\dots,\see\nex} =
-  \forall\xx\forall\yy \bigwedge_{1 \leq \ii < \nex}
+  \frefine{\see1,\see2,\dots,\see\sze} =
+  \forall\xx\forall\yy \bigwedge_{1 \leq \ii < \sze}
   \see\ii(\xx,\yy) \limp \see{\ii+1}(\xx,\yy).
 \]
 \end{definition}
-Then $\seq{\relEE1,\relEE2,\dots,\relEE\nex}$ is in refinement iff
-$\StrA \vDash \frefine{\see1,\see2,\dots,\see\nex}$.
+Then $\seq{\relEE1,\relEE2,\dots,\relEE\sze}$ is in refinement iff
+$\StrA \vDash \frefine{\see1,\see2,\dots,\see\sze}$.
 
 \begin{definition}
 Define the $\vFoF2\ES$-sentence $\gls{fglobal-many}$ by:
 \[
-  \fglobal{\see1,\see2,\dots,\see\nex} =
-  \bigvee_{\permnu \in \Perms\nex}
-  \frefine{\see{\permnu(1)},\see{\permnu(2)},\dots,\see{\permnu(\nex)}}.
+  \fglobal{\see1,\see2,\dots,\see\sze} =
+  \bigvee_{\permnu \in \Perms\sze}
+  \frefine{\see{\permnu(1)},\see{\permnu(2)},\dots,\see{\permnu(\sze)}}.
 \]
 \end{definition}
-Then $\seq{\relEE1,\relEE2,\dots,\relEE\nex}$ is in global agreement iff
-$\StrA \vDash \fglobal{\see1,\see2,\dots,\see\nex}$.
-Note that the length of the formula $\fglobal{\see1,\see2,\dots,\see\nex}$ grows
-exponentially as $\nex$ grows.
+Then $\seq{\relEE1,\relEE2,\dots,\relEE\sze}$ is in global agreement iff
+$\StrA \vDash \fglobal{\see1,\see2,\dots,\see\sze}$.
+Note that the length of the formula $\fglobal{\see1,\see2,\dots,\see\sze}$ grows
+exponentially as $\sze$ grows.
 
 \begin{definition}
 Define the $\vFoF2\ES$-sentence $\gls{flocal-many}$ by:
 \[
-  \flocal{\see1,\see2,\dots,\see\nex} = \forall\xx
-  \bigvee_{\permnu \in \Perms\nex}
-  \forall\yy \bigwedge_{1 \leq \ii < \nex}
+  \flocal{\see1,\see2,\dots,\see\sze} = \forall\xx
+  \bigvee_{\permnu \in \Perms\sze}
+  \forall\yy \bigwedge_{1 \leq \ii < \sze}
   \see{\permnu(\ii)}(\xx,\yy) \limp \see{\permnu(\ii+1)}(\xx,\yy).
 \]
 \end{definition}
-Then $\seq{\relEE1,\relEE2,\dots,\relEE\nex}$ is in local agreement iff
-$\StrA \vDash \flocal{\see1,\see2,\dots,\see\nex}$.
-Note that the length of the formula $\flocal{\see1,\see2,\dots,\see\nex}$ grows
-exponentially as $\nex$ grows.
+Then $\seq{\relEE1,\relEE2,\dots,\relEE\sze}$ is in local agreement iff
+$\StrA \vDash \flocal{\see1,\see2,\dots,\see\sze}$.
+Note that the length of the formula $\flocal{\see1,\see2,\dots,\see\sze}$ grows
+exponentially as $\sze$ grows.
 
-Let $\seqE = \seq{\relEE1,\relEE2,\dots,\relEE\nex} \subseteq \domAA$
+Let $\seqE = \seq{\relEE1,\relEE2,\dots,\relEE\sze} \subseteq \domAA$
 be a sequence of equivalence relations on $\domA$.
 \begin{theorem}\label{thm:local}
 The sequence $\seqE$ is in local agreement iff
@@ -100,8 +100,8 @@ equivalence relation on $\domA$.
 
 Next suppose that the equivalences are not in local agreement.
 There is an element $\ea \in \domA$ such that
-$\setbd{\relEE\ii[\ea]}{\ii \in [1, \nex]}$ is not a chain. 
-There are $\ii, \jj \in [1, \nex]$ such that
+$\setbd{\relEE\ii[\ea]}{\ii \in [1, \sze]}$ is not a chain. 
+There are $\ii, \jj \in [1, \sze]$ such that
 $\relEE\ii[\ea] \not\subseteq \relEE\jj[\ea]$ and
 $\relEE\jj[\ea] \not\subseteq \relEE\ii[\ea]$.
 Thus $\relEE\ii$ and $\relEE\jj$ are not in local agreement.
@@ -110,31 +110,31 @@ equivalence relation on $\domA$.
 \end{proof}
 
 Suppose that the sequence
-$\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\nex}$ is in local agreement.
+$\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\sze}$ is in local agreement.
 \begin{definition}
-An \emph{index set} is an element $\istI \in \nepset[1, \nex]$.
-Define $\istap\seqE\cdot : \nepset[1, \nex] \to \nepset\seqE$ by:
+An \emph{index set} is an element $\istI \in \nepset[1, \sze]$.
+Define $\istap\seqE\cdot : \nepset[1, \sze] \to \nepset\seqE$ by:
 \[
   \istap\seqE\istI = \setbd{\relEE\ii}{\ii \in \istI}.
 \]
 
-The \emph{level sequence} $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\nex}
+The \emph{level sequence} $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze}
 \subseteq \domAA$ of the sequence $\seqE$ is defined as follows.
-For $\kk \in [1, \nex]$:
+For $\kk \in [1, \sze]$:
 \[
-  \relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1, \nex]}.
+  \relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1, \sze]}.
 \]
 \end{definition}
 \begin{remark}
 All $\relLL\kk$ are equivalence relations on $\domA$.
 \end{remark}
 \begin{proof}
-Let $\istI \in \cpset\kk[1,\nex]$ be a $\kk$-index set, where $\kk \geq 1$.
+Let $\istI \in \cpset\kk[1,\sze]$ be a $\kk$-index set, where $\kk \geq 1$.
 By \cref{thm:local}, $\cup \istap\seqE\istI$ is an equivalence relation on
 $\domA$.
 Since intersection of equivalence relations on $\domA$ is again an equivalence 
 relation on $\domA$, the level
-$\relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1,\nex]}$
+$\relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1,\sze]}$
 is an equivalence relation on $\domA$.
 \end{proof}
 \begin{remark}\label{rem:local-lvl-refine}
@@ -142,27 +142,27 @@ The level sequence $\seqL$ is a sequence of equivalence relations on $\domA$ in
 refinement.
 \end{remark}
 \begin{proof}
-Let $\ii < \jj \in [1, \nex]$.
-Let $\istJ \in \cpset\jj[1, \nex]$ be any $\jj$-index set.
+Let $\ii < \jj \in [1, \sze]$.
+Let $\istJ \in \cpset\jj[1, \sze]$ be any $\jj$-index set.
 We claim that $\relLL\ii \subseteq \cup \istap\seqE\istJ$.
 Indeed, choose some $\ii$-index set $\istI \subset \istJ$.
 By the definition of $\relLL\ii$ we have
 $\relLL\ii \subseteq \cup \istap\seqE\istI \subseteq \cup \istap\seqE\istJ$.
 Hence
-$\relLL\ii \subseteq \cap \setbd{\cup \seqE[\istJ]}{\istJ \in \cpset\jj[1,\nex]}
+$\relLL\ii \subseteq \cap \setbd{\cup \seqE[\istJ]}{\istJ \in \cpset\jj[1,\sze]}
 = \relLL\jj$.
 \end{proof}
 Let $\ea \in \domA$. Since the sequence $\seqE$ is in local agreement, there is
-a permutation $\permnu \in \Perms\nex$ such that:
+a permutation $\permnu \in \Perms\sze$ such that:
 \begin{equation}\label{eq:local-perm}
   \relEE{\permnu(1)}[\ea] \subseteq
   \relEE{\permnu(2)}[\ea] \subseteq
   \dots \subseteq
-  \relEE{\permnu(\nex)}[\ea].
+  \relEE{\permnu(\sze)}[\ea].
 \end{equation}
 \begin{lemma}\label{lem:local-lvl-perm}
-If $\permnu \in \Perms\nex$ is a permutation satisfying \cref{eq:local-perm},
-then $\relLL{\inv\permnu(\ii)}[\ea] = \relEE\ii[\ea]$ for all $\ii \in [1,\nex]$.
+If $\permnu \in \Perms\sze$ is a permutation satisfying \cref{eq:local-perm},
+then $\relLL{\inv\permnu(\ii)}[\ea] = \relEE\ii[\ea]$ for all $\ii \in [1,\sze]$.
 \end{lemma}
 \begin{proof}
 Let $\kk = \inv\permnu(\ii)$, so $\permnu(\kk) = \ii$.
@@ -172,7 +172,7 @@ $\istK = \set{\permnu(1), \permnu(2), \dots, \permnu(\kk)}$.
 By the definition of $\relLL\kk$, followed by \cref{eq:local-perm},
 we have $\relLL\kk[\ea] \subseteq \cup \istap\seqE\istK[\ea] = 
 \relEE{\permnu(\kk)}[\ea] = \relEE\ii[\ea]$.
-Next, let $\istK \subseteq \cpset\kk[1,\nex]$ be any $\kk$-index set. By the
+Next, let $\istK \subseteq \cpset\kk[1,\sze]$ be any $\kk$-index set. By the
 pigeonhole principle, there is some $\kkp \geq \kk$ such that $\kkp \in \istK$.
 By \cref{eq:local-perm} we have:
 \[
@@ -181,6 +181,6 @@ By \cref{eq:local-perm} we have:
 \]
 Hence
 $\relEE\ii[\ea] \subseteq \cap
-\setbd{\cup \istap\seqE\istK[\ea]}{\istK \in \cpset\kk[1, \nex]} =
+\setbd{\cup \istap\seqE\istK[\ea]}{\istK \in \cpset\kk[1, \sze]} =
 \relLL\kk[\ea]$.
 \end{proof}

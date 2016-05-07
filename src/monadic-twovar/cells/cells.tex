@@ -1,8 +1,8 @@
 % Cells
 
 Let $\US = \seq{\suu1,\suu2,\dots,\suu\szu}$ be a monadic predicate signature.
-Let $\ES = \seq{\see1,\see2,\dots,\see\nex}$ be a predicate signature consisting
-of builtin equivalence symbols in refinement, where $\nex \geq 1$.
+Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
+of builtin equivalence symbols in refinement, where $\sze \geq 1$.
 Let $\sigS = \US + \ES$.
 Abbreviate the finest equivalence symbol as $\sd = \see1$.
 \begin{definition}
@@ -26,7 +26,7 @@ the same cell, then $\tpIa\StrA\ea = \tpIa\StrA\eb$.
 \begin{proof}
 Since $\see\jj$ is a builtin equivalence symbol,
 $\StrA \vDash \see\jj(\ea,\ea)$ and $\StrA \vDash \see\jj(\eb,\eb)$
-for every $\jj \in [1,\nex]$.
+for every $\jj \in [1,\sze]$.
 Since $\ea$ and $\eb$ are in the same cell,
 $\StrA \vDash \fcell\sigS(\ea,\eb)$.
 In particular, $\StrA \vDash \suu\ii(\ea) \lequ \suu\ii(\eb)$ for every
@@ -41,7 +41,7 @@ then $\tpIab\StrA\ea\eap = \tpIab\StrA\eb\ebp$.
 \begin{proof}
 By \cref{rem:twovar-same-cell-tp1}, it is sufficient to check that
 $\StrA \vDash \see\jj(\ea, \eap)$ iff $\StrA \vDash \see\jj(\eb, \ebp)$
-for all $\jj \in [1,\nex]$.
+for all $\jj \in [1,\sze]$.
 This is clear, since $\relC$ refines the finest equivalence relation $\relD$ and
 the equivalence symbols $\see\jj$ are in refinement.
 \end{proof}

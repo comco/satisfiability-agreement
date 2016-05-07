@@ -8,63 +8,63 @@ and to encode a permutation specifying the local chain structure for every
 element in the structure.
 
 Fix an arbitrary ground logic $\aL \in \set{\Fo, \Foc}$ and think of $\sigS$ as
-a predicate signature for the logics $\aL\Eea\nex\aglocal$ and
-$\aL\Eea\nex\agrefine$. The $\nex$ builtin equivalence symbols of $\sigS$ are
-$\see1, \see2, \dots, \see\nex$.
+a predicate signature for the logics $\aL\Eea\sze\aglocal$ and
+$\aL\Eea\sze\agrefine$. The $\sze$ builtin equivalence symbols of $\sigS$ are
+$\see1, \see2, \dots, \see\sze$.
 
 Let $\fphi$ be a $\aLF\sigS$-sentence.
-The class of $\aL\Eea\nex\agrefine$-structures satisfying $\fphi$ coincides with
-the class of $\aL\Eea\nex\aglocal$-structures satisfying
+The class of $\aL\Eea\sze\agrefine$-structures satisfying $\fphi$ coincides with
+the class of $\aL\Eea\sze\aglocal$-structures satisfying
 \[
-  \fphi \land \frefine{\see1,\see2,\dots,\see\nex}.
+  \fphi \land \frefine{\see1,\see2,\dots,\see\sze}.
 \] 
 Hence:
 \[
-  \FinASat\aL\Eea\nex\agrefine \red\cP \FinASat\aL\Eea\nex\aglocal.
+  \FinASat\aL\Eea\sze\agrefine \red\cP \FinASat\aL\Eea\sze\aglocal.
 \]
-Since the size of the formula $\frefine{\see1,\see2,\dots,\see\nex}$ grows 
-polynomially as $\nex$ grows, we have:
+Since the size of the formula $\frefine{\see1,\see2,\dots,\see\sze}$ grows 
+polynomially as $\sze$ grows, we have:
 \[
-  \FinASat\aL\Eea\nonex\agrefine \red\cP \FinASat\aL\Eea\nonex\aglocal.
+  \FinASat\aL\Eea\nosze\agrefine \red\cP \FinASat\aL\Eea\nosze\aglocal.
 \]
 
 Consider the opposite direction.
-Let $\ES = \seq{\see1,\see2,\dots,\see\nex}$ be a predicate signature consisting
+Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
 of the binary predicate symbols $\see\ii$ (not necessarily interpreted as
 equivalences).
 Let $\StrA$ be an $\ES$-structure and suppose that the symbols $\see\ii$ are
 interpreted in $\StrA$ as equivalence relations on $\domA$ in local agreement.
-Let $\relEE\ii = \at\StrA{\see\ii}$ for $\ii \in [1,\nex]$.
+Let $\relEE\ii = \at\StrA{\see\ii}$ for $\ii \in [1,\sze]$.
 Recall that for every $\ea \in \domA$ there is a permutation
-$\permnu \in \Perms\nex$ satisfying \cref{eq:local-perm}:
+$\permnu \in \Perms\sze$ satisfying \cref{eq:local-perm}:
 \begin{equation}\label{eq:local-perm-1}
   \relEE{\permnu(1)}[\ea] \subseteq
   \relEE{\permnu(2)}[\ea] \subseteq \dots \subseteq
-  \relEE{\permnu(\nex)}[\ea].
+  \relEE{\permnu(\sze)}[\ea].
 \end{equation}
 \begin{definition}
 The \emph{characteristic $\ES$-permutation} of $\ea$ in $\StrA$ is
-the lexicographically smallest permutation $\permnu \in \Perms\nex$
+the lexicographically smallest permutation $\permnu \in \Perms\sze$
 satisfying \cref{eq:local-perm-1}.
-Define the function $\gls{chperm-E-A} : \domA \to \Perms\nex$ so
+Define the function $\gls{chperm-E-A} : \domA \to \Perms\sze$ so
 that $\chperm\ES\StrA\ea$ is the characteristic $\ES$-permutation of $\ea$ in
 $\StrA$.
 \end{definition}
 \begin{remark}\label{rem:local-eq-perm}
 Let $\ea \in \domA$, $\permnu = \chperm\ES\StrA\ea$ and
-$\ii < \jj \in [1,\nex]$.
+$\ii < \jj \in [1,\sze]$.
 Suppose that $\relEE{\permnu(\ii)}[\ea] = \relEE{\permnu(\jj)}[\ea]$.
 Then $\permnu(\ii) < \permnu(\jj)$.
 \end{remark}
 \begin{proof}
-Suppose not. For some $\ii < \jj \in [1,\nex]$ we have
+Suppose not. For some $\ii < \jj \in [1,\sze]$ we have
 $\permnu(\ii) \geq \permnu(\jj)$.
 Since $\permnu$ is a permutation and $\ii \neq \jj$,
 we have $\permnu(\ii) > \permnu(\jj)$.
 Since $\relEE{\permnu(\ii)}[\ea] = \relEE{\permnu(\jj)}[\ea]$,
 by \cref{eq:local-perm-1} we have $\relEE{\permnu(\kk)} = \relEE{\permnu(\ii)}$
 for all $\kk \in [\ii, \jj]$.
-Consider the permutation $\permmu \in \Perms\nex$ defined by:
+Consider the permutation $\permmu \in \Perms\sze$ defined by:
 \[
   \permmu(\kk) = \begin{cases}
     \permnu(\jj) &\text{ if } \kk = \ii \\
@@ -79,7 +79,7 @@ lexicographically smaller than $\permnu$ --- a contradiction.
 \begin{remark}\label{rem:local-inv-perm}
 Let $\ea, \eb \in \domA$ and let
 $\perma = \chperm\ES\StrA\ea$ and $\permb = \chperm\ES\StrA\eb$.
-Let $\ii \in [1,\nex]$ and suppose that $(\ea, \eb) \in \relEE\ii$.
+Let $\ii \in [1,\sze]$ and suppose that $(\ea, \eb) \in \relEE\ii$.
 Then $\inv\perma(\ii) = \inv\permb(\ii)$.
 \end{remark}
 \begin{proof}
@@ -88,7 +88,7 @@ Let $\posp = \inv\perma(\ii)$ and $\posq = \inv\permb(\ii)$.
 Without loss of generality, suppose that $\posp < \posq$.
 Thus $\posp$ is the position of $\ii$ in the permutation $\perma$ and 
 $\posq > \posp$ is the position of $\ii$ in the permutation $\permb$. 
-By the pigeonhole principle, there is $\kk \in [1,\nex]$ that occurs after $\ii$
+By the pigeonhole principle, there is $\kk \in [1,\sze]$ that occurs after $\ii$
 in $\perma$ and before $\jj$ in $\permb$:
 $\posp < \inv\perma(\kk)$ and $\inv\permb(\kk) < \posq$.
 Since $\permb$ is the characteristic $\ES$-permutation of $b$ in $\StrA$, by
@@ -114,13 +114,13 @@ $\relEE\kk[\ea]$ are either equal or disjoint.
 \end{proof}
 
 Let
-$\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\nex} \subseteq \domAA$ be
-the levels of $\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\nex}$.
+$\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze} \subseteq \domAA$ be
+the levels of $\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\sze}$.
 Recall that by \cref{rem:local-lvl-refine}, the levels are equivalence relations
 on $\domA$ in refinement.
 
 \begin{remark}\label{rem:local-lvl-perm}
-Let $\ea \in \domA$, $\perma = \chperm\ES\StrA\ea$ and let $\kk \in [1,\nex]$.
+Let $\ea \in \domA$, $\perma = \chperm\ES\StrA\ea$ and let $\kk \in [1,\sze]$.
 Then $\relLL\kk[\ea] = \relEE{\perma(\kk)}[\ea]$.
 \end{remark}
 \begin{proof}
@@ -134,7 +134,7 @@ Since $\perma$ satisfies \cref{eq:local-perm-1}, by \cref{lem:local-lvl-perm}:
 
 \begin{remark}\label{rem:local-lvl-agree}
 Let $\ea, \eb \in \domA$, $\perma = \chperm\ES\StrA\ea$,
-$\permb = \chperm\ES\StrA\eb$ and $\kk \in [1,\nex]$.
+$\permb = \chperm\ES\StrA\eb$ and $\kk \in [1,\sze]$.
 Suppose that $(\ea, \eb) \in \relLL\kk$.
 Then $\perma(\kk) = \permb(\kk)$.
 That is, the elements connected at level $\kk$ agree at position $\kk$ in their
@@ -150,15 +150,15 @@ By \cref{rem:local-eq-perm},
 Hence $\permb(\kk) = \perma(\kk)$.
 \end{proof}
 
-Let $\PS = \seq{\suu{11}, \suu{12}, \dots, \suu{\nex\tbit}}$ be an
-$\nex$-permutation setup.
-Let $\LS = \seq{\slee1, \slee2, \dots, \slee\nex} + \PS$ be a predicate
+Let $\PS = \seq{\suu{11}, \suu{12}, \dots, \suu{\sze\tbit}}$ be an
+$\sze$-permutation setup.
+Let $\LS = \seq{\slee1, \slee2, \dots, \slee\sze} + \PS$ be a predicate
 signature containing the binary predicate symbols $\slee\kk$ (not necessarily
 interpreted as equivalence relations) together with the symbols from $\PS$.
 \begin{definition}
 Define the $\vFoF2\LS$-sentence $\gls{ffixperm-L}$ by:
 \[
-  \ffixperm\LS = \forall\xx \forall\yy \bigwedge_{1 \leq \kk \leq \nex}
+  \ffixperm\LS = \forall\xx \forall\yy \bigwedge_{1 \leq \kk \leq \sze}
   \slee\kk(\xx,\yy) \limp \feq{\PSp{\kk}}(\xx,\yy).
 \]
 \end{definition}
@@ -170,10 +170,10 @@ Define the $\vFoF2\LS$-sentence $\gls{flocperm-L}$ by:
 \end{definition}
 \begin{remark}\label{rem:local-perm-val-fixed}
 Let $\StrA$ be an $\LS$-structure and suppose that $\StrA \vDash \flocperm\LS$.
-Let $\ea, \eb \in \domA$, $\kk \in [1,\nex]$ and suppose that
+Let $\ea, \eb \in \domA$, $\kk \in [1,\sze]$ and suppose that
 $\StrA \vDash \slee\kk(\ea, \eb)$.
 Let $\perma = \data\PS\StrA\ea$ and $\permb = \data\PS\StrA\eb$ be the
-$\nex$-permutations at $\ea$ and $\eb$,
+$\sze$-permutations at $\ea$ and $\eb$,
 \emph{encoded by the permutation setup $\PS$}.
 Then $\perma(\kk) = \permb(\kk)$.
 \end{remark}
@@ -183,7 +183,7 @@ $\StrA \vDash \feqA\PS\kk(\ea,\eb)$, which means $\perma(\kk) = \permb(\kk)$.
 \end{proof}
 
 \begin{definition}
-For $\ii \in [1,\nex]$, define the quantifier-free $\vFoF2\LS$-formula
+For $\ii \in [1,\sze]$, define the quantifier-free $\vFoF2\LS$-formula
 $\gls{fel-L-i}$ by:
 \[
   \fel\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \nn}
@@ -195,22 +195,22 @@ $\gls{fel-L-i}$ by:
 Let $\StrA$ be an $\LS$-structure and suppose that $\StrA \vDash \flocperm\LS$
 and that the binary symbols $\slee\kk$ are interpreted in $\StrA$ as equivalence
 relations on $\domA$ in refinement.
-Define $\permnu : \domA \to \Perms\nex$ by $\permnu(\ea) = \data\PS\StrA\ea$
+Define $\permnu : \domA \to \Perms\sze$ by $\permnu(\ea) = \data\PS\StrA\ea$
 for $\ea \in \domA$.
 Let $\ea \in \domA$ be arbitrary.
-Then for all $\ii \in [1,\nex]$:
+Then for all $\ii \in [1,\sze]$:
 \[
   \at\StrA{\fel\LS\ii}[\ea] = \at\StrA{\slee{\inv{\permnu(\ea)}(\ii)}}[\ea].
 \]
 \end{remark}
 \begin{proof}
 Let $\relEE\ii = \at\StrA{\fel\LS\ii}$ and $\relLL\ii = \at\StrA{\slee\ii}$
-for every $\ii \in [1,\nex]$.
-Let $\ii \in [1,\nex]$ be arbitrary. 
+for every $\ii \in [1,\sze]$.
+Let $\ii \in [1,\sze]$ be arbitrary. 
 Let $\perma = \permnu(\ea)$ and $\kk = \inv\perma(\ii)$,
 so $\perma = \data\PS\StrA\ea$ and $\perma(\kk) = \ii$.
 We have to show that $\relEE\ii[\ea] = \relLL\kk[\ea]$.
-Since $\perma$ is a permutation, for every $\kkp \in [1,\nex]$ we have:
+Since $\perma$ is a permutation, for every $\kkp \in [1,\sze]$ we have:
 \begin{equation}\label{eq:local-e-equiv}
   \mifff{
   \StrA \vDash \feqAA\PS\kkp\ii(\ea)}{
@@ -223,7 +223,7 @@ $\StrA \vDash \slee\kk(\ea,\eb)$, hence $\eb \in \relLL\kk[\ea]$.
 
 Next, suppose $\eb \not\in \relEE\ii[\ea]$.
 Then $\StrA \vDash \lnot\fel\LS\ii(\ea,\eb)$, so there is some
-$\kkp \in [1,\nex]$ such that 
+$\kkp \in [1,\sze]$ such that 
 $\StrA \vDash \lnot(\feqAA\LS\kkp\ii(\ea) \limp \slee\kkp(\ea,\eb)) 
 \equiv \feqAA\LS\kkp\ii(\ea) \land \lnot\slee\kkp(\ea,\eb)$.
 By \cref{eq:local-e-equiv} we have $\kkp = \kk$.
@@ -233,13 +233,13 @@ Hence $\StrA \vDash \lnot \slee\kk(\ea,\eb)$, so $\eb \not\in \relLL\kk[\ea]$.
 \begin{remark}\label{rem:local-e-local}
 Let $\StrA$ and $\permnu$ are declared as in \cref{rem:local-e-m}.
 Then the interpretations
-$\seq{\at\StrA{\fel\LS1},\at\StrA{\fel\LS2},\dots,\at\StrA{\fel\LS\nex}}$ are
+$\seq{\at\StrA{\fel\LS1},\at\StrA{\fel\LS2},\dots,\at\StrA{\fel\LS\sze}}$ are
 equivalence relations on $\domA$ in local agreement.
 \end{remark}
 \begin{proof}
 Let $\relEE\ii = \at\StrA{\fel\LS\ii}$ and $\relLL\ii = \at\StrA{\slee\ii}$ for
-every $\ii \in [1,\nex]$.
-Let $\ii \in [1,\nex]$ be arbitrary.
+every $\ii \in [1,\sze]$.
+Let $\ii \in [1,\sze]$ be arbitrary.
 We check that $\relEE\ii$ is reflexive, symmetric and transitive.
 \begin{itemize}
   \item For reflexivity, let $\ea \in \domA$.
@@ -270,10 +270,10 @@ We check that $\relEE\ii$ is reflexive, symmetric and transitive.
   thus $(\ea,\ec) \in \relEE\ii$.
 \end{itemize}
 By \cref{rem:local-e-m}, since the relations $\relLL\kk$ are in refinement, we
-have that $\relEE1, \relEE2, \dots, \relEE\nex$ are in local agreement.
+have that $\relEE1, \relEE2, \dots, \relEE\sze$ are in local agreement.
 \end{proof}
 
-Let $\ES = \seq{\see1,\see2,\dots,\see\nex}$ be a predicate signature consisting
+Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
 of binary predicate symbols.
 Let $\sigS$ be a predicate signature enriching $\ES$
 and not containing any symbols from $\LS$. 
@@ -288,24 +288,24 @@ by:
 where $\fphip$ is obtained from $\fphi$ by replacing all occurrences of a
 subformula of the form $\see\ii(\gx,\gy)$ by the formula $\fel\LS\ii(\gx,\gy)$, 
 where $\gx$ and $\gy$ are (not necessarily distinct) variable symbols and
-$\ii \in [1,\nex]$.
+$\ii \in [1,\sze]$.
 \end{definition}
 \begin{remark}
 Let $\fphi$ be a $\aLF\sigS$-formula and let $\StrA$ be a $\sigS$-structure.
 Suppose that $\StrA \vDash \fphi$ and that the symbols 
-$\see1, \see2, \dots, \see\nex$ are interpreted in $\StrA$ as equivalence
+$\see1, \see2, \dots, \see\sze$ are interpreted in $\StrA$ as equivalence
 relations on $\domA$ in local agreement.
 Then there is a $\sigSp$-enrichment $\StrAp$ of $\StrA$ such that
 $\StrAp \vDash \ltr\fphi$ and that the symbols 
-$\slee1, \slee2, \dots, \slee\nex$ are interpreted in $\StrAp$ as equivalence
+$\slee1, \slee2, \dots, \slee\sze$ are interpreted in $\StrAp$ as equivalence
 relations on $\domA$ in refinement.
 \end{remark}
 \begin{proof}
-Since the binary symbols $\see1, \see2, \dots, \see\nex$ are interpreted as
+Since the binary symbols $\see1, \see2, \dots, \see\sze$ are interpreted as
 equivalence relations on $\domA$ in local agreement in $\StrA$, we may define
-the levels $\relLL1, \relLL2, \dots, \relLL\nex \subseteq \domAA$
+the levels $\relLL1, \relLL2, \dots, \relLL\sze \subseteq \domAA$
 and the characteristic $\ES$-permutation mapping 
-$\permnu = \chperm\ES\StrA : \domA \to \Perms\nex$.
+$\permnu = \chperm\ES\StrA : \domA \to \Perms\sze$.
 Consider an enrichment $\StrAp$ of $\StrA$ where 
 $\at\StrAp{\slee\ii} = \relLL\ii$.
 By \cref{rem:local-lvl-refine}, $\relLL\ii$ are equivalences on $\domA$ in
@@ -315,7 +315,7 @@ permutation setup $\PS$ so that $\data\PS\StrAp\ea = \permnu(\ea)$ for all
 $\ea \in \domA$.
 By \cref{rem:local-lvl-agree}, $\StrAp \vDash \ffixperm\LS$.
 By \cref{rem:local-e-m}, followed by \cref{lem:local-lvl-perm},
-for every $\ii \in [1,\nex]$ and $\ea \in \domA$ we have:
+for every $\ii \in [1,\sze]$ and $\ea \in \domA$ we have:
 \[
   \at\StrAp{\fel\LS\ii}[\ea] =
   \at\StrAp{\slee{\inv{\permnu(\ea)}(\ii)}}[\ea] =
@@ -332,11 +332,11 @@ and since $\StrAp \vDash \fphi$, we have $\StrAp \vDash \ltr\fphi$.
 \begin{remark}
 Let $\fphi$ be a $\aLF\sigS$-formula and let $\StrA$ be an $\LSp$-structure.
 Suppose that $\StrA \vDash \ltr\fphi$ and that the symbols
-$\slee1, \slee2, \dots, \slee\nex$ are interpreted as equivalence relations on
+$\slee1, \slee2, \dots, \slee\sze$ are interpreted as equivalence relations on
 $\domA$ in refinement in $\StrA$.
 Then there is a $\sigSp$-enrichment $\StrAp$ of $\StrA$ such that
 $\StrAp \vDash \fphi$ and that the binary symbols
-$\see1, \see2, \dots, \see\nex$
+$\see1, \see2, \dots, \see\sze$
 are interpreted as equivalence relations on $\domA$ in global agreement in
 $\StrAp$.
 \end{remark}
@@ -345,33 +345,33 @@ Consider an enrichment $\StrAp$ of $\StrA$ to a $\sigSp$-structure where
 $\at\StrAp{\see\ii} = \at\StrA{\fel\LS\ii}$.
 By \cref{rem:local-e-local}, $\at\StrAp{\see\ii}$ are equivalence
 relations on $\domA$ in local agreement. 
-For every $\ii \in [1,\nex]$ we have
+For every $\ii \in [1,\sze]$ we have
 $\StrAp \vDash \forall\xx \forall\yy \see\ii(\xx,\yy) \lequ \fel\LS\ii(\xx,\yy)$
 by definition.
 Since $\StrAp \vDash \ltr\fphi$ we have $\StrAp \vDash \fphi$.
 \end{proof}
 
-The last two remarks show that a $\aL\Eea\nex\aglocal$-formula $\fphi$
-has essentially the same models as the $\aL\Eea\nex\agrefine$-formula
+The last two remarks show that a $\aL\Eea\sze\aglocal$-formula $\fphi$
+has essentially the same models as the $\aL\Eea\sze\agrefine$-formula
 $\ltr\fphi$, so we have shown:
 \begin{proposition}\label{prop:local-to-refine-n}
-The logic $\aL\Eea\nex\aglocal$ has the finite model property iff
-the logic $\aL\Eea\nex\agrefine$ has the finite model property.
+The logic $\aL\Eea\sze\aglocal$ has the finite model property iff
+the logic $\aL\Eea\sze\agrefine$ has the finite model property.
 The corresponding satisfiability problems are polynomial-time equivalent:
-$\FinASat\aL\Eea\nex\aglocal \redeq\cP \FinASat\aL\Eea\nex\agrefine$.
+$\FinASat\aL\Eea\sze\aglocal \redeq\cP \FinASat\aL\Eea\sze\agrefine$.
 \end{proposition}
 
 Since the relative size of $\ltr\fphi$ with respect to $\fphi$ grows
-polynomially as $\nex$ grows, we have shown:
+polynomially as $\sze$ grows, we have shown:
 \begin{proposition}\label{prop:local-to-refine}
-The logic $\aL\Eea\nonex\aglocal$ has the finite model property iff
-the logic $\aL\Eea\nonex\agrefine$ has the finite model property.
+The logic $\aL\Eea\nosze\aglocal$ has the finite model property iff
+the logic $\aL\Eea\nosze\agrefine$ has the finite model property.
 The corresponding satisfiability problems are polynomial-time equivalent:
-$\FinASat\aL\Eea\nonex\aglocal \redeq\cP \FinASat\aL\Eea\nonex\agrefine$.
+$\FinASat\aL\Eea\nosze\aglocal \redeq\cP \FinASat\aL\Eea\nosze\agrefine$.
 \end{proposition}
 
-The reduction is two-variable first-order and uses additional $(\nex\tbit)$
+The reduction is two-variable first-order and uses additional $(\sze\tbit)$
 unary predicate symbols for the permutation setup $\PS$, so it is also valid
-for the two-variable fragments $\Lvp\aL20\Eea\nex\ag$, $\Lvp\aL21\Eea\nex\ag$
-and $\Lvp\aL21\Eea\nonex\ag$ for $\ag \in \set{\aglocal, \agrefine}$
+for the two-variable fragments $\Lvp\aL20\Eea\sze\ag$, $\Lvp\aL21\Eea\sze\ag$
+and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\aglocal, \agrefine}$
 respectively.
