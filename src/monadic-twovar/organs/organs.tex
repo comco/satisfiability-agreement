@@ -2,12 +2,12 @@
 Let $\US = \seq{\suu1,\suu2,\dots,\suu\szu}$ be a monadic predicate signature.
 Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
 of builtin equivalence symbols in refinement, where $\sze \geq 2$.
-Let $\sigS = \US + \ES$.
+Let $\SigS = \US + \ES$.
 Abbreviate the finest two equivalence symbols as $\sd = \see1$ and $\se =
 \see2$.
 
 \begin{definition}
-Let $\StrA$ be a $\sigS$-structure and let $\relD = \at\StrA\sd$ and
+Let $\StrA$ be a $\SigS$-structure and let $\relD = \at\StrA\sd$ and
 $\relE = \at\StrA\se$.
 Recall that the set of $\relD$-classes is $\Ecl\relD$.
 Two $D$-classes $\eclX, \eclY \in \Ecl\relD$ are \emph{organ-equivalent},
@@ -37,7 +37,7 @@ $\domA$ that refines $\relE$.
 \end{definition}
 
 \begin{remark}\label{rem:twovar-same-organ-tp2}
-If $\StrA$ is a $\sigS$-structure and $\ea, \eb, \eap, \ebp \in \domA$ be such
+If $\StrA$ is a $\SigS$-structure and $\ea, \eb, \eap, \ebp \in \domA$ be such
 that $\ea$ and $\eb$ are sub-organ-equivalent, $\eap$ and $\ebp$ are
 sub-organ-equivalent and $\relD[\ea]$ and $\relD[\eap]$ are not
 organ-equivalent, then $\tpIab\StrA\ea\eap = \tpIab\StrA\eb\ebp$.
@@ -60,7 +60,7 @@ $\jj \in [2,\sze]$.
 \end{proof}
 
 \begin{lemma}\label{lem:twovar-organ-2}
-Let $\StrA$ be a $\sigS$-structure. There is some $\StrB \subseteq \StrA$ such
+Let $\StrA$ be a $\SigS$-structure. There is some $\StrB \subseteq \StrA$ such
 that $\StrA \vequiv2 \StrB$ and every $\StrB$-organ has cardinality at most
 $2$.
 \end{lemma}

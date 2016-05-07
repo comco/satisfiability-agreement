@@ -57,34 +57,34 @@ counter setup.
 Let $\aL \in \set{\Fo, \Foc}$ be a ground logic,
 $\gr \in \pNats$ and
 $\ColS = \seq{\suu1,\suu2,\dots,\suu\tbit}$ be a $\gr$-color setup.
-Let $\sigS$ be a predicate signature containing the binary symbols
+Let $\SigS$ be a predicate signature containing the binary symbols
 $\sd$ and $\se$ and not containing any symbols from $\ColS$.
-Let $\sigSp = \sigS + \ColS$ and $\sigG = \sigSp - \set{\sd}$.
+Let $\SigSp = \SigS + \ColS$ and $\SigG = \SigSp - \set{\sd}$.
 
 \begin{definition}
-Define the quantifier-free $\vFoF2\sigG$-formula
+Define the quantifier-free $\vFoF2\SigG$-formula
 $\gls{finer-granularity-G}(\xx,\yy)$ by:
 \[
-  \fd\sigG(\xx,\yy) = \se(\xx,\yy) \land \feq\ColS(\xx,\yy).
+  \fd\SigG(\xx,\yy) = \se(\xx,\yy) \land \feq\ColS(\xx,\yy).
 \]
 \end{definition}
 \begin{definition}
-Define the syntactic operation $\gls{granularity-tr} : \aLF\sigS \to
-\aLF\sigG$ by:
+Define the syntactic operation $\gls{granularity-tr} : \aLF\SigS \to
+\aLF\SigG$ by:
 \[
   \grtr\fphi = \fphip \land \fbetw\ColS1\gr,
 \]
 where $\fphip$ is obtained from the formula $\fphi$ by replacing all subformulas
-of the form $\sd(\gx,\gy)$ by $\fd\sigG(\gx,\gy)$, where $\gx$ and $\gy$ are (not
+of the form $\sd(\gx,\gy)$ by $\fd\SigG(\gx,\gy)$, where $\gx$ and $\gy$ are (not
 necessarily distinct) variable symbols.
 \end{definition}
 
 \begin{lemma}\label{lem:granular-f-to-tr}
-Let $\StrA$ be a $\sigS$-structure and suppose that the sequence of
+Let $\StrA$ be a $\SigS$-structure and suppose that the sequence of
 symbols $\seq{\sd,\se}$ is interpreted in $\StrA$ as a
 $\gr$-granular sequence $\seq{\relD,\relE} \subseteq \domAA$.
 Suppose that $\StrA \vDash \fphi$.
-Then there is a $\sigSp$-enrichment $\StrAp$ of $\StrA$ such that
+Then there is a $\SigSp$-enrichment $\StrAp$ of $\StrA$ such that
 $\StrAp \vDash \grtr\fphi$.
 \end{lemma}
 \begin{proof}
@@ -93,7 +93,7 @@ $\gcol : \domA \to [1,\gr]$.
 We interpret the unary symbols in $\ColS$ so that $\data\ColS\StrA = \gcol$.
 Since $\StrAp$ is an enrichment of $\StrA$, we have $\StrAp \vDash \fphi$.
 Let $\ea, \eb \in \domA$.
-Then $\StrAp \vDash \fd\sigG(\ea,\eb)$ is equivalent to:
+Then $\StrAp \vDash \fd\SigG(\ea,\eb)$ is equivalent to:
 \[
   \StrAp \vDash \se(\ea,\eb) \text{ and } \StrAp \vDash \feq\ColS(\ea,\eb),
 \]
@@ -106,15 +106,15 @@ equivalent to:
 \[
   (\ea,\eb) \in \relD.
 \]
-Hence $\StrAp \vDash \forall\xx\forall\yy \sd(\xx,\yy) \lequ \fd\sigG(\xx,\yy)$
+Hence $\StrAp \vDash \forall\xx\forall\yy \sd(\xx,\yy) \lequ \fd\SigG(\xx,\yy)$
 and since $\StrAp \vDash \fphi$, we have $\StrAp \vDash \grtr\fphi$.
 \end{proof}
 
 \begin{lemma}\label{lem:granular-tr-to-f}
-Let $\StrA$ be a $\sigG$-structure and suppose that the binary symbol $\se$ is
+Let $\StrA$ be a $\SigG$-structure and suppose that the binary symbol $\se$ is
 interpreted in $\StrA$ as an equivalence relation on $\domA$.
 Suppose that $\StrA \vDash \grtr\fphi$.
-Then there is a $\sigSp$-structure $\StrAp$ enriching $\StrA$ such that 
+Then there is a $\SigSp$-structure $\StrAp$ enriching $\StrA$ such that 
 $\StrAp \vDash \fphi$ and the sequence of binary symbols $\seq{\sd,\se}$ is
 interpreted in $\StrAp$ as a $\gr$-granular sequence $\seq{\relD,\relE}
 \subseteq \domAA$.
@@ -126,11 +126,11 @@ Define ${\gcol : \domA \to [1,\gr]}$ by $\gcoll\ea = \data\CS\StrA\ea$.
 By \cref{rem:granular-exists}, we can find $\relD \subseteq \relE$ such that 
 the sequence $\seq{\relD,\relE}$ is $\gr$-granular, having $\gcol$ as a
 $\gr$-granular coloring.
-Consider the $\sigSp$-structure $\StrAp$, where $\at\StrAp\sd = \relD$.
+Consider the $\SigSp$-structure $\StrAp$, where $\at\StrAp\sd = \relD$.
 Since $\StrAp$ is an enrichment of $\StrA \vDash \grtr\fphi$, we have
 $\StrAp \vDash \fphi$.
 Let $\ea,\eb \in \domA$. 
-Then $\StrAp \vDash \fd\sigG(\ea,\eb)$ is equivalent to:
+Then $\StrAp \vDash \fd\SigG(\ea,\eb)$ is equivalent to:
 \[
   \StrAp \vDash \se(\ea,\eb) \text{ and } \StrAp \vDash \feq\ColS(\ea,\eb),
 \]
@@ -143,6 +143,6 @@ which, since $\gcol$ is a $\gr$-granular coloring, is equivalent to:
   (\ea,\eb) \in \relD.
 \]
 Hence
-$\StrAp \vDash \forall\xx \forall\yy \se(\xx,\yy) \lequ \fd\sigG(\xx,\yy)$ 
+$\StrAp \vDash \forall\xx \forall\yy \se(\xx,\yy) \lequ \fd\SigG(\xx,\yy)$ 
 and since $\StrAp \vDash \grtr\fphi$, we have $\StrAp \vDash \fphi$.
 \end{proof}

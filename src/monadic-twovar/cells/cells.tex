@@ -3,16 +3,16 @@
 Let $\US = \seq{\suu1,\suu2,\dots,\suu\szu}$ be a monadic predicate signature.
 Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
 of builtin equivalence symbols in refinement, where $\sze \geq 1$.
-Let $\sigS = \US + \ES$.
+Let $\SigS = \US + \ES$.
 Abbreviate the finest equivalence symbol as $\sd = \see1$.
 \begin{definition}
-Define quantifier-free $\vFoF2\sigS$-formula $\gls{fcell-S-x-y}$ by:
+Define quantifier-free $\vFoF2\SigS$-formula $\gls{fcell-S-x-y}$ by:
 \[
-  \fcell\sigS(\xx,\yy) = \sd(\xx,\yy) \land
+  \fcell\SigS(\xx,\yy) = \sd(\xx,\yy) \land
   \bigwedge_{1 \leq i \leq \szu} \suu\ii(\xx) \lequ \suu\ii(\yy).
 \]
-If $\StrA$ is a $\sigS$-structure and $D = \at\StrA\sd$, then the
-interpretation $\relC = \at\StrA{\fcell\sigS} \subseteq \domAA$ is an
+If $\StrA$ is a $\SigS$-structure and $D = \at\StrA\sd$, then the
+interpretation $\relC = \at\StrA{\fcell\SigS} \subseteq \domAA$ is an
 equivalence relation on $\domA$ that refines $\relD$.
 The \emph{cells} of $\StrA$ are the equivalence classes of $\relC$.
 That is, a cell is a maximal set of $\relD$-equivalent elements satisfying the
@@ -20,7 +20,7 @@ same $\su$-predicates.
 \end{definition}
 
 \begin{remark}\label{rem:twovar-same-cell-tp1}
-If $\StrA$ is a $\sigS$-structure and the elements $\ea, \eb \in \domA$ are in
+If $\StrA$ is a $\SigS$-structure and the elements $\ea, \eb \in \domA$ are in
 the same cell, then $\tpIa\StrA\ea = \tpIa\StrA\eb$.
 \end{remark}
 \begin{proof}
@@ -28,12 +28,12 @@ Since $\see\jj$ is a builtin equivalence symbol,
 $\StrA \vDash \see\jj(\ea,\ea)$ and $\StrA \vDash \see\jj(\eb,\eb)$
 for every $\jj \in [1,\sze]$.
 Since $\ea$ and $\eb$ are in the same cell,
-$\StrA \vDash \fcell\sigS(\ea,\eb)$.
+$\StrA \vDash \fcell\SigS(\ea,\eb)$.
 In particular, $\StrA \vDash \suu\ii(\ea) \lequ \suu\ii(\eb)$ for every
 $\ii \in [1,\szu]$.
 \end{proof}
 \begin{remark}\label{rem:twovar-same-cell-tp2}
-If $\StrA$ is a $\sigS$-structure, $\ea, \eb \in \domA$ are in the same cell
+If $\StrA$ is a $\SigS$-structure, $\ea, \eb \in \domA$ are in the same cell
 $\relC[\ea]$, $\eap, \ebp \in \domA$ are in the same cell $\relC[\eap]$ and
 $\relC[\ea] \neq \relC[\eap]$,
 then $\tpIab\StrA\ea\eap = \tpIab\StrA\eb\ebp$.
@@ -47,7 +47,7 @@ the equivalence symbols $\see\jj$ are in refinement.
 \end{proof}
 
 \begin{lemma}\label{lem:twovar-cell-2}
-Let $\StrA$ be a $\sigS$-structure.
+Let $\StrA$ be a $\SigS$-structure.
 There is some $\StrB \subseteq \StrA$ such that
 $\StrA \vequiv2 \StrB$ and every
 $\StrB$-cell has cardinality at most $2$.
