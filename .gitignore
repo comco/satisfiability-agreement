@@ -1,8 +1,2 @@
 tmp/
 *.gz
-/document.pdf
-/thesis.pdf
-*.glg
-*.gls
-*.syg
-*.syi
