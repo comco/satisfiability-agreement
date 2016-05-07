@@ -1,0 +1,21 @@
+% Complexity commands
+
+% complexity class name
+% from
+% http://tex.stackexchange.com/questions/13040/small-caps-for-the-math-mode
+\newcommand{\cname}[1]{\text{\normalfont{\scshape#1}}} 
+
+\newcommand{\cP}{\cname{PTime}}
+\newcommand{\cNP}{\cname{NPTime}}
+\newcommand{\cPSpace}{\cname{PSpace}}
+\newcommand{\cExpTime}{\cname{ExpTime}}
+\newcommand{\ceExpTime}[1]{{#1\cname{ExpTime}}}
+\newcommand{\cNExpTime}{\cname{NExpTime}}
+\newcommand{\ceNExpTime}[1]{\cname{N}#1\cname{ExpTime}}
+\newcommand{\cElementary}{\cname{Elementary}}
+
+% natural number for exponent in the complexity class
+\newcommand{\nex}{\upepsilon}
+\newcommand{\nexp}{{\upepsilon'}}
+% no nex
+\newcommand{\nonex}{{}}

@@ -1,0 +1,44 @@
+% Bits
+A \emph{bit setup} $\gls{bit-setup-B} = \seq{\su}$ is a predicate signature
+consisting of a single unary predicate symbol $\su$.
+
+\begin{definition}
+Let $\StrA$ be a $\BS$-structure.
+Define the function $\gls{u-data-A} : \domA \to \Bits$ by:
+\[
+  \data\su\StrA a = \begin{cases}
+    1 &\text{if } \StrA \vDash \su(a) \\
+    0 &\text{otherwise.}
+  \end{cases}
+\]
+\end{definition}
+\begin{definition}
+Let $\datad \in \Bits$. Define the quantifier-free $\vFoF1\BS$-formula
+$\gls{feqA-u-d-x}$ by:
+\[
+  \feqA\su\datad(\xx) = \begin{cases}
+    \su(\xx) &\text{if } \datad = 1 \\
+    \lnot\su(\xx) &\text{otherwise.}
+  \end{cases}
+\]
+\end{definition}
+If $\StrA$ is a $\BS$-structure, $\ea \in \domA$ and $\datad \in \Bits$,
+then $\StrA \vDash \feqA\su\datad(\ea)$ iff $\data\su\StrA\ea = \datad$.
+
+\begin{definition}
+Define the quantifier-free $\vFoF2\BS$-formulas 
+$\gls{feq-u-d}$, $\gls{feq-01-u-d}$ and $\gls{feq-10-u-d}$ by:
+\begin{align*}
+  \feq\su(\xx,\yy) &= \su(\xx) \lequ \su(\yy) \\
+  \feqOI\su(\xx,\yy) &= \lnot \su(\xx) \land \su(\yy) \\
+  \feqIO\su(\xx,\yy) &= \su(\xx) \land \lnot \su(\yy). \\
+\end{align*}
+\end{definition}
+If $\StrA$ is a $\BS$-structure and $a, b \in A$, then:
+\begin{itemize}
+  \item $\StrA \vDash \feq\su(a, b)$ iff $\data\su\StrA a = \data\su\StrA b$
+  \item $\StrA \vDash \feqOI\su(a, b)$ iff $\data\su\StrA a = 0$ and
+  $\data\su\StrA b = 1$
+  \item $\StrA \vDash \feqIO\su(a, b)$ iff $\data\su\StrA a = 1$ and
+  $\data\su\StrA b = 0$.
+\end{itemize}

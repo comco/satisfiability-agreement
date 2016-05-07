@@ -1,0 +1,42 @@
+% Strandard translation
+
+The \emph{standard translation} $\sttr : \FocF\sigS \to \FoF\sigS$ of
+first-order formulas with counting quantifiers to logically equivalent
+first-order formulas is defined as follows. If $\fphi$ matches:
+\begin{itemize}
+  \item $(\gx = \gy)$ or $\gp(\gxx1, \gxx2, \dots, \gxx\nn)$, then
+  $\sttr\fphi = \fphi$
+  \item $(\lnot\fpsi)$, then $\sttr\fphi = (\lnot\sttr\fpsi)$
+  \item $(\fpsi_1 \anyconn \fpsi_2)$ for $\anyconn \in \set{\allconns}$, then
+  $\sttr\fphi = (\sttr\fpsi_1 \anyconn \sttr\fpsi_2)$
+  \item $(\anyQ\gx \fpsi)$ for $\anyQ \in \set{\allQs}$, then
+  $\sttr\fphi = (\anyQ\gx \sttr\fpsi)$
+  \item $\existsleq\nm\gx \fpsi(\gx)$ or $\existseq\nm\gx \fpsi(\gx)$ or
+  $\existsgeq\nm\gx \fpsi(\gx)$, then let
+  \begin{align*}
+  \fthe_\leq &= \forall\gyy1 \forall\gyy2 \dots \forall\gyy\nm
+  \forall\gyy{\nm+1}
+  \left(\bigwedge_{1 \leq \ii \leq \nm+1} \sttr\fpsi(\gyy\ii)\right) \limp
+  \bigvee_{1 \leq \ii < \jj \leq \nm+1} \gyy\ii = \gyy\jj \\
+  \fthe_\geq &= \exists\gyy1 \exists\gyy2 \dots \exists\gyy\nm
+  \left(\bigwedge_{1 \leq \ii \leq \nm} \sttr\fpsi(\gyy\ii)\right) \land
+  \bigwedge_{1 \leq \ii < \jj \leq \nm} \gyy\ii \neq \gyy\jj
+  \end{align*}
+  where $\gyy1, \gyy2, \dots, \gyy{\nm+1}$ are distinct variable symbols not
+  occurring in $\fphi$. The formula $\fthe_\leq$ asserts that there are at most
+  $\nm$ distinct values satisfying $\fpsi$. The formula $\fthe_\geq$ asserts
+  that there are at least $\nm$ distinct values satisfying $\fpsi$.
+  If $\fphi = (\existsleq\nm\gx \fpsi(\gx))$, then
+  $\sttr\fphi = \theta_\leq$.
+  If $\fphi = (\existseq\nm\gx \fpsi(\gx))$, then
+  $\sttr\fphi = (\theta_\leq \land \theta_\geq)$.
+  If $\fphi = (\existsgeq\nm\gx \fpsi(\gx))$, then
+  $\sttr\fphi = \theta_\geq$.
+\end{itemize}
+
+\begin{remark}\label{rem:sttr-exp-size}
+The translation of a first-order formula with counting quantifiers $\fphi$ to a
+logically equivalent first-order formula $\fpsi = \sttr\fphi$ preserves
+quantifier rank. However, the resulting formula $\fpsi$ may have exponentially
+larger length.
+\end{remark}

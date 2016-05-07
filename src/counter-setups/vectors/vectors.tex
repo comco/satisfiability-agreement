@@ -1,0 +1,117 @@
+% Vector setups
+Let $\nn, \tbit \in \pNats$.
+Recall the set of \emph{$n$-dimensional $t$-bit vectors} is
+$\ntBitnums\nn\tbit$.
+An \emph{$n$-dimensional $t$-bit vector setup} is a predicate signature 
+$\VS = \seq{\suu{11}, \suu{12}, \dots, \suu{\nn\tbit}}$ of $(\nn\tbit)$
+distinct unary predicate symbols.
+The \emph{counter setup $\VSp\posp$} of $\VS$ at position $\posp \in [1,\nn]$
+is $\VSp\posp = \seq{\suu{\posp1},\suu{\posp2},\dots,\suu{\posp\tbit}}$.
+
+\begin{definition}
+Let $\StrA$ be a $\VS$-structure and $\ea \in \domA$.
+We refer to $\gls{p-counter-A-a}$ as the 
+\emph{value of the $\posp$-th counter at $\ea$}.
+Define the function $\gls{data-V-A-a} : \domA \to \ntBitnums\nn\tbit$ by:
+\[
+  \data\VS\StrA\ea = \left(\data{\VSp1}\StrA\ea, \data{\VSp2}\StrA\ea,
+  \dots, \data{\VSp\nn}\StrA\ea\right).
+\]
+\end{definition}
+\begin{definition}
+Let $\vectv = (\datad_1, \datad_2, \dots, \datad_\nn) \in \ntBitnums\nn\tbit$ be
+an $\nn$-dimensional $\tbit$-bit vector.
+Define the quantifier-free $\vFoF1\VS$-formula $\gls{feqA-V-v-x}$ by:
+\[
+  \feqA\VS\vectv(\xx) = \bigwedge_{1 \leq \posp \leq \nn}
+  \feqA{\VSp\posp}{\datad_\posp}(\xx).
+\]
+\end{definition}
+If $\StrA$ is a $\VS$-structure, $\ea \in \domA$ and
+$\vectv \in \ntBitnums\nn\tbit$, then $\StrA \vDash \feqA\VS\vectv(\ea)$ iff
+$\data\VS\StrA\ea = \vectv$.
+
+If $\StrA$ is a nonempty set and $\dataOP : \domA \to \ntBitnums\nn\tbit$ is any
+function, then there is a $\VS$-structure $\StrA$ over $\domA$ such that
+$\data\VS\StrA = \dataOP$.
+
+\begin{definition}
+Let $\posp, \posq \in [1, \nn]$ and let $\ii \in [1, \tbit]$. Define the
+quantifier-free $\vFoF1\VS$-formulas $\gls{feqPP-V-p-q-i-x}$,
+$\gls{feqPPOI-V-p-q-i-x}$ and $\gls{feqPPIO-V-p-q-i-x}$ by:
+\begin{align*}
+  \feqPP\VS\posp\posq\ii(\xx) &= \suu{\posp\ii}(\xx) \lequ \suu{\posq\ii}(\xx) \\
+  \feqPPOI\VS\posp\posq\ii(\xx) &= \lnot\suu{\posp\ii}(\xx) \land \suu{\posq\ii}(\xx) \\
+  \feqPPIO\VS\posp\posq\ii(\xx) &= \suu{\posp\ii}(\xx) \land
+  \lnot\suu{\posq\ii}(\xx).
+\end{align*}
+\end{definition}
+If $\StrA$ is a $\VS$-structure and $\ea \in \domA$, then:
+\begin{itemize}
+  \item $\StrA \vDash \feqPP\VS\posp\posq\ii(\ea)$ iff
+  $\data{\suu{\posp\ii}}\StrA\ea = \data{\suu{\posq\ii}}\StrA$, that is
+  the values of the $\ii$-th bit at positions $\posp$ and $\posq$ at $\ea$ are
+  equal
+  
+  \item $\StrA \vDash \feqPPOI\VS\posp\posq\ii(\ea)$ iff
+  $\data{\suu{\posp\ii}}\StrA\ea = 0$ and $\data{\suu{\posq\ii}}\StrA\ea = 1$,
+  that is the $\ii$-th bit at position $\posp$ at $\ea$ is $0$ and the $\ii$-th
+  bit at position $\posq$ at $\ea$ is $1$
+  
+  \item $\StrA \vDash \feqPPIO\VS\posp\posq\ii(\ea)$ iff
+  $\data{\suu{\posp\ii}}\StrA\ea = 1$ and $\data{\suu{\posq\ii}}\StrA\ea = 0$,
+  that is the $\ii$-th bit at position $\posp$ at $\ea$ is $1$ and the $\ii$-th
+  bit at position $\posq$ at $\ea$ is $0$.
+\end{itemize}
+
+\begin{definition}
+Let $\posp, \posq \in [1, \nn]$. Define the quantifier-free
+$\vFoF1\VS$-formula $\gls{feqP-V-p-q-x}$ by:
+\[
+  \feqP\VS\posp\posq(\xx) = \bigwedge_{1 \leq \ii \leq \tbit}
+  \feqPP\VS\posp\posq\ii(\xx).
+\]
+\end{definition}
+If $\StrA$ is a $\VS$-structure and $\ea \in \domA$,
+then: 
+\[
+  \miff{
+  \StrA \vDash \feqP\VS\posp\posq(\ea)}{
+  \data{\VSp\posp}\StrA\ea = \data{\VSp\posq}\StrA\ea}.
+\]
+
+\begin{definition}
+Let $\posp, \posq \in [1, \nn]$. Define the quantifier-free
+$\vFoF1\VS$-formula $\gls{flessP-V-p-q-x}$ by:
+\[
+  \flessP\VS\posp\posq(\xx) = \bigvee_{1 \leq \jj \leq \tbit}
+  \feqPPOI\VS\posp\posq\jj(\xx) \land \bigwedge_{\jj < \kk \leq \tbit}
+  \feqPP\VS\posp\posq\kk(\xx).
+\]
+\end{definition}
+If $\StrA$ is a $\VS$-structure and $\ea \in \domA$,
+then:
+\[
+  \miff{
+  \StrA \vDash \flessP\VS\posp\posq(\ea)}{
+  \data{\VSp\posp}\StrA\ea < \data{\VSp\posq}\StrA\ea}.
+\]
+
+\begin{definition}
+Let $\posp, \posq \in [1, \nn]$. Define the quantifier-free $\vFoF1\VS$-formula
+\begin{align*}
+  \gls{fsuccP-V-p-q-x} =
+  \bigvee_{1 \leq \jj \leq \tbit} \bigwedge_{1 \leq \ii < \jj}
+  \feqPPIO\VS\posp\posq\ii(\xx) \land
+  \feqPPOI\VS\posp\posq\jj(\xx) \land \\
+  \land \bigwedge_{\jj < \kk \leq \tbit}
+  \feqPP\VS\posp\posq\kk(\xx).
+\end{align*}
+\end{definition}
+If $\StrA$ is a $\VS$-structure and $\ea \in \domA$,
+then:
+\[
+  \miff{
+  \StrA \vDash \fsuccP\VS\posp\posq(\ea)}{
+  \data{\VSp\posq}\StrA\ea = 1 + \data{\VSp\posp}\StrA\ea}.
+\]

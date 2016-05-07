@@ -1,0 +1,41 @@
+% Tilings
+A \emph{Wang tile} $\tilet$ is a square tile with colored sides,
+formally 
+$\tilet = (\tee\tilet, \tnn\tilet, \tww\tilet, \tss\tilet) \in \Nats^4$.
+A \emph{tile family} $\tileT$ is a finite set of Wang tiles.
+Given a tile family $\tileT$, a finite list of tiles from the tile family
+$\tsegI = \seq{\tilett1, \tilett2, \dots, \tilett\nw}$ and a natural number 
+$\nN \geq \nw$, the \emph{square tiling problem} is the problem of tiling the
+$\nN \times \nN$ square with tiles from $\tileT$ such that two adjacent
+tiles share the same color of their adjacent sides and the first $\nw$ tiles on
+the first row are exactly the tiles $\tsegI$.
+Formally, the tiling of the square is a function
+$\tf : [1, \nN] \times [1, \nN] \to \tileT$,
+$\tf(\ii,\jj) = 
+(\tfe(\ii, \jj), \tfn(\ii, \jj), \tfw(\ii, \jj), \tfs(\ii, \jj))$ such that
+$\tfe(\ii, \jj) = \tfw(\ii, \jj+1)$, 
+$\tfs(\ii, \jj) = \tfn(\ii+1,\jj)$ for $\ii, \jj \in [1, \nN-1]$
+and $\tf(1, \kk) = \tilett\kk$ for $\kk \in [1, \nw]$.
+Without loss of generality, assume that
+$\tee\tilet, \tnn\tilet, \tww\tilet, \tss\tilet \in [1,4\card\tileT]$ for all
+$\tilet \in \tileT$.
+We use the following well-known results on tiling problems for proving hardness
+of the satisfiability of logics.
+
+The \emph{tiling problem} is defined as follows. Given $(\tileT, \tsegI, \nn)$,
+a tile family $\tileT$, an initial segment $\tsegI$ and a natural number $\nn >
+\card\tsegI$ \emph{coded in unary}, is there a tiling of the $\nN \times
+\nN$ square, where $\nN = \nn$.
+The tiling problem is $\cNP$-complete~\cite{van1997convenience}.
+
+The \emph{exponential tiling problem} is defined as follows. 
+Given $(\tileT, \tsegI, \nn)$, a tile family $\tileT$, an initial segment
+$\tsegI$ and a natural number $\nn > \card\tsegI$ \emph{coded in binary}, is
+there a tiling of the $\nN \times \nN$ square, where $\nN = \nn$.
+The exponential tiling problem is $\cNExpTime$-complete.
+
+The \emph{doubly exponential tiling problem} is defined as follows.
+Given $(\tileT, \tsegI, \nn)$, a tile family $\tileT$, an initial segment
+$\tsegI$ and a natural number $\nn > \card\tsegI$ coded in binary, is
+there a tiling of the $\nN \times \nN$ square, where $\nN = 2^\nn$.
+The doubly exponential tiling problem is $\ceNExpTime2$-complete.

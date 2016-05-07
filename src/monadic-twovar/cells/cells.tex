@@ -1,0 +1,128 @@
+% Cells
+
+Let $\US = \seq{\suu1,\suu2,\dots,\suu\szu}$ be a monadic predicate signature.
+Let $\ES = \seq{\see1,\see2,\dots,\see\nex}$ be a predicate signature consisting
+of builtin equivalence symbols in refinement, where $\nex \geq 1$.
+Let $\sigS = \US + \ES$.
+Abbreviate the finest equivalence symbol as $\sd = \see1$.
+\begin{definition}
+Define quantifier-free $\vFoF2\sigS$-formula $\gls{fcell-S-x-y}$ by:
+\[
+  \fcell\sigS(\xx,\yy) = \sd(\xx,\yy) \land
+  \bigwedge_{1 \leq i \leq \szu} \suu\ii(\xx) \lequ \suu\ii(\yy).
+\]
+If $\StrA$ is a $\sigS$-structure and $D = \at\StrA\sd$, then the
+interpretation $\relC = \at\StrA{\fcell\sigS} \subseteq \domAA$ is an
+equivalence relation on $\domA$ that refines $\relD$.
+The \emph{cells} of $\StrA$ are the equivalence classes of $\relC$.
+That is, a cell is a maximal set of $\relD$-equivalent elements satisfying the
+same $\su$-predicates.
+\end{definition}
+
+\begin{remark}\label{rem:twovar-same-cell-tp1}
+If $\StrA$ is a $\sigS$-structure and the elements $\ea, \eb \in \domA$ are in
+the same cell, then $\tpIa\StrA\ea = \tpIa\StrA\eb$.
+\end{remark}
+\begin{proof}
+Since $\see\jj$ is a builtin equivalence symbol,
+$\StrA \vDash \see\jj(\ea,\ea)$ and $\StrA \vDash \see\jj(\eb,\eb)$
+for every $\jj \in [1,\nex]$.
+Since $\ea$ and $\eb$ are in the same cell,
+$\StrA \vDash \fcell\sigS(\ea,\eb)$.
+In particular, $\StrA \vDash \suu\ii(\ea) \lequ \suu\ii(\eb)$ for every
+$\ii \in [1,\szu]$.
+\end{proof}
+\begin{remark}\label{rem:twovar-same-cell-tp2}
+If $\StrA$ is a $\sigS$-structure, $\ea, \eb \in \domA$ are in the same cell
+$\relC[\ea]$, $\eap, \ebp \in \domA$ are in the same cell $\relC[\eap]$ and
+$\relC[\ea] \neq \relC[\eap]$,
+then $\tpIab\StrA\ea\eap = \tpIab\StrA\eb\ebp$.
+\end{remark}
+\begin{proof}
+By \cref{rem:twovar-same-cell-tp1}, it is sufficient to check that
+$\StrA \vDash \see\jj(\ea, \eap)$ iff $\StrA \vDash \see\jj(\eb, \ebp)$
+for all $\jj \in [1,\nex]$.
+This is clear, since $\relC$ refines the finest equivalence relation $\relD$ and
+the equivalence symbols $\see\jj$ are in refinement.
+\end{proof}
+
+\begin{lemma}\label{lem:twovar-cell-2}
+Let $\StrA$ be a $\sigS$-structure.
+There is some $\StrB \subseteq \StrA$ such that
+$\StrA \vequiv2 \StrB$ and every
+$\StrB$-cell has cardinality at most $2$.
+\end{lemma}
+
+\begin{proof}
+Let $\relC \subseteq \domAA$ be the cell equivalence relation of $\StrA$.
+Execute the following process: for every $\StrA$-cell, if it has cardinality
+$1$, select the element from that cell; otherwise select two elements from that
+cell.
+Let $\domB \subseteq \domA$ be the set of selected elements and let
+$\StrB = \StrA \restriction \domB$.
+By construction, every $\StrB$-cell has cardinality at most $2$.
+We claim that $\StrA \vequiv2 \StrB$.
+Let $\selh = \relC \cap (\domA \times \domB)$ relates elements from $\domA$ with
+elements from $\domB$ in the same cell.
+Note that for all $\ea \in \domA$:
+\begin{equation}\label{eq:twovar-cell-2}
+  \miff{
+  \card{\relC[\ea]} \geq 2}{
+  \card{\selh[\ea]} = 2}.
+\end{equation}
+Recall that a $2$-partial isomorphism $\pisop$ from $\StrA$ to $\StrB$ is an
+object $\many\ea \mapsto \many\eb$, where
+$\many\ea = \eaa1\eaa2 \in (\domA \cup \set{\bot})^2$,
+$\many\eb = \ebb1\ebb2 \in (\domB \cup \set{\bot})^2$,
+$\supp\many\ea = \supp\many\eb$
+and we think of $\pisop: \domA \pto \domB$ as a partial function from $\domA$
+to $\domB$.
+Consider the set $\pisoI$ of $2$-partial isomorphisms from
+$\StrA$ to $\StrB$ that are included in $\selh$.
+This set is nonempty, since $\seq{\bot,\bot} \mapsto \seq{\bot,\bot} \in
+\pisoI$.
+Let $\nr \in \pNats$. We claim that the sequence
+$\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
+satisfies the back-and-forth conditions of \cref{thm:game-2}.
+Let $\ii \in [1,2]$ and let $\many\ea \mapsto \many\eb \in \pisoI$.
+Without loss of generality, suppose $\ii = 1$.
+Let $\many\ea = \eaa1\eaa2$ and $\many\eb = \ebb1\ebb2$.
+\begin{enumerate}
+  \item For the forth condition, let $\ea \in \domA$. 
+  We have to find some $\eb \in \domB$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
+  If $\eaa2 = \bot$ then $\ebb2 = \bot$ and $\eb = \ea$ works.
+  Suppose $\eaa2 \in \domA$. Then $(\eaa2,\ebb2) \in \selh \subseteq \relC$, so
+  $\eaa2$ and $\ebb2$ are in the same $\StrA$-cell $\relC[\eaa2]$.
+  Let $\sizes = \card{\relC[\eaa2]}$ be the cardinality of that cell.
+ 
+  If $\ea = \eaa2$ then $\eb = \ebb2$ works.
+ 
+  If $\ea \neq \eaa2$ and $\ea \in \relC[\eaa2]$, then $\sizes \geq 2$.
+  By \cref{eq:twovar-cell-2} there is $\eb \in \selh[\eaa2]$ such that
+  $\eb \neq \ebb2$. This $\eb$ works.
+
+  If $\ea \not\in \relC[\eaa2]$, let $\eb \in \selh[\ea]$ be any.
+  Then $\eaa2, \ebb2 \in \relC[\eaa2]$, $\ea, \eb \in \relC[\ea]$,
+  $\relC[\eaa2] \neq \relC[\ea]$ and by \cref{rem:twovar-same-cell-tp2},
+  this $\eb$ works.
+  \item For the back condition, let $\eb \in \domB$.
+  We have to find some $\ea \in \domA$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
+  If $\ebb2 = \bot$ then $\eaa2 = \bot$ and $\ea = \eb$ works.
+  Suppose $\ebb2 \in \domB$. Then $(\eaa2,\ebb2) \in \selh \subseteq \relC$,
+  so $\eaa2$ and $\ebb2$ are in the same $\StrA$-cell $\relC[\ebb2]$.
+  Let $\sizes = \card{\relC[\ebb2]}$ be the cardinality of that cell.
+  
+  If $\eb = \ebb2$ then $\ea = \eaa2$ works.
+  
+  If $\eb \neq \ebb2$ and $\eb \in \relC[\ebb2]$, then $\sizes \geq 2$.
+  Thus there is some $\ea \in \relC[\ebb2]$ such that $\ea \neq \eaa2$.
+  This $\ea$ works.
+  
+  If $\eb \not\in \relC[\ebb2]$, then $\eaa2 \neq \eb$.
+  By \cref{rem:twovar-same-cell-tp2}, $\ea = \eb$ works.
+\end{enumerate}
+By \cref{thm:game-2}, $\StrA \rvequiv\nr2 \StrB$. Since $\nr \in \pNats$
+was arbitrary, $\StrA \vequiv2 \StrB$.
+\end{proof}

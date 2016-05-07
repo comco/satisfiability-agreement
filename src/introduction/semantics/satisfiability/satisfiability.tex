@@ -1,0 +1,17 @@
+% Satisfiability
+
+If $\sigS$ is a predicate signature and $\fphi$ is a $\sigS$-sentence, then
+$\fphi$ is \emph{satisfiable} if there is a $\sigS$-structure that is a model
+for $\fphi$; $\fphi$ is \emph{finitely satisfiable} if there is a \emph{finite}
+$\sigS$-structure that is a model for $\fphi$.
+If $\classFK \subseteq \FocF\sigS$ is a family of formulas
+over the predicate signature $\sigS$, the set of \emph{satisfiable sentences} is
+$\gls{satisfiable-K} \subseteq \classFK$ and the set of \emph{finitely
+satisfiable sentences} is $\gls{finitely-satisfiable-K} \subseteq \classFK$.
+The family $\classFK$ has the \emph{finite model property} if $\Sat\classFK =
+\FinSat\classFK$. By the L\"owenheim-Skolem theorem, every satisfiable sentence 
+$\fphi$ has a finite or countable model (assuming the intended interpretation
+condition of the predicate signature is first-order-definable).
+In this work the intended interpretation conditions of the predicate signatures
+will always be first-order-definable formula and we will silently assume that
+all structures are either finite or countable.

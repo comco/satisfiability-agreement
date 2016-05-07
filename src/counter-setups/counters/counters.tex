@@ -1,0 +1,107 @@
+% Counters
+A \emph{$\tbit$-bit counter setup} for $\tbit \in \pNats$ is a predicate
+signature $\gls{counter-setup-C} = \seq{\suu1, \suu2, \dots, \suu\tbit}$
+consisting of $\tbit$ distinct unary predicate symbols $\suu\ii$.
+
+\begin{definition}
+Let $\StrA$ be a $\CS$-structure. Define the function
+$\gls{data-C-A} : \domA \to \tBitnums\tbit$ by:
+\[
+  \data\CS\StrA\ea = \sum_{1 \leq \ii \leq \tbit} 2^{\ii-1} 
+  \data{\suu\ii}\StrA\ea.
+\]
+\end{definition}
+\begin{definition}
+Let $\datad \in \tBitnums\tbit$. Define the quantifier-free $\vFoF1\CS$-formula
+$\gls{feqA-C-d-x}$ by:
+\[
+  \feqA\CS\datad(\xx) = \bigwedge_{1 \leq \ii \leq \tbit}
+  \feqA{\suu\ii}{\benc{\datad}_\ii}(\xx).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad \in
+\tBitnums\tbit$, then $\StrA \vDash \feqA\CS\datad(a)$ iff $\data\CS\StrA a =
+\datad$.
+
+If $\domA$ is a nonempty set and $\dataOP : \domA \to \tBitnums\tbit$ is any
+function, there is a $\CS$-structure $\StrA$ over $\domA$ such that
+$\data\CS\StrA = \dataOP$.
+
+\begin{definition}
+Define the quantifier-free $\vFoF2\CS$-formula $\gls{feq-C-x-y}$ by:
+\[
+  \feq\CS(\xx,\yy) = \bigwedge_{1 \leq \ii \leq \tbit} \feq{\suu\ii}(\xx,\yy).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,
+then $\StrA \vDash \feq\CS(\ea, \eb)$ iff $\data\CS\StrA\ea = \data\CS\StrA\eb$.
+
+\begin{definition}
+Let $\datad \in \tBitnums\tbit$.
+Define the quantifier-free $\vFoF1\CS$-formula $\gls{fless-C-d-x}$ by:
+\[
+  \flessA\CS\datad(\xx) = \bigvee_{1 \leq \jj \leq \tbit} \lnot\suu\jj(\xx)
+  \land \lnot\feqA{\suu\jj}{\benc\datad_\jj}(\xx)
+    \land \bigwedge_{\jj < \kk \leq \tbit} \feqA{\suu\kk}{\benc\datad_\kk}(\xx).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad \in
+\tBitnums\tbit$, then $\StrA \vDash \flessA\CS\datad(\ea)$ iff $\data\CS\StrA\ea
+< \datad$.
+
+\begin{definition}
+Let $\datad \leq \datae \in \tBitnums\tbit$.
+Define the quantifier-free $\vFoF1\CS$-formula $\gls{fbetw-C-d-e-x}$ by:
+\[
+  \fbetw\CS\datad\datae(\xx) = \lnot\flessA\CS\datad(\xx) \land 
+  (\flessA\CS\datae(\xx)\lor \feqA\CS\datae(\xx)).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad \leq \datae \in
+\tBitnums\tbit$, then 
+\[
+  \miff{
+  \StrA \vDash \fbetw\CS\datad\datae(\ea)}{
+  \datad \leq \data\CS\StrA\ea \leq
+  \datae}.
+\]
+
+\begin{definition}
+Let $\datad \leq \datae \in \tBitnums\tbit$.
+Define the $\vFoF1\CS$-sentence $\gls{fallbetw-C-d-e}$ by:
+\[
+  \fallbetw\CS\datad\datae = \forall\xx\fbetw\CS\datad\datae(\xx).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure and $\datad \leq \datae \in \tBitnums\tbit$,
+then $\StrA \vDash \fbetw\CS\datad\datae$ iff
+$\datad \leq \data\CS\StrA\ea \leq \datae$ for all $\ea \in \domA$.
+
+\begin{definition}
+Define the quantifier-free $\vFoF2\CS$-formula $\gls{fless-C-x-y}$ by:
+\[
+  \fless\CS(\xx,\yy) = \bigvee_{1 \leq \jj \leq \tbit} \feqOI{\suu\jj}(\xx,\yy)
+  \land \bigwedge_{\jj < \kk \leq \nn} \feq{\suu\kk}(\xx,\yy).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,
+then $\StrA \vDash \fless\CS(\ea, \eb)$ iff
+$\data\CS\StrA\ea < \data\CS\StrA\eb$.
+
+\begin{definition}
+Define the quantifier-free $\vFoF2\CS$-formula $\gls{fsucc-C-x-y}$ by:
+\[
+  \fsucc\CS(\xx,\yy) = \bigvee_{1 \leq \jj \leq \tbit}
+  \bigwedge_{1 \leq \ii < \jj} 
+  \feqIO{\suu\ii}(\xx,\yy) \land
+  \feqOI{\suu\jj}(\xx,\yy) \land 
+  \bigwedge_{\jj < \kk \leq \nn} \feq{\suu\kk}(\xx,\yy).
+\]
+\end{definition}
+If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,
+then:
+\[
+  \miff{
+  \StrA \vDash \fsucc\CS(\ea, \eb)}{
+  \data\CS\StrA\eb = 1 + \data\CS\StrA\ea}.
+\]

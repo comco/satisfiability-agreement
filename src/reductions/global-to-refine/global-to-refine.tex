@@ -1,0 +1,216 @@
+% Global to refine glossary
+
+In this section we demonstrate how (finite) satisfiability in logics featuring
+builtin equivalence symbols in global agreement reduces to (finite)
+satisfiability in logics featuring builtin equivalence symbols in refinement.
+Our strategy is to encode the permutation of the builtin equivalence symbols in
+global agreement that turns them in refinement into a permutation setup.
+
+Fix an arbitrary ground logic $\aL \in \set{\Fo, \Foc}$ and think of $\sigS$ as
+a predicate signature for the logics $\aL\Eea\nex\agglobal$ and
+$\aL\Eea\nex\agrefine$. The $\nex$ builtin equivalence symbols of $\sigS$ are
+$\see1, \see2, \dots, \see\nex$.
+
+Let $\fphi$ be a  $\aLF\sigS$-sentence.
+The class of $\aL\Eea\nex\agrefine$-structures satisfying $\fphi$ coincides
+with the class of $\aL\Eea\nex\agglobal$-structures satisfying:
+\[
+  \fphi \land \frefine{\see1,\see2,\dots,\see\nex}.
+\]
+Hence:
+\[
+  \FinASat\aL\Eea\nex\agrefine \red\cP \FinASat\aL\Eea\nex\agglobal.
+\]
+Since the length of the formula $\frefine{\see1,\see2,\dots,\see\nex}$ grows
+polynomially as $\nex$ grows:
+\[
+  \FinASat\aL\Eea\nonex\agrefine \red\cP \FinASat\aL\Eea\nonex\agglobal.
+\]
+
+Consider the opposite direction.
+Let $\PS = \seq{\suu{11}, \suu{12}, \dots, \suu{\nex\tbit}}$ be an
+$\nex$-permutation setup (where $\tbit = \bsz\nex$).
+\begin{definition}
+Define the $\vFoF2\PS$-sentence $\gls{falleq-P}$ by:
+\[
+  \falleq\PS = \forall\xx \forall\yy \bigwedge_{1 \leq \ii \leq \nex}
+  \feqA\PS\ii(\xx,\yy).
+\]
+\end{definition}
+If $\StrA$ is a $\PS$-structure, then $\StrA \vDash \falleq\PS$ iff
+$\data\PS\StrA\ea = \data\PS\StrA\eb$ for all $\ea, \eb \in \domA$.
+If $\domA$ is a nonempty set and $\vectv \in \ntBitnums\nex\tbit$ is any
+$\nex$-dimensional $\tbit$-vector, there is a $\PS$-structure $\StrA$ over
+$\domA$ such that $\StrA \vDash \falleq\PS$ and
+$\data\PS\StrA\ea = \vectv$ for all $\ea \in \domA$.
+
+\begin{definition}
+Define the $\vFoF2\PS$-sentence $\gls{fglobperm-P}$ by:
+\[
+  \fglobperm\PS = \fperm\PS \land \falleq\PS.
+\]
+\end{definition}
+If $\StrA$ be a $\PS$-structure then $\StrA \vDash \fglobperm\PS$ iff there
+is a permutation $\permnu \in \Perms\nex$ such that
+$\data\PS\StrA\ea = \permnu$ for all $\ea \in \domA$.
+
+If $\domA$ be a nonempty set and $\permnu \in \Perms\nex$ is any permutation,
+there is a $\PS$-structure $\StrA$ over $\domA$ such that
+$\StrA \vDash \fglobperm\PS$ and $\data\PS\StrA\ea = \permnu$ for all 
+$\ea \in \domA$.
+
+Let $\LS = \seq{\slee1, \slee2, \dots, \slee\nex} + \PS$ be a predicate
+signature consisting of the binary predicate symbols $\slee\kk$ in addition to
+the symbols from $\PS$.
+
+\begin{definition}
+For $\ii \in [1, \nex]$, define the quantifier-free $\vFoF2\LS$-formula
+$\gls{feg-L-i-x-y}$ by:
+\[
+  \feg\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \nex}
+  \feqAA\PS\kk\ii(\xx) \limp \slee\kk(\xx, \yy).
+\]
+\end{definition}
+\begin{remark}\label{rem:global-e-m}
+Let $\StrA$ be an $\LS$-structure and suppose that 
+$\StrA \vDash \fglobperm\PS$
+and that the binary symbols $\slee\kk$ are interpreted as equivalence relations
+on $\domA$ in refinement.
+Recall that there is a permutation $\permnu \in \Perms\nex$ such that
+$\data\PS\StrA\ea =\permnu$ for all $\ea \in \domA$.
+Then for all $\ii \in [1, \nex]$:
+\[
+  \at\StrA{\feg\LS\ii} = \at\StrA{\slee{\inv\permnu(\ii)}}.
+\]
+In particular,
+$\seq{\at\StrA{\feg\LS1}, \at\StrA{\feg\LS2}, \dots, \at\StrA{\feg\LS\nex}}$ is
+a sequence of equivalence relations on $\domA$ in global agreement.
+\end{remark}
+\begin{proof}
+Let $\kk = \inv\permnu(\ii)$, so $\permnu(\kk) = \ii$ and
+$\data{\PSp\kk}\StrA\ea = \ii$.
+Since $\permnu$ is a permutation, for every $\kkp \in [1, \nex]$:
+\begin{equation}\label{eq:global-e}
+\mifff{
+  \StrA \vDash \feqAA\PS\kkp\ii(\ea)}{
+  \data{\PSp\kkp}\StrA\ea = \ii}{
+  \kkp = \kk}.
+\end{equation}
+Let $\ea, \eb \in \domA$.
+First suppose that $\StrA \vDash \feg\LS\ii(\ea,\eb)$.
+By \cref{eq:global-e} we have $\StrA \vDash \feqAA\PS\kk\ii(\ea)$, hence
+$\StrA \vDash \slee\kk(\ea,\eb)$.
+
+Now suppose that $\StrA \vDash \lnot\feg\LS\ii(\ea,\eb)$. There is some
+$\kkp \in [1, \nex]$ such that:
+\[
+  \StrA \vDash \lnot\left(\feqAA\PS\kkp\ii(\ea) \limp \slee\kkp(\ea,\eb)\right)
+  \equiv \feqAA\PS\kkp\ii(\ea) \land \lnot\slee\kkp(\ea,\eb).
+\]
+By \cref{eq:global-e} we have $\kkp = \kk$, hence
+$\StrA \vDash \lnot\slee\kk(\ea,\eb)$.
+\end{proof}
+
+Let $\ES = \seq{\see1,\see2,\dots,\see\nex}$ be a predicate signature consisting
+of the binary predicate symbols $\see\ii$.
+Let $\sigS$ be a predicate signature enriching $\ES$ and not
+containing any symbols from $\LS$.
+Let $\sigSp = \sigS \cup \LS$ and
+$\LSp = \sigSp - \ES$.
+
+\begin{definition}
+Define the syntactic operation $\gls{gtr} : \aLF\sigS \to \aLF\LSp$ by:
+\[
+  \gtr\fphi = \fphip \land \fglobperm\PS,
+\]
+where $\fphip$ is obtained from $\fphi$ by replacing all occurrences of a
+subformula of the form $\see\ii(\gx,\gy)$ by the formula $\feg\LS\ii(\gx,\gy)$, 
+where $\gx$ and $\gy$ are (not necessarily distinct) variables and
+$\ii \in [1,\nex]$.
+\end{definition}
+
+\begin{remark}\label{rem:global-e-to-m}
+Let $\fphi$ be a $\aLF\sigS$-formula and let $\StrA$ be a
+$\sigS$-structure.
+Suppose that $\StrA \vDash \fphi$ and that the symbols 
+$\see1, \see2, \dots, \see\nex$ are interpreted in $\StrA$ as equivalence
+relations on $\domA$ in global agreement.
+Then there is a $\sigSp$-enrichment $\StrAp$ of $\StrA$
+such that $\StrAp \vDash \gtr\fphi$ and that the symbols
+$\slee1,\slee2, \dots, \slee\nex$ are interpreted in $\StrAp$ as equivalence
+relations on $\domA$ in refinement.
+\end{remark}
+\begin{proof}
+There is a permutation $\permnu \in \Perms\nex$ such that
+$\at\StrA{\see{\permnu(1)}} \subseteq
+\at\StrA{\see{\permnu(2)}} \subseteq
+\dots \subseteq
+\at\StrA{\see{\permnu(\nex)}}$.
+Consider an enrichment $\StrAp$ of $\StrA$
+to a $\sigSp$-structure where 
+$\at\StrAp{\slee\kk} = \at\StrA{\see{\permnu(\kk)}}$,
+so the interpretations of $\slee\kk$ in $\StrAp$ 
+are equivalence relations on $\domA$ in refinement.
+We can interpret the unary predicate symbols from permutation setup 
+$\PS$ in $\StrAp$ so that 
+$\StrAp \vDash \fglobperm\PS$ and 
+$\data\PS\StrA\ea = \permnu$ for all $\ea \in \domA$.
+By \cref{rem:global-e-m}, for every $\ii \in [1,\nex]$:
+\[
+  \at\StrAp{\feg\LS\ii} =
+  \at\StrAp{\slee{\inv\permnu(\ii)}} =
+  \at\StrAp{\see{\permnu(\inv\permnu(\ii))}} =
+  \at\StrAp{\see\ii} =
+  \at\StrA{\see\ii}.
+\]
+Hence $\StrAp \vDash
+  \forall\xx\forall\yy \see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)$.
+Since $\StrAp \vDash \fphi$ we have $\StrAp \vDash \gtr\fphi$.
+\end{proof}
+
+\begin{remark}\label{rem:global-m-to-e}
+Let $\fphi$ be a $\aLF\sigS$-formula and let $\StrA$ be an
+$\LSp$-structure.
+Suppose that $\StrA \vDash \gtr\fphi$ and that the symbols
+$\slee1,\slee2,\dots,\slee\nex$ are interpreted in $\StrA$ as equivalence
+relations on $\domA$ in refinement.
+Then there is a $\sigSp$-enrichment $\StrAp$ of $\StrA$ such that
+$\StrAp \vDash \fphi$ and that the symbols $\see1,\see2,\dots,\see\nex$ are
+interpreted as equivalence relations on $\domA$ in global agreement in $\StrAp$.
+\end{remark}
+\begin{proof}
+Consider an enrichment $\StrAp$ of $\StrA$ to a $\sigSp$-structure
+where $\at\StrAp{\see\ii} = \at\StrA{\feg\LS\ii}$.
+By \cref{rem:global-e-m},
+$\seq{\at\StrAp{\see1}, \at\StrAp{\see2}, \dots, \at\StrAp{\see\nex}}$
+is a sequence of equivalence relations on $\domA$ in global agreement.
+For every $\ii \in [1,\nex]$ we have 
+$\StrAp \vDash \forall\xx\forall\yy \see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)$
+by definition.
+Since $\StrAp \vDash \gtr\fphi$ we have $\StrAp \vDash \fphi$.
+\end{proof}
+
+The last two remarks show that a $\aL\Eea\nex\agglobal$-formula $\fphi$
+has essentially the same models as the $\aL\Eea\nex\agrefine$-formula
+$\gtr\fphi$, so we have shown:
+\begin{proposition}\label{prop:global-to-refine-n}
+The logic $\aL\Eea\nex\agglobal$ has the finite model property iff
+the logic $\aL\Eea\nex\agrefine$ has the finite model property. 
+The corresponding satisfiability problems are polynomial-time equivalent:
+$\FinASat\aL\Eea\nex\agglobal \redeq\cP \FinASat\aL\Eea\nex\agrefine$.
+\end{proposition}
+
+Since the relative size of $\gtr\fphi$ with respect to $\fphi$ grows
+polynomially as $\nex$ grows, we have shown:
+\begin{proposition}\label{prop:global-to-refine}
+The logic $\aL\Eea\nonex\agglobal$ has the finite model property iff
+the logic $\aL\Eea\nonex\agrefine$ has the finite model property. 
+The corresponding satisfiability problems are polynomial-time equivalent:
+$\FinASat\aL\Eea\nonex\agglobal \redeq\cP \FinASat\aL\Eea\nonex\agrefine$.
+\end{proposition}
+
+The reduction is two-variable first-order and uses additional $(\nex\tbit)$
+unary predicate symbols for the permutation setup $\PS$, so it is also valid
+for the two-variable fragments $\Lvp\aL20\Eea\nex\ag$, $\Lvp\aL21\Eea\nex\ag$
+and $\Lvp\aL21\Eea\nonex\ag$ for $\ag \in \set{\agglobal, \agrefine}$
+respectively.

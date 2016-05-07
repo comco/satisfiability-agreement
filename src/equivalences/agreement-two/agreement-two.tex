@@ -1,0 +1,102 @@
+\begin{definition}
+Let $\seq{\relD, \relE} \subseteq \domAA$ be a sequence of two
+equivalence relations on $\domA$.
+The relation $\relD$ is \emph{finer} than the relation $\relE$ if every
+equivalence class of $\relD$ is a subset of some equivalence class of $\relE$.
+Equivalently, $\relD \subseteq \relE$. Equivalently,
+\[
+  (\forall \ea \in \domA)(\forall \eb \in \domA) \relD(\ea, \eb) \limp
+  \relE(\ea, \eb).
+\]
+If $\relD$ is finer than $\relE$, then $\relE$ is \emph{coarser} than $\relD$.
+The sequence $\seq{\relD, \relE}$ is a sequence of equivalence relations on
+$\domA$ in \emph{refinement} if $\relD$ is finer $\relE$.
+
+The sequence $\seq{\relD, \relE}$ is a sequence of equivalence relations in
+\emph{global agreement} if either $\relD$ is finer than $\relE$ or $\relE$ is
+finer than $\relD$.
+
+The sequence $\seq{\relD, \relE}$ is a sequence of equivalence relations
+\emph{in local agreement} if for every $\ea \in \domA$, 
+either $\relD[\ea] \subseteq \relE[\ea]$ or $\relE[\ea] \subseteq \relD[\ea]$.
+Equivalently, no two equivalence classes $\relE[\ea]$ and $\relD[\eb]$ properly
+intersect.
+Equivalently
+\[
+  (\forall \ea \in \domA)
+  \left[(\forall \eb \in \domA) \relD(\ea, \eb) \limp \relE(\ea, \eb)\right]
+  \lor \left[(\forall \eb \in \domA) \relE(\ea, \eb) \limp
+  \relD(\ea, \eb)\right].
+\]
+\end{definition}
+
+Let $\ES = \seq{\sd, \se}$ be a predicate signature consisting of the two binary
+predicate symbols $\sd$ and $\se$.
+Let $\StrA$ is an $\ES$-structure and suppose that $\sd$ and $\se$ are
+interpreted in $\StrA$ as equivalence relations on $\domA$.
+Let $\relD = \at\StrA\sd$ and $\relE = \at\StrA\se$ be the interpretations of
+the two symbols.
+
+\begin{definition}
+Define the $\vFoF2\ES$-sentence $\gls{frefine-d-e}$ by:
+\[
+  \frefine{\sd,\se} = \forall\xx \forall\yy (\sd(\xx, \yy) \limp \se(\xx, \yy)).
+\]
+\end{definition}
+Then $\seq{\relD, \relE}$ is in refinement iff 
+$\StrA \vDash \frefine{\sd,\se}$.
+
+\begin{definition}
+Define the $\vFoF2\ES$-sentence $\gls{fglobal-d-e}$ by:
+\[
+  \fglobal{\sd,\se} = \frefine{\sd,\se} \lor \frefine{\se,\sd}.
+\]
+\end{definition}
+Then $\seq{\relD, \relE}$ is in global agreement iff
+$\StrA \vDash \fglobal{\sd,\se}$.
+
+\begin{definition}
+Define the $\vFoF2\ES$-sentence $\gls{flocal-d-e}$ by:
+\[
+\flocal{\sd,\se} =
+    \forall \xx 
+    ((\forall \yy \sd(\xx,\yy) \limp \se(\xx,\yy))
+    \lor 
+    (\forall \yy \se(\xx,\yy) \limp \sd(\xx,\yy)).
+\]
+\end{definition}
+Then $\seq{\relD, \relE}$ is in global agreement iff
+$\StrA \vDash \flocal{\sd,\se}$.
+
+\begin{lemma}\label{lem:local-2}
+If $\seq{\relD, \relE} \subseteq \domAA$ is a sequence two
+equivalence relations on $\domA$, then
+it is in local agreement iff $\relL = \relD \cup \relE$ is an equivalence
+relation on $\domA$.
+\end{lemma}
+\begin{proof}
+The union of two equivalence relations on $\domA$ is a reflexive and symmetric
+relation.
+
+First suppose that $\relD$ and $\relE$ are in local agreement.
+We claim that $\relL$ is transitive.
+Let $\ea, \eb, \ec \in \domA$ be such that $(\ea, \eb) \in \relL$ and 
+$(\eb, \ec) \in \relL$.
+Since $\relD$ and $\relE$ are in local agreement,
+without loss of generality $\relD[\eb] \subseteq \relE[\eb]$.
+Since $(\ea, \eb) \in \relL$, either $\ea \in \relD[\eb] \subseteq \relE[\eb]$
+or $\ea \in \relE[\eb]$.
+Similarly $\ec \in \relE[\eb]$.
+Therefore $(\ea, \ec) \in \relE \subseteq \relL$.
+    
+Next suppose that $\relL$ is an equivalence relation, let $\eb \in \domA$ and
+assume towards a contradiction
+that $\relD[\eb] \not\subseteq \relE[\eb]$ and $\relE[\eb] \not\subseteq
+\relD[\eb]$.
+There is some $\ea \in \relD[\eb] \setminus \relE[\eb]$ and $\ec \in \relE[\eb]
+\setminus \relD[\eb]$.
+Then $(\ea, \eb) \in \relD \subseteq \relL$ and $(\eb, \ec) \in \relE \subseteq
+\relL$, hence $(\ea, \ec) \in \relL$.
+Without loss of generality $(\ea, \ec) \in \relE$.
+Since $\ec \in \relE[\eb]$, we have $\ea \in \relE[\eb]$ --- a contradiction.
+\end{proof}

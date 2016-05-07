@@ -1,0 +1,83 @@
+% Makeup formulas commands
+\newcommand{\MakeupFormulaNotation}[2]{{\bm{[}#1\mathord{\bm{:}}#2\bm{]}}}
+\def\shortmathhyphen{{\hbox{-}}}
+\newcommand{\MakeupFormulaArgumentA}[2]{#1\shortmathhyphen#2}
+\newcommand{\MakeupFormulaArgumentAA}[3]{#1\shortmathhyphen#2\shortmathhyphen#3}
+\newcommand{\MakeupFormulaArgumentAAA}[4]{#1\shortmathhyphen#2\shortmathhyphen#3\shortmathhyphen#4}
+\newcommand{\MakeupFormulaNotationA}[3]{\MakeupFormulaNotation{#1}{\MakeupFormulaArgumentA{#2}{#3}}}
+\newcommand{\MakeupFormulaNotationAA}[4]{\MakeupFormulaNotation{#1}{\MakeupFormulaArgumentAA{#2}{#3}{#4}}}
+\newcommand{\MakeupFormulaNotationAAA}[5]{\MakeupFormulaNotation{#1}{\MakeupFormulaArgumentAAA{#2}{#3}{#4}{#5}}}
+
+\newcommand{\MakeupFormulaName}[1]{\mathsf{#1}}
+
+\newcommand{\MakeupFormula}[2]{\MakeupFormulaNotation{#2}{\MakeupFormulaName{#1}}}
+\newcommand{\MakeupFormulaA}[3]{\MakeupFormulaNotationA{#3}{\MakeupFormulaName{#1}}{#2}}
+\newcommand{\MakeupFormulaAA}[4]{\MakeupFormulaNotationAA{#4}{\MakeupFormulaName{#1}}{#2}{#3}}
+\newcommand{\MakeupFormulaAAA}[5]{\MakeupFormulaNotationAAA{#5}{\MakeupFormulaName{#1}}{#2}{#3}{#4}}
+
+\newcommand{\MakeupFunctionName}[1]{\mathrm{#1}}
+
+\newcommand{\MakeupFunction}[2]{\MakeupFormulaNotation{#2}{\MakeupFunctionName{#1}}}
+\newcommand{\MakeupFunctionA}[3]{\MakeupFormulaNotationA{#3}{\MakeupFunctionName{#1}}{#2}}
+\newcommand{\MakeupFunctionAA}[4]{\MakeupFormulaNotationAA{#4}{\MakeupFunctionName{#1}}{#2}{#3}}
+
+% Setups
+\newcommand{\setupname}[1]{\mathrm{#1}}
+% bit setup
+\newcommand{\BS}{\setupname{B}}
+% counter setup
+\newcommand{\CS}{\setupname{C}}
+% vector setup
+\newcommand{\VS}{\setupname{V}}
+% Counter setup at position p in formulas
+\newcommand{\pVS}[2]{#1(#2)}
+
+\newcommand{\VSp}[1]{\pVS{\VS}{#1}}
+
+% permutation setup
+\newcommand{\PS}{\setupname{P}}
+\newcommand{\PSp}[1]{\pVS{\PS}{#1}}
+
+\DeclareMathOperator{\dataOP}{data}
+% data names
+\newcommand{\dataname}[1]{\mathrm{#1}}
+\newcommand{\datad}{\dataname{d}}
+\newcommand{\datae}{\dataname{e}}
+\newcommand{\data}[2]{\MakeupFunction{data}{#1}^{#2}}
+
+\newcommand{\feq}[1]{\MakeupFormula{eq}{#1}}
+\newcommand{\feqOI}[1]{\MakeupFormulaA{eq}{01}{#1}}
+\newcommand{\feqIO}[1]{\MakeupFormulaA{eq}{10}{#1}}
+\newcommand{\feqA}[2]{\MakeupFormulaA{eq}{#2}{#1}}
+\newcommand{\feqAA}[3]{\MakeupFormulaAA{eq}{#2}{#3}{#1}}
+
+\newcommand{\flessA}[2]{\MakeupFormulaA{less}{#2}{#1}}
+\newcommand{\fless}[1]{\MakeupFormula{less}{#1}}
+\newcommand{\flessP}[3]{\MakeupFormulaNotation{\pVS{#1}{#2#3}}{
+\MakeupFormulaName{less}}}
+
+\newcommand{\fbetw}[3]{\MakeupFormulaAA{betw}{#2}{#3}{#1}}
+\newcommand{\fallbetw}[3]{\MakeupFormulaAA{allbetw}{#2}{#3}{#1}}
+
+\newcommand{\fsucc}[1]{\MakeupFormula{succ}{#1}}
+\newcommand{\fsuccP}[3]{\MakeupFormulaNotation{\pVS{#1}{#2#3}}{
+\MakeupFormulaName{succ}}}
+
+\newcommand{\feqP}[3]{\MakeupFormulaNotation{\pVS{#1}{#2#3}}{
+\MakeupFormulaName{eq}}}
+
+\newcommand{\feqPP}[4]{\MakeupFormulaNotation{\pVS{#1}{#2#3}}{
+\MakeupFormulaArgumentAA{\MakeupFormulaName{at}}{#4}{\MakeupFormulaName{eq}}
+}}
+
+\newcommand{\feqPPOI}[4]{\MakeupFormulaNotation{\pVS{#1}{#2#3}}{
+\MakeupFormulaArgumentAAA{\MakeupFormulaName{at}}{#4}{\MakeupFormulaName{eq}}{01}
+}}
+
+\newcommand{\feqPPIO}[4]{\MakeupFormulaNotation{\pVS{#1}{#2#3}}{
+\MakeupFormulaArgumentAAA{\MakeupFormulaName{at}}{#4}{\MakeupFormulaName{eq}}{10}
+}}
+
+\newcommand{\falldiff}[1]{\MakeupFormula{alldiff}{#1}}
+
+\newcommand{\fperm}[1]{\MakeupFormula{perm}{#1}}

@@ -1,0 +1,16 @@
+% Signatures
+
+A \emph{predicate signature} 
+$\gls{predicate-signature} = \seq{\pp1, \pp2, \dots, \pp\sizes}$ is a finite 
+sequence of distinct \emph{predicate symbols} $\gls{predicate-symbol-i}$
+together with their \emph{arities} $\gls{arity-i} \in \pNats$.
+A predicate signature is \emph{unary} or \emph{monadic} if all of its predicate
+symbols have arity $1$.
+A predicate signature is \emph{binary} if all of its predicate
+symbols have arity $1$ or $2$.
+For the purposes of this work we will not be considering constant and function
+symbols---constant symbols can be simulated by a fresh unary predicate
+symbol having the intended interpretation of being true at a unique element;
+presence of function symbols on the other hand leads quite easily to undecidable
+satisfiability problems.
+By convention $\SymbAlph$, $\VarSymbs$ and $\sigS$ are disjoint.

@@ -1,0 +1,32 @@
+% Equivalences introduction commands
+An \emph{equivalence relation} $\relE \subseteq \domAA$ on $\domA$
+is a relation that is reflexive, symmetric and transitive.
+The set of \emph{equivalence classes} of $\relE$ is
+$\gls{equivalence-classes-E} = \setbd{\relE[\ea]}{\ea \in \domA}$.
+
+Let $\ES = \seq{\se}$ be a predicate signature consisting of a single binary
+predicate symbol $\se$.
+Define the $\vFoF2\ES$-sentence $\gls{frefl-e}$ by:
+\[
+  \frefl\se = \forall\xx \se(\xx,\xx).
+\]
+Define the $\vFoF2\ES$-sentence $\gls{fsymm-e}$ by:
+\[
+  \fsymm\se = \forall\xx\forall\yy \se(\xx,\yy) \limp \se(\yy, \xx).
+\]
+Define the $\vFoF3\ES$-sentence $\gls{ftrans-e}$ by:
+\[
+  \ftrans\se = \forall\xx\forall\yy\forall\zz (\se(\xx,\yy) \land \se(\yy,\zz))
+  \limp \se(\xx,\zz).
+\]
+Define the $\vFoF3\ES$-sentence $\gls{fequiv-e}$ by:
+\[
+  \fequiv\se = \frefl\se \land \fsymm\se \land \ftrans\se.
+\]
+Let $\StrA$ be an $\ES$-structure and let $\relE = \se^\StrA$.
+Then $\relE$ is reflexive iff $\StrA \vDash \frefl\se$;
+$\relE$ is symmetric iff $\StrA \vDash \fsymm\se$;
+$\relE$ is transitive iff $\StrA \vDash \ftrans\se$;
+$\relE$ is an equivalence on $\domA$ iff $\StrA \vDash \fequiv\se$.
+It can be shown that transitivity and equivalence cannot be defined in the
+two-variable fragment with counting $\vFocF2\ES$.

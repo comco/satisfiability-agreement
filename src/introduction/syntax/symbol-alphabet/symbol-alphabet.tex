@@ -1,0 +1,24 @@
+% Symbol alphabet
+
+The \emph{symbol alphabet} for the first-order logic with counting quantifiers
+is
+\[
+  \gls{symbol-alphabet} = \set{\allconns, \lnot; \allQs;
+  =; (,,,); {}^{\leq}, {}^{=}, {}^{\geq}, {}^0, {}^1}.
+\]
+The propositional connectives are listed in increasing order of precedence.
+The \emph{negation} $\lnot$ is unary;
+the \emph{disjunction} $\lor$, \emph{conjunction} $\land$ and \emph{equivalence}
+$\lequ$ are left-associative; the \emph{implication} $\limp$ is
+right-associative.
+Note that we consider logics with \emph{formal equality} $=$.
+
+A \emph{counting quantifier} is a word over $\SymbAlph$ of the form
+$\existsleq{\benc{\nm}}$ or $\existseq{\benc{\nm}}$ or $\existsgeq{\benc{\nm}}$,
+where $\nm \in \Nats$ and $\benc{\nm} \in \Bitstrings$ is the binary encoding of
+$\nm$. Note that this encoding of the counting quantifiers is \emph{succinct}.
+As we note in~\cref{rem:sttr-exp-size}, this succinct representation allows for
+exponentially small counting formulas compared to their pure first-order
+equivalents.
+We denote the counting quantifiers by $\existsleq\nm$, $\existseq\nm$ and
+$\existsgeq\nm$, that is, we omit the encoding notation for $\nm$.

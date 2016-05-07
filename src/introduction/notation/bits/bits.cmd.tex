@@ -1,0 +1,35 @@
+% Bits commands
+
+\newcommand{\Bits}{\MathSet{B}}
+
+\newcommand{\Bitstrings}{\neWords\Bits}
+
+\newcommand{\tBitstrings}[1]{\Bits^{#1}}
+
+\newcommand{\tBitnums}[1]{\Bits_{#1}}
+\newcommand{\ntBitnums}[2]{\Bits_{#2}^{#1}}
+
+% sizes of bitstrings
+\newcommand{\tbit}{t}
+\newcommand{\ubit}{u}
+
+\newcommand{\Bitstringst}{\tBitstrings{\tbit}}
+\newcommand{\Bitnumst}{\tBitnums{\tbit}}
+
+
+% bitstring names
+\newcommand{\bstrname}[1]{\mathrm{#1}}
+
+\newcommand{\bstrb}{\bstrname{b}}
+
+% bitsize
+\newcommand{\bsz}[1]{\len{#1}}
+
+% encoding
+\newcommand{\benc}[1]{\overline{#1}}
+
+% decoding
+\newcommand{\bdec}[1]{\underline{#1}}
+
+% largest t-bit number
+\newcommand{\largtbit}[1]{N_{#1}}

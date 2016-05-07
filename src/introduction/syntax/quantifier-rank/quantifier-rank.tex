@@ -1,0 +1,27 @@
+% Quantifier rank
+
+If $\fphi \in \FocF\sigS$, the \emph{quantifier rank}
+$\gls{quantifier-rank-phi} \in \Nats$ of $\fphi$ is defined as follows. If
+$\fphi$ matches:
+\begin{itemize}
+  \item $(\gx = \gy)$, then $\qr\fphi = 0$
+  \item $\gp(\gxx1, \gxx2, \dots, \gxx\nn)$, then $\qr\fphi = 0$
+  \item $(\lnot\fpsi)$, then $\qr\fphi = \qr\fpsi$
+  \item $\psi_1 \anyconn \psi_2$
+  for $\anyconn \in \set{\allconns}$,
+  then $\qr\fphi = \max(\qr{\fpsi_1},\qr{\fpsi_2})$
+  \item $(\exists\gx \fpsi)$ or $(\forall\gx \fpsi)$,
+  then $\qr\fphi = 1 +\qr\fpsi$
+  \item $(\existsleq\nm\gx\fpsi)$ or $(\existseq\nm\gx\fpsi)$,
+  then $\qr\fphi = \nm + 1 + \qr\fpsi$
+  \item $(\existsgeq\nm\gx\fpsi)$, then $\qr\fphi = \nm + \qr\fpsi$. 
+\end{itemize}
+An \emph{$\nr$-rank formula} is a formula having quantifier rank $\nr$.
+The set of $\nr$-rank first-order formulas over $\sigS$ is
+$\gls{r-rank-formulas-S}$.
+The set of $\nr$-rank first-order formulas with counting quantifiers over
+$\sigS$ is $\gls{r-rank-formulas-counting-S}$.
+The set of $\nr$-rank $\nv$-variable first-order formulas over $\sigS$ is
+$\gls{r-rank-v-variable-formulas-S}$.
+The set of $\nr$-rank $\nv$-variable first-order formulas with counting
+quantifiers over $\sigS$ is $\gls{r-rank-v-variable-formulas-counting-S}$.

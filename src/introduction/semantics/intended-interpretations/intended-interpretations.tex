@@ -1,0 +1,32 @@
+% Builtin interpretations
+
+A \emph{predicate signature with intended interpretations} $\sigS$ is formally a
+predicate signature together with an \emph{intended interpretation condition}
+$\mathcal{A}$, which is formally a class of $\sigS$-structures.
+A $\sigS$-structure $\StrA$ is then just an element of $\mathcal{A}$. That is,
+when we speak about a predicate signature with intended interpretations,
+we are considering the logics strictly over the class of structures respecting
+the intended interpretation condition. The semantic concepts are relativised
+appropriately in this context. For example, if $\sigS = \seq{\se}$ is a
+predicate signature consisting of the single binary predicate symbol $\se$,
+having intended interpretation as an equivalence, then the $\sigS$-formula
+$\forall\xx \se(\xx,\xx)$ is logically valid.
+From now on, we will use the term \emph{predicate signature} as \emph{predicate
+signature with possible intended interpretations}.
+
+The predicate signature $\sigSp$ is an \emph{enrichment} of the predicate
+signature $\sigS$ if $\sigSp$ contains all predicate symbols of $\sigS$ and
+respects their intended interpretation in $\sigS$. A $\sigSp$-structure $\StrAp$
+is an enrichment of the $\sigS$-structure $\StrA$ if they have the same domain
+and the same interpretation of the predicate symbols of $\sigS$.
+The basic semantic significance of enrichment is that if
+$\fphi(\gxx1, \gxx2, \dots, \gxx\nn)$ is a $\sigS$-formula and $\eaa1, \eaa2,
+\dots, \eaa\nn \in A$, then $\StrA \vDash \fphi(\eaa1, \eaa2, \dots, \eaa\nn)$
+iff $\StrAp \vDash \fphi(\eaa1, \eaa2, \dots, \eaa\nn)$.
+
+If $\fphi(\gxx1, \gxx2, \dots, \gxx\nn)$ is a focused formula, the
+interpretation of $\fphi$ in $\StrA$ is
+\[
+  \gls{interpretation-phi-A} = \setbd{(\eaa1, \eaa2, \dots, \eaa\nn) \in
+  \domA^\nn}{\StrA \vDash \fphi(\eaa1, \eaa2, \dots, \eaa\nn)}.
+\]

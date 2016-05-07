@@ -1,0 +1,148 @@
+% Granularity
+
+In this section we demonstrate how to replace the finest equivalence from a
+sequence of equivalences in refinement with a counter setup. This works if the
+structures are granular, that is, if the finest equivalence doesn't have many
+classes within a single bigger equivalence class.
+
+\begin{definition}
+Let $\seq{\relD,\relE} \subseteq \domAA$ be a sequence of two
+equivalence relations on $\domA$ in refinement.
+Let $\gls{granular-g} \in \pNats$.
+The sequence is \emph{$\gr$-granular} if every $\relE$-equivalence class
+includes at most $\gr$ $\relD$-equivalence classes.
+\end{definition}
+\begin{definition}
+Let $\gr \in \pNats$ and let $\seq{\relD,\relE} \subseteq \domAA$ be
+$\gr$-granular.
+The function $\gcol : \domA \to [1,\gr]$ is a \emph{$\gr$-granular coloring} for
+the sequence,
+if two $\relE$-equivalent elements have the same color iff they are
+$\relD$-equivalent.
+That is, for every $(\ea,\eb) \in \relE$ we have
+$\gcoll\ea = \gcoll\eb$ iff $(\ea,\eb) \in \relD$.
+\end{definition}
+\begin{remark}\label{rem:granular-exists}
+Let $\gr \in \pNats$ and let $\seq{\relD,\relE} \subseteq \domAA$ be
+$\gr$-granular.
+Then there is a $\gr$-granular coloring for the sequence.
+\end{remark}
+\begin{proof}
+Let $\eclX$ be an $\relE$-class.
+Since $\relD \subseteq \relE$ is $\gr$-granular,
+the set $\setS = \setbd{\relD[\ea]}{\ea \in \eclX}$ has cardinality at most
+$\gr$.
+Let $\inji : \setS \ito [1,\gr]$ be any injective function.
+Define the color $\gcol$ on $\eclX$ as $\gcoll\ea = \inji\relD[\ea]$.
+\end{proof}
+
+\begin{remark}\label{rem:granular-color}
+Let $\relE \subseteq \domAA$ be an equivalence relation on $\domA$,
+$\gr \in \pNats$ and $\gcol : \domA \to [1,\gr]$.
+Then there is an equivalence relation $\relD \subseteq \relE$ on $\domA$ such
+that $\seq{\relD,\relE}$ is $\gr$-granular, having $\gcol$ as a $\gr$-granular
+coloring.
+\end{remark}
+\begin{proof}
+Take $\relD = \setbd{(\ea,\eb) \in \relE}{\gcoll\ea = \gcoll\eb}.$
+\end{proof}
+
+\begin{definition}
+Let $\gr \in \pNats$ and let $\tbit = \bsz\gr$ be the bitsize of $\gr$.
+A \emph{$\gr$-color setup}
+${\gls{color-setup} = \seq{\suu1,\suu2,\dots,\suu\tbit}}$ is just a $\tbit$-bit
+counter setup.
+\end{definition}
+
+Let $\aL \in \set{\Fo, \Foc}$ be a ground logic,
+$\gr \in \pNats$ and
+$\ColS = \seq{\suu1,\suu2,\dots,\suu\tbit}$ be a $\gr$-color setup.
+Let $\sigS$ be a predicate signature containing the binary symbols
+$\sd$ and $\se$ and not containing any symbols from $\ColS$.
+Let $\sigSp = \sigS + \ColS$ and $\sigG = \sigSp - \set{\sd}$.
+
+\begin{definition}
+Define the quantifier-free $\vFoF2\sigG$-formula
+$\gls{finer-granularity-G}(\xx,\yy)$ by:
+\[
+  \fd\sigG(\xx,\yy) = \se(\xx,\yy) \land \feq\ColS(\xx,\yy).
+\]
+\end{definition}
+\begin{definition}
+Define the syntactic operation $\gls{granularity-tr} : \aLF\sigS \to
+\aLF\sigG$ by:
+\[
+  \grtr\fphi = \fphip \land \fbetw\ColS1\gr,
+\]
+where $\fphip$ is obtained from the formula $\fphi$ by replacing all subformulas
+of the form $\sd(\gx,\gy)$ by $\fd\sigG(\gx,\gy)$, where $\gx$ and $\gy$ are (not
+necessarily distinct) variable symbols.
+\end{definition}
+
+\begin{lemma}\label{lem:granular-f-to-tr}
+Let $\StrA$ be a $\sigS$-structure and suppose that the sequence of
+symbols $\seq{\sd,\se}$ is interpreted in $\StrA$ as a
+$\gr$-granular sequence $\seq{\relD,\relE} \subseteq \domAA$.
+Suppose that $\StrA \vDash \fphi$.
+Then there is a $\sigSp$-enrichment $\StrAp$ of $\StrA$ such that
+$\StrAp \vDash \grtr\fphi$.
+\end{lemma}
+\begin{proof}
+By \cref{rem:granular-exists}, there exists a $\gr$-granular coloring 
+$\gcol : \domA \to [1,\gr]$.
+We interpret the unary symbols in $\ColS$ so that $\data\ColS\StrA = \gcol$.
+Since $\StrAp$ is an enrichment of $\StrA$, we have $\StrAp \vDash \fphi$.
+Let $\ea, \eb \in \domA$.
+Then $\StrAp \vDash \fd\sigG(\ea,\eb)$ is equivalent to:
+\[
+  \StrAp \vDash \se(\ea,\eb) \text{ and } \StrAp \vDash \feq\ColS(\ea,\eb),
+\]
+which is equivalent to:
+\[
+  (\ea,\eb) \in \relE \text{ and } \data\ColS\StrAp\ea = \data\ColS\StrAp\eb,
+\]
+which, since $\data\ColS\StrAp = \gcol$ is a $\gr$-granular coloring, is
+equivalent to:
+\[
+  (\ea,\eb) \in \relD.
+\]
+Hence $\StrAp \vDash \forall\xx\forall\yy \sd(\xx,\yy) \lequ \fd\sigG(\xx,\yy)$
+and since $\StrAp \vDash \fphi$, we have $\StrAp \vDash \grtr\fphi$.
+\end{proof}
+
+\begin{lemma}\label{lem:granular-tr-to-f}
+Let $\StrA$ be a $\sigG$-structure and suppose that the binary symbol $\se$ is
+interpreted in $\StrA$ as an equivalence relation on $\domA$.
+Suppose that $\StrA \vDash \grtr\fphi$.
+Then there is a $\sigSp$-structure $\StrAp$ enriching $\StrA$ such that 
+$\StrAp \vDash \fphi$ and the sequence of binary symbols $\seq{\sd,\se}$ is
+interpreted in $\StrAp$ as a $\gr$-granular sequence $\seq{\relD,\relE}
+\subseteq \domAA$.
+\end{lemma}
+\begin{proof}
+Since $\StrA \vDash \fbetw\ColS1\gr$, we have 
+$\data\ColS\StrA\ea \in [1,\gr]$ for all $\ea \in \domA$.
+Define ${\gcol : \domA \to [1,\gr]}$ by $\gcoll\ea = \data\CS\StrA\ea$.
+By \cref{rem:granular-exists}, we can find $\relD \subseteq \relE$ such that 
+the sequence $\seq{\relD,\relE}$ is $\gr$-granular, having $\gcol$ as a
+$\gr$-granular coloring.
+Consider the $\sigSp$-structure $\StrAp$, where $\at\StrAp\sd = \relD$.
+Since $\StrAp$ is an enrichment of $\StrA \vDash \grtr\fphi$, we have
+$\StrAp \vDash \fphi$.
+Let $\ea,\eb \in \domA$. 
+Then $\StrAp \vDash \fd\sigG(\ea,\eb)$ is equivalent to:
+\[
+  \StrAp \vDash \se(\ea,\eb) \text{ and } \StrAp \vDash \feq\ColS(\ea,\eb),
+\]
+which is equivalent to:
+\[
+  (\ea,\eb) \in \relE \text{ and } \gcoll\ea = \gcoll\eb,
+\]
+which, since $\gcol$ is a $\gr$-granular coloring, is equivalent to:
+\[
+  (\ea,\eb) \in \relD.
+\]
+Hence
+$\StrAp \vDash \forall\xx \forall\yy \se(\xx,\yy) \lequ \fd\sigG(\xx,\yy)$ 
+and since $\StrAp \vDash \grtr\fphi$, we have $\StrAp \vDash \fphi$.
+\end{proof}

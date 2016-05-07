@@ -1,0 +1,63 @@
+% Formulas commands
+
+\newcommand{\FormulaSet}[2]{#1[#2]}
+
+\newcommand{\Atomic}{\mathcal{A}t}
+
+% Atomic formulas over a signature
+\newcommand{\AtF}[1]{\FormulaSet{\Atomic}{#1}}
+
+% Atomic formula grammar variable
+\newcommand{\atfgv}{\alpha}
+
+\newcommand{\Literal}{\mathcal{L}it}
+
+% Literals over a signature
+\newcommand{\LitF}[1]{\FormulaSet{\Literal}{#1}}
+
+% Literal grammar variable
+\newcommand{\litfgv}{\lambda}
+
+% First-order formulas with counting
+\newcommand{\Foc}{\mathcal{C}}
+
+\newcommand{\FocF}[1]{\FormulaSet{\Foc}{#1}}
+
+\newcommand{\focgv}{\varphi}
+
+% First-order formulas
+\newcommand{\Fo}{\mathcal{L}}
+
+\newcommand{\FoF}[1]{\FormulaSet{\Fo}{#1}}
+
+% any gorund logic
+\newcommand{\aL}{\Lambda}
+
+\newcommand{\aLF}[1]{\FormulaSet{\aL}{#1}}
+
+% Formula names
+\newcommand{\fphi}{\varphi}
+\newcommand{\fphip}{{\fphi'}}
+\newcommand{\fpsi}{\psi}
+\newcommand{\fthe}{\theta}
+
+
+% Variables occuring in a formula
+\DeclareMathOperator{\vr}{vr}
+
+\DeclareMathOperator{\fvr}{fvr}
+
+% v-variable formulas
+\newcommand{\vFoF}[2]{\FormulaSet{\Fo^{#1}}{#2}}
+
+\newcommand{\vFocF}[2]{\FormulaSet{\Foc^{#1}}{#2}}
+
+% r-rank first-order formulas
+\newcommand{\rFoF}[2]{\FormulaSet{\Fo_{#1}}{#2}}
+
+\newcommand{\rFocF}[2]{\FormulaSet{\Foc_{#1}}{#2}}
+
+% r-rank v-variable formulas
+\newcommand{\rvFoF}[3]{\FormulaSet{\Fo_{#1}^{#2}}{#3}}
+
+\newcommand{\rvFocF}[3]{\FormulaSet{\Foc_{#1}^{#2}}{#3}}

@@ -1,0 +1,97 @@
+% Logic games
+Logic games capture structure equivalence.
+Let $\sigS$ be a predicate signature and let $\StrA$ and $\StrB$ be
+$\sigS$-structures.
+A \emph{partial isomorphism} $\gls{partial-isomorphism-p} : \domA \pto \domB$
+from $\StrA$ to $\StrB$ is a partial mapping that is an isomorphism between the 
+induced substructures $(\StrA \restriction \dom \pisop)$ and 
+$(\StrB \restriction \ran \pisop)$.
+
+Let $\nr \in \pNats$.
+The \emph{$\nr$-round Ehrenfeucht-Fra\"{i}ss\'{e} game}
+$\gls{r-round-ef-game-A-B}$ is a two-player game, played with a pair of pebbles,
+one for each structure. The two players are Spoiler and Duplicator.
+Initially the pebbles are off the structures.
+During each round, Spoiler picks a pebble
+and places it on some element in its designated structure.
+Duplicator responds by picking the other pebble and placing it on some
+element in the other structure. Thus during round $\ii$, the players play a pair
+of elements $\eaa\ii \mapsto \ebb\ii \in \domA \cprod \domB$. 
+Collect the sequences of played elements $\many\ea = \seq{\eaa1, \eaa2, \dots,
+\eaa\nr}$ and $\many\eb = \seq{\ebb1, \ebb2, \dots, \ebb\nr}$.
+Duplicator wins the match if the
+relation $\many\ea \mapsto \many\eb = \set{\eaa1 \mapsto \ebb1, \eaa2 \mapsto
+\ebb2, \dots, \eaa\nr \mapsto \ebb\nr} \subseteq \domA \times \domB$, built from
+the pairs of elements in each round, is a partial isomorphism from $\StrA$ to
+$\StrB$.
+Ehrenfeucht's theorem says that Duplicator has a winning strategy for
+$\refG\nr\StrA\StrB$ iff $\StrA \requiv\nr \StrB$.
+Fra\"{i}ss\'{e}'s theorem gives a back-and-forth characterization of the winning
+strategy for Duplicator~\cite[ch. 2]{ebbinghaus1999finite}:
+\begin{theorem}\label{thm:game-ef}
+Suppose that $(\pisoII0, \pisoII1, \dots, \pisoII\nr)$ is a sequence of nonempty
+sets of partial isomorphisms between $\StrA$ and $\StrB$ with the following
+properties:
+\begin{enumerate}
+  \item For every $\jj < \nr$, $\pisop \in \pisoII{\jj+1}$ and $\ea \in \domA$,
+  there is $\pisoq \in \pisoII\jj$ such that $\pisop \subseteq \pisoq$ and
+  $\ea \in \dom\pisoq$.
+  \item For every $\jj < \nr$, $\pisop \in \pisoII{\jj+1}$ and $\eb \in \domB$,
+  there is $\pisoq \in \pisoII\jj$ such that $\pisop \subseteq \pisoq$ and 
+  $\eb \in \ran\pisoq$.
+\end{enumerate}
+Then $\StrA \requiv\nr \StrB$.
+\end{theorem}
+
+Let $\nv \in \pNats$. By convention $\bot$ is an element not occurring in any
+structure. If $\many\ea = \eaa1\eaa2\dots\eaa\nv \in (\domA \cup
+\set{\bot})^\nv$ is a vector, the \emph{support} of $\many\ea$ is
+$\gls{support-a} = \setbd{\ii \in [1,\nv]}{\eaa\ii \in \domA}$ and an
+$\ii$-substitute of $\many\ea$ is $\gls{i-substitute-a} =
+\eaa1\eaa2\dots\eaa{\ii-1}\ea\eaa{\ii+1}\dots\eaa\nv$.
+If $\StrA$ and $\StrB$ are $\sigS$-structures, a \emph{$\nv$-partial
+isomorphism} from $\StrA$ to $\StrB$ is a pair $\pisop = \many\ea \mapsto
+\many\eb$, where $\many\ea \in (\domA \cup \set{\bot})^\nv$,
+$\many\eb \in (\domB \cup \set{\bot})^\nv$, $\supp \many\ea = \supp \many\eb$
+and $\many\eap \mapsto \many\ebp$ is a partial isomorphism, where $\many\eap$
+and $\many\ebp$ are the subsequences of $\many\ea$ and $\many\eb$ with indexes
+from the support. We also think of $\pisop$ as a partial function
+$\pisop : \domA \pto \domB$, defined by
+\[
+  \pisop = \setbd{\many\ea_i \mapsto \many\eb_i}{i \in \supp \many\ea}.
+\]
+We now consider \emph{pebble games}, which characterise constrained variables
+equivalence of structures.
+Let $\nr \in \pNats$.
+The \emph{$\nr$-round $\nv$-pebble game} $\gls{r-round-v-pebble-game-A-B}$ is a
+two-player game, with $\nv$ pairs of pebbles.
+Initially the pebbles are off the board.
+During each round, Spoiler picks a pair of pebbles and puts one of them on an
+element in one of the structures. Duplicator responds by putting the other
+pebble from the pair on an element from the other structure.
+Thus the state of the game after round $\ii$ is thus captured by two sequences
+$\many\ea_\ii \in (\domA \cup \set{\bot})^\nv$ and 
+$\many\eb_\ii \in (\domB \cup \set{\bot})^\nv$ having the same support, showing
+which pairs of pebbles have been placed where.
+Duplicator wins the match if for each $\ii \leq \nr$ we have that 
+$\many\ea_\ii \mapsto \many\eb_\ii$ is a $\nv$-partial isomorphism.
+Similarly to the Ehrenfeucht-Fra\"{i}ss\'{e} game, we have that Duplicator has a
+winning strategy for $\rvpbG\nr\nv\StrA\StrB$ iff $\StrA \rvequiv\nr\nv \StrB$.
+The following is a back-and-forth characterization of the winning strategy for
+Duplicator~\cite[ch. 2]{ebbinghaus1999finite}:
+\begin{theorem}\label{thm:game-2}
+Suppose that $(\pisoII0, \pisoII1, \dots, \pisoII\nr)$ is a sequence of nonempty
+sets of $\nv$-partial isomorphisms between $\StrA$ and $\StrB$ with the
+following properties:
+\begin{enumerate}
+  \item For every $\jj \in [0,\nr-1]$, $\ii \in [1,\nv]$,
+  $\many\ea \mapsto \many\eb \in \pisoII{\jj+1}$ and $\ea \in \domA$,
+  there is $\eb \in \domB$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoII\jj$.
+  \item For every $\jj \in [0,\nr-1]$, $\ii \in [1,\nv]$,
+  $\many\ea \mapsto \many\eb \in \pisoII{\jj+1}$ and $\eb \in \domB$,
+  there is $\ea \in \domA$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoII\jj$.
+\end{enumerate}
+Then $\StrA \rvequiv\nr\nv \StrB$.
+\end{theorem}

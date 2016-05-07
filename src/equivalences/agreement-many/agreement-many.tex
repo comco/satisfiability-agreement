@@ -1,0 +1,186 @@
+% Agreement between many equivalence relations
+Let $\nex$ be a positive natural number.
+\begin{definition}
+Let $\seq{\relEE1, \relEE2, \dots, \relEE\nex} \subseteq \domAA$ be
+a sequence of equivalence relations on $\domA$.
+
+The sequence is in \emph{refinement} if $\relEE1 \subseteq \relEE2 \subseteq
+\dots \subseteq \relEE\nex$.
+
+The sequence is in \emph{global agreement} if the equivalence relations form a
+chain under inclusion, that is for all $\ii, \jj \in [1, \nex]$,
+either $\relEE\ii \subseteq \relEE\jj$ or $\relEE\jj \subseteq \relEE\ii$.
+Equivalently, there is a (not necessarily unique) permutation
+$\permnu \in \Perms\nex$ such that
+$\relEE{\permnu(1)} \subseteq \relEE{\permnu(2)} \subseteq \dots \subseteq
+\relEE{\permnu(\nex)}$.
+
+The sequence is in \emph{local agreement} if for every element $\ea \in \domA$,
+the equivalence classes $\relEE1[\ea], \relEE2[\ea], \dots, \relEE\nex[\ea]$ form
+a chain under inclusion.
+Equivalently, no two equivalence classes $\relEE\ii[\ea]$ and $\relEE\jj[\eb]$
+properly intersect.
+\end{definition}
+
+Let $\ES = \seq{\see1, \see2, \dots, \see\nex}$ be a predicate signature
+consisting of $\nex$ binary predicate symbols.
+Let $\StrA$ be an $\ES$-structure and suppose that the symbols $\see\ii$ are
+interpreted as equivalence relations on $\domA$. Let 
+$\relEE\ii = \at\StrA{\see\ii}$.
+\begin{definition}
+Define the $\vFoF2\ES$-sentence $\gls{frefine-many}$ by:
+\[
+  \frefine{\see1,\see2,\dots,\see\nex} =
+  \forall\xx\forall\yy \bigwedge_{1 \leq \ii < \nex}
+  \see\ii(\xx,\yy) \limp \see{\ii+1}(\xx,\yy).
+\]
+\end{definition}
+Then $\seq{\relEE1,\relEE2,\dots,\relEE\nex}$ is in refinement iff
+$\StrA \vDash \frefine{\see1,\see2,\dots,\see\nex}$.
+
+\begin{definition}
+Define the $\vFoF2\ES$-sentence $\gls{fglobal-many}$ by:
+\[
+  \fglobal{\see1,\see2,\dots,\see\nex} =
+  \bigvee_{\permnu \in \Perms\nex}
+  \frefine{\see{\permnu(1)},\see{\permnu(2)},\dots,\see{\permnu(\nex)}}.
+\]
+\end{definition}
+Then $\seq{\relEE1,\relEE2,\dots,\relEE\nex}$ is in global agreement iff
+$\StrA \vDash \fglobal{\see1,\see2,\dots,\see\nex}$.
+Note that the length of the formula $\fglobal{\see1,\see2,\dots,\see\nex}$ grows
+exponentially as $\nex$ grows.
+
+\begin{definition}
+Define the $\vFoF2\ES$-sentence $\gls{flocal-many}$ by:
+\[
+  \flocal{\see1,\see2,\dots,\see\nex} = \forall\xx
+  \bigvee_{\permnu \in \Perms\nex}
+  \forall\yy \bigwedge_{1 \leq \ii < \nex}
+  \see{\permnu(\ii)}(\xx,\yy) \limp \see{\permnu(\ii+1)}(\xx,\yy).
+\]
+\end{definition}
+Then $\seq{\relEE1,\relEE2,\dots,\relEE\nex}$ is in local agreement iff
+$\StrA \vDash \flocal{\see1,\see2,\dots,\see\nex}$.
+Note that the length of the formula $\flocal{\see1,\see2,\dots,\see\nex}$ grows
+exponentially as $\nex$ grows.
+
+Let $\seqE = \seq{\relEE1,\relEE2,\dots,\relEE\nex} \subseteq \domAA$
+be a sequence of equivalence relations on $\domA$.
+\begin{theorem}\label{thm:local}
+The sequence $\seqE$ is in local agreement iff
+the union $\cup \setS$ of any nonempty subset $\setS \subseteq \seqE$
+is an equivalence relation on $\domA$.
+\end{theorem}
+\begin{proof}
+First suppose that the equivalence relations $\relEE\ii$ are in local agreement.
+We show that the union $\cup \setS$ of arbitrary nonempty subset 
+$\setS = \setsm{\relEE{\ii(1)}, \relEE{\ii(2)}, \dots, \relEE{\ii(\sizes)}}$ is
+an equivalence relation by induction on $\sizes$, the cardinality of $\setS$. If
+$\sizes = 1$, this statement is trivial.
+Suppose $\sizes > 1$.
+By the induction hypothesis, $\relD = \cup \setsm{\relEE{\ii(1)},
+\relEE{\ii(2)}, \dots, \relEE{\ii(\sizes-1)}}$ is an equivalence relation on
+$\domA$.
+We claim that $\relD$ and $\relEE{\ii(\sizes)}$ are in local agreement.
+Indeed, let $\ea \in \domA$ be arbitrary and consider
+$\relD[\ea] = \relEE{\ii(1)}[\ea] \cup \relEE{\ii(2)}[\ea] \cup \dots \cup
+\relEE{\ii(\sizes - 1)}[\ea]$ and $\relEE{\ii(\sizes)}[\ea]$.
+Since all equivalences $\relEE\kk$
+are in local agreement, either
+$\relEE{\ii(\sizes)}[\ea] \subseteq \relEE{\ii(\jj)}[\ea]$ 
+for some $\jj \in [1, \sizes-1]$,
+or $\relEE{\ii(\jj)}[\ea] \subseteq \relEE{\ii(\sizes)}[\ea]$
+for all $\jj \in [1, \sizes-1]$.
+In the first case $\relEE{\ii(\sizes)}[\ea] \subseteq \relD[\ea]$;
+in the second case $\relD[\ea] \subseteq \relEE{\ii(\sizes)}[\ea]$.
+Thus $\relD$ and $\relEE{\ii(\sizes)}$ are in local agreement.
+By \cref{lem:local-2}, $\cup \setS = \relD \cup \relEE{\ii(\sizes)}$ is an
+equivalence relation on $\domA$.
+
+Next suppose that the equivalences are not in local agreement.
+There is an element $\ea \in \domA$ such that
+$\setbd{\relEE\ii[\ea]}{\ii \in [1, \nex]}$ is not a chain. 
+There are $\ii, \jj \in [1, \nex]$ such that
+$\relEE\ii[\ea] \not\subseteq \relEE\jj[\ea]$ and
+$\relEE\jj[\ea] \not\subseteq \relEE\ii[\ea]$.
+Thus $\relEE\ii$ and $\relEE\jj$ are not in local agreement.
+By \cref{lem:local-2}, the union $\relEE\ii \cup \relEE\jj$ is not an
+equivalence relation on $\domA$.
+\end{proof}
+
+Suppose that the sequence
+$\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\nex}$ is in local agreement.
+\begin{definition}
+An \emph{index set} is an element $\istI \in \nepset[1, \nex]$.
+Define $\istap\seqE\cdot : \nepset[1, \nex] \to \nepset\seqE$ by:
+\[
+  \istap\seqE\istI = \setbd{\relEE\ii}{\ii \in \istI}.
+\]
+
+The \emph{level sequence} $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\nex}
+\subseteq \domAA$ of the sequence $\seqE$ is defined as follows.
+For $\kk \in [1, \nex]$:
+\[
+  \relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1, \nex]}.
+\]
+\end{definition}
+\begin{remark}
+All $\relLL\kk$ are equivalence relations on $\domA$.
+\end{remark}
+\begin{proof}
+Let $\istI \in \cpset\kk[1,\nex]$ be a $\kk$-index set, where $\kk \geq 1$.
+By \cref{thm:local}, $\cup \istap\seqE\istI$ is an equivalence relation on
+$\domA$.
+Since intersection of equivalence relations on $\domA$ is again an equivalence 
+relation on $\domA$, the level
+$\relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1,\nex]}$
+is an equivalence relation on $\domA$.
+\end{proof}
+\begin{remark}\label{rem:local-lvl-refine}
+The level sequence $\seqL$ is a sequence of equivalence relations on $\domA$ in
+refinement.
+\end{remark}
+\begin{proof}
+Let $\ii < \jj \in [1, \nex]$.
+Let $\istJ \in \cpset\jj[1, \nex]$ be any $\jj$-index set.
+We claim that $\relLL\ii \subseteq \cup \istap\seqE\istJ$.
+Indeed, choose some $\ii$-index set $\istI \subset \istJ$.
+By the definition of $\relLL\ii$ we have
+$\relLL\ii \subseteq \cup \istap\seqE\istI \subseteq \cup \istap\seqE\istJ$.
+Hence
+$\relLL\ii \subseteq \cap \setbd{\cup \seqE[\istJ]}{\istJ \in \cpset\jj[1,\nex]}
+= \relLL\jj$.
+\end{proof}
+Let $\ea \in \domA$. Since the sequence $\seqE$ is in local agreement, there is
+a permutation $\permnu \in \Perms\nex$ such that:
+\begin{equation}\label{eq:local-perm}
+  \relEE{\permnu(1)}[\ea] \subseteq
+  \relEE{\permnu(2)}[\ea] \subseteq
+  \dots \subseteq
+  \relEE{\permnu(\nex)}[\ea].
+\end{equation}
+\begin{lemma}\label{lem:local-lvl-perm}
+If $\permnu \in \Perms\nex$ is a permutation satisfying \cref{eq:local-perm},
+then $\relLL{\inv\permnu(\ii)}[\ea] = \relEE\ii[\ea]$ for all $\ii \in [1,\nex]$.
+\end{lemma}
+\begin{proof}
+Let $\kk = \inv\permnu(\ii)$, so $\permnu(\kk) = \ii$.
+We claim that $\relLL\kk[\ea] = \relEE\ii[\ea]$.
+First, consider the $\kk$-index set 
+$\istK = \set{\permnu(1), \permnu(2), \dots, \permnu(\kk)}$.
+By the definition of $\relLL\kk$, followed by \cref{eq:local-perm},
+we have $\relLL\kk[\ea] \subseteq \cup \istap\seqE\istK[\ea] = 
+\relEE{\permnu(\kk)}[\ea] = \relEE\ii[\ea]$.
+Next, let $\istK \subseteq \cpset\kk[1,\nex]$ be any $\kk$-index set. By the
+pigeonhole principle, there is some $\kkp \geq \kk$ such that $\kkp \in \istK$.
+By \cref{eq:local-perm} we have:
+\[
+  \relEE\ii[\ea] = \relEE{\permnu(\kk)}[\ea] \subseteq 
+  \relEE{\permnu(\kkp)}[\ea] \subseteq \cup \istap\seqE\istK[\ea].
+\]
+Hence
+$\relEE\ii[\ea] \subseteq \cap
+\setbd{\cup \istap\seqE\istK[\ea]}{\istK \in \cpset\kk[1, \nex]} =
+\relLL\kk[\ea]$.
+\end{proof}

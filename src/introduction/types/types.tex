@@ -1,0 +1,61 @@
+% Types
+Let $\sigS = \seq{\pp1, \pp2, \dots, \pp\sizes}$ be a predicate signature.
+A \emph{$1$-type} $\tpIp$ over $\sigS$ is a maximal consistent set of literals
+featuring only the variable symbol $\xx$.
+The set of $1$-types over $\sigS$ is $\gls{1-types-S}$.
+Note that consistency here is relativised by the intended interpretations of the
+predicate signature. For example if $\sigS$ contains the binary predicate symbol
+$\se$ with intended interpretation as an equivalence, then every $1$-type over
+$\sigS$ includes the literal $\se(\xx,\xx)$.
+Also note that the cardinality of a $1$-type over $\sigS$ is exponentially
+bounded by the length $\sizes$ of $\sigS$ and the cardinality of $\TpI\sigS$ is
+doubly exponentially bounded by $\sizes$.
+
+A \emph{$2$-type} $\tpTt$ over $\sigS$ is a maximal consistent set of literals
+featuring only the variable symbols $\xx$ and $\yy$ and including the literal
+$(\xx \neq \yy)$.
+The set of $2$-types over $\sigS$ is $\gls{2-types-S}$.
+Again, consistency is relativised by the intended interpretation of the
+predicate signature. For example if $\sigS$ contains the binary predicate symbol
+$\se$ with intended interpretation as an equivalence, then if $\se(\xx, \yy) \in
+\tpTt$, then $\se(\yy, \xx) \in \tpTt$.
+Again, the cardinality of a $2$-type over $\sigS$ is exponentially bounded by
+$\sizes$ and the cardinality of $\TpT\sigS$ is doubly exponentially bounded by
+$\sizes$.
+
+If $\tpTt \in \TpT\sigS$, the \emph{inverse} $\gls{t-type-inverse}$ of $\tpTt$
+is the $2$-type obtained from $\tpTt$ by
+swapping the variables $\xx$ and $\yy$ in every literal.
+The \emph{$\xx$-type} of $\tau$ is the $1$-type $\gls{x-type-t}$
+consisting of all the literals of $\tpTt$ featuring only the variable symbol
+$\xx$. Similarly, the \emph{$\yy$-type} of $\tau$ is the $1$-type
+$\gls{y-type-t}$ consisting of all the literals of $\tpTt$ featuring only the
+variable symbol $\yy$, that is replaced by $\xx$.
+For example we have the identity $\xtp\inv\tpTt = \ytp\tpTt$.
+
+If $\StrA$ is a $\sigS$-structure and $\ea \in \domA$, the \emph{$1$-type of
+$\ea$ in $\StrA$} is
+\[
+  \gls{1-type-a-A} = \setbd{\litl(\xx) \in \LitF\sigS}{\StrA \vDash \litl(\ea)}.
+\]
+If $\tpIa\StrA\ea = \tpIp$, we say that the $1$-type $\tpIp$ is \emph{realized}
+by $\ea$ in $\StrA$. The interpretation of the $1$-type $\tpIp$ in $\StrA$ is
+the set of elements realizing $\tpIp$:
+\[
+  \gls{1-type-interpretation-A} = \setbd{\ea \in \domA}{\tpIa\StrA\ea = \tpIp}.
+\]
+
+If $\ea \neq \eb \in \domA$, the \emph{$2$-type of $(\ea, \eb)$ in $\StrA$} is
+\[
+  \gls{2-type-a-b-A} = \setbd{\litl(\xx,\yy) \in \LitF\sigS}{\StrA \vDash
+  \litl(\ea, \eb)}.
+\]
+We do not define a $2$-type in case $\ea = \eb$.
+If $\tpIab\StrA\ea\eb = \tpTt$, we say that the $2$-type $\tpTt$ is
+\emph{realized} by $(\ea, \eb)$ in $\StrA$. The interpretation of the $2$-type
+$\tpTt$ in $\StrA$ is the set of pairs realizing $\tpTt$:
+
+\[
+  \gls{2-type-interpretation-A} = \setbd{(\ea, \eb) \in
+  \domA\cprod\domA}{\ea \neq \eb \land \tpIab\StrA\ea\eb = \tpTt}.
+\]
