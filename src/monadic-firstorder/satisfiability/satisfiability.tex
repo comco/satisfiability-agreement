@@ -1,2 +1,57 @@
 % Monadic first-order satisfiability
 
+In this section we will employ the results on cells and organs to bound the size
+of a small substructure of a general structure.
+
+\begin{remark}\label{rem:monadic-granular}
+Let $\szu, \sze \geq 2 \in \Nats$ and consider the predicate
+signature $\SigS = \ueSigS\szu\sze =
+\seq{\suu1,\suu2,\dots,\suu\szu,\see1,\see2,\dots,\see\sze}$.
+Abbreviate $\sd = \see1$ and $\se = \see2$.
+Let $\nr \in \pNats$.
+There is $\StrB \subseteq \StrA$ such that
+$\StrB \requiv\nr \StrA$ and $\seq{\at\StrB\sd, \at\StrB\se}$ is $\gr$-granular
+for $\gr = \nr.((\nr+1)^{2^\szu}-1)$.
+Furthermore, this $\StrB$ has the property that every $\StrB$-cell has
+cardinality at most $\nr$.
+\end{remark}
+\begin{proof}
+By \cref{lem:monadic-cell}, there is $\StrBp \subseteq \StrA$ such that
+$\StrBp \requiv\nr \StrA$ and every $\StrBp$-cell has cardinality at most $\nr$.
+By \cref{lem:monadic-organ}, there is $\StrB \subseteq \StrBp$ such that
+$\StrB \requiv\nr \StrBp$ and the $\StrB$-organs have cardinality at most $\nr$.
+Let $\relD = \at\StrB\sd$ and $\relE = \at\StrB\se$.
+Since every $\relD$-class includes at most $2^\szu$ cells and is
+nonempty and every cell has cardinality at most $\nr$,
+there are at most $\left((\nr+1)^{2^\szu}-1\right)$ nonisomorphic
+$\relD$-classes in $\StrB$.
+Since every $\relE$-class includes at most $\nr$ isomorphic $\relD$-classes,
+we get that $\seq{\relD, \relE}$ is $\gr$-granular.
+\end{proof}
+
+\begin{remark}\label{rem:monadic-1}
+Let $\szu \in \Nats$ and consider $\SigS = \ueSigS\szu1 =
+\seq{\suu1,\suu2,\dots,\suu\szu,\sd}$. Let $\nr \in \pNats$.
+There is $\StrB \subseteq \StrA$ such that $\StrA \requiv\nr \StrB$ and
+$\card\domB \leq \gr.r.2^\szu$ for $\gr = \nr.((\nr+1)^{2^\szu}-1)$.
+\end{remark}
+\begin{proof}
+Let $\SigSp = \SigS + \seq{\se}$ be an enrichment of $\SigS$ with the builtin
+equivalence symbols $\se$. Consider an enrichment $\StrAp$ of $\StrA$ to a
+$\SigSp$-structure, where $\at\StrAp\se = \domAA$ is interpreted as the
+full relation on $\domA$. Then $\seq{\at\StrAp\sd, \at\StrAp\se}$ is a sequence
+of equivalence relations on $\domA$ in refinement.
+By \cref{rem:monadic-granular}, there is $\StrBp \subseteq \StrAp$ such that
+$\StrBp \requiv\nr \StrAp$ and $\seq{\at\StrBp\sd,\at\StrBp\se}$ is
+$\gr$-granular.
+Consider the impoverishment $\StrB$ of $\StrBp$ to a
+$\SigS$-structure. Let $\relD = \at\StrB\sd$ and $\relE = \at\StrB\se$.
+Since every $\StrB$-cell has
+cardinality at most $\nr$ and every $\relD$-class includes at most $2^\szu$
+cells, we have that every $\relD$-class has cardinality at most $r.2^\szu$.
+Since $\se$ was interpreted in $\StrA$ as the full relation, it is also
+interpreted in $\StrB$ as the full relation, so there is a single
+$\relE$-class---the whole domain $\domB$.
+Since the sequence $\seq{\relD, \relE}$ is $\gr$-granular, there are at most
+$\gr$ $\relD$-classes, so $\card\domB \leq \gr.r.2^\szu$.
+\end{proof}
