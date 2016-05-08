@@ -71,9 +71,11 @@
 \input{reductions/local-to-refine/local-to-refine.cmd.tex}
 \input{reductions/granularity/granularity.cmd.tex}
 
+% TODO: Move to monadic-firstorder
 \input{monadic-twovar/cells/cells.cmd.tex}
 \input{monadic-twovar/organs/organs.cmd.tex}
 \input{monadic-twovar/satisfiability/satisfiability.cmd.tex}
+\input{monadic-firstorder/hardness/hardness.cmd.tex}
 
 % Glossaries
 \input{glossaries.cmd.tex}
@@ -122,9 +124,12 @@
 \input{reductions/local-to-refine/local-to-refine.gls.tex}
 \input{reductions/granularity/granularity.gls.tex}
 
+% TODO: Move to monadic-firstordert
 \input{monadic-twovar/cells/cells.gls.tex}
 \input{monadic-twovar/organs/organs.gls.tex}
 \input{monadic-twovar/satisfiability/satisfiability.gls.tex}
+
+\input{monadic-firstorder/hardness/hardness.gls.tex}
 
 \begin{document}
 \frontmatter
@@ -210,18 +215,6 @@
 \section{Granularity}\label{sec:granularity}
 \input{reductions/granularity/granularity.tex}
 
-%\chapter{Monadic two-variable fragments}\label{ch:monadic-twovar}
-%\input{monadic-twovar/introduction.tex}
-
-%\section{Cells}\label{sec:twovar-cells}
-%\input{monadic-twovar/cells/cells.tex}
-
-%\section{Organs}\label{sec:twovar-organs}
-%\input{monadic-twovar/organs/organs.tex}
-
-%\section{Satisfiability}
-%\input{monadic-twovar/satisfiability/satisfiability.tex}
-
 \chapter{Monadic logics}\label{ch:monadic-firstorder}
 \input{monadic-firstorder/introduction.tex}
 
@@ -233,6 +226,9 @@
 
 \section{Satisfiability}
 \input{monadic-firstorder/satisfiability/satisfiability.tex}
+
+\section{Hardness of monadic logic with equivalence}
+\input{monadic-firstorder/hardness/hardness.tex}
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
