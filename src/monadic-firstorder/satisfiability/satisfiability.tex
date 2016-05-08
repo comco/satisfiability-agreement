@@ -55,3 +55,35 @@ $\relE$-class---the whole domain $\domB$.
 Since the sequence $\seq{\relD, \relE}$ is $\gr$-granular, there are at most
 $\gr$ $\relD$-classes, so $\card\domB \leq \gr.r.2^\szu$.
 \end{proof}
+
+\begin{corollary}
+The logic $\Lvp\Fo\nonv1\Eea1\noag$ has the finite model property and its
+(finite) satisfiability problem is in $\ceNExpTime2$.
+
+% TODO: Add a reference to the tightness
+In the next section we will show that this bound is tight.
+\end{corollary}
+
+By \cref{lem:granular-f-to-tr} and \cref{lem:granular-tr-to-f} about
+granularity combined with \cref{rem:monadic-granular}, we get by induction on
+$\sze$:
+\begin{proposition}
+For $\sze \in \pNats$, the logic $\Lvp\Fo\nonv1\Eea\sze\agrefine$ has the finite
+model property and its (finite) satisfiability problem is in
+$\ceNExpTime{(\sze+1)}$.
+
+By \cref{prop:global-to-refine-n} and \cref{prop:local-to-refine-n}, the same
+holds for the logics $\Lvp\Fo\nonv1\Eea\sze\agglobal$ and
+$\Lvp\Fo\nonv1\Eea\sze\aglocal$.
+\end{proposition}
+
+Iterating this, we get:
+\begin{proposition}
+The logic $\Lvp\Fo\nonv1\Eea\nosze\agrefine$ has the finite
+model property and its (finite) satisfiability problem is in
+$\cElementary$.
+
+By \cref{prop:global-to-refine} and \cref{prop:local-to-refine}, the same
+holds for the logics $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ and
+$\Lvp\Fo\nonv1\Eea\nosze\aglocal$.
+\end{proposition}
