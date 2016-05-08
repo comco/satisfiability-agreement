@@ -1,19 +1,23 @@
 % Monadic first-order cells
 
-Let $\szu, \sze \in \Nats$, $\sze \geq 1$ and $\SigS = \ueSigS\szu\sze =
-\seq{\suu1,\suu2,\dots,\suu\szu,\see1,\see2,\dots,\see\sze}$ be a predicate
-signature featuring the unary predicate symbols $\suu\ii$ and the builtin
-equivalence symbols $\see\jj$ in refinement, so $\SigS$ is a generic predicate
-signature for the logics $\Lvp\Fo\nonv0\Eea\sze\agrefine$ and
-$\Lvp\Fo\nonv1\Eea\sze\agrefine$. Abbreviate the finest equivalence symbol $\sd
-= \see1$.
-Recall from \cref{sec:twovar-cells} that if $\StrA$ is $\SigS$-structure, a
-\emph{cell} is a maximal set of $\sd$-equivalent elements, satisfying the same
-$\su$-predicates. The cell equivalence relation $\relC \subseteq \domAA$ refines
-the finest equivalence relation $\at\StrA\sd$.
+Let $\szu, \sze \geq 1 \in \Nats$ and $\SigS = \ueSigS\szu\sze =
+\seq{\suu1,\suu2,\dots,\suu\szu,\see1,\see2,\dots,\see\sze}$
+be a predicate signature.
+Abbreviate the finest equivalence symbol $\sd = \see1$.
 
-First we need an analogue of \cref{rem:twovar-same-cell-tp1} and
-\cref{rem:twovar-same-cell-tp2}.
+\begin{definition}
+Define the quantifier-free $\vFoF2\SigS$-formula $\gls{fcell-S-x-y}$ by:
+\[
+  \fcell\SigS(\xx,\yy) = \sd(\xx,\yy) \land
+  \bigwedge_{1 \leq i \leq \szu} \suu\ii(\xx) \lequ \suu\ii(\yy).
+\]
+If $\StrA$ is a $\SigS$-structure and $\relD = \at\StrA\sd$, then the
+interpretation $\relC = \at\StrA{\fcell\SigS} \subseteq \domAA$ is an
+equivalence relation on $\domA$ that refines $\relD$.
+The \emph{cells} of $\StrA$ are the equivalence classes of $\relC$.
+That is, a cell is a maximal set of $\relD$-equivalent elements satisfying the
+same $\su$-predicates.
+\end{definition}
 
 \begin{remark}\label{rem:monadic-same-cell-r}
 Let $\StrA$ be a $\SigS$-structure, $\nr \in \Nats$,
@@ -26,23 +30,21 @@ Then $\many\ea \mapsto \many\eb$ is a partial isomorphism.
 \end{remark}
 \begin{proof}
 Direct consequence of the fact that the cell equivalence relation refines the
-finest equivalence relation $\at\StrA\sd$ and that the elements in the same cell
-satisfy the same $\su$-predicates, similarly to \cref{rem:twovar-same-cell-tp2}.
-The equality condition ensures that the mapping sends equal elements to equal
-elements.
+finest equivalence relation $\relD$ and that the elements in the same cell
+satisfy the same $\su$-predicates.
+The equality condition ensures that the mapping is a bijection.
 \end{proof}
-Let $\nr \in \pNats$ be any. This will be the quantifier rank of the
-satisfiability instance formula.
+
 \begin{lemma}\label{lem:monadic-cell-r}
-Let $\StrA$ be a $\SigS$-structure. There is $\StrB \subseteq \StrA$ such that
+Let $\StrA$ be a $\SigS$-structure and $\nr \in \pNats$.
+There is $\StrB \subseteq \StrA$ such that
 $\StrB \requiv\nr \StrA$ and every $\StrB$-cell has cardinality at most $\nr$.
 \end{lemma}
 \begin{proof}
-The proof is analogous to the proof of \cref{lem:twovar-cell-2}.
-Let $\relC \subseteq \domAA$ be the cell equivalence relation of $\StrA$.
+Let $\relC \subseteq \domAA$ be the $\StrA$-cell equivalence relation.
 Execute the following process: for every $\StrA$-cell, if it has cardinality
-less than $\nr$, select all elements from that cell; otherwise select $\nr$
-distinct elements from that cell.
+less than $\nr$, select all elements from that cell;
+otherwise select $\nr$ distinct elements from that cell.
 Let $\domB \subseteq \domA$ be the set of selected elements and let
 $\StrB = \StrA \restriction \domB$.
 By construction, every $\StrB$-cell has cardinality at most $\nr$.
@@ -55,16 +57,16 @@ Note that for all $\ea \in \domA$:
 \end{equation}
 Consider the set $\pisoI$ of partial isomorphisms from $\StrA$ to $\StrB$ that
 have cardinality at most $\nr$ and that are included in $\selh$.
-This set is nonempty since 
-\[
-  \seqsm{\underbrace{\bot,\bot,\dots,\bot}_\nr} \mapsto
-  \seqsm{\underbrace{\bot,\bot,\dots,\bot}_\nr} \in \pisoI.
-\]
+This set is nonempty since it contains the empty partial isomorphism.
 We claim that the sequence $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
 satisfies the back-and-forth conditions of \cref{thm:game-ef}.
-Let $\ii \in [1,\nr]$ and let $\many\ea \mapsto \many\eb \in \pisoI$.
+Let $\ii \in [1,\nr]$ and let 
+\[
+  \pisop = \many\ea \mapsto \many\eb =
+  \eaa1\eaa2\dots\eaa\nr \mapsto \ebb1\ebb2\dots\ebb\nr \in \pisoI
+\]
+be any partial isomorphism.
 Without loss of generality, suppose $\ii = 1$.
-Let $\many\ea = \eaa1\eaa2\dots\eaa\nr$ and $\many\eb = \ebb1\ebb2\dots\ebb\nr$.
 \begin{enumerate}
   \item For the forth condition, let $\ea \in \domA$.
   We have to find some $\eb \in \domB$ such that

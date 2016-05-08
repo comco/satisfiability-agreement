@@ -1,13 +1,11 @@
 % Monadic first-order logic introduction
+
 In this chapter we investigate questions about (finite) satisfiability of
 first-order sentences featuring unary predicate symbols and builtin equivalence
 symbols in refinement.
-This chapter closely matches the development in \cref{ch:monadic-twovar}, but
-we use Ehrenfeucht-Fra\"{i}ss\'{e} games instead of two-pebble games.
-This method is in a sense more suitable for this full first-order setting, since
-the question of (finite) satisfiability of the first-order logic even of a
-single binary predicate symbol is undecidable.
-It is well-known that:
+Our strategy is to extract small substructures of structures and analyse them
+using Ehrenfeucht-Fra\"{i}ss\'{e} games.
+It is known that:
 \begin{itemize}
   % TODO: References for monadic and signle equivalence?
   \item The monadic first-order logic $\Lvp\Fo\nonv1$ has the finite model
@@ -15,7 +13,15 @@ It is well-known that:
   \item The first-order logic of a single equivalence relation
   $\Lvp\Fo\nonv0\Eea1\noag$ has the finite model property and its (finite)
   satisfiability problem is $\cPSpace$-complete
-  \item The first-order logic of two equivalence relations lacks the finite
-  model property and both the satisfiability and finite satisfiability problems
-  are undecidable.
+  \item The first-order logic of two equivalence relations
+  $\Lvp\Fo\nonv0\Eea2\noag$ lacks the finite model property and both the
+  satisfiability and finite satisfiability problems are undecidable.
 \end{itemize}
+% TODO: Summary of results
+Let $\uUS\szu = \seq{\suu1,\suu2,\dots,\suu\szu}$ be an unary predicate
+signature consisting of the unary predicate symbols $\suu\ii$.
+Let $\eES\sze = \seq{\see1,\see2,\dots,\see\sze}$ be a binary predicate
+signature consisting of the builtin equivalence symbols $\see\jj$ in refinement.
+Let $\ueSigS\szu\sze = \uUS\szu + \eES\sze$, so $\ueSigS\szu\sze$ is a generic
+predicate signature for the monadic first-order logic
+$\Lvp\Fo\nonv1\Eea\sze\agrefine$.
