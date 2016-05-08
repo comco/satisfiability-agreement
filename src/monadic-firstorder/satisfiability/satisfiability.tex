@@ -11,7 +11,7 @@ Abbreviate $\sd = \see1$ and $\se = \see2$.
 Let $\nr \in \pNats$.
 There is $\StrB \subseteq \StrA$ such that
 $\StrB \requiv\nr \StrA$ and $\seq{\at\StrB\sd, \at\StrB\se}$ is $\gr$-granular
-for $\gr = \nr.((\nr+1)^{2^\szu}-1)$.
+for $\gr = \gr(\szu,\nr) = \nr.((\nr+1)^{2^\szu}-1)$.
 Furthermore, this $\StrB$ has the property that every $\StrB$-cell has
 cardinality at most $\nr$.
 \end{remark}
@@ -28,21 +28,42 @@ $\relD$-classes in $\StrB$.
 Since every $\relE$-class includes at most $\nr$ isomorphic $\relD$-classes,
 we get that $\seq{\relD, \relE}$ is $\gr$-granular.
 \end{proof}
+\begin{corollary}\label{cor:monadic-phi}
+Let $\szu, \sze \geq 2 \in \Nats$ and consider $\SigS = \ueSigS\szu\sze$.
+Let $\fphi$ be a $\vFoF\nonv\SigS$-sentence having quantifier rank $\nr$.
+By \cref{lem:granular-f-to-tr} and \cref{lem:granular-tr-to-f} about
+granularity, the formula $\fphi$ is essentially equisatisfiable with the
+formula $\grtr\fphi$, which is a
+$\ueSigS{\szu + \bsz{\gr(\szu,\nr)}}{\sze - 1}$-sentence.
+Note that $\bsz{\gr(\szu,\nr)}$ is exponentially bounded by the length
+$\len\fphi$ of the formula. So we have a reduction:
+\[
+  \FinASat\Lvp\Fo\nonv1\Eea\sze\agrefine \red\cExpTime
+  \FinASat\Lvp\Fo\nonv1\Eea{(\sze-1)}\agrefine.
+\]
+If $\szu$ is constant, independent of $\fphi$, then $\bsz{\gr(\szu,\nr)}$ is
+polynomially bounded by $\len\fphi$. So we have a reduction:
+\[
+  \FinASat\Lvp\Fo\nonv0\Eea\sze\agrefine \red\cP
+  \FinASat\Lvp\Fo\nonv1\Eea{(\sze-1)}\agrefine.
+\]
+\end{corollary}
 
 \begin{remark}\label{rem:monadic-1}
 Let $\szu \in \Nats$ and consider $\SigS = \ueSigS\szu1 =
 \seq{\suu1,\suu2,\dots,\suu\szu,\sd}$. Let $\nr \in \pNats$.
 There is $\StrB \subseteq \StrA$ such that $\StrA \requiv\nr \StrB$ and
-$\card\domB \leq \gr.r.2^\szu$ for $\gr = \nr.((\nr+1)^{2^\szu}-1)$.
+$\card\domB \leq \gr.r.2^\szu$ for $\gr = \gr(\szu, \nr) =
+\nr.((\nr+1)^{2^\szu}-1)$.
 \end{remark}
 \begin{proof}
 Let $\SigSp = \SigS + \seq{\se}$ be an enrichment of $\SigS$ with the builtin
 equivalence symbols $\se$. Consider an enrichment $\StrAp$ of $\StrA$ to a
 $\SigSp$-structure, where $\at\StrAp\se = \domAA$ is interpreted as the
-full relation on $\domA$. Then $\seq{\at\StrAp\sd, \at\StrAp\se}$ is a sequence
-of equivalence relations on $\domA$ in refinement.
+full relation on $\domA$. Then $\seqsm{\at\StrAp\sd, \at\StrAp\se}$ is a
+sequence of equivalence relations on $\domA$ in refinement.
 By \cref{rem:monadic-granular}, there is $\StrBp \subseteq \StrAp$ such that
-$\StrBp \requiv\nr \StrAp$ and $\seq{\at\StrBp\sd,\at\StrBp\se}$ is
+$\StrBp \requiv\nr \StrAp$ and $\seqsm{\at\StrBp\sd,\at\StrBp\se}$ is
 $\gr$-granular.
 Consider the impoverishment $\StrB$ of $\StrBp$ to a
 $\SigS$-structure. Let $\relD = \at\StrB\sd$ and $\relE = \at\StrB\se$.
@@ -56,7 +77,7 @@ Since the sequence $\seq{\relD, \relE}$ is $\gr$-granular, there are at most
 $\gr$ $\relD$-classes, so $\card\domB \leq \gr.r.2^\szu$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:monadic-base}
 The logic $\Lvp\Fo\nonv1\Eea1\noag$ has the finite model property and its
 (finite) satisfiability problem is in $\ceNExpTime2$.
 
@@ -64,9 +85,8 @@ The logic $\Lvp\Fo\nonv1\Eea1\noag$ has the finite model property and its
 In the next section we will show that this bound is tight.
 \end{corollary}
 
-By \cref{lem:granular-f-to-tr} and \cref{lem:granular-tr-to-f} about
-granularity combined with \cref{rem:monadic-granular}, we get by induction on
-$\sze$:
+Combinig \cref{cor:monadic-base} with \cref{cor:monadic-phi}, we get by
+induction on $\sze$:
 \begin{proposition}
 For $\sze \in \pNats$, the logic $\Lvp\Fo\nonv1\Eea\sze\agrefine$ has the finite
 model property and its (finite) satisfiability problem is in
@@ -76,8 +96,6 @@ By \cref{prop:global-to-refine-n} and \cref{prop:local-to-refine-n}, the same
 holds for the logics $\Lvp\Fo\nonv1\Eea\sze\agglobal$ and
 $\Lvp\Fo\nonv1\Eea\sze\aglocal$.
 \end{proposition}
-
-Iterating this, we get:
 \begin{proposition}
 The logic $\Lvp\Fo\nonv1\Eea\nosze\agrefine$ has the finite
 model property and its (finite) satisfiability problem is in
@@ -86,4 +104,14 @@ $\cElementary$.
 By \cref{prop:global-to-refine} and \cref{prop:local-to-refine}, the same
 holds for the logics $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ and
 $\Lvp\Fo\nonv1\Eea\nosze\aglocal$.
+\end{proposition}
+
+\begin{proposition}
+For $\sze \geq 2 \in \pNats$, the logic $\Lvp\Fo\nonv0\Eea\sze\agrefine$ has the
+finite model property and its (finite) satisfiability problem is in
+$\ceNExpTime{\sze}$.
+
+By \cref{prop:global-to-refine-n} and \cref{prop:local-to-refine-n}, the same
+holds for the logics $\Lvp\Fo\nonv0\Eea\sze\agglobal$ and
+$\Lvp\Fo\nonv0\Eea\sze\aglocal$.
 \end{proposition}
