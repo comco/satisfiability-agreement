@@ -1,0 +1,94 @@
+% Monadic first-order cells
+
+Let $\szu, \sze \in \Nats$, $\sze \geq 1$ and $\SigS = \ueSigS\szu\sze =
+\seq{\suu1,\suu2,\dots,\suu\szu,\see1,\see2,\dots,\see\sze}$ be a predicate
+signature featuring the unary predicate symbols $\suu\ii$ and the builtin
+equivalence symbols $\see\jj$ in refinement, so $\SigS$ is a generic predicate
+signature for the logics $\Lvp\Fo\nonv0\Eea\sze\agrefine$ and
+$\Lvp\Fo\nonv1\Eea\sze\agrefine$. Abbreviate the finest equivalence symbol $\sd
+= \see1$.
+Recall from \cref{sec:twovar-cells} that if $\StrA$ is $\SigS$-structure, a
+\emph{cell} is a maximal set of $\sd$-equivalent elements, satisfying the same
+$\su$-predicates. The cell equivalence relation $\relC \subseteq \domAA$ refines
+the finest equivalence relation $\at\StrA\sd$.
+
+First we need an analogue of \cref{rem:twovar-same-cell-tp1} and
+\cref{rem:twovar-same-cell-tp2}.
+
+\begin{remark}\label{rem:monadic-same-cell-r}
+Let $\StrA$ be a $\SigS$-structure, $\nr \in \Nats$,
+$\many\ea = \eaa1\eaa2\dots\eaa\nr \in \domA^\nr$,
+$\many\eb = \ebb1\ebb2\dots\ebb\nr \in \domA^\nr$ and $\eaa\ii$ and $\ebb\ii$
+are in the same $\StrA$-cell for all $\ii \in [1,\nr]$.
+Suppose that $\eaa\ii = \eaa\jj$ iff $\ebb\ii = \ebb\jj$ for all $\ii, \jj \in
+[1,\nr]$.
+Then $\many\ea \mapsto \many\eb$ is a partial isomorphism.
+\end{remark}
+\begin{proof}
+Direct consequence of the fact that the cell equivalence relation refines the
+finest equivalence relation $\at\StrA\sd$ and that the elements in the same cell
+satisfy the same $\su$-predicates, similarly to \cref{rem:twovar-same-cell-tp2}.
+The equality condition ensures that the mapping sends equal elements to equal
+elements.
+\end{proof}
+Let $\nr \in \pNats$ be any. This will be the quantifier rank of the
+satisfiability instance formula.
+\begin{lemma}\label{lem:monadic-cell-r}
+Let $\StrA$ be a $\SigS$-structure. There is $\StrB \subseteq \StrA$ such that
+$\StrB \requiv\nr \StrA$ and every $\StrB$-cell has cardinality at most $\nr$.
+\end{lemma}
+\begin{proof}
+The proof is analogous to the proof of \cref{lem:twovar-cell-2}.
+Let $\relC \subseteq \domAA$ be the cell equivalence relation of $\StrA$.
+Execute the following process: for every $\StrA$-cell, if it has cardinality
+less than $\nr$, select all elements from that cell; otherwise select $\nr$
+distinct elements from that cell.
+Let $\domB \subseteq \domA$ be the set of selected elements and let
+$\StrB = \StrA \restriction \domB$.
+By construction, every $\StrB$-cell has cardinality at most $\nr$.
+We claim that $\StrA \requiv\nr \StrB$.
+Let $\selh = \relC \cap (\domA \times \domB)$ relates elements from $\domA$ with
+elements from $\domB$ in the same cell.
+Note that for all $\ea \in \domA$:
+\begin{equation}\label{eq:monadic-cell-little}
+  \card{\selh[\ea]} = \min(\card{\relC[\ea]}, \nr).
+\end{equation}
+Consider the set $\pisoI$ of partial isomorphisms from $\StrA$ to $\StrB$ that
+have cardinality at most $\nr$ and that are included in $\selh$.
+This set is nonempty since 
+\[
+  \seqsm{\underbrace{\bot,\bot,\dots,\bot}_\nr} \mapsto
+  \seqsm{\underbrace{\bot,\bot,\dots,\bot}_\nr} \in \pisoI.
+\]
+We claim that the sequence $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
+satisfies the back-and-forth conditions of \cref{thm:game-ef}.
+Let $\ii \in [1,\nr]$ and let $\many\ea \mapsto \many\eb \in \pisoI$.
+Without loss of generality, suppose $\ii = 1$.
+Let $\many\ea = \eaa1\eaa2\dots\eaa\nr$ and $\many\eb = \ebb1\ebb2\dots\ebb\nr$.
+\begin{enumerate}
+  \item For the forth condition, let $\ea \in \domA$.
+  We have to find some $\eb \in \domB$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
+  If $\ea = \eaa\kk$ for some $\kk \in [2,\nr]$, then $\eb = \ebb\kk$ works.
+  
+  Suppose that $\ea \neq \eaa\kk$ for all $\kk \in [2,\nr]$.
+  Let $\setS \subseteq \relC[\ea]$ be the set of $\many\ea$-elements in the same
+  $\StrA$-cell as $\ea$:
+  \[
+    \setS = \setbd{\eaa\kk \in \relC[\ea]}{\kk \in [2,\nr]}.
+  \]
+  Note that $\card\setS \leq \nr-1$ and
+  $\card{\relC[\ea]} \geq \card{\setS} + 1$.
+  By \cref{eq:monadic-cell-little}, $\card{\selh[\ea]} \geq \card\setS + 1$.
+  Hence there is an element $\eb \in \selh[\ea]$ that is distinct from
+  $\ebb\kk$ for all $\kk \in [2,\nr]$.
+  \item For the back condition, let $\eb \in \domB$.
+  We have to find some $\ea \in \domA$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
+  If $\eb = \ebb\kk$ for some $\kk \in [2,\nr]$, then $\ea = \eaa\kk$ works.
+  
+  Suppose that $\eb \neq \ebb\kk$ for all $\kk \in [2,\nr]$. Since $\eb \in
+  \selh[\eb]$, $\ea = \eb$ works.
+\end{enumerate}
+By \cref{thm:game-ef}, $\StrA \requiv\nr \StrB$.
+\end{proof}

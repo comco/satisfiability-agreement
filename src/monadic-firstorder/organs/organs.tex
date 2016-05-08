@@ -1,0 +1,139 @@
+% Monadic first-order organs
+
+Let $\szu, \sze \in \Nats$, $\sze \geq 2$ and
+$\SigS = \SigS(\szu, \sze) = 
+\seq{\suu1,\suu2,\dots,\suu\szu,\see1,\see2,\dots,\see\sze}$
+be a predicate signature featuring the unary predicate symbols $\suu\ii$
+and the builtin equivalence symbols $\see\jj$ in refinement.
+Abbreviate the finest two equivalence symbols $\sd = \see1$ and $\se = \see2$.
+\begin{definition}
+Let $\StrA$ be a $\SigS$-structure and let $\relD = \at\StrA\sd$ and
+$\relE = \at\StrA\se$.
+Recall that the set of $\relD$-classes is $\Ecl\relD$.
+Two $D$-classes $\eclX, \eclY \in \Ecl\relD$ are \emph{organ-equivalent},
+if $X \times Y \subseteq E$ and the induced substructures 
+$(\StrA \restriction \eclX)$ and $(\StrA \restriction \eclY)$ are isomorphic.
+The organ-equivalence relation is
+$\gls{organ-equivalence} \subseteq \domXX{\Ecl\relD}$.
+Since $\relD$ refines $\relE$, the organ-equivalence is an equivalence relation
+on $\Ecl\relD$.
+An \emph{organ} is an organ-equivalence-class. That is, an organ
+is a maximal set of isomorphic $\relD$-classes, included in the same
+$\relE$-class.
+For any two organ-equivalent $\relD$-classes $(\eclX, \eclY) \in \Org$,
+fix an isomorphism
+$\isoh\eclX\eclY : (\StrA \restriction \eclX) \to (\StrA \restriction \eclY)$
+consistently, so that $\isoh\eclX\eclX = \id\eclX$,
+$\isoh\eclY\eclX = \inv{\isoh\eclX\eclY}$
+and if $(\eclY, \eclZ) \in \Org$ then
+$\isoh\eclX\eclZ = \isoh\eclY\eclZ \comp \isoh\eclX\eclY$.
+Two elements $\ea, \eb \in \domA$ are \emph{sub-organ-equivalent}
+if $(\relD[\ea], \relD[\eb]) \in \Org$ and
+$\isoh{\relD[\ea]}{\relD[\eb]}(\ea) = \eb$.
+Since the isomorphisms $\isoh\eclX\eclY$ are chosen consistently, the
+sub-organ-equivalence relation
+$\gls{sub-organ-equivalence} \subseteq \domAA$ is an equivalence relation on
+$\domA$ that refines $\relE$.
+\end{definition}
+
+\begin{remark}\label{rem:monadic-same-organ-iso}
+If $\StrA$ is a $\SigS$-structure, $\nr \in \Nats$,
+$\many\ea = \eaa1\eaa2\dots\eaa\nr \in \domA^\nr$,
+$\many\eb = \ebb1\ebb2\dots\ebb\nr \in \domA^\nr$,
+$\eaa\ii$ and $\ebb\ii$ are sub-organ-equivalent for all $\ii \in [1,\nr]$ and
+$\StrA \vDash \sd(\eaa\ii, \eaa\jj)$ iff $\StrA \vDash \sd(\ebb\ii, \ebb\jj)$
+for all $\ii, \jj \in [1,\nr]$.
+Then $\many\ea \mapsto \many\eb$ is a partial isomorphism.
+\end{remark}
+\begin{proof}
+The condition about the finest equivalence symbol $\sd$ ensures that the
+interpretation of $\sd$ is preserved.
+Since sub-organ-equivalence relates somorphic elements, the interpretation of
+the unary symbols and the formal equality is preserved.
+Since the sub-organ-equivalence $\sOrg \subseteq \domAA$ refines the
+second finest equivalence relation $\relE$, the interpretation of all remaining
+equivalence symbols $\see\jj$ is preserved.
+\end{proof}
+
+\begin{lemma}\label{lem:monadic-organ-substructure}
+Let $\StrA$ be a $\SigS$-structure. There is some $\StrB \subseteq \StrA$ such
+that $\StrA \vequiv2 \StrB$ and every $\StrB$-organ has cardinality at most
+$\nr$.
+\end{lemma}
+\begin{proof}
+Let $\relD = \at\StrA\sd$, $\relE = \at\StrA\se$ and
+let $\EclA = \Ecl\relD$ be the set of $\relD$-classes.
+Let $\Org \subseteq \domXX\EclA$ be the $\StrA$-organ-equivalence relation
+on $\EclA$.
+Execute the folloing process: for every $\StrA$-organ, if it has cardinality at
+most $\nr$, select all $\relD$-classes from that organ; otherwise select $\nr$
+distinct $\relD$-classes from that organ (note that these will be isomorphic).
+Let $\EclB \subseteq \EclA$ be the set of selected $\relD$-classes.
+Let $\domB = \cup \EclB \subseteq \domA$ be the set of elements in the selected
+classes and let $\StrB = (\StrA \restriction \domB)$.
+By construction, every $\StrB$-organ has cardinality at most $\nr$.
+We claim that $\StrA \requiv\nr \StrB$.
+Let $\selH = \Org \cap \EclA\cprod\EclB$ relates the $\relD$-classes with the
+isomorphic $\relD$-classes from $\EclB$ in the same organ.
+Let $\selh$ relates the elements of $\domA$ with their isomorphic elements from
+$\domB$.
+Note that for all elements $\ea \in \domA$:
+\begin{equation}\label{eq:monadic-organ}
+  \card{\selh[\ea]} = \min(\card{\Org[\relD[\ea]]}, \nr).
+\end{equation}
+Consider the set $\pisoI$ of partial isomorphisms from $\StrA$ to $\StrB$ that
+have cardinality at most $\nr$ and that are included in $\selh$. This set is
+nonempty since
+\[
+  \seqsm{\underbrace{\bot,\bot,\dots,\bot}_\nr} \mapsto
+  \seqsm{\underbrace{\bot,\bot,\dots,\bot}_\nr} \in \pisoI.
+\]
+We claim that the sequence $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
+satisfies the back-and-forth conditions of \cref{thm:game-ef}.
+Let $\ii \in [1,\nr]$ and let $\many\ea \mapsto \many\eb \in \pisoI$.
+Without loss of generality, suppose $\ii = 1$. Let
+$\many\ea = \eaa1\eaa2\dots\eaa\nr$ and
+$\many\eb = \ebb1\ebb2\dots\ebb\nr$.
+\begin{enumerate}
+  \item For the forth condition, let $\ea \in \domA$. We have to find some $\eb
+  \in \domB$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
+  If $\ea \in \relD[\eaa\kk]$ for some $\kk \in [2,\nr]$,
+  then $\eb = \isoh{\relD[\eaa\kk]}{\relD[\ebb\kk]}(\ea)$ works.
+  
+  Suppose $\ea \not\in \relD[\eaa\kk]$ for all $\kk \in [2,\nr]$.
+  Let $\EclS \subseteq \Org[\relD[\ea]]$ be the set of $\relD$-classes of
+  $\many\ea$-elements in the same $\StrA$-organ as $\relD[\ea]$:
+  \[
+    \EclS = \setbd{\relD[\eaa\kk] \in \Org[\relD[\ea]]}{\kk \in [2,\nr]}.
+  \]
+  Note that $\card\EclS \leq \nr-1$ and
+  $\card{\Org[\relD[\ea]]} \geq \card\EclS + 1$.
+  By \cref{eq:monadic-organ}, $\card{\selh[\ea]} \geq \card\EclS + 1$.
+  Hence there is some $\eb \in \selh[\ea]$ such that $\eb \not\in
+  \relD[\ebb\kk]$ for all $\kk \in [2,\nr]$. This $\eb$ works.
+  \item For the back condition, let $\eb \in \domB$.
+  We have to find some $\ea \in \domA$ such that
+  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
+  If $\eb \in \relD[\ebb\kk]$ for some $\kk \in [2,\nr]$,
+  then $\ea = \isoh{\relD[\ebb\kk]}{\relD[\eaa\kk]}(\eb)$ works.
+  
+  Suppose that $\eb \not\in \relD[\ebb\kk]$ for all $\kk \in [2,\nr]$.
+  Since $\eb \in \selh[\eb]$, $\ea = \eb$ works.
+\end{enumerate}
+By \cref{thm:game-ef}, $\StrA \requiv2 \StrB$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

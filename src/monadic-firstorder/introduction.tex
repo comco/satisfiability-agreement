@@ -1,0 +1,21 @@
+% Monadic first-order logic introduction
+In this chapter we investigate questions about (finite) satisfiability of
+first-order sentences featuring unary predicate symbols and builtin equivalence
+symbols in refinement.
+This chapter closely matches the development in \cref{ch:monadic-twovar}, but
+we use Ehrenfeucht-Fra\"{i}ss\'{e} games instead of two-pebble games.
+This method is in a sense more suitable for this full first-order setting, since
+the question of (finite) satisfiability of the first-order logic even of a
+single binary predicate symbol is undecidable.
+It is well-known that:
+\begin{itemize}
+  % TODO: References for monadic and signle equivalence?
+  \item The monadic first-order logic $\Lvp\Fo\nonv1$ has the finite model
+  property and its (finite) satisfiability problem is $\cNExpTime$-complete
+  \item The first-order logic of a single equivalence relation
+  $\Lvp\Fo\nonv0\Eea1\noag$ has the finite model property and its (finite)
+  satisfiability problem is $\cPSpace$-complete
+  \item The first-order logic of two equivalence relations lacks the finite
+  model property and both the satisfiability and finite satisfiability problems
+  are undecidable.
+\end{itemize}

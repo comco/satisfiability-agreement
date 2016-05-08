@@ -1,4 +1,5 @@
 % Organs
+
 Let $\US = \seq{\suu1,\suu2,\dots,\suu\szu}$ be a monadic predicate signature.
 Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
 of builtin equivalence symbols in refinement, where $\sze \geq 2$.
@@ -70,10 +71,10 @@ let $\EclA = \Ecl\relD$ be the set of $\relD$-classes.
 Let $\Org \subseteq \domXX\EclA$ be the
 $\StrA$-organ-equivalence relation on $\EclA$.
 Execute the following process: for every $\StrA$-organ, if it has cardinality
-$1$, select the $\relD$-class from that organ; otherwise select two
+$1$, select the $\relD$-class from that organ; otherwise select two distinct
 $\relD$-classes from that organ (note that these will be isomorphic).
 Let $\EclB \subseteq \EclA$ be the set of selected $\relD$-classes.
-Let $\domB = \cup \EclB \subseteq A$ be the set of elements in the
+Let $\domB = \cup \EclB \subseteq \domA$ be the set of elements in the
 selected classes and let $\StrB = (\StrA \restriction \domB)$.
 By construction, every $\StrB$-organ has cardinality at most $2$.
 We claim that $\StrA \vequiv2 \StrB$.
