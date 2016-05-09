@@ -40,7 +40,7 @@ the two symbols.
 \begin{definition}
 Define the $\vFoF2\ES$-sentence $\gls{frefine-d-e}$ by:
 \[
-  \frefine{\sd,\se} = \forall\xx \forall\yy (\sd(\xx, \yy) \limp \se(\xx, \yy)).
+  \frefine{\sd,\se} = \forall\xx \forall\yy \sd(\xx, \yy) \limp \se(\xx, \yy).
 \]
 \end{definition}
 Then $\seq{\relD, \relE}$ is in refinement iff 
@@ -60,7 +60,7 @@ Define the $\vFoF2\ES$-sentence $\gls{flocal-d-e}$ by:
 \[
 \flocal{\sd,\se} =
     \forall \xx 
-    ((\forall \yy \sd(\xx,\yy) \limp \se(\xx,\yy))
+    (\forall \yy \sd(\xx,\yy) \limp \se(\xx,\yy))
     \lor 
     (\forall \yy \se(\xx,\yy) \limp \sd(\xx,\yy)).
 \]
