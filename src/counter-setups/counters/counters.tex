@@ -77,6 +77,10 @@ If $\StrA$ is a $\CS$-structure and $\datad \leq \datae \in \tBitnums\tbit$,
 then $\StrA \vDash \fbetw\CS\datad\datae$ iff
 $\datad \leq \data\CS\StrA\ea \leq \datae$ for all $\ea \in \domA$.
 
+The bitstring $\bstra \in \tBitstrings\tbit$ encodes a number less than the
+number encoded by the bitstring $\bstrb \in \tBitstrings\tbit$, if they differ
+and at least position where they are different $\jj \in [1,\tbit]$ the bitstring
+$\bstra$ has value $0$ and the bitstring $\bstrb$ has value $1$:
 \begin{definition}
 Define the quantifier-free $\vFoF2\CS$-formula $\gls{fless-C-x-y}$ by:
 \[
@@ -88,6 +92,16 @@ If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,
 then $\StrA \vDash \fless\CS(\ea, \eb)$ iff
 $\data\CS\StrA\ea < \data\CS\StrA\eb$.
 
+The bitstring $\bstrb \in \tBitstrings\tbit$ encodes the successor of the number
+encoded by the bitstring $\bstra$ if there is a position $\jj \in [1,\tbit]$
+such that the following four conditions hold:
+\begin{align}
+  \bstra_\jj = 0 \text{ and } \bstrb_\jj = 1 \tag{Succ1}\label{Succ1} \\
+  \bstra_\ii = 1 \text{ for all } i \in [1,\jj-1] \tag{Succ2}\label{Succ2} \\
+  \bstrb_\ii = 0 \text{ for all } i \in [1,\jj-1] \tag{Succ3}\label{Succ3} \\
+  \bstra_\kk = \bstrb_\kk \text{ for all } k \in [\jj+1, \tbit].
+  \tag{Succ4}\label{Succ4}
+\end{align}
 \begin{definition}
 Define the quantifier-free $\vFoF2\CS$-formula $\gls{fsucc-C-x-y}$ by:
 \[
