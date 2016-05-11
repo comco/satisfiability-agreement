@@ -3,8 +3,66 @@ The argument from the previous section can be iterated to yield the hardness of
 the (finite) satisfiability of the monadic first-order logic with several
 builtin equivalence symbols in refinement $\Lvp\Fo\nonv1\Eea\sze\agrefine$.
 
+\begin{definition}
+An $\sze$-exponential $\nn$-bit counter setup $\DS_\nn^\sze$ is a monadic
+predicate signature consisting of $\poly\nn$-many unary predicate symbols and of
+the builtin equivalence symbols $\see1,\see2,\dots,\see\sze$ in refinement,
+together with the following function and formulas. Abbreviate the coarsest
+equivalence symbol $\sd = \see\sze$.
+\begin{enumerate}
+  \item If $\StrA$ is a $\DS$-structure and $\relD = \at\StrA\sd$, then we have
+  a function $\eData\sze\DS\StrA : \Ecl\relD \to [0, \tetr\sze2\nn - 1]$ that
+  assigns an $\sze$-exponential number to every $\relD$-class in $\StrA$.
+  \item There is a $\vFoF3\DS$-formula $\feeqData\sze\DS(\xx,\yy)$ of
+  $\poly\nn$-length such that for all $\ea,\eb \in \domA$:
+  \[
+    \miff{
+      \StrA \vDash \feeqData\sze\DS(\ea,\eb)}{
+      \eData\sze\DS\StrA\relD[\ea] = \eData\sze\DS\StrA\relD[\eb]}.
+  \]
+  \item There is a $\vFoF3\DS$-formula $\feZero\sze\DS(\xx)$ of
+  $\poly\nn$-length such that for all $\ea \in \domA$:
+  \[
+    \miff{
+      \StrA \vDash \feZero\sze\DS(\ea)}{
+      \eData\sze\DS\StrA\relD[\ea] = 0}.
+  \]
+  \item There is a $\vFoF3\DS$-formula $\feMax\sze\DS(\xx)$ of
+  $\poly\nn$-length such that for all $\ea \in \domA$:
+  \[
+    \miff{
+      \StrA \vDash \feMax\sze\DS(\ea)}{
+      \eData\sze\DS\StrA\relD[\ea] = \tetr\sze2\nn - 1}.
+  \]
+  \item There is a $\vFoF3\DS$-formula $\feLess\sze\DS(\xx,\yy)$ of
+  $\poly\nn$-length such that for all $\ea, \eb \in \domA$:
+  \[
+    \miff{
+      \StrA \vDash \feLess\sze\DS(\ea,\eb)}{
+      \eData\sze\DS\StrA\relD[\ea] < \eData\sze\DS\StrA\relD[\eb]}.
+  \]
+  \item There is a $\vFoF3\DS$-formula $\feSucc\sze\DS(\xx,\yy)$ of
+  $\poly\nn$-length such that for all $\ea, \eb \in \domA$:
+  \[
+    \miff{
+      \StrA \vDash \feSucc\sze\DS(\ea,\eb)}{
+      \eData\sze\DS\StrA\relD[\eb] = \eData\sze\DS\StrA\relD[\ea] + 1}.
+  \]
+  % TODO: make this more precise
+  \item For every $\posp \in [0, \tetr\sze2\nn - 1]$, there is a
+  $\vFoF3\DS$-formula $\feEq\sze\posp\DS(\xx)$ of length that is $\poly\nn$ and
+  is polynomially bounded by the bitsize of $\posp$, such that for all $\ea \in
+  \domA$:
+  \[
+    \miff{
+      \StrA \vDash \feEq\sze\posp\DS(\ea)}{
+      \eData\sze\DS\StrA\relD[\ea] = \posp}.
+  \]
+  
+\end{enumerate}
+\end{definition}
 % TODO: Make the construction explicit
-
+TODO
 \begin{proposition}
 The (finite) satisfiability problem for the monadic first-order logic with
 $\sze \in \pNats$ equivalence symbols in refinement
