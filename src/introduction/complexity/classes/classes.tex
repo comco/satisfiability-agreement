@@ -1,10 +1,11 @@
 % Complexity
-We denote the complexity classes $\gls{complexity-class-P}$, $\cNP$,
-$\cPSpace$, $\cExpTime$, $\cNExpTime$ and for $\expe \in \pNats$, the
-$\expe$-exponential deterministic and nondeterministic time classes
-$\ceExpTime\expe$ and $\ceNExpTime\expe$.
+We denote the complexity classes $\gls{complexity-class-P} =
+\cTime{\poly\nn} = \bigcup_{c \in \pNats} \cTime{\nn^c}$,
+$\cNP$, $\cPSpace$, $\cExpTime$ and $\cNExpTime$.
+For $\expe \in \pNats$, the
+$\expe$-exponential deterministic and nondeterministic time classes are
+$\ceExpTime\expe = \cTime{\tetr\expe2{\poly\nn}}$ and $\ceNExpTime\expe$.
 The complexity class $\cElementary$ is the union of the complexity classes
 $\ceExpTime\expe$ for $\expe \in \pNats$.
-
 % TODO: The Grzegorczyk hierarchy
 TODO: The Grzegorczyk hierarchy $\Grz{n}$.
