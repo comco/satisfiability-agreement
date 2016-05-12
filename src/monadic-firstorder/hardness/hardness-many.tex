@@ -50,9 +50,8 @@ equivalence symbol $\sd = \see\sze$.
   \]
   % TODO: make this more precise
   \item For every $\posp \in [0, \tetr\sze2\nn - 1]$, there is a
-  $\vFoF3\DS$-formula $\feEq\sze\posp\DS(\xx)$ of length that is $\poly\nn$ and
-  is polynomially bounded by the bitsize of $\posp$, such that for all $\ea \in
-  \domA$:
+  $\vFoF3\DS$-formula $\feEq\sze\posp\DS(\xx)$ of length that is $\poly\nn$
+  if the bitsize of $\posp$ is $\poly\nn$, such that for all $\ea \in  \domA$:
   \[
     \miff{
       \StrA \vDash \feEq\sze\posp\DS(\ea)}{
@@ -61,8 +60,23 @@ equivalence symbol $\sd = \see\sze$.
   
 \end{enumerate}
 \end{definition}
-% TODO: Make the construction explicit
-TODO
+We can employ an $\sze$-exponential $\nn$-bit counter setup to construct an
+$(\sze+1)$-exponential $\nn$-bit counter setup by introducing a new coarsest
+builtin equivalence symbol $\se = \see{\sze+1}$ and a new control unary
+predicate symbol $\sco$, similarly to what we did in~\cref{sec:hardness-one}:
+the $\relD$-classes within a single $\relE$-class correspond to the
+$\sze$-exponential bit positions of a $(\sze+1)$-exponential number---the
+$(\sze+1)$-exponential data at the $\relE$-class. If there is a single
+$\relD$-class at position $\posp$ in a $\relE$-class, the bit at that position
+is $0$; if there are more $\relD$-classes at position $\posp$, the bit at that
+position is $1$, so we may define the formulas:
+\[
+  \fbitO{\DS_\nn^{\sze+1}}(\xx) = \sco(\xx) \land \forall\yy \sco(\yy) \land
+  \se(\yy,\xx) \land \feeqData\sze\DS(\yy,\xx) \limp \yy = \xx, \text{etc.}
+\]
+Repeating the argument from section~\cref{sec:hardness-one}, by reducing the
+$\ceNExpTime\sze$-complete $\sze$-exponential tiling problem to (finite)
+satisfiability of $\Lvp\Fo\nonv1\Eea\sze\agrefine$, we obtain:
 \begin{proposition}
 The (finite) satisfiability problem for the monadic first-order logic with
 $\sze \in \pNats$ equivalence symbols in refinement
