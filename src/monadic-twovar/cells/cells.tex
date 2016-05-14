@@ -39,7 +39,7 @@ $\relC[\ea] \neq \relC[\eap]$,
 then $\tpIab\StrA\ea\eap = \tpIab\StrA\eb\ebp$.
 \end{remark}
 \begin{proof}
-By \cref{rem:twovar-same-cell-tp1}, it is sufficient to check that
+By \Cref{rem:twovar-same-cell-tp1}, it is sufficient to check that
 $\StrA \vDash \see\jj(\ea, \eap)$ iff $\StrA \vDash \see\jj(\eb, \ebp)$
 for all $\jj \in [1,\sze]$.
 This is clear, since $\relC$ refines the finest equivalence relation $\relD$ and
@@ -83,7 +83,7 @@ This set is nonempty, since $\seq{\bot,\bot} \mapsto \seq{\bot,\bot} \in
 \pisoI$.
 Let $\nr \in \pNats$. We claim that the sequence
 $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
-satisfies the back-and-forth conditions of \cref{thm:game-2}.
+satisfies the back-and-forth conditions of \Cref{thm:game-2}.
 Let $\ii \in [1,2]$ and let $\many\ea \mapsto \many\eb \in \pisoI$.
 Without loss of generality, suppose $\ii = 1$.
 Let $\many\ea = \eaa1\eaa2$ and $\many\eb = \ebb1\ebb2$.
@@ -104,7 +104,7 @@ Let $\many\ea = \eaa1\eaa2$ and $\many\eb = \ebb1\ebb2$.
 
   If $\ea \not\in \relC[\eaa2]$, let $\eb \in \selh[\ea]$ be any.
   Then $\eaa2, \ebb2 \in \relC[\eaa2]$, $\ea, \eb \in \relC[\ea]$,
-  $\relC[\eaa2] \neq \relC[\ea]$ and by \cref{rem:twovar-same-cell-tp2},
+  $\relC[\eaa2] \neq \relC[\ea]$ and by \Cref{rem:twovar-same-cell-tp2},
   this $\eb$ works.
   \item For the back condition, let $\eb \in \domB$.
   We have to find some $\ea \in \domA$ such that
@@ -121,8 +121,8 @@ Let $\many\ea = \eaa1\eaa2$ and $\many\eb = \ebb1\ebb2$.
   This $\ea$ works.
   
   If $\eb \not\in \relC[\ebb2]$, then $\eaa2 \neq \eb$.
-  By \cref{rem:twovar-same-cell-tp2}, $\ea = \eb$ works.
+  By \Cref{rem:twovar-same-cell-tp2}, $\ea = \eb$ works.
 \end{enumerate}
-By \cref{thm:game-2}, $\StrA \rvequiv\nr2 \StrB$. Since $\nr \in \pNats$
+By \Cref{thm:game-2}, $\StrA \rvequiv\nr2 \StrB$. Since $\nr \in \pNats$
 was arbitrary, $\StrA \vequiv2 \StrB$.
 \end{proof}

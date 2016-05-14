@@ -6,15 +6,14 @@ structures are granular, that is, if the finest equivalence doesn't have many
 classes within a single bigger equivalence class.
 
 \begin{definition}
-Let $\seq{\relD,\relE} \subseteq \domAA$ be a sequence of two
-equivalence relations on $\domA$ in refinement.
+Let $\seq{\relD,\relE}$ be a sequence of two equivalence relations on $\domA$ in
+refinement.
 Let $\gls{granular-g} \in \pNats$.
 The sequence is \emph{$\gr$-granular} if every $\relE$-equivalence class
 includes at most $\gr$ $\relD$-equivalence classes.
 \end{definition}
 \begin{definition}
-Let $\gr \in \pNats$ and let $\seq{\relD,\relE} \subseteq \domAA$ be
-$\gr$-granular.
+Let $\gr \in \pNats$ and let $\seq{\relD,\relE}$ be $\gr$-granular.
 The function $\gcol : \domA \to [1,\gr]$ is a \emph{$\gr$-granular coloring} for
 the sequence,
 if two $\relE$-equivalent elements have the same color iff they are
@@ -33,7 +32,7 @@ Since $\relD \subseteq \relE$ is $\gr$-granular,
 the set $\setS = \setbd{\relD[\ea]}{\ea \in \eclX}$ has cardinality at most
 $\gr$.
 Let $\inji : \setS \ito [1,\gr]$ be any injective function.
-Define the color $\gcol$ on $\eclX$ as $\gcoll\ea = \inji\relD[\ea]$.
+Define the color $\gcol$ on $\eclX$ as $\gcoll\ea = \inji(\relD[\ea])$.
 \end{proof}
 
 \begin{remark}\label{rem:granular-color}
@@ -82,13 +81,13 @@ necessarily distinct) variable symbols.
 \begin{lemma}\label{lem:granular-f-to-tr}
 Let $\StrA$ be a $\SigS$-structure and suppose that the sequence of
 symbols $\seq{\sd,\se}$ is interpreted in $\StrA$ as a
-$\gr$-granular sequence $\seq{\relD,\relE} \subseteq \domAA$.
+$\gr$-granular sequence $\seq{\relD,\relE}$.
 Suppose that $\StrA \vDash \fphi$.
 Then there is a $\SigSp$-enrichment $\StrAp$ of $\StrA$ such that
 $\StrAp \vDash \grtr\fphi$.
 \end{lemma}
 \begin{proof}
-By \cref{rem:granular-exists}, there exists a $\gr$-granular coloring 
+By \Cref{rem:granular-exists}, there exists a $\gr$-granular coloring 
 $\gcol : \domA \to [1,\gr]$.
 We interpret the unary symbols in $\ColS$ so that $\data\ColS\StrA = \gcol$.
 Since $\StrAp$ is an enrichment of $\StrA$, we have $\StrAp \vDash \fphi$.
@@ -116,14 +115,13 @@ interpreted in $\StrA$ as an equivalence relation on $\domA$.
 Suppose that $\StrA \vDash \grtr\fphi$.
 Then there is a $\SigSp$-structure $\StrAp$ enriching $\StrA$ such that 
 $\StrAp \vDash \fphi$ and the sequence of binary symbols $\seq{\sd,\se}$ is
-interpreted in $\StrAp$ as a $\gr$-granular sequence $\seq{\relD,\relE}
-\subseteq \domAA$.
+interpreted in $\StrAp$ as a $\gr$-granular sequence $\seq{\relD,\relE}$.
 \end{lemma}
 \begin{proof}
 Since $\StrA \vDash \fbetw\ColS1\gr$, we have 
 $\data\ColS\StrA\ea \in [1,\gr]$ for all $\ea \in \domA$.
 Define ${\gcol : \domA \to [1,\gr]}$ by $\gcoll\ea = \data\CS\StrA\ea$.
-By \cref{rem:granular-exists}, we can find $\relD \subseteq \relE$ such that 
+By \Cref{rem:granular-exists}, we can find $\relD \subseteq \relE$ such that 
 the sequence $\seq{\relD,\relE}$ is $\gr$-granular, having $\gcol$ as a
 $\gr$-granular coloring.
 Consider the $\SigSp$-structure $\StrAp$, where $\at\StrAp\sd = \relD$.
@@ -143,6 +141,7 @@ which, since $\gcol$ is a $\gr$-granular coloring, is equivalent to:
   (\ea,\eb) \in \relD.
 \]
 Hence
-$\StrAp \vDash \forall\xx \forall\yy \se(\xx,\yy) \lequ \fd\SigG(\xx,\yy)$ 
+$\StrAp \vDash \forall\xx\forall\yy
+\left(\se(\xx,\yy) \lequ \fd\SigG(\xx,\yy)\right)$
 and since $\StrAp \vDash \grtr\fphi$, we have $\StrAp \vDash \fphi$.
 \end{proof}

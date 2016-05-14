@@ -68,7 +68,7 @@ For $\ii \in [1, \sze]$, define the quantifier-free $\vFoF2\LS$-formula
 $\gls{feg-L-i-x-y}$ by:
 \[
   \feg\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \sze}
-  \feqAA\PS\kk\ii(\xx) \limp \slee\kk(\xx, \yy).
+  \left(\feqAA\PS\kk\ii(\xx) \limp \slee\kk(\xx, \yy)\right).
 \]
 \end{definition}
 \begin{remark}\label{rem:global-e-m}
@@ -155,7 +155,7 @@ We can interpret the unary predicate symbols from permutation setup
 $\PS$ in $\StrAp$ so that 
 $\StrAp \vDash \fglobperm\PS$ and 
 $\data\PS\StrA\ea = \permnu$ for all $\ea \in \domA$.
-By \cref{rem:global-e-m}, for every $\ii \in [1,\sze]$:
+By \Cref{rem:global-e-m}, for every $\ii \in [1,\sze]$:
 \[
   \at\StrAp{\feg\LS\ii} =
   \at\StrAp{\slee{\inv\permnu(\ii)}} =
@@ -164,7 +164,8 @@ By \cref{rem:global-e-m}, for every $\ii \in [1,\sze]$:
   \at\StrA{\see\ii}.
 \]
 Hence $\StrAp \vDash
-  \forall\xx\forall\yy \see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)$.
+  \forall\xx\forall\yy
+  \left(\see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)\right)$.
 Since $\StrAp \vDash \fphi$ we have $\StrAp \vDash \gtr\fphi$.
 \end{proof}
 
@@ -181,11 +182,12 @@ interpreted as equivalence relations on $\domA$ in global agreement in $\StrAp$.
 \begin{proof}
 Consider an enrichment $\StrAp$ of $\StrA$ to a $\SigSp$-structure
 where $\at\StrAp{\see\ii} = \at\StrA{\feg\LS\ii}$.
-By \cref{rem:global-e-m},
-$\seq{\at\StrAp{\see1}, \at\StrAp{\see2}, \dots, \at\StrAp{\see\sze}}$
+By \Cref{rem:global-e-m},
+$\seqsm{\at\StrAp{\see1}, \at\StrAp{\see2}, \dots, \at\StrAp{\see\sze}}$
 is a sequence of equivalence relations on $\domA$ in global agreement.
 For every $\ii \in [1,\sze]$ we have 
-$\StrAp \vDash \forall\xx\forall\yy \see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)$
+$\StrAp \vDash
+ \left(\forall\xx\forall\yy \see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)\right)$
 by definition.
 Since $\StrAp \vDash \gtr\fphi$ we have $\StrAp \vDash \fphi$.
 \end{proof}
@@ -212,5 +214,4 @@ $\FinASat\aL\Eea\nosze\agglobal \redeq\cP \FinASat\aL\Eea\nosze\agrefine$.
 The reduction is two-variable first-order and uses additional $(\sze\tbit)$
 unary predicate symbols for the permutation setup $\PS$, so it is also valid
 for the two-variable fragments $\Lvp\aL20\Eea\sze\ag$, $\Lvp\aL21\Eea\sze\ag$
-and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\agglobal, \agrefine}$
-respectively.
+and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\agglobal, \agrefine}$.

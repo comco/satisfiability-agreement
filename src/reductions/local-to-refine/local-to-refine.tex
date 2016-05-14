@@ -100,8 +100,8 @@ $\relEE\kk[\ea] \subseteq \relEE\ii[\ea]$.
 Since $\kk$ occurs after $\ii$ in $\perma$, which is the characteristic
 $\ES$-permutation of $\ea$ in $\StrA$, 
 by \cref{eq:local-perm-1} we have $\relEE\kk[\ea] = \relEE\ii[\ea]$.
-By \cref{rem:local-eq-perm}, $\ii < \kk$.
-By the contrapositive of \cref{rem:local-eq-perm},
+By \Cref{rem:local-eq-perm}, $\ii < \kk$.
+By the contrapositive of \Cref{rem:local-eq-perm},
 $\relEE\kk[\eb] = \relEE\ii[\eb]$ is impossible.
 Since $\kk$ occurs before $\ii$ in $\permb$, 
 by \cref{eq:local-perm-1} we have $\relEE\kk[\eb] \subset \relEE\ii[\eb]$.
@@ -116,7 +116,7 @@ $\relEE\kk[\ea]$ are either equal or disjoint.
 Let
 $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze} \subseteq \domAA$ be
 the levels of $\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\sze}$.
-Recall that by \cref{rem:local-lvl-refine}, the levels are equivalence relations
+Recall that by \Cref{rem:local-lvl-refine}, the levels are equivalence relations
 on $\domA$ in refinement.
 
 \begin{remark}\label{rem:local-lvl-perm}
@@ -124,7 +124,7 @@ Let $\ea \in \domA$, $\perma = \chperm\ES\StrA\ea$ and let $\kk \in [1,\sze]$.
 Then $\relLL\kk[\ea] = \relEE{\perma(\kk)}[\ea]$.
 \end{remark}
 \begin{proof}
-Since $\perma$ satisfies \cref{eq:local-perm-1}, by \cref{lem:local-lvl-perm}:
+Since $\perma$ satisfies \cref{eq:local-perm-1}, by \Cref{lem:local-lvl-perm}:
 \[
   \relLL\kk[\ea] = 
   \relLL{\inv\perma(\perma(\kk))}[\ea] =
@@ -141,9 +141,9 @@ That is, the elements connected at level $\kk$ agree at position $\kk$ in their
 characteristic permutations.
 \end{remark}
 \begin{proof}
-By \cref{rem:local-lvl-perm}, $\relLL\kk[\ea] = \relEE{\perma(\kk)}[\ea]$, thus
+By \Cref{rem:local-lvl-perm}, $\relLL\kk[\ea] = \relEE{\perma(\kk)}[\ea]$, thus
 $(\ea, \eb) \in \relEE{\perma(\kk)}$. 
-By \cref{rem:local-eq-perm},
+By \Cref{rem:local-eq-perm},
 \[
   \kk = \inv\perma(\perma(\kk)) = \inv\permb(\perma(\kk)).
 \]
@@ -159,7 +159,7 @@ interpreted as equivalence relations) together with the symbols from $\PS$.
 Define the $\vFoF2\LS$-sentence $\gls{ffixperm-L}$ by:
 \[
   \ffixperm\LS = \forall\xx \forall\yy \bigwedge_{1 \leq \kk \leq \sze}
-  \slee\kk(\xx,\yy) \limp \feq{\PSp{\kk}}(\xx,\yy).
+  \left(\slee\kk(\xx,\yy) \limp \feq{\PSp{\kk}}(\xx,\yy)\right).
 \]
 \end{definition}
 \begin{definition}
@@ -187,7 +187,7 @@ For $\ii \in [1,\sze]$, define the quantifier-free $\vFoF2\LS$-formula
 $\gls{fel-L-i}$ by:
 \[
   \fel\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \nn}
-  \feqAA\LS\kk\ii(\xx) \limp \slee\kk(\xx,\yy).
+  \left(\feqAA\LS\kk\ii(\xx) \limp \slee\kk(\xx,\yy)\right).
 \]
 \end{definition}
 
@@ -231,10 +231,10 @@ Hence $\StrA \vDash \lnot \slee\kk(\ea,\eb)$, so $\eb \not\in \relLL\kk[\ea]$.
 \end{proof}
 
 \begin{remark}\label{rem:local-e-local}
-Let $\StrA$ and $\permnu$ are declared as in \cref{rem:local-e-m}.
-Then the interpretations
-$\seq{\at\StrA{\fel\LS1},\at\StrA{\fel\LS2},\dots,\at\StrA{\fel\LS\sze}}$ are
-equivalence relations on $\domA$ in local agreement.
+Let $\StrA$ and $\permnu$ are declared as in \Cref{rem:local-e-m}.
+Then the sequence of interpretations
+$\seqsm{\at\StrA{\fel\LS1},\at\StrA{\fel\LS2},\dots,\at\StrA{\fel\LS\sze}}$ is a
+sequence of equivalence relations on $\domA$ in local agreement.
 \end{remark}
 \begin{proof}
 Let $\relEE\ii = \at\StrA{\fel\LS\ii}$ and $\relLL\ii = \at\StrA{\slee\ii}$ for
@@ -243,18 +243,18 @@ Let $\ii \in [1,\sze]$ be arbitrary.
 We check that $\relEE\ii$ is reflexive, symmetric and transitive.
 \begin{itemize}
   \item For reflexivity, let $\ea \in \domA$.
-  By \cref{rem:local-e-m},
+  By \Cref{rem:local-e-m},
   $\relEE\ii[\ea] = \relLL\kk[\ea]$ for $\kk = \inv{\permnu(\ea)}(\ii)$. 
   But $\relLL\kk[\ea]$ is an equivalence class, hence $\ea \in \relLL\kk[\ea]$,
   so $(\ea,\ea) \in \relEE\ii$.
 
   \item For symmetry, let $\ea, \eb \in \domA$ and $(\ea,\eb) \in \relEE\ii$.
   Let $\kk = \inv{\permnu(\ea)}(\ii)$ so that $\ii = \permnu(\kk)$.
-  By \cref{rem:local-e-m}, $\relEE\ii[\ea] = \relLL\kk[\ea]$.
+  By \Cref{rem:local-e-m}, $\relEE\ii[\ea] = \relLL\kk[\ea]$.
   Thus $\StrA \vDash \slee\kk(\ea,\eb)$ and by
-  \cref{rem:local-perm-val-fixed}, $\ii = \permnu(\ea)(\kk) =
+  \Cref{rem:local-perm-val-fixed}, $\ii = \permnu(\ea)(\kk) =
   \permnu(\eb)(\kk)$.
-  By \cref{rem:local-e-m}:
+  By \Cref{rem:local-e-m}:
   \[
     \relEE\ii[\eb] =
     \at\StrA{\fel\LS\ii}[\eb] =
@@ -269,7 +269,7 @@ We check that $\relEE\ii$ is reflexive, symmetric and transitive.
   Then $\ec \in \relEE\ii[\eb] = \relLL\kk[\ea] = \relEE\ii[\ea]$,
   thus $(\ea,\ec) \in \relEE\ii$.
 \end{itemize}
-By \cref{rem:local-e-m}, since the relations $\relLL\kk$ are in refinement, we
+By \Cref{rem:local-e-m}, since the relations $\relLL\kk$ are in refinement, we
 have that $\relEE1, \relEE2, \dots, \relEE\sze$ are in local agreement.
 \end{proof}
 
@@ -308,24 +308,25 @@ and the characteristic $\ES$-permutation mapping
 $\permnu = \chperm\ES\StrA : \domA \to \Perms\sze$.
 Consider an enrichment $\StrAp$ of $\StrA$ where 
 $\at\StrAp{\slee\ii} = \relLL\ii$.
-By \cref{rem:local-lvl-refine}, $\relLL\ii$ are equivalences on $\domA$ in
+By \Cref{rem:local-lvl-refine}, $\relLL\ii$ are equivalences on $\domA$ in
 refinement.
 We interpret the unary symbols from the
 permutation setup $\PS$ so that $\data\PS\StrAp\ea = \permnu(\ea)$ for all
 $\ea \in \domA$.
-By \cref{rem:local-lvl-agree}, $\StrAp \vDash \ffixperm\LS$.
-By \cref{rem:local-e-m}, followed by \cref{lem:local-lvl-perm},
+By \Cref{rem:local-lvl-agree}, $\StrAp \vDash \ffixperm\LS$.
+By \Cref{rem:local-e-m}, followed by \Cref{lem:local-lvl-perm},
 for every $\ii \in [1,\sze]$ and $\ea \in \domA$ we have:
 \[
   \at\StrAp{\fel\LS\ii}[\ea] =
   \at\StrAp{\slee{\inv{\permnu(\ea)}(\ii)}}[\ea] =
-  \at\StrAp{\slee{\permnu(\ea)(\inv{\permnu(\ea)}(\ii))}}[\ea] =
+  \at\StrAp{\see{\permnu(\ea)(\inv{\permnu(\ea)}(\ii))}}[\ea] =
   \at\StrAp{\see\ii}[\ea].
 \]
-By \cref{rem:local-e-local}, the interpretations $\fel\LS\ii$ are
+By \Cref{rem:local-e-local}, the interpretations $\fel\LS\ii$ are
 equivalence relations and since they have the same classes as the
 interpretations of $\see\ii$, we have 
-$\StrAp \vDash \forall\xx \forall\yy \see\ii(\xx,\yy) \lequ \fel\LS\ii(\xx,\yy)$
+$\StrAp \vDash \forall\xx \forall\yy
+\left(\see\ii(\xx,\yy) \lequ \fel\LS\ii(\xx,\yy)\right)$
 and since $\StrAp \vDash \fphi$, we have $\StrAp \vDash \ltr\fphi$.
 \end{proof}
 
@@ -343,11 +344,11 @@ $\StrAp$.
 \begin{proof}
 Consider an enrichment $\StrAp$ of $\StrA$ to a $\SigSp$-structure where
 $\at\StrAp{\see\ii} = \at\StrA{\fel\LS\ii}$.
-By \cref{rem:local-e-local}, $\at\StrAp{\see\ii}$ are equivalence
+By \Cref{rem:local-e-local}, $\at\StrAp{\see\ii}$ are equivalence
 relations on $\domA$ in local agreement. 
 For every $\ii \in [1,\sze]$ we have
-$\StrAp \vDash \forall\xx \forall\yy \see\ii(\xx,\yy) \lequ \fel\LS\ii(\xx,\yy)$
-by definition.
+$\StrAp \vDash \forall\xx\forall\yy \left(\see\ii(\xx,\yy) \lequ
+\fel\LS\ii(\xx,\yy)\right)$ by definition.
 Since $\StrAp \vDash \ltr\fphi$ we have $\StrAp \vDash \fphi$.
 \end{proof}
 

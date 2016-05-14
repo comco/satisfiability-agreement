@@ -1,6 +1,6 @@
 % Monadic first-order cells
 
-Let $\szu, \sze \geq 1 \in \Nats$ and $\SigS = \ueSigS\szu\sze =
+Let $\szu, \sze \in \Nats$, $\sze \geq 1$ and $\SigS = \ueSigS\szu\sze =
 \seq{\suu1,\suu2,\dots,\suu\szu,\see1,\see2,\dots,\see\sze}$
 be a predicate signature.
 Abbreviate the finest equivalence symbol $\sd = \see1$.
@@ -9,7 +9,7 @@ Abbreviate the finest equivalence symbol $\sd = \see1$.
 Define the quantifier-free $\vFoF2\SigS$-formula $\gls{fcell-S-x-y}$ by:
 \[
   \fcell\SigS(\xx,\yy) = \sd(\xx,\yy) \land
-  \bigwedge_{1 \leq i \leq \szu} \suu\ii(\xx) \lequ \suu\ii(\yy).
+  \bigwedge_{1 \leq i \leq \szu} (\suu\ii(\xx) \lequ \suu\ii(\yy)).
 \]
 If $\StrA$ is a $\SigS$-structure and $\relD = \at\StrA\sd$, then the
 interpretation $\relC = \at\StrA{\fcell\SigS} \subseteq \domAA$ is an
@@ -59,7 +59,7 @@ Consider the set $\pisoI$ of partial isomorphisms from $\StrA$ to $\StrB$ that
 have cardinality at most $\nr$ and that are included in $\selh$.
 This set is nonempty since it contains the empty partial isomorphism.
 We claim that the sequence $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
-satisfies the back-and-forth conditions of \cref{thm:game-ef}.
+satisfies the back-and-forth conditions of \Cref{thm:game-ef}.
 Let $\ii \in [1,\nr]$ and let 
 \[
   \pisop = \many\ea \mapsto \many\eb =
@@ -71,7 +71,8 @@ Without loss of generality, suppose $\ii = 1$.
   \item For the forth condition, let $\ea \in \domA$.
   We have to find some $\eb \in \domB$ such that
   $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
-  If $\ea = \eaa\kk$ for some $\kk \in [2,\nr]$, then $\eb = \ebb\kk$ works.
+  If $\ea = \eaa\kk$ for some $\kk \in [2,\nr]$, then $\eb = \ebb\kk$ is
+  appropriate.
   
   Suppose that $\ea \neq \eaa\kk$ for all $\kk \in [2,\nr]$.
   Let $\setS \subseteq \relC[\ea]$ be the set of $\many\ea$-elements in the same
@@ -87,10 +88,11 @@ Without loss of generality, suppose $\ii = 1$.
   \item For the back condition, let $\eb \in \domB$.
   We have to find some $\ea \in \domA$ such that
   $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
-  If $\eb = \ebb\kk$ for some $\kk \in [2,\nr]$, then $\ea = \eaa\kk$ works.
+  If $\eb = \ebb\kk$ for some $\kk \in [2,\nr]$, then $\ea = \eaa\kk$ is
+  appropriate.
   
   Suppose that $\eb \neq \ebb\kk$ for all $\kk \in [2,\nr]$. Since $\eb \in
-  \selh[\eb]$, $\ea = \eb$ works.
+  \selh[\eb]$, $\ea = \eb$ is appropriate.
 \end{enumerate}
-By \cref{thm:game-ef}, $\StrA \requiv\nr \StrB$.
+By \Cref{thm:game-ef}, $\StrA \requiv\nr \StrB$.
 \end{proof}

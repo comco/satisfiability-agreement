@@ -12,12 +12,13 @@ Define the $\vFoF2\ES$-sentence $\gls{frefl-e}$ by:
 \]
 Define the $\vFoF2\ES$-sentence $\gls{fsymm-e}$ by:
 \[
-  \fsymm\se = \forall\xx\forall\yy \se(\xx,\yy) \limp \se(\yy, \xx).
+  \fsymm\se = \forall\xx\forall\yy 
+  \left(\se(\xx,\yy) \limp \se(\yy,\xx)\right).
 \]
 Define the $\vFoF3\ES$-sentence $\gls{ftrans-e}$ by:
 \[
-  \ftrans\se = \forall\xx\forall\yy\forall\zz (\se(\xx,\yy) \land \se(\yy,\zz))
-  \limp \se(\xx,\zz).
+  \ftrans\se = \forall\xx\forall\yy\forall\zz
+  \left(\se(\xx,\yy) \land \se(\yy,\zz) \limp \se(\xx,\zz)\right).
 \]
 Define the $\vFoF3\ES$-sentence $\gls{fequiv-e}$ by:
 \[

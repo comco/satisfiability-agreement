@@ -11,16 +11,17 @@ first-order formulas is defined as follows. If $\fphi$ matches:
   $\sttr\fphi = (\sttr\fpsi_1 \anyconn \sttr\fpsi_2)$
   \item $(\anyQ\gx \fpsi)$ for $\anyQ \in \set{\allQs}$, then
   $\sttr\fphi = (\anyQ\gx \sttr\fpsi)$
-  \item $\existsleq\nm\gx \fpsi(\gx)$ or $\existseq\nm\gx \fpsi(\gx)$ or
-  $\existsgeq\nm\gx \fpsi(\gx)$, then let
+  \item $\left(\existsleq\nm\gx \fpsi(\gx)\right)$ or
+  $\left(\existseq\nm\gx \fpsi(\gx)\right)$ or
+  $\left(\existsgeq\nm\gx \fpsi(\gx)\right)$, then let
   \begin{align*}
   \fthe_\leq &= \forall\gyy1 \forall\gyy2 \dots \forall\gyy\nm
   \forall\gyy{\nm+1}
-  \left(\bigwedge_{1 \leq \ii \leq \nm+1} \sttr\fpsi(\gyy\ii)\right) \limp
-  \bigvee_{1 \leq \ii < \jj \leq \nm+1} \gyy\ii = \gyy\jj \\
+  \left(\bigwedge_{1 \leq \ii \leq \nm+1} \sttr\fpsi(\gyy\ii) \limp
+  \bigvee_{1 \leq \ii < \jj \leq \nm+1} \gyy\ii = \gyy\jj\right) \\
   \fthe_\geq &= \exists\gyy1 \exists\gyy2 \dots \exists\gyy\nm
-  \left(\bigwedge_{1 \leq \ii \leq \nm} \sttr\fpsi(\gyy\ii)\right) \land
-  \bigwedge_{1 \leq \ii < \jj \leq \nm} \gyy\ii \neq \gyy\jj
+  \left(\bigwedge_{1 \leq \ii \leq \nm} \sttr\fpsi(\gyy\ii) \land
+  \bigwedge_{1 \leq \ii < \jj \leq \nm} \gyy\ii \neq \gyy\jj\right)
   \end{align*}
   where $\gyy1, \gyy2, \dots, \gyy{\nm+1}$ are distinct variable symbols not
   occurring in $\fphi$. The formula $\fthe_\leq$ asserts that there are at most
@@ -29,7 +30,7 @@ first-order formulas is defined as follows. If $\fphi$ matches:
   If $\fphi = (\existsleq\nm\gx \fpsi(\gx))$, then
   $\sttr\fphi = \theta_\leq$.
   If $\fphi = (\existseq\nm\gx \fpsi(\gx))$, then
-  $\sttr\fphi = (\theta_\leq \land \theta_\geq)$.
+  $\sttr\fphi = \left(\theta_\leq \land \theta_\geq\right)$.
   If $\fphi = (\existsgeq\nm\gx \fpsi(\gx))$, then
   $\sttr\fphi = \theta_\geq$.
 \end{itemize}

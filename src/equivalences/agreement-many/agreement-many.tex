@@ -1,8 +1,8 @@
 % Agreement between many equivalence relations
 Let $\sze$ be a positive natural number.
 \begin{definition}
-Let $\seq{\relEE1, \relEE2, \dots, \relEE\sze} \subseteq \domAA$ be
-a sequence of equivalence relations on $\domA$.
+Let $\seq{\relEE1, \relEE2, \dots, \relEE\sze}$ be a sequence of equivalence
+relations on $\domA$.
 
 The sequence is in \emph{refinement} if $\relEE1 \subseteq \relEE2 \subseteq
 \dots \subseteq \relEE\sze$.
@@ -15,9 +15,9 @@ $\permnu \in \Perms\sze$ such that
 $\relEE{\permnu(1)} \subseteq \relEE{\permnu(2)} \subseteq \dots \subseteq
 \relEE{\permnu(\sze)}$.
 
-The sequence is in \emph{local agreement} if for every element $\ea \in \domA$,
-the equivalence classes $\relEE1[\ea], \relEE2[\ea], \dots, \relEE\sze[\ea]$ form
-a chain under inclusion.
+The sequence is in \emph{local agreement} if for every element $\ea \in \domA$
+the equivalence classes $\relEE1[\ea], \relEE2[\ea], \dots, \relEE\sze[\ea]$
+form a chain under inclusion.
 Equivalently, no two equivalence classes $\relEE\ii[\ea]$ and $\relEE\jj[\eb]$
 properly intersect.
 \end{definition}
@@ -26,13 +26,13 @@ Let $\ES = \seq{\see1, \see2, \dots, \see\sze}$ be a predicate signature
 consisting of $\sze$ binary predicate symbols.
 Let $\StrA$ be an $\ES$-structure and suppose that the symbols $\see\ii$ are
 interpreted as equivalence relations on $\domA$. Let 
-$\relEE\ii = \at\StrA{\see\ii}$.
+$\relEE\ii = \at\StrA{\see\ii}$ for $\ii \in [1,\sze]$.
 \begin{definition}
 Define the $\vFoF2\ES$-sentence $\gls{frefine-many}$ by:
 \[
   \frefine{\see1,\see2,\dots,\see\sze} =
   \forall\xx\forall\yy \bigwedge_{1 \leq \ii < \sze}
-  \see\ii(\xx,\yy) \limp \see{\ii+1}(\xx,\yy).
+  \left(\see\ii(\xx,\yy) \limp \see{\ii+1}(\xx,\yy)\right).
 \]
 \end{definition}
 Then $\seq{\relEE1,\relEE2,\dots,\relEE\sze}$ is in refinement iff
@@ -65,19 +65,20 @@ $\StrA \vDash \flocal{\see1,\see2,\dots,\see\sze}$.
 Note that the length of the formula $\flocal{\see1,\see2,\dots,\see\sze}$ grows
 exponentially as $\sze$ grows.
 
-Let $\seqE = \seq{\relEE1,\relEE2,\dots,\relEE\sze} \subseteq \domAA$
-be a sequence of equivalence relations on $\domA$.
+Let $\seqE = \seq{\relEE1,\relEE2,\dots,\relEE\sze}$ be a sequence of
+equivalence relations on $\domA$.
 \begin{theorem}\label{thm:local}
 The sequence $\seqE$ is in local agreement iff
-the union $\cup \setS$ of any nonempty subset $\setS \subseteq \seqE$
+the union $\cup \setS$ of any nonempty subsequence $\setS \subseteq \seqE$
 is an equivalence relation on $\domA$.
 \end{theorem}
 \begin{proof}
 First suppose that the equivalence relations $\relEE\ii$ are in local agreement.
-We show that the union $\cup \setS$ of arbitrary nonempty subset 
-$\setS = \setsm{\relEE{\ii(1)}, \relEE{\ii(2)}, \dots, \relEE{\ii(\sizes)}}$ is
-an equivalence relation by induction on $\sizes$, the cardinality of $\setS$. If
-$\sizes = 1$, this statement is trivial.
+We show that the union $\cup \setS$ of arbitrary nonempty subsequence 
+$\setS = \setsm{\relEE{\ii(1)}, \relEE{\ii(2)}, \dots, \relEE{\ii(\sizes)}}$,
+where $1 \leq \ii(1) < \ii(2) < \dots < \ii(\sizes) \leq \sze$, is an
+equivalence relation by induction on $\sizes$, the length of $\setS$.
+If $\sizes = 1$ this claim is trivial.
 Suppose $\sizes > 1$.
 By the induction hypothesis, $\relD = \cup \setsm{\relEE{\ii(1)},
 \relEE{\ii(2)}, \dots, \relEE{\ii(\sizes-1)}}$ is an equivalence relation on
@@ -95,7 +96,7 @@ for all $\jj \in [1, \sizes-1]$.
 In the first case $\relEE{\ii(\sizes)}[\ea] \subseteq \relD[\ea]$;
 in the second case $\relD[\ea] \subseteq \relEE{\ii(\sizes)}[\ea]$.
 Thus $\relD$ and $\relEE{\ii(\sizes)}$ are in local agreement.
-By \cref{lem:local-2}, $\cup \setS = \relD \cup \relEE{\ii(\sizes)}$ is an
+By \Cref{lem:local-2}, $\cup \setS = \relD \cup \relEE{\ii(\sizes)}$ is an
 equivalence relation on $\domA$.
 
 Next suppose that the equivalences are not in local agreement.
@@ -105,7 +106,7 @@ There are $\ii, \jj \in [1, \sze]$ such that
 $\relEE\ii[\ea] \not\subseteq \relEE\jj[\ea]$ and
 $\relEE\jj[\ea] \not\subseteq \relEE\ii[\ea]$.
 Thus $\relEE\ii$ and $\relEE\jj$ are not in local agreement.
-By \cref{lem:local-2}, the union $\relEE\ii \cup \relEE\jj$ is not an
+By \Cref{lem:local-2}, the union $\relEE\ii \cup \relEE\jj$ is not an
 equivalence relation on $\domA$.
 \end{proof}
 
@@ -117,9 +118,11 @@ Define $\istap\seqE\cdot : \nepset[1, \sze] \to \nepset\seqE$ by:
 \[
   \istap\seqE\istI = \setbd{\relEE\ii}{\ii \in \istI}.
 \]
+That is, $\istap\seqE\istI$ just collects the equivalences having indices from
+$\istI$.
 
-The \emph{level sequence} $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze}
-\subseteq \domAA$ of the sequence $\seqE$ is defined as follows.
+The \emph{level sequence} $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze}$ of
+the sequence $\seqE$ is defined as follows.
 For $\kk \in [1, \sze]$:
 \[
   \relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1, \sze]}.
@@ -129,17 +132,18 @@ For $\kk \in [1, \sze]$:
 All $\relLL\kk$ are equivalence relations on $\domA$.
 \end{remark}
 \begin{proof}
-Let $\istI \in \cpset\kk[1,\sze]$ be a $\kk$-index set, where $\kk \geq 1$.
-By \cref{thm:local}, $\cup \istap\seqE\istI$ is an equivalence relation on
+Let $\kk \in [1,\sze]$ and let $\istK \in \cpset\kk[1,\sze]$ be any $\kk$-index
+set.
+By \Cref{thm:local}, $\cup \istap\seqE\istK$ is an equivalence relation on
 $\domA$.
 Since intersection of equivalence relations on $\domA$ is again an equivalence 
 relation on $\domA$, the level
-$\relLL\kk = \cap \setbd{\cup \istap\seqE\istI}{\istI \in \cpset\kk[1,\sze]}$
+$\relLL\kk = \cap \setbd{\cup \istap\seqE\istK}{\istK \in \cpset\kk[1,\sze]}$
 is an equivalence relation on $\domA$.
 \end{proof}
 \begin{remark}\label{rem:local-lvl-refine}
-The level sequence $\seqL$ is a sequence of equivalence relations on $\domA$ in
-refinement.
+The level sequence $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze}$ is a
+sequence of equivalence relations on $\domA$ in refinement.
 \end{remark}
 \begin{proof}
 Let $\ii < \jj \in [1, \sze]$.
@@ -149,11 +153,12 @@ Indeed, choose some $\ii$-index set $\istI \subset \istJ$.
 By the definition of $\relLL\ii$ we have
 $\relLL\ii \subseteq \cup \istap\seqE\istI \subseteq \cup \istap\seqE\istJ$.
 Hence
-$\relLL\ii \subseteq \cap \setbd{\cup \seqE[\istJ]}{\istJ \in \cpset\jj[1,\sze]}
-= \relLL\jj$.
+$\relLL\ii \subseteq \cap \setbd{\cup \istap\seqE\istJ}{\istJ \in
+\cpset\jj[1,\sze]} = \relLL\jj$.
 \end{proof}
-Let $\ea \in \domA$. Since the sequence $\seqE$ is in local agreement, there is
-a permutation $\permnu \in \Perms\sze$ such that:
+Let $\ea \in \domA$.
+Since the sequence $\seqE = \seq{\relEE1,\relEE2,\dots,\relEE\sze}$ is in local
+agreement, there is a permutation $\permnu \in \Perms\sze$ such that:
 \begin{equation}\label{eq:local-perm}
   \relEE{\permnu(1)}[\ea] \subseteq
   \relEE{\permnu(2)}[\ea] \subseteq

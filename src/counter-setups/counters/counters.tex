@@ -12,8 +12,8 @@ $\gls{data-C-A} : \domA \to \tBitnums\tbit$ by:
 \]
 \end{definition}
 \begin{definition}
-Let $\datad \in \tBitnums\tbit$. Define the quantifier-free $\vFoF1\CS$-formula
-$\gls{feqA-C-d-x}$ by:
+Let $\datad \in \tBitnums\tbit$ be a $\tbit$-bit number. Define the
+quantifier-free $\vFoF1\CS$-formula $\gls{feqA-C-d-x}$ by:
 \[
   \feqA\CS\datad(\xx) = \bigwedge_{1 \leq \ii \leq \tbit}
   \feqA{\suu\ii}{\benc{\datad}_\ii}(\xx).
@@ -80,12 +80,19 @@ $\datad \leq \data\CS\StrA\ea \leq \datae$ for all $\ea \in \domA$.
 The bitstring $\bstra \in \tBitstrings\tbit$ encodes a number less than the
 number encoded by the bitstring $\bstrb \in \tBitstrings\tbit$, if they differ
 and at least position where they are different $\jj \in [1,\tbit]$ the bitstring
-$\bstra$ has value $0$ and the bitstring $\bstrb$ has value $1$:
+$\bstra$ has value $0$ and the bitstring $\bstrb$ has value $1$, that is, iff
+there is a position $\jj \in [1,\tbit]$ such that the following three conditions
+hold:
+\begin{align}
+  \bstra_\jj = 0 \text{ and } \bstrb_\jj = 1 \tag{Less1}\label{Less1} \\
+  \bstra_\kk = \bstrb_\kk \text{ for all } \kk \in [\jj+1,\tbit].
+  \tag{Less2}\label{Less2}
+\end{align}
 \begin{definition}
 Define the quantifier-free $\vFoF2\CS$-formula $\gls{fless-C-x-y}$ by:
 \[
   \fless\CS(\xx,\yy) = \bigvee_{1 \leq \jj \leq \tbit} \feqOI{\suu\jj}(\xx,\yy)
-  \land \bigwedge_{\jj < \kk \leq \nn} \feq{\suu\kk}(\xx,\yy).
+  \land \bigwedge_{\jj < \kk \leq \tbit} \feq{\suu\kk}(\xx,\yy).
 \]
 \end{definition}
 If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,
@@ -99,7 +106,7 @@ such that the following four conditions hold:
   \bstra_\jj = 0 \text{ and } \bstrb_\jj = 1 \tag{Succ1}\label{Succ1} \\
   \bstra_\ii = 1 \text{ for all } i \in [1,\jj-1] \tag{Succ2}\label{Succ2} \\
   \bstrb_\ii = 0 \text{ for all } i \in [1,\jj-1] \tag{Succ3}\label{Succ3} \\
-  \bstra_\kk = \bstrb_\kk \text{ for all } k \in [\jj+1, \tbit].
+  \bstra_\kk = \bstrb_\kk \text{ for all } \kk \in [\jj+1,\tbit].
   \tag{Succ4}\label{Succ4}
 \end{align}
 \begin{definition}
@@ -109,7 +116,7 @@ Define the quantifier-free $\vFoF2\CS$-formula $\gls{fsucc-C-x-y}$ by:
   \bigwedge_{1 \leq \ii < \jj} 
   \feqIO{\suu\ii}(\xx,\yy) \land
   \feqOI{\suu\jj}(\xx,\yy) \land 
-  \bigwedge_{\jj < \kk \leq \nn} \feq{\suu\kk}(\xx,\yy).
+  \bigwedge_{\jj < \kk \leq \tbit} \feq{\suu\kk}(\xx,\yy).
 \]
 \end{definition}
 If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,

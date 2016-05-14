@@ -1,12 +1,11 @@
 \begin{definition}
-Let $\seq{\relD, \relE} \subseteq \domAA$ be a sequence of two
-equivalence relations on $\domA$.
+Let $\seq{\relD, \relE}$ be a sequence of two equivalence relations on $\domA$.
 The relation $\relD$ is \emph{finer} than the relation $\relE$ if every
 equivalence class of $\relD$ is a subset of some equivalence class of $\relE$.
 Equivalently, $\relD \subseteq \relE$. Equivalently,
 \[
-  (\forall \ea \in \domA)(\forall \eb \in \domA) \relD(\ea, \eb) \limp
-  \relE(\ea, \eb).
+  (\forall \ea \in \domA)(\forall \eb \in \domA)
+  \left(\relD(\ea, \eb) \limp \relE(\ea, \eb)\right).
 \]
 If $\relD$ is finer than $\relE$, then $\relE$ is \emph{coarser} than $\relD$.
 The sequence $\seq{\relD, \relE}$ is a sequence of equivalence relations on
@@ -20,13 +19,13 @@ The sequence $\seq{\relD, \relE}$ is a sequence of equivalence relations
 \emph{in local agreement} if for every $\ea \in \domA$, 
 either $\relD[\ea] \subseteq \relE[\ea]$ or $\relE[\ea] \subseteq \relD[\ea]$.
 Equivalently, no two equivalence classes $\relE[\ea]$ and $\relD[\eb]$ properly
-intersect.
-Equivalently
+intersect. Equivalently,
 \[
   (\forall \ea \in \domA)
-  \left[(\forall \eb \in \domA) \relD(\ea, \eb) \limp \relE(\ea, \eb)\right]
-  \lor \left[(\forall \eb \in \domA) \relE(\ea, \eb) \limp
-  \relD(\ea, \eb)\right].
+  \left((\forall \eb \in \domA)
+  \left(\relD(\ea, \eb) \limp \relE(\ea,\eb)\right)
+  \lor (\forall \eb \in \domA)
+  \left(\relE(\ea, \eb) \limp \relD(\ea, \eb)\right)\right).
 \]
 \end{definition}
 
@@ -40,7 +39,8 @@ the two symbols.
 \begin{definition}
 Define the $\vFoF2\ES$-sentence $\gls{frefine-d-e}$ by:
 \[
-  \frefine{\sd,\se} = \forall\xx \forall\yy \sd(\xx, \yy) \limp \se(\xx, \yy).
+  \frefine{\sd,\se} = \forall\xx \forall\yy
+  \left(\sd(\xx, \yy) \limp \se(\xx, \yy)\right).
 \]
 \end{definition}
 Then $\seq{\relD, \relE}$ is in refinement iff 
@@ -60,17 +60,16 @@ Define the $\vFoF2\ES$-sentence $\gls{flocal-d-e}$ by:
 \[
 \flocal{\sd,\se} =
     \forall \xx 
-    (\forall \yy \sd(\xx,\yy) \limp \se(\xx,\yy))
+    \left(\forall \yy \left(\sd(\xx,\yy) \limp \se(\xx,\yy)\right)
     \lor 
-    (\forall \yy \se(\xx,\yy) \limp \sd(\xx,\yy)).
+    \forall \yy \left(\se(\xx,\yy) \limp \sd(\xx,\yy)\right)\right).
 \]
 \end{definition}
 Then $\seq{\relD, \relE}$ is in global agreement iff
 $\StrA \vDash \flocal{\sd,\se}$.
 
 \begin{lemma}\label{lem:local-2}
-If $\seq{\relD, \relE} \subseteq \domAA$ is a sequence two
-equivalence relations on $\domA$, then
+If $\seq{\relD, \relE}$ is a sequence two equivalence relations on $\domA$, then
 it is in local agreement iff $\relL = \relD \cup \relE$ is an equivalence
 relation on $\domA$.
 \end{lemma}
