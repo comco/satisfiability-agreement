@@ -7,5 +7,46 @@ $\expe$-exponential deterministic and nondeterministic time classes are
 $\ceExpTime\expe = \cTime{\tetr\expe2{\poly\nn}}$ and $\ceNExpTime\expe$.
 The complexity class $\cElementary$ is the union of the complexity classes
 $\ceExpTime\expe$ for $\expe \in \pNats$.
-% TODO: The Grzegorczyk hierarchy
-TODO: The Grzegorczyk hierarchy $\Grz{n}$.
+
+The Grzegorczyk hierarchy $\Grz\ii$ for $\ii\in\Nats$ orders the primitive
+recursive functions by means of the power of recursion needed.
+The \emph{basic functions} are
+the zero function $\bzero\nn = 0$,
+the successor function $\bsucc\nn = \nn+1$ and
+the projection functions $\bproj\szu\ii{\nn_1,\nn_2,\dots,\nn_\szu} = \nn_\ii$.
+If $\szu,\szv \in \Nats$, $\funf : \Nats^\szu \to \Nats$ and
+$\fung_1,\fung_2,\dots,\fung_\szu : \Nats^\szv \to \Nats$ are functions,
+their \emph{superposition} is the function $\funh : \Nats^\szv \to \Nats$
+defined by $\funh(\bar\nn) =
+  \funf(
+  \fung_1(\bar\nn),
+  \fung_2(\bar\nn), \dots,
+  \fung_\szu(\bar\nn))$ for $\bar\nn \in \Nats^\szv$.
+If $\szu \in \Nats$, $\funf : \Nats^\szu \to \Nats$ and
+$\fung : \Nats^{\szu+2} \to \Nats$, their \emph{primitive recursion} is the
+function $\funh : \Nats^{\szu+1} \to \Nats$ defined by:
+\begin{align*}
+h(\bar\nn,0) &= f(\bar{\nn}) \\
+h(\bar\nn,\ii+1) &= g(\bar{\nn},\ii,h(\bar\nn,\ii))
+\end{align*}
+for $\bar\nn \in \Nats^\szu$.
+For $\ii \in \Nats$, define the function $\funE\ii$ by $\funE0(\nn) =
+\nn+1$ and 
+\[
+  \funE{\ii+1}(\nn) = \funE\ii^\nn(2) =
+  \underbrace{\funE\ii(\funE\ii(\dots\funE\ii}_\nn(2))).
+\]
+For $\ii \in \Nats$, the $\ii$-th level of the Grzegorczyk hierarchy $\Grz\ii$
+as the least set of functions containing the basic functions, the functions
+$\funE\kk$ for $\kk \in [0,\ii]$ and closed under superposition and
+\emph{limited primitive recursion}, that is a primitive recursion $h :
+\Nats^{\szu+1}$ of the functions $f : \Nats^\szu \to \Nats$, 
+$g : \Nats^{\szu+2} \to \Nats$, $f,g \in \Grz\ii$, such that there is a function
+$b : \Nats^{\szu+1} \to \Nats$,
+$b \in \Grz\ii$ bounding $h$: $h(\bar\nn) \leq b(\bar\nn)$ for all $\nn \in
+\Nats^{\szu+1}$. A decision problem $\dpA \subseteq \Words\alphO$ is in some
+level of the Grzegorczyk hierarchy just in case its characteristic function
+occurs at that level.
+The primitive recursive functions are partitioned by the Grzegorczyk hierarchy.
+The complexity class $\cElementary$ coincides with the third level of the
+Grzegorczyk hierarchy $\Grz3$.
