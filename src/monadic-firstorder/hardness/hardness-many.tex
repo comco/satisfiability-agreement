@@ -2,133 +2,192 @@
 The argument from the previous section can be iterated to yield the hardness of
 the (finite) satisfiability of the monadic first-order logic with several
 builtin equivalence symbols in refinement $\Lvp\Fo\nonv1\Eea\sze\agrefine$.
+Our strategy is to encode $(\sze+1)$-exponential numbers at every equivalence
+class of the coarsest relation by thinking of the $\sze$-exponential numbers at
+the classes of the second-to-coarsest relation as bit positions.
 
-For $\sze \in \pNats$, consider the predicate signature $\ES(\sze) =
-\seq{\see1,\see2,\dots,\see\sze}$ consisting of the builtin equivalence
+ For $\sze \in \pNats$, consider the predicate
+signature $\ES(\sze) = \seq{\see1,\see2,\dots,\see\sze}$ consisting of the builtin equivalence
 symbols $\see\ii$ in refinement. Abbreviate the \emph{coarsest} equivalence 
 symbol $\sd = \see\sze$.
 \begin{definition}
-Let $\sze \in \pNats$. An \emph{$(\sze+1)$-exponential setup} is a uniform
+Let $\sze \in \pNats$. An \emph{$\sze$-exponential setup} is a uniform
 effective polynomial-time process for creating the following data structure.
-For every $\nn \in \pNats$, there is a predicate signature $\DS(\sze,\nn)$
-having length polynomial in $\nn$, consisting of unary predicate symbols and
+For every $\szu \in \pNats$, there is a predicate signature $\DS(\sze,\szu)$
+having length polynomial in $\szu$, consisting of unary predicate symbols and
 containing $\ES(\sze)$. The following data is effectively defined:
-\begin{enumerate}
-  \item If $\StrA$ is a $\DS(\sze,\nn)$-structure and $\relD = \at\StrA\sd$,
-  then there is a function 
-  $\Data{\DS(\sze,\nn)}\StrA : \Ecl\relD \to [0, \tetr{\sze+1}2\nn-1]$ that
-  assigns an $(\sze+1)$-exponential number to every $\relD$-class.
-  \item There is a $\vFoF3{\DS(\sze,\nn)}$-formula
-  $\fEq{\DS(\sze,\nn)}(\xx,\yy)$ whose length grows polynomially as $\nn$ grows,
-  such that for all $\ea,\eb \in \domA$:
+\begin{enumerate}[label=E\arabic*]
+  \item\label{eset:1} There is a $\vFoF3{\DS(\sze,\szu)}$-sentence
+  $\fposfull{\DS(\sze,\szu)}$, whose length grows polynomially as $\szu$ grows.
+  \item\label{eset:2} If $\StrA$ is a $\DS(\sze,\szu)$-structure,
+  $\StrA \vDash \fposfull{\DS(\sze,\szu)}$ and $\relD = \at\StrA\sd$, then there
+  is a function
+  $\Data{\DS(\sze,\szu)}\StrA : \Ecl\relD \to \tBitstrings{\tetr\sze2\szu}$
+  that assigns an $\sze$-exponential bitstring to every $\relD$-class.
+  \item\label{eset:3} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
+  $\fEq{\DS(\sze,\szu)}(\xx,\yy)$ whose length grows polynomially as $\szu$
+  grows, such that for all $\ea,\eb \in \domA$:
   \[
     \miff{
-      \StrA \vDash \fEq{\DS(\sze,\nn)}(\ea,\eb)}{
-      \Data{\DS(\sze,\nn)}\StrA\relD[\ea] = \Data{\DS(\sze,\nn)}\StrA\relD[\eb]}.
+      \StrA \vDash \fEq{\DS(\sze,\szu)}(\ea,\eb)}{
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} =
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\eb]}}.
   \]
-  \item There is a $\vFoF3{\DS(\sze,\nn)}$-formula $\fZero{\DS(\sze,\nn)}(\xx)$,
-  whose length grows polynomially as $\nn$ grows, such that for all
-  $\ea \in \domA$:
+  \item\label{eset:4} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
+  $\fZero{\DS(\sze,\szu)}(\xx)$, whose length grows polynomially as $\szu$
+  grows, such that for all $\ea \in \domA$:
   \[
     \miff{
-      \StrA \vDash \fZero{\DS(\sze,\nn)}(\ea)}{
-      \Data{\DS(\sze,\nn)}\StrA\relD[\ea] = 0}.
+      \StrA \vDash \fZero{\DS(\sze,\szu)}(\ea)}{
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} = 0}.
   \]
-  \item There is a $\vFoF3{\DS(\sze,\nn)}$-formula $\fMax{\DS(\sze,\nn)}(\xx)$,
-  whose length grows polynomially as $\nn$ grows, such that for all
-  $\ea \in \domA$:
+  \item\label{eset:5} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
+  $\fMax{\DS(\sze,\szu)}(\xx)$, whose length grows polynomially as $\szu$ grows,
+  such that for all $\ea \in \domA$:
   \[
     \miff{
-      \StrA \vDash \fMax{\DS(\sze,\nn)}(\ea)}{
-      \Data{\DS(\sze,\nn)}\StrA\relD[\ea] = \tetr{\sze+1}2\nn - 1}.
+      \StrA \vDash \fMax{\DS(\sze,\szu)}(\ea)}{
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} = \largtbit{\tetr\sze2\szu} =
+      \tetr{\sze+1}2\szu-1}.
   \]
-  \item There is a $\vFoF3{\DS(\sze,\nn)}$-formula
-  $\fLess{\DS(\sze,\nn)}(\xx,\yy)$, whose length grows polynomially as $\nn$
+  \item\label{eset:6} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
+  $\fLess{\DS(\sze,\szu)}(\xx,\yy)$, whose length grows polynomially as $\szu$
   grows, such that for all $\ea, \eb \in \domA$:
   \[
     \miff{
-      \StrA \vDash \fLess{\DS(\sze,\nn)}(\ea,\eb)}{
-      \Data{\DS(\sze,\nn)}\StrA\relD[\ea] <
-      \Data{\DS(\sze,\nn)}\StrA\relD[\eb]}.
+      \StrA \vDash \fLess{\DS(\sze,\szu)}(\ea,\eb)}{
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} <
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\eb]}}.
   \]
-  \item There is a $\vFoF3{\DS(\sze,\nn)}$-formula
-  $\fSucc{\DS(\sze,\nn)}(\xx,\yy)$, whose length grows polynomially as $\nn$
+  \item\label{eset:7} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
+  $\fSucc{\DS(\sze,\szu)}(\xx,\yy)$, whose length grows polynomially as $\szu$
   grows, such that for all $\ea, \eb \in \domA$:
   \[
     \miff{
-      \StrA \vDash \fSucc{\DS(\sze,\nn)}(\ea,\eb)}{
-      \Data{\DS(\sze,\nn)}\StrA\relD[\eb] = \Data{\DS(\sze,\nn)}\StrA\relD[\ea]
-      + 1}.
+      \StrA \vDash \fSucc{\DS(\sze,\szu)}(\ea,\eb)}{
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\eb]} =
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} + 1}.
   \]
-  \item For every $\posp \in [0, \tetr{\sze+1}2\nn - 1]$, there is a
-  $\vFoF3{\DS(\sze,\nn)}$-formula $\fDataA{\DS(\sze,\nn)}\posp(\xx)$, whose
-  length grows polynomially as $\nn$ and $\posp$ grow, such that for all
-  $\ea \in  \domA$:
+  \item\label{eset:8} For every $\tetr\sze2\szu$-bit number $\nM$, there is a
+  $\vFoF3{\DS(\sze,\szu)}$-formula
+  $\fDataA{\DS(\sze,\szu)}\nM(\xx)$, whose length grows polynomially as $\szu$
+  and $\nM$ grow, such that for all $\ea \in  \domA$:
   \[
     \miff{
-      \StrA \vDash \fDataA{\DS(\sze,\nn)}\posp(\ea)}{
-      \Data{\DS(\sze,\nn)}\StrA\relD[\ea] = \posp}.
+      \StrA \vDash \fDataA{\DS(\sze,\szu)}\nM(\ea)}{
+      \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} = \nM}.
   \]
 \end{enumerate}
 \end{definition}
-It is easy to check that the previous section defines a $2$-exponential setup.
-Suppose that we have an $(\sze+1)$-exponential setup having predicate signature
-$\DS(\sze,\nn)$. Analogously to the previous section, we will describe an
-$(\sze+2)$-exponential setup $\DS(\sze+1,\nn) = \DS(\sze,\nn) + \seq{\se}$ which
-is based on $\DS(\sze,\nn)$, where $\se = \see{\sze+1}$ is the new coarsest
-builtin equivalence symbol in $\DS(\sze+1,\nn)$. Define the following formulas:
-\begin{equation*}
-\begin{aligned}
-  &\fposeq{\DS(\sze+1,\nn)}(\xx,\yy) = \fEq{\DS(\sze,\nn)}(\xx,\yy) \\
-  &\fbitO{\DS(\sze+1,\nn)}(\xx) = \forall\yy(\se(\yy,\xx) \land 
-    \fposeq{\DS(\sze+1,\nn)}(\yy,\xx) \limp \yy = \xx) \\
-  &\fbitI{\DS(\sze+1,\nn)}(\xx) = \exists\yy(\se(\yy,\xx) \land
-    \fposeq{\DS(\sze+1,\nn)}(\yy,\xx) \land \yy \neq \xx) \\
-  &\fposzero{\DS(\sze+1,\nn)}(\xx) = \fZero{\DS(\sze,\nn)}(\xx) \\
-  &\fposmax{\DS(\sze+1,\nn)}(\xx) = \fMax{\DS(\sze,\nn)}(\xx) \\
-  &\fposless{\DS(\sze+1,\nn)}(\xx,\yy) = \se(\xx,\yy) \land
-    \fLess{\DS(\sze,\nn)}(\xx,\yy) \\
-  &\fpossucc{\DS(\sze+1,\nn)}(\xx,\yy) = \se(\xx,\yy) \land
-    \fSucc{\DS(\sze,\nn)}(\xx,\yy) \\
-  &\fposfull{\DS(\sze+1,\nn)}(\xx,\yy) = \forall\xx\exists\yy\Big(\se(\yy,\xx) \land \fposzero{\DS(\sze+1,\nn)}(\yy)\Big) \land \\
-    &\quad\forall\xx\Big(\lnot\fposmax{\DS(\sze+1,\nn)}(\xx) \limp
-    \exists\yy\fpossucc{\DS(\sze+1,\nn)}(\xx,\yy)\Big) \\
-\end{aligned}
-\end{equation*}
-\begin{comment}
-We can employ an $\sze$-exponential $\nn$-bit counter setup to construct an
-$(\sze+1)$-exponential $\nn$-bit counter setup by introducing a new coarsest
-builtin equivalence symbol $\se = \see{\sze+1}$ and a new control unary
-predicate symbol $\sco$, similarly to what we did in~\Cref{sec:hardness-one}:
-the $\relD$-classes within a single $\relE$-class correspond to the
-$\sze$-exponential bit positions of a $(\sze+1)$-exponential number---the
-$(\sze+1)$-exponential data at the $\relE$-class. If there is a single
-$\relD$-class at position $\posp$ in a $\relE$-class, the bit at that position
-is $0$; if there are more $\relD$-classes at position $\posp$, the bit at that
-position is $1$, so we may define the formulas:
-\[
-  \fbitO{\DS_\nn^{\sze+1}}(\xx) = \sco(\xx) \land \forall\yy \sco(\yy) \land
-  \se(\yy,\xx) \land \feeqData\sze\DS(\yy,\xx) \limp \yy = \xx, \text{etc.}
-\]
-Repeating the argument from section~\Cref{sec:hardness-one}, by reducing the
-$\ceNExpTime\sze$-complete $\sze$-exponential tiling problem to (finite)
-satisfiability of $\Lvp\Fo\nonv1\Eea\sze\agrefine$, we obtain:
+The last section defines a $1$-exponential setup.
+Suppose that we have an $\sze$-exponential setup having predicate signature
+$\DS = \DS(\sze,\szu)$. Analogously to the previous section, we will describe an
+$(\sze+1)$-exponential setup $\DSp = \DS(\sze+1,\szu) = \DS + \seq{\se}$ which
+is based on $\DS$, where $\se = \see{\sze+1}$ is the new coarsest builtin
+equivalence symbol in $\DSp$. Define the following formulas:
+\begin{align}
+  &\fposeq\DSp(\xx,\yy) = \fEq\DS(\xx,\yy) \nonumber \\
+  &\fbitO\DSp(\xx) = \forall\yy(\se(\yy,\xx) \land 
+    \fposeq\DSp(\yy,\xx) \limp \yy = \xx) \nonumber \\
+  &\fbitI\DSp(\xx) = \exists\yy(\se(\yy,\xx) \land
+    \fposeq\DSp(\yy,\xx) \land \yy \neq \xx) \nonumber \\
+  &\fposzero\DSp(\xx) = \fZero\DS(\xx) \nonumber \\
+  &\fposmax\DSp(\xx) = \fMax\DS(\xx) \nonumber \\
+  &\fposless\DSp(\xx,\yy) = \se(\xx,\yy) \land
+    \fLess\DS(\xx,\yy) \nonumber \\
+  &\fpossucc\DSp(\xx,\yy) = \se(\xx,\yy) \land
+    \fSucc\DS(\xx,\yy) \nonumber \\
+  &\fposfull\DSp = \forall\xx\exists\yy\Big(\se(\yy,\xx) \land 
+    \fposzero\DSp(\yy)\Big) \land \tag{\ref{eset:1}}\\
+    &\quad\forall\xx\Big(\lnot\fposmax\DSp(\xx) \limp
+    \exists\yy\fpossucc\DSp(\xx,\yy)\Big) \nonumber \\
+  &\fposA\DSp0(\xx) = \fposzero\DSp(\xx) \nonumber \\
+  &\fposA\DSp{(\posp+1)}(\xx) = \exists\yy\Big(
+    \fposA\DSp\posp(\yy) \land \fpossucc\DSp(\yy,\xx)
+  \Big) \nonumber \\
+    &\quad\text{ for } \posp \in [0,\largtbit{\tetr\sze2\szu}-1].\nonumber
+\end{align}
+
+Let $\StrA$ be a $\DSp$-structure, $\StrA \vDash \fposfull\DSp$ and let
+$\relE=\at\StrA\se$.
+Define the function $\Data\DSp\StrA : \Ecl\relE \to
+\tBitstrings{\tetr{\sze+1}2\szu}$ assiging a $\tetr{\sze+1}2\szu$-bit
+bitstring to any $\relE$-class $\eclX$ by:
+\begin{equation}
+  \Data\DSp\StrA_\posp\eclX = \begin{cases}
+  1 \text{ if } \StrA \vDash \fposA\DSp{(\posp-1)}(\ea) 
+  \text{ implies } \StrA \vDash \fbitI\DSp(\ea)
+  \text{ for all } \ea \in \eclX
+  \\
+  0 \text{ otherwise}
+  \end{cases}\tag{\ref{eset:2}}
+\end{equation}
+for $\posp \in [1,\tetr{\sze+1}2\szu]$.
+
+Define the following formulas:
+\begin{align}
+  &\fEq\DSp(\xx,\yy) = \forall\xxp\forall\yyp\Big(\se(\xxp,\xx) \land
+  \se(\yyp,\yy) \land \tag{\ref{eset:3}} \\
+  &\quad\fposeq\DSp(\xxp,\yyp) \limp (\fbitO\DSp(\xxp) \lequ
+  \fbitO\DSp(\yyp))\Big)
+  \nonumber \\
+  &\fZero\DSp(\xx) = \forall\yy\Big(\se(\yy,\xx) \limp \fbitO\DSp(\yy)\Big)
+  \tag{\ref{eset:4}} \\
+  &\fMax\DSp(\xx) = \forall\yy\Big(\se(\yy,\xx) \limp \fbit1\DSp(\yy)\Big)
+  \tag{\ref{eset:5}} \\
+  &\fLess\DSp(\xx,\yy) = \exists\xxp\exists\yyp\Bigg(\se(\xxp,\xx) \land
+  \se(\yyp,\yy) \land \tag{\ref{eset:6}} \\
+  &\quad\Big(\fposeq\DSp(\xxp,\yyp) \land \fbitO\DSp(\xxp) \land
+  \fbitI\DSp(\yyp)\Big) \land \nonumber \\
+  &\quad\forall\xxpp\Big(\fposless\DSp(\xxp,\xxpp) \limp \exists\yypp\Big(
+  \se(\yypp,\yyp) \land \nonumber \\
+  &\quad\fposeq\DSp(\yypp,\xxpp) \land (\fbitO\DSp(\yypp) \lequ
+  \fbitO\DSp(\xxpp)) \Big)\Big)\Bigg) \nonumber \\
+  &\fSucc\DSp(\xx,\yy) = \exists\xxp\exists\yyp\Bigg(\se(\xxp,\xx) \land
+  \se(\yyp,\yy) \land \tag{\ref{eset:7}} \\
+  &\quad\Big(\fposeq\DSp(\xxp,\yyp) \land \fbitO\DSp(\xxp) \land
+  \fbitI\DSp(\yyp)\Big) \land \nonumber \\
+  &\quad\forall\xxpp\Big(\fposless\DSp(\xxpp,\xxp) \limp \fbitI\DSp(\xxpp)\Big)
+  \land \nonumber \\
+  &\quad\forall\yypp\Big(\fposless\DSp(\yypp,\yyp) \limp \fbitO\DSp(\yypp)\Big)
+  \land \nonumber \\
+  &\quad\forall\xxpp\Big(\fposless\DSp(\xxp,\xxpp) \limp \exists\yypp\Big(
+  \se(\yypp,\yyp) \land \nonumber \\
+  &\quad\fposeq\DSp(\yypp,\xxpp) \land (\fbitO\DSp(\yypp) \lequ
+  \fbitO\DSp(\xxpp))\Big)\Big)\Bigg). \nonumber
+\end{align}
+
+If $\nM \in \tBitnums{\tetr{\sze+1}2\szu}$ is a $\tetr{\sze+1}2\szu$-bit number,
+where $\tbit = \bsz\nM$, define the formula
+\begin{align}
+&\fDataA\DSp\nM(\xx) = \forall\yy\Bigg(\se(\yy,\xx) \limp
+\bigwedge_{0 \leq \posp < \tbit} \Big(\fposA\DSp\posp(\yy) \limp
+\fbit\DSp{\benc{\nM}_{\posp+1}}(\yy)\Big) \land \tag{\ref{eset:8}} \\
+&\quad\forall\xx\Big(\fposA\DSp{(\tbit-1)}(\yy) \land 
+\fposless\DSp(\yy,\xx) \limp \fbitO\DSp(\xx)\Big)\Bigg). \nonumber
+\end{align}
+This completes the definition of the $(\sze+1)$-exponential setup.
+
+We can encode an instance of the $(\sze+1)$-exponential tiling problem into a
+(finite) satisfiability $\DSp$-formula completely analogously to the previous
+section. Thus we have:
 \begin{proposition}
 The (finite) satisfiability problem for the monadic first-order logic with
-$\sze \in \pNats$ equivalence symbols in refinement
-$\Lvp\Fo\nonv1\Eea\sze\agrefine$ is $\ceNExpTime{(\sze+1)}$-hard.
+$\sze$ equivalence symbols in refinement $\Lvp\Fo\nonv1\Eea\sze\agrefine$ is
+$\ceNExpTime{(\sze+1)}$-hard. Even the three-variable fragment
+$\Lvp\Fo31\Eea\sze\agrefine$ has this property.
+
 By \Cref{prop:global-to-refine-n} and \Cref{prop:local-to-refine-n}, the same
 holds for the logics $\Lvp\Fo\nonv1\Eea\sze\agglobal$ and
 $\Lvp\Fo\nonv1\Eea\sze\aglocal$.
 \end{proposition}
-
 \begin{proposition}
 The (finite) satisfiability problem for the monadic first-order logic with many
 equivalence symbols in refinement $\Lvp\Fo\nonv1\Eea\nosze\agrefine$ is
-$\cElementary$-hard.
+$\cElementary$-hard. Even the three-variable fragment
+$\Lvp\Fo31\Eea\nosze\agrefine$ has this property.
 
-By \Cref{prop:global-to-refine} and \Cref{prop:local-to-refine}, the same claim
-holds for the logics $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ and
+By \Cref{prop:global-to-refine} and \Cref{prop:local-to-refine}, the same 
+holds for $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ and
 $\Lvp\Fo\nonv1\Eea\nosze\aglocal$.
 \end{proposition}
-\end{comment}
