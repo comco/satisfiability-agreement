@@ -1,26 +1,31 @@
 % Hardness commands
-% TODO: Cleanup names of the functions
-\newcommand{\Data}[2]{\MakeupFunction{Data}{#1}^{#2}}
-\newcommand{\fZero}[1]{\MakeupFormula{Zero}{#1}}
-\newcommand{\fMax}[1]{\MakeupFormula{Max}{#1}}
-\newcommand{\fSucc}[1]{\MakeupFormula{Succ}{#1}}
-\newcommand{\fLess}[1]{\MakeupFormula{Less}{#1}}
-
-\newcommand{\feqpos}[1]{\MakeupFormulaA{pos}{\MakeupFormulaName{eq}}{#1}}
+% position formulas
 \newcommand{\fbit}[2]{\MakeupFormulaA{bit}{#2}{#1}}
 \newcommand{\fbitO}[1]{\MakeupFormulaA{bit}{0}{#1}}
 \newcommand{\fbitI}[1]{\MakeupFormulaA{bit}{1}{#1}}
-\newcommand{\fposzero}[1]{\MakeupFormulaA{pos}{\MakeupFormulaName{zero}}{#1}}
-\newcommand{\fposmax}[1]{\MakeupFormulaA{pos}{\MakeupFormulaName{largest}}{#1}}
-\newcommand{\fpossucc}[1]{\MakeupFormulaA{pos}{\MakeupFormulaName{succ}}{#1}}
-\newcommand{\fposless}[1]{\MakeupFormulaA{pos}{\MakeupFormulaName{less}}{#1}}
-\newcommand{\ffullpos}[1]{\MakeupFormulaA{pos}{\MakeupFormulaName{full}}{#1}}
-\newcommand{\fposp}[2]{\MakeupFormulaA{pos}{#2}{#1}}
-\newcommand{\fDataN}[2]{\MakeupFormulaA{Eq}{#2}{#1}}
-\newcommand{\ffullData}[1]{\MakeupFormula{Full}{#1}}
-\newcommand{\falldiffData}[1]{\MakeupFormula{Alldiff}{#1}}
-\newcommand{\feqData}[1]{\MakeupFormula{Eq}{#1}}
+\newcommand{\PositionFormula}[2]{
+  \MakeupFormulaA{pos}{\MakeupFormulaName{#1}}{#2}
+}
+\newcommand{\fposeq}[1]{\PositionFormula{eq}{#1}}
+\newcommand{\fposzero}[1]{\PositionFormula{zero}{#1}}
+\newcommand{\fposmax}[1]{\PositionFormula{largest}{#1}}
+\newcommand{\fposless}[1]{\PositionFormula{less}{#1}}
+\newcommand{\fpossucc}[1]{\PositionFormula{succ}{#1}}
+\newcommand{\fposfull}[1]{\PositionFormula{full}{#1}}
+\newcommand{\fposA}[2]{\MakeupFormulaA{pos}{#2}{#1}}
+\newcommand{\Data}[2]{\MakeupFunction{Data}{#1}^{#2}}
 
+\newcommand{\fZero}[1]{\MakeupFormula{Zero}{#1}}
+\newcommand{\fMax}[1]{\MakeupFormula{Max}{#1}}
+\newcommand{\fLess}[1]{\MakeupFormula{Less}{#1}}
+\newcommand{\fSucc}[1]{\MakeupFormula{Succ}{#1}}
+
+\newcommand{\fDataA}[2]{\MakeupFormulaA{Eq}{#2}{#1}}
+\newcommand{\fFull}[1]{\MakeupFormula{Full}{#1}}
+\newcommand{\fAlldiff}[1]{\MakeupFormula{Alldiff}{#1}}
+\newcommand{\fEq}[1]{\MakeupFormula{Eq}{#1}}
+
+% e-exponential variants
 \newcommand{\eData}[3]{\MakeupFunction{Data^{#1}}{#2}^{#3}}
 \newcommand{\feeqData}[2]{\MakeupFormula{eqData^{#1}}{#2}}
 \newcommand{\feZero}[2]{\MakeupFormula{Zero^{#1}}{#2}}
