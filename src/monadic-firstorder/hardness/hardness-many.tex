@@ -42,11 +42,11 @@ containing $\ES(\sze)$. The following data is effectively defined:
       \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} = 0}.
   \]
   \item\label{eset:5} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fMax{\DS(\sze,\szu)}(\xx)$, whose length grows polynomially as $\szu$ grows,
+  $\fLargest{\DS(\sze,\szu)}(\xx)$, whose length grows polynomially as $\szu$ grows,
   such that for all $\ea \in \domA$:
   \[
     \miff{
-      \StrA \vDash \fMax{\DS(\sze,\szu)}(\ea)}{
+      \StrA \vDash \fLargest{\DS(\sze,\szu)}(\ea)}{
       \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} = \largtbit{\tetr\sze2\szu} =
       \tetr{\sze+1}2\szu-1}.
   \]
@@ -92,7 +92,7 @@ equivalence symbol in $\DSp$. Define the following formulas:
   &\fbitI\DSp(\xx) = \exists\yy(\se(\yy,\xx) \land
     \fposeq\DSp(\yy,\xx) \land \yy \neq \xx) \nonumber \\
   &\fposzero\DSp(\xx) = \fZero\DS(\xx) \nonumber \\
-  &\fposmax\DSp(\xx) = \fMax\DS(\xx) \nonumber \\
+  &\fposmax\DSp(\xx) = \fLargest\DS(\xx) \nonumber \\
   &\fposless\DSp(\xx,\yy) = \se(\xx,\yy) \land
     \fLess\DS(\xx,\yy) \nonumber \\
   &\fpossucc\DSp(\xx,\yy) = \se(\xx,\yy) \land
@@ -133,7 +133,7 @@ Define the following formulas:
   \nonumber \\
   &\fZero\DSp(\xx) = \forall\yy\Big(\se(\yy,\xx) \limp \fbitO\DSp(\yy)\Big)
   \tag{\ref{eset:4}} \\
-  &\fMax\DSp(\xx) = \forall\yy\Big(\se(\yy,\xx) \limp \fbit1\DSp(\yy)\Big)
+  &\fLargest\DSp(\xx) = \forall\yy\Big(\se(\yy,\xx) \limp \fbit1\DSp(\yy)\Big)
   \tag{\ref{eset:5}} \\
   &\fLess\DSp(\xx,\yy) = \exists\xxp\exists\yyp\Bigg(\se(\xxp,\xx) \land
   \se(\yyp,\yy) \land \tag{\ref{eset:6}} \\
