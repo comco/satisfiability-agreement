@@ -81,6 +81,8 @@
 \input{monadic/satisfiability/satisfiability.cmd.tex}
 \input{monadic/hardness/hardness.cmd.tex}
 
+\input{two-variable/two-variable.cmd.tex}
+
 % Glossaries
 \input{glossaries.cmd.tex}
 \input{introduction/notation/sets/sets.gls.tex}
@@ -135,6 +137,8 @@
 \input{monadic/organs/organs.gls.tex}
 \input{monadic/hardness/hardness.gls.tex}
 
+\input{two-variable/tpreal-twovar.gls.tex}
+
 \begin{document}
 \frontmatter
 \title{Satisfiability with Agreement and Counting}
@@ -176,7 +180,7 @@
 \section{Logic games}\label{sec:logic-games}
 \input{introduction/logic-games/logic-games.tex}
 
-\section{Types}
+\section{Types}\label{sec:types}
 \input{introduction/types/types.tex}
 
 \section{Normal forms}\label{sec:scott-nf}
@@ -223,6 +227,7 @@
 \section{Granularity}\label{sec:granularity}
 \input{reductions/granularity/granularity.tex}
 
+
 \chapter{Monadic logics}\label{ch:monadic}
 \input{monadic/introduction.tex}
 
@@ -240,6 +245,13 @@
 
 \section{Hardness with many equivalences in refinement}
 \input{monadic/hardness/hardness-many.tex}
+
+
+\chapter{Two-variable logics}
+\input{two-variable/introduction.tex}
+
+\section{Type realizibility of the two-variable first-order logic}
+\input{two-variable/tpreal-twovar.tex}
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}

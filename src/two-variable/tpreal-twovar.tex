@@ -1,0 +1,61 @@
+% Type realizibility of the two-variable first-order logic
+Recall from~\Cref{sec:scott-nf} about normal forms that every $\vFo2$-sentence
+$\fphi$ can be reduced in polynomial time sentence $\sctr\fphi$ in Scott normal
+form:
+\[
+  \forall\xx\forall\yy (\falpp0(\xx,\yy) \lor \xx = \yy) \land
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy(
+  \falpp\ii(\xx,\yy) \land \xx \neq \yy),
+\]
+where the formulas $\falpp\ii$ are quantifier-free and use at most linearly many
+new unary predicate symbols. We refer to $\falpp0$ as the \emph{universal part},
+or the $\forall\forall$-part of the formula $\sctr\fphi$ and to $\falpp\ii$ as
+the \emph{existential parts}, or the $\forall\exists$-parts of the formula,
+for $\ii \in [1,\nm]$.
+For any formula in Scott normal form, we may replace its existential parts
+by fresh binary predicate symbols: for $\ii \in [1,\nm]$, let $\smm\ii$ be a
+fresh binary predicate symbol with the intended interpretation
+$\forall\xx\forall\yy (\xx\neq\yy \limp (\smm\ii(\xx,\yy) \lequ
+\falpp\ii(\xx,\yy)))$. Since this is a universal sentence, it can be
+incorporated into the $\forall\forall$-part $\falpp0$ of the formula.
+We refer to the symbols $\gls{message-symbol-m-i}$ as the \emph{message
+symbols}.
+Hence the formula can be transformed in polynomial time to the form:
+\begin{equation}\label{eq:twovar-msg-nf}
+  \forall\xx\forall\yy (\falp(\xx,\yy) \lor \xx = \yy) \land
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
+  (\smm\ii(\xx,\yy) \land \xx \neq \yy),
+\end{equation}
+where the $\forall\forall$-part $\falp$ is quantifier-free and over an extended
+signature. For convenience, we make the existential part of the formula part of
+the signature, so we can focus only on the universal part. The following is a
+term similar to the one defined in~\cite{MALQ:MALQ201400102}:
+\begin{definition}
+A \emph{classified signature} $\gls{classified-signature-S-m}$ for the
+two-variable first-order logic $\vFo2$ is a predicate signature $\SigS$ together
+with a sequence $\sms = \smm1\smm2\dots\smm\nm$ of distinct binary predicate
+symbols from $\SigS$ having intended interpretation
+\[
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy 
+  (\smm\ii(\xx,\yy) \land \xx \neq \yy).
+\]
+\end{definition}
+That is, a classified signature \emph{automatically includes} the
+$\forall\exists$-part of formulas and $\ClSig\SigS\sms$-structures
+automatically satisfy the $\forall\exists$-part.
+
+\begin{definition}
+The \emph{(finite) classified satisfiability problem for two-variable
+first-order logic} is:
+given a classified signature $\ClSig\SigS\sms$ and a quantifier-free
+$\vFoF2\SigS$-formula $\falp(\xx,\yy)$, is there a (finite)
+$\ClSig\SigS\sms$-structure satisfying~\cref{eq:twovar-msg-nf}.
+Denote tha classified satisfiability problem for two-variable first-order logic
+by $\ClSat{\vFo2}$ and its finite version by $\FinClSat{\vFo2}$.
+\end{definition}
+
+Scott normal form shows that (finite) satisfiability reduces in polynomial time
+to (finite) classified satisfiability:
+\[
+  \FinASat{\vFo2} \red\cP \FinAClSat{\vFo2}.
+\]
