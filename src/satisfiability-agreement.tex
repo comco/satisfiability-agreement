@@ -66,7 +66,7 @@
 \input{introduction/complexity/reductions/reductions.cmd.tex}
 \input{introduction/complexity/tilings/tilings.cmd.tex}
 
-\input{counter-setups/makeup-formulas.cmd.tex}
+\input{setups/makeup-formulas.cmd.tex}
 
 \input{equivalences/introduction/introduction.cmd.tex}
 \input{equivalences/agreement.cmd.tex}
@@ -76,10 +76,10 @@
 \input{reductions/local-to-refine/local-to-refine.cmd.tex}
 \input{reductions/granularity/granularity.cmd.tex}
 
-\input{monadic-firstorder/cells/cells.cmd.tex}
-\input{monadic-firstorder/organs/organs.cmd.tex}
-\input{monadic-firstorder/satisfiability/satisfiability.cmd.tex}
-\input{monadic-firstorder/hardness/hardness.cmd.tex}
+\input{monadic/cells/cells.cmd.tex}
+\input{monadic/organs/organs.cmd.tex}
+\input{monadic/satisfiability/satisfiability.cmd.tex}
+\input{monadic/hardness/hardness.cmd.tex}
 
 % Glossaries
 \input{glossaries.cmd.tex}
@@ -117,10 +117,10 @@
 \input{introduction/complexity/reductions/reductions.gls.tex}
 \input{introduction/complexity/tilings/tilings.gls.tex}
 
-\input{counter-setups/bits/bits.gls.tex}
-\input{counter-setups/counters/counters.gls.tex}
-\input{counter-setups/vectors/vectors.gls.tex}
-\input{counter-setups/permutations/permutations.gls.tex}
+\input{setups/bits/bits.gls.tex}
+\input{setups/counters/counters.gls.tex}
+\input{setups/vectors/vectors.gls.tex}
+\input{setups/permutations/permutations.gls.tex}
 
 \input{equivalences/introduction/introduction.gls.tex}
 \input{equivalences/agreement-two/agreement-two.gls.tex}
@@ -131,9 +131,9 @@
 \input{reductions/local-to-refine/local-to-refine.gls.tex}
 \input{reductions/granularity/granularity.gls.tex}
 
-\input{monadic-firstorder/cells/cells.gls.tex}
-\input{monadic-firstorder/organs/organs.gls.tex}
-\input{monadic-firstorder/hardness/hardness.gls.tex}
+\input{monadic/cells/cells.gls.tex}
+\input{monadic/organs/organs.gls.tex}
+\input{monadic/hardness/hardness.gls.tex}
 
 \begin{document}
 \frontmatter
@@ -190,16 +190,16 @@
 
 \chapter{Counter setups}
 \section{Bits}
-\input{counter-setups/bits/bits.tex}
+\input{setups/bits/bits.tex}
 
 \section{Counters}
-\input{counter-setups/counters/counters.tex}
+\input{setups/counters/counters.tex}
 
 \section{Vectors}
-\input{counter-setups/vectors/vectors.tex}
+\input{setups/vectors/vectors.tex}
 
 \section{Permutations}
-\input{counter-setups/permutations/permutations.tex}
+\input{setups/permutations/permutations.tex}
 
 \chapter{Equivalence relations}
 \input{equivalences/introduction/introduction.tex}
@@ -223,23 +223,23 @@
 \section{Granularity}\label{sec:granularity}
 \input{reductions/granularity/granularity.tex}
 
-\chapter{Monadic logics}\label{ch:monadic-firstorder}
-\input{monadic-firstorder/introduction.tex}
+\chapter{Monadic logics}\label{ch:monadic}
+\input{monadic/introduction.tex}
 
 \section{Cells}
-\input{monadic-firstorder/cells/cells.tex}
+\input{monadic/cells/cells.tex}
 
 \section{Organs}
-\input{monadic-firstorder/organs/organs.tex}
+\input{monadic/organs/organs.tex}
 
 \section{Satisfiability}
-\input{monadic-firstorder/satisfiability/satisfiability.tex}
+\input{monadic/satisfiability/satisfiability.tex}
 
 \section{Hardness with a single equivalence}\label{sec:hardness-one}
-\input{monadic-firstorder/hardness/hardness.tex}
+\input{monadic/hardness/hardness.tex}
 
 \section{Hardness with many equivalences in refinement}
-\input{monadic-firstorder/hardness/hardness-many.tex}
+\input{monadic/hardness/hardness-many.tex}
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
