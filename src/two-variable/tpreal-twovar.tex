@@ -59,3 +59,18 @@ to (finite) classified satisfiability:
 \[
   \FinASat{\vFo2} \red\cP \FinAClSat{\vFo2}.
 \]
+
+Let $\ClSig\SigS\sms$ be a classified signature for $\vFo2$.
+\begin{definition}
+A \emph{type instance} $\gls{type-instance-P-T}$ over $\ClSig\SigS\sms$ is a
+pair of a set of $1$-types $\TpiP \subseteq \TpI\SigS$ and a set of $2$-types
+$\TpiT \subseteq \TpT\SigS$ such that $\xtp\tpTt \in \TpiP$ and $\ytp\tpTt \in
+\TpiP$ for all $\tpTt \in \TpiT$.
+
+A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} $\Tpi\TpiP\TpiT$ if
+$\tpIa\StrA\ea \in \TpiP$ for all $\ea \in \domA$ and $\tpIab\StrA\ea\eb \in
+\TpiT$ for all $\ea \in \domA$ and $\eb \in \domA \sub \set{\ea}$.
+The structure \emph{fully realizes} $\Tpi\TpiP\TpiT$ if additionally for every
+$1$-type $\tpIp \in \TpiP$ there is $\ea \in \domA$ such that $\tpIa\StrA\ea =
+\tpIp$.
+\end{definition}
