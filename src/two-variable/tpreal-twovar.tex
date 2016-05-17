@@ -27,7 +27,7 @@ Hence the formula can be transformed in polynomial time to the form:
   (\smm\ii(\xx,\yy) \land \xx \neq \yy),
 \end{equation}
 where the $\forall\forall$-part $\falp$ is quantifier-free and over an extended
-signature. For convenience, we make the existential part of the formula part of
+signature. For convenience, we make the existential parts of the formula part of
 the signature, so we can focus only on the universal part. The following is a
 term similar to the one defined in~\cite{MALQ:MALQ201400102}:
 \begin{definition}
@@ -35,10 +35,10 @@ A \emph{classified signature} $\gls{classified-signature-S-m}$ for the
 two-variable first-order logic $\vFo2$ is a predicate signature $\SigS$ together
 with a sequence $\sms = \smm1\smm2\dots\smm\nm$ of distinct binary predicate
 symbols from $\SigS$ having intended interpretation
-\[
+\begin{equation}\label{eq:twovar-ms-iinter}
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy 
   (\smm\ii(\xx,\yy) \land \xx \neq \yy).
-\]
+\end{equation}
 \end{definition}
 That is, a classified signature \emph{automatically includes} the
 $\forall\exists$-part of formulas and $\ClSig\SigS\sms$-structures
@@ -67,10 +67,75 @@ pair of a set of $1$-types $\TpiP \subseteq \TpI\SigS$ and a set of $2$-types
 $\TpiT \subseteq \TpT\SigS$ such that $\xtp\tpTt \in \TpiP$ and $\ytp\tpTt \in
 \TpiP$ for all $\tpTt \in \TpiT$.
 
-A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} $\Tpi\TpiP\TpiT$ if
-$\tpIa\StrA\ea \in \TpiP$ for all $\ea \in \domA$ and $\tpIab\StrA\ea\eb \in
-\TpiT$ for all $\ea \in \domA$ and $\eb \in \domA \sub \set{\ea}$.
+A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} (or is a model of)
+$\Tpi\TpiP\TpiT$ if $\tpIa\StrA\ea \in \TpiP$ for all $\ea \in \domA$ and 
+$\tpIab\StrA\ea\eb \in \TpiT$ for all $\ea \in \domA$ and $\eb \in \domA \sub \set{\ea}$.
 The structure \emph{fully realizes} $\Tpi\TpiP\TpiT$ if additionally for every
 $1$-type $\tpIp \in \TpiP$ there is $\ea \in \domA$ such that $\tpIa\StrA\ea =
-\tpIp$.
+\tpIp$ (we don't require an analogous condition for the $2$-types).
+The \emph{canonical type instance} of $\StrA$ is the type instance
+$\Tpi\TpiP\TpiT$ defined by:
+\begin{align*}
+\TpiP &= \setbd{\tpIa\StrA\ea}{\ea\in\domA} \\
+\TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea\neq\eb \in \domA}.
+\end{align*}
+
+The \emph{(finite) (full) type realizibility problem for $\vFo2$} is the
+following:
+given a classified signature $\ClSig\SigS\sms$ and a type instance
+$\Tpi\TpiP\TpiT$ over $\ClSig\SigS\sms$, is there a (finite)
+$\ClSig\SigS\sms$-structure that (fully) realizes $\Tpi\TpiP\TpiT$.
+Denote the type realizibility problem for $\vFo2$ by
+$\Real{\vFo2}$ and its finite version by $\FinReal{\vFo2}$.
+Denote the full type realizibility problem for $\vFo2$ by
+$\FullReal{\vFo2}$ and its finite version by $\FinFullReal{\vFo2}$.
 \end{definition}
+
+\begin{remark}
+Since the set of $1$-types realized in any model of $\Tpi\TpiP\TpiT$ is a subset
+of $\TpiP$, by guessing this subset we can reduce the (finite) type
+satisfiability problem to the (finite) full type satisfiability problem in
+nondeterministic polynomial time:
+\[
+  \FinAReal{\vFo2} \red\cNP \FinAFullReal{\vFo2}.
+\]
+\end{remark}
+
+\begin{remark}
+Let $\alpha(\xx,\yy)$ be a quantifier-free $\vFoF2\SigS$-formula. Let $\TpiP$ be
+the set of those $1$-types over $\ClSig\SigS\sms$ that are consistent with
+$\alpha$ and $\TpiT$ be the set of those $2$-types over $\ClSig\SigS\sms$ that
+are consistent with $\alpha$ and the intended
+interpretation~\cref{eq:twovar-ms-iinter}. Then a $\ClSig\SigS\sms$-structure
+$\StrA$ is a model for $\alpha$ iff it is a model for $\Tpi\TpiP\TpiT$.
+
+Recall that the number of possible $1$-types or $2$-types over $\SigS$ is
+exponentially bounded by the length $\sizes$ of $\SigS$ and that the cardinality
+of a $1$-type or a $2$-type over $\SigS$ is polynomially bounded by $\sizes$.
+Hence we can reduce the (finite) classified satisfiability problem to the
+(finite) type realizibility problem in exponential time:
+\[
+  \FinASat{\vFo2} \red\cExpTime \FinAReal{\vFo2}.
+\]
+\end{remark}
+
+We study the type realizibility problem instead of directly studying the
+satisfiability problem because it is flexible enough to allow us to employ its
+solutions in simpler logics to construct a solution in logics with more
+equivalences.
+
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
+\begin{definition}
+Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectible} (written
+$\gls{connectible-p-pp}$), if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for
+some $\tpTt \in \TpiT$. A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if
+$\tpIk \not\conn \tpIk$.
+\end{definition}
+\begin{remark}
+If two distinct $1$-types $\tpIp, \tpIpp \in \TpiP$ are not connectible, then
+$\Tpi\TpiP\TpiT$ is not fully realizible.
+
+If $\StrA$ is a full model for $\Tpi\TpiP\TpiT$ then every two distinct elements
+$\ea \neq \eb \in \domA$ realize connectible $1$-types. Hence every king type
+$\tpIk \in \TpiP$ is realized once in $\StrA$.
+\end{remark}
