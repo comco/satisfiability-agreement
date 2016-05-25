@@ -127,21 +127,21 @@ equivalences.
 
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
 \begin{definition}
-Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectible} (written
-$\gls{connectible-p-pp}$), if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for
+Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} (written
+$\gls{connectable-p-pp}$), if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for
 some $\tpTt \in \TpiT$. A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if
 $\tpIk \not\conn \tpIk$.
 \end{definition}
 \begin{remark}\label{rem:twovar-king-once}
-If two distinct $1$-types $\tpIp, \tpIpp \in \TpiP$ are not connectible, then
+If two distinct $1$-types $\tpIp, \tpIpp \in \TpiP$ are not connectable, then
 $\Tpi\TpiP\TpiT$ is not fully realizible.
 
 If $\StrA$ is a full model for $\Tpi\TpiP\TpiT$ then every two distinct elements
-$\ea \neq \eb \in \domA$ realize connectible $1$-types. Hence every king type
+$\ea \neq \eb \in \domA$ realize connectable $1$-types. Hence every king type
 $\tpIk \in \TpiP$ is realized once in $\StrA$.
 
 A type instance $\Tpi\TpiP\TpiT$ is \emph{connected} if every two distinct
-$1$-types $\tpIp, \tpIpp \in \TpiP$ are connectible.
+$1$-types $\tpIp, \tpIpp \in \TpiP$ are connectable.
 \end{remark}
 
 The next definition characterizes the local structure of the ray of $2$-types
@@ -198,7 +198,8 @@ Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$.
 Let $\TpiTp \subseteq \TpiT$ be a (nonempty) set of $2$-types realized in
 $\StrA$.
 For every $2$-type $\tpTt \in \TpiTp$ realized in $\StrA$, let $(\ea_\tpTt,
-\eb_\tpTt) \in \domA\cprod\domA$ be a pair of elements realizing $\tpTt$.
+\eb_\tpTt) \in \domA\cprod\domA$ be a pair of distinct elements realizing
+$\tpTt$.
 Let 
 \[
   \Cert = \setbd{\stpIa\StrA{\ea_\tpTt}, \stpIa\StrA{\eb_\tpTt}}{\tpTt \in
@@ -285,7 +286,7 @@ is indeed a certificate).
 By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand} such a certificate exists
 iff $\Tpi\TpiP\TpiT$ is fully satisfiable.
 \end{proof}
-Combiting this with the reductions given in~\Cref{rem:red-real-to-full-real}
+Combining this with the reductions given in~\Cref{rem:red-real-to-full-real}
 and~\Cref{rem:red-sat-to-real} gives us another proof of a standard result:
 \begin{corollary}
 The logic $\vFo2$ has the finite model property and its (finite) satisfiability
