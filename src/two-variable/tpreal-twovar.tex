@@ -68,12 +68,13 @@ $\TpiT \subseteq \TpT\SigS$ such that $\xtp\tpTt \in \TpiP$ and $\ytp\tpTt \in
 \TpiP$ for all $\tpTt \in \TpiT$.
 
 A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} (or is a model of)
-$\Tpi\TpiP\TpiT$ if $\tpIa\StrA\ea \in \TpiP$ for all $\ea \in \domA$ and 
-$\tpIab\StrA\ea\eb \in \TpiT$ for all $\ea \in \domA$ and $\eb \in \domA \sub \set{\ea}$.
+$\Tpi\TpiP\TpiT$ if it contains at least $2$ elements, $\tpIa\StrA\ea \in \TpiP$
+for all $\ea \in \domA$ and $\tpIab\StrA\ea\eb \in \TpiT$ for all $\ea \in \domA$
+and $\eb \in \domA \sub \set{\ea}$.
 The structure \emph{fully realizes} $\Tpi\TpiP\TpiT$ if additionally for every
 $1$-type $\tpIp \in \TpiP$ there is $\ea \in \domA$ such that $\tpIa\StrA\ea =
 \tpIp$ (we don't require an analogous condition for the $2$-types).
-The \emph{canonical type instance} of $\StrA$ is the type instance
+The \emph{characteristic type instance} of $\StrA$ is the type instance
 $\Tpi\TpiP\TpiT$ defined by:
 \begin{align*}
 \TpiP &= \setbd{\tpIa\StrA\ea}{\ea\in\domA} \\
@@ -131,11 +132,142 @@ $\gls{connectible-p-pp}$), if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for
 some $\tpTt \in \TpiT$. A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if
 $\tpIk \not\conn \tpIk$.
 \end{definition}
-\begin{remark}
+\begin{remark}\label{rem:twovar-king-once}
 If two distinct $1$-types $\tpIp, \tpIpp \in \TpiP$ are not connectible, then
 $\Tpi\TpiP\TpiT$ is not fully realizible.
 
 If $\StrA$ is a full model for $\Tpi\TpiP\TpiT$ then every two distinct elements
 $\ea \neq \eb \in \domA$ realize connectible $1$-types. Hence every king type
 $\tpIk \in \TpiP$ is realized once in $\StrA$.
+
+A type instance $\Tpi\TpiP\TpiT$ is \emph{connected} if every two distinct
+$1$-types $\tpIp, \tpIpp \in \TpiP$ are connectible.
 \end{remark}
+
+The next definition characterizes the local structure of the ray of $2$-types
+realized around an element of a structure.
+\begin{definition}
+A \emph{star-type} $\stps \subseteq \TpiT$ for the type instance
+$\Tpi\TpiP\TpiT$ is a nonempty set of $2$-types satisfying the following conditions:
+\begin{enumerate}
+  \item\label{cond:star-1} If $\tpTt, \tpTtp \in \stps$ then $\xtp\tpTt =
+  \xtp\tpTtp$, that is the $\xx$-type of every element of $\stps$ is the same.
+  Denote the $\xx$-type of every element of $\stps$ by $\xtp\stps$.
+  \item\label{cond:star-2} If $\tpIk = \xtp\stps$ is a king type, then no $\tpTt
+  \in \stps$ has $\ytp\tpTt = \tpIk$.
+  \item\label{cond:star-3} If $\tpIk \neq \xtp\stps$ is any king type, then one
+  $\tpTt \in \stps$ has $\ytp\tpTt = \tpIk$.
+  \item\label{cond:star-4} If $\sm \in \sms$, then $\sm \in \tpTt$ for some
+  (possibly many) $\tpTt \in \stps$.
+\end{enumerate}
+Note that the size of a star-type is polynomially bounded by the size of the
+type instance.
+
+If $\StrA$ is a $\Tpi\TpiP\TpiT$-structure and $\ea \in \domA$, the
+\emph{star-type realized by $\ea$} is:
+\[
+  \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set{\ea}}.
+\]
+It is straighforward to check that this indeed defines a star-type.
+\end{definition}
+
+\begin{remark}[Star-type extension]
+Let $\stps$ be a star-type, with $\xx$-type $\tpIp = \xtp\stps$.
+Let $\tpTt \in \TpiT$ be a $2$-type and suppose that both $\xtp\tpTt$ and
+$\ytp\tpTt$ are not king types.
+Then $\stps \cup \set{\tpTt}$ is also a star-type.
+\end{remark}
+
+\begin{definition}
+A \emph{certificate} $\Cert$ for the type instance $\Tpi\TpiP\TpiT$ is a
+nonempty set of star-types satisfying the following conditions:
+\begin{enumerate}
+  \item If $\tpIk \in \TpiP$ is a king type, then one $\stps \in \Cert$ has
+  $\xtp\stps = \tpIk$, that is every king type is witnessed once.
+  \item If $\tpIp \in \TpiP$ is not a king type, then some (possibly many)
+  $\stps \in \Cert$ has $\xtp\stps = \tpIp$, that is every other $1$-type is
+  witnessed.
+  \item If $\tpTt \in \cup\Cert$, then $\inv\tpTt \in \cup\Cert$, that is there
+  are witnesses for the endpoints of every $2$-type used in the certificate.
+\end{enumerate}
+\end{definition}
+Note that in general the size of a certificate may be exponential in terms of
+the size of the type instance. However, polynomial certificates exist:
+\begin{remark}[Certificate extraction]
+Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$.
+Let $\TpiTp \subseteq \TpiT$ be a (nonempty) set of $2$-types realized in
+$\StrA$.
+For every $2$-type $\tpTt \in \TpiTp$ realized in $\StrA$, let $(\ea_\tpTt,
+\eb_\tpTt) \in \domA\cprod\domA$ be a pair of elements realizing $\tpTt$.
+Let 
+\[
+  \Cert = \setbd{\stpIa\StrA{\ea_\tpTt}, \stpIa\StrA{\eb_\tpTt}}{\tpTt \in
+  \TpiTp}.
+\]
+Then $\Cert$ is a certificate for the type instance. Moreover, its size is
+polynomially bounded by the size of the type instance.
+\end{remark}
+\begin{proof}
+We check the conditions for a certificate:
+\begin{enumerate}
+  \item If $\tpIk \in \TpiP$ is a king type, by~\Cref{rem:twovar-king-once} it
+  is realized once in $\StrA$. If $\ec \in \domA$ realizes $\tpIk$ and $\stps
+  \in \Cert$ has $\xtp\stps = \tpIk$, then $\ea_\stps = \ec$ and hence
+  $\stps = \stpIa\StrA\ec$ is unique. On the other hand, such $\stps \in \Cert$
+  exists since $\StrA$ is a full model for $\Tpi\TpiP\TpiT$ and $\domA$ has
+  cardinality at least $2$.
+  \item Let $\tpIp \in \TpiP$ be a $1$-type. Again, since $\StrA$ is a full
+  model for $\Tpi\TpiP\TpiT$ and $\domA$ has cardinality at least $2$, we may
+  choose a pair of distinct elements such that the first element realizes
+  $\tpIp$.
+  \item The third condition follows immediately from the definition of $\Cert$.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+Let $\Cert$ be a certificate for the connected type instance $\Tpi\TpiP\TpiT$.
+Then $\Tpi\TpiP\TpiT$ has a full finite model.
+\end{theorem}
+\begin{proof}
+Let $t = \card{\TpiT}$.
+We build a model $\StrA$ for $\Tpi\TpiP\TpiT$ as follows. For every star-type
+$\stps \in \Cert$, if $\xtp\stps$ is a king type, there will be a unique element
+$\ec \in \domA$ that wants to realize $\stps$. Otherwise, there will be
+$(t+1)$ elements that want to realize $\stps$.
+This construction fixes the $1$-type of every element the structure. 
+Now we need to consistently assign $2$-types between all pairs of distinct
+elements so that they realize their expected star-types.
+
+Let $\ea \in \domA$ be an element having expected star-type $\stps$ and
+expected $1$-type $\tpIp = \xtp\sigma$.
+By the third condition for a certificate, for every $2$-type $\tau \in \sigma$
+there is a star-type $\stps_\tau \in \Cert$ such that $\inv\tau \in \stps_\tau$.
+We claim that we may choose distinct elements $\eb_\tau$ (also distinct from
+$\ea$), such that $\eb_\tau$ has expected star-type $\stps_\tau$.
+First suppose that $\tpIkp = \ytp\tpTt$ is a king type.
+By conditions~\ref{cond:star-2} and~\ref{cond:star-3} in the definition of a
+star-type, $\tpIkp \neq \tpIp$ and there is no other $\tpTtp \in \stps$ having
+$\ytp\tpTtp = \tpIkp$. Then we take $\eb_\tau$ to be the unique element having
+expected $1$-type $\tpIkp$.
+Next suppose that $\tpIpp = \ytp\tpTt$ is not a king type.
+Since $\stps \subseteq \TpiT$ has cardinality at most $t$, there are at most $t$
+types $\tpTtp \in \stps$ having $\ytp\tpTtp = \tpIpp$.
+For every such $\tpTtp$ the expected star-type of its target $\stps' =
+\stps_{\tpTtp}$ has a $\xx$-type $\xtp\stps' = \tpIpp$, which is not a king
+type, so there are $(t+1)$ elements that have expected star-type $\stps'$.
+Accounting for the possibly of the element $\ea$ itself to have expected
+star-type $\stps'$, we can see that there are enough distinct elements
+$\eb_\tau$. Fixing $\tpIab\StrA\ea{\eb_\tau} = \tau$ for these elements takes
+care of the star-type of $\ea$. By doing this step-by-step by readjusting the
+remaining sets of $2$-types that need to be realized in order for an element
+to realize its expected star-type, we may realize every expected star-type of
+every element in the structure. However, there might still be unassigned
+$2$-types between pairs of distict elements left.
+Suppose that $\ea \neq \eb \in \domA$ be such a pair. We claim that
+$\tpIp = \tpIa\StrA\ea$ and $\tpIpp = \tpIa\StrA\eb$ are not king types. Without
+loss of generality, suppose towards a contradiction that $\tpIp$ is a king type.
+Then $\tpIp \neq \tpIpp$ and since the type instance is connected, we may find a
+$2$-type $\tau \in \TpiT$ connecting $\tpIp$ and $\tpIpp$.
+We may fix $\tpIab\StrA\ea\eb = \tau$ and this will not destroy the model since
+$\sigma \cup \set{\tau}$ remains a star-type.
+\end{proof}
