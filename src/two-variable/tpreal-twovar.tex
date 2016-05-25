@@ -92,7 +92,7 @@ Denote the full type realizibility problem for $\vFo2$ by
 $\FullReal{\vFo2}$ and its finite version by $\FinFullReal{\vFo2}$.
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{rem:red-real-to-full-real}
 Since the set of $1$-types realized in any model of $\Tpi\TpiP\TpiT$ is a subset
 of $\TpiP$, by guessing this subset we can reduce the (finite) type
 satisfiability problem to the (finite) full type satisfiability problem in
@@ -102,7 +102,7 @@ nondeterministic polynomial time:
 \]
 \end{remark}
 
-\begin{remark}
+\begin{remark}\label{rem:red-sat-to-real}
 Let $\alpha(\xx,\yy)$ be a quantifier-free $\vFoF2\SigS$-formula. Let $\TpiP$ be
 the set of those $1$-types over $\ClSig\SigS\sms$ that are consistent with
 $\alpha$ and $\TpiT$ be the set of those $2$-types over $\ClSig\SigS\sms$ that
@@ -285,7 +285,8 @@ is indeed a certificate).
 By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand} such a certificate exists
 iff $\Tpi\TpiP\TpiT$ is fully satisfiable.
 \end{proof}
-This gives us another proof of a standard result:
+Combiting this with the reductions given in~\Cref{rem:red-real-to-full-real}
+and~\Cref{rem:red-sat-to-real} gives us another proof of a standard result:
 \begin{corollary}
 The logic $\vFo2$ has the finite model property and its (finite) satisfiability
 problem is in $\cNExpTime$.
