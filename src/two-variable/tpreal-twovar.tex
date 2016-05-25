@@ -193,7 +193,7 @@ nonempty set of star-types satisfying the following conditions:
 \end{definition}
 Note that in general the size of a certificate may be exponential in terms of
 the size of the type instance. However, polynomial certificates exist:
-\begin{remark}[Certificate extraction]
+\begin{lemma}[Certificate extraction]\label{lem:cert-extract}
 Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$.
 Let $\TpiTp \subseteq \TpiT$ be a (nonempty) set of $2$-types realized in
 $\StrA$.
@@ -206,7 +206,7 @@ Let
 \]
 Then $\Cert$ is a certificate for the type instance. Moreover, its size is
 polynomially bounded by the size of the type instance.
-\end{remark}
+\end{lemma}
 \begin{proof}
 We check the conditions for a certificate:
 \begin{enumerate}
@@ -224,10 +224,10 @@ We check the conditions for a certificate:
 \end{enumerate}
 \end{proof}
 
-\begin{theorem}
+\begin{lemma}[Certificate expansion]\label{lem:cert-expand}
 Let $\Cert$ be a certificate for the connected type instance $\Tpi\TpiP\TpiT$.
 Then $\Tpi\TpiP\TpiT$ has a finite full model.
-\end{theorem}
+\end{lemma}
 \begin{proof}
 Let $t = \card{\TpiT}$.
 We build a model $\StrA$ for $\Tpi\TpiP\TpiT$ as follows. For every star-type
@@ -271,3 +271,22 @@ $2$-type $\tau \in \TpiT$ connecting $\tpIp$ and $\tpIpp$.
 We may fix $\tpIab\StrA\ea\eb = \tau$ and this will not destroy the model since
 $\sigma \cup \set{\tau}$ remains a star-type.
 \end{proof}
+
+\begin{proposition}
+The logic $\vFo2$ has the finite model property. The (finite) full type
+realizibility problem for $\vFo2$ is in $\cNP$.
+\end{proposition}
+\begin{proof}
+Let $\Tpi\TpiP\TpiT$ be a type instance. If it is not connected, then it has no
+model by~\Cref{rem:twovar-king-once}. It is trivial to check satisfiability in
+the class of structures of cardinality $1$. If this fails to yield a model,
+guess a certificate of polynomial size (and verify in polynomial time that this
+is indeed a certificate).
+By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand} such a certificate exists
+iff $\Tpi\TpiP\TpiT$ is fully satisfiable.
+\end{proof}
+This gives us another proof of a standard result:
+\begin{corollary}
+The logic $\vFo2$ has the finite model property and its (finite) satisfiability
+problem is in $\cNExpTime$.
+\end{corollary}
