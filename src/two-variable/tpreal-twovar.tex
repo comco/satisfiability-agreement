@@ -171,10 +171,10 @@ If $\StrA$ is a $\Tpi\TpiP\TpiT$-structure and $\ea \in \domA$, the
 It is straighforward to check that this indeed defines a star-type.
 \end{definition}
 
-\begin{remark}[Star-type extension]
+\begin{remark}[Star-type extension]\label{rem:star-type-ext}
 Let $\stps$ be a star-type, with $\xx$-type $\tpIp = \xtp\stps$.
-Let $\tpTt \in \TpiT$ be a $2$-type and suppose that both $\xtp\tpTt$ and
-$\ytp\tpTt$ are not king types.
+Let $\tpTt \in \TpiT$ be a $2$-type and suppose that $\xtp\tpTt = \tpIp$ and
+that $\ytp\tpTt$ is not a king type.
 Then $\stps \cup \set{\tpTt}$ is also a star-type.
 \end{remark}
 
@@ -182,21 +182,20 @@ Then $\stps \cup \set{\tpTt}$ is also a star-type.
 A \emph{certificate} $\Cert$ for the type instance $\Tpi\TpiP\TpiT$ is a
 nonempty set of star-types satisfying the following conditions:
 \begin{enumerate}
-  \item If $\tpIk \in \TpiP$ is a king type, then one $\stps \in \Cert$ has
-  $\xtp\stps = \tpIk$, that is every king type is witnessed once.
-  \item If $\tpIp \in \TpiP$ is not a king type, then some (possibly many)
-  $\stps \in \Cert$ has $\xtp\stps = \tpIp$, that is every other $1$-type is
-  witnessed.
-  \item If $\tpTt \in \cup\Cert$, then $\inv\tpTt \in \cup\Cert$, that is there
-  are witnesses for the endpoints of every $2$-type used in the certificate.
+  \item\label{cond:cert-1} If $\tpIp \in \TpiP$ then some (possibly many) $\stps
+  \in \Cert$ has $\xtp\stps = \tpIp$, that is every $1$-type is witnessed.
+  \item\label{cond:cert-2} If $\tpIk \in \TpiP$ is a king type, then one $\stps
+  \in \Cert$ has $\xtp\stps = \tpIk$, that is every king type is witnessed once.
+  \item\label{cond:cert-3} If $\tpTt \in \cup\Cert$, then $\inv\tpTt \in
+  \cup\Cert$, that is there are witnesses for the endpoints of every $2$-type used in the certificate.
 \end{enumerate}
 \end{definition}
 Note that in general the size of a certificate may be exponential in terms of
 the size of the type instance. However, polynomial certificates exist:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
-Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$.
-Let $\TpiTp \subseteq \TpiT$ be a (nonempty) set of $2$-types realized in
-$\StrA$.
+Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$. Recall that
+by definition the cardinality of $\StrA$ is at least $2$.
+Let $\TpiTp \subseteq \TpiT$ be the set of $2$-types realized in $\StrA$.
 For every $2$-type $\tpTt \in \TpiTp$ realized in $\StrA$, let $(\ea_\tpTt,
 \eb_\tpTt) \in \domA\cprod\domA$ be a pair of distinct elements realizing
 $\tpTt$.
@@ -206,22 +205,22 @@ Let
   \TpiTp}.
 \]
 Then $\Cert$ is a certificate for the type instance. Moreover, its size is
-polynomially bounded by the size of the type instance.
+linearly bounded by $\card{\TpiT}$, hence also by the size of the type instance.
 \end{lemma}
 \begin{proof}
 We check the conditions for a certificate:
 \begin{enumerate}
-  \item If $\tpIk \in \TpiP$ is a king type, by~\Cref{rem:twovar-king-once} it
-  is realized once in $\StrA$. If $\ec \in \domA$ realizes $\tpIk$ and $\stps
-  \in \Cert$ has $\xtp\stps = \tpIk$, then $\ea_\stps = \ec$ and hence
-  $\stps = \stpIa\StrA\ec$ is unique. On the other hand, such $\stps \in \Cert$
-  exists since $\StrA$ is a full model for $\Tpi\TpiP\TpiT$ and $\domA$ has
-  cardinality at least $2$.
-  \item Let $\tpIp \in \TpiP$ be a $1$-type. Again, since $\StrA$ is a full
+  \item Let $\tpIp \in \TpiP$ be a $1$-type. Since $\StrA$ is a full
   model for $\Tpi\TpiP\TpiT$ and $\domA$ has cardinality at least $2$, we may
   choose a pair of distinct elements such that the first element realizes
   $\tpIp$.
-  \item The third condition follows immediately from the definition of $\Cert$.
+  \item If $\tpIk \in \TpiP$ is a king type, by~\Cref{rem:twovar-king-once} it
+  is realized once in $\StrA$.
+  Let $\ec \in \domA$ be the unique element realizing $\tpIk$.
+  If $\stps \in \Cert$ has $\xtp\stps = \tpIk$, then $\stps = \stpIa\StrA\ec$
+  so such $\stps$ is unique.
+  \item That $\tpTt \in \cup\Cert$ implies $\inv\tpTt \in \cup\Cert$ follows
+  immediately from the definition of $\Cert$.
 \end{enumerate}
 \end{proof}
 
@@ -230,47 +229,103 @@ Let $\Cert$ be a certificate for the connected type instance $\Tpi\TpiP\TpiT$.
 Then $\Tpi\TpiP\TpiT$ has a finite full model.
 \end{lemma}
 \begin{proof}
+We adapt the standard strategy used in the proof of the finite model property
+for the logic $\vFo2$, as presented in~\cite{gradel1999logics}\footnote{with
+the slight modification that our approach doesn't need \emph{a king court},
+since the information about it is implicit in the certificate}.
 Let $t = \card{\TpiT}$.
-We build a model $\StrA$ for $\Tpi\TpiP\TpiT$ as follows. For every star-type
-$\stps \in \Cert$, if $\xtp\stps$ is a king type, there will be a unique element
-$\ec \in \domA$ that wants to realize $\stps$. Otherwise, there will be
-$(t+1)$ elements that want to realize $\stps$.
-This construction fixes the $1$-type of every element the structure. 
-Now we need to consistently assign $2$-types between all pairs of distinct
-elements so that they realize their expected star-types.
-
-Let $\ea \in \domA$ be an element having expected star-type $\stps$ and
-expected $1$-type $\tpIp = \xtp\sigma$.
-By the third condition for a certificate, for every $2$-type $\tau \in \sigma$
-there is a star-type $\stps_\tau \in \Cert$ such that $\inv\tau \in \stps_\tau$.
-We claim that we may choose distinct elements $\eb_\tau$ (also distinct from
-$\ea$), such that $\eb_\tau$ has expected star-type $\stps_\tau$.
-First suppose that $\tpIkp = \ytp\tpTt$ is a king type.
-By conditions~\ref{cond:star-2} and~\ref{cond:star-3} in the definition of a
-star-type, $\tpIkp \neq \tpIp$ and there is no other $\tpTtp \in \stps$ having
-$\ytp\tpTtp = \tpIkp$. Then we take $\eb_\tau$ to be the unique element having
-expected $1$-type $\tpIkp$.
-Next suppose that $\tpIpp = \ytp\tpTt$ is not a king type.
-Since $\stps \subseteq \TpiT$ has cardinality at most $t$, there are at most $t$
-types $\tpTtp \in \stps$ having $\ytp\tpTtp = \tpIpp$.
-For every such $\tpTtp$ the expected star-type of its target $\stps' =
-\stps_{\tpTtp}$ has a $\xx$-type $\xtp\stps' = \tpIpp$, which is not a king
-type, so there are $(t+1)$ elements that have expected star-type $\stps'$.
-Accounting for the possibly of the element $\ea$ itself to have expected
-star-type $\stps'$, we can see that there are enough distinct elements
-$\eb_\tau$. Fixing $\tpIab\StrA\ea{\eb_\tau} = \tau$ for these elements takes
-care of the star-type of $\ea$. By doing this step-by-step by readjusting the
-remaining sets of $2$-types that need to be realized in order for an element
-to realize its expected star-type, we may realize every expected star-type of
-every element in the structure. However, there might still be unassigned
-$2$-types between pairs of distict elements left.
-Suppose that $\ea \neq \eb \in \domA$ be such a pair. We claim that
-$\tpIp = \tpIa\StrA\ea$ and $\tpIpp = \tpIa\StrA\eb$ are not king types. Without
-loss of generality, suppose towards a contradiction that $\tpIp$ is a king type.
-Then $\tpIp \neq \tpIpp$ and since the type instance is connected, we may find a
-$2$-type $\tau \in \TpiT$ connecting $\tpIp$ and $\tpIpp$.
-We may fix $\tpIab\StrA\ea\eb = \tau$ and this will not destroy the model since
-$\sigma \cup \set{\tau}$ remains a star-type.
+We build a model $\StrA$ for $\Tpi\TpiP\TpiT$ as follows.
+The domain $\domA$ of $\StrA$ is the union of the disjoint sets of elements
+$\domA^\stps$ for all $\stps \in \Cert$, that have intended star-type $\stps$
+as follows.
+If $\xtp\stps$ is a king type, $\domA^\stps = \set{\ea^\stps}$ is a
+singleton. Call the element $\ea^\stps$ a \emph{king}.
+Otherwise, if $\xtp\stps$ is not a king type, $\domA^\stps = \domA^\stps_0
+\cup \domA^\stps_1 \cup \domA^\stps_2$ consists of three disjoint copies of $t$
+elements:  $A^\stps_i = \set{\ea^\stps_{i1}, \ea^\stps_{i2}, \dots,
+\ea^\stps_{it}}$, where $i \in \set{0,1,2}$. Call these elements
+\emph{peasants}.
+Let $\stps : \domA \to \Cert$ denote the intended star-type of the elements:
+$\stps(\ea) = \stps$ for all $\ea \in \domA^\stps$.
+Let $\tpIp : \domA \to \TpiP$ denote the intended $1$-type of the elements:
+$\tpIp(\ea) = \xtp(\stps(\ea))$.
+We proceed to consistently assign $2$-types to pairs of distinct elements from
+the structure on stages.
+\begin{description}
+  \item[Realization of kings] We first find witnesses for the intended
+  star-types of the kings.
+  Let $\stps \in \Cert$ be such that $\tpIk = \xtp\stps$ is a king type.
+  Consider the unique element $\ea = \ea^\stps$ having intended star-type
+  $\stps$.
+  For every $\tpTt \in \stps$ we will find an element $\eb_\tpTt$ for the
+  assignment $\tpIab\StrA\ea{\eb_\tpTt} = \tpTt$.
+  \begin{enumerate}
+  \item If $\ytp\tpTt = \tpIkp$ is a king type, by Condition~\ref{cond:star-2}
+  for star-types we have $\tpIkp \neq \tpIk$, so there is a unique star-type
+  $\stps'$ having $\xtp\stps' = \tpIk'$ and a unique king $\eb_\tpTt =
+  \ea^{\stps'} \neq \ea$ having intended star-type $\tpIkp$. Note that this
+  assigment is symmetric, that is at the point of considering the type
+  $\inv\tpTt$ for the king $\eb_\tpTt$, we would choose $\ea$ as the
+  opposite side of the assignment.
+  \item If $\ytp\tpTt = \tpIpp$ is not a king type (hence
+  $\tpIpp \neq \tpIk$), we simultaneously find distinct elements $\eb_{\tpTt'}$ for all $\tpTtp \in
+  \stps$ having $\ytp\tpTtp = \tpIpp$.
+  Let $\TpiTp = \setbd{\tpTtp \in \stps}{\ytp\tpTtp = \tpIpp}$ be the set of
+  all such $\tpTtp$.
+  Since $\TpiTp \subseteq \TpiT$, there are
+  at most $t$ such $2$-types $\tpTtp$. By Condition~\ref{cond:cert-3} for
+  certificate, we can find a star-type $\stps_{\tpTtp} \in \Cert$ containing
+  $\inv{(\tpTtp)}$ for every $\tpTtp \in \TpiTp$. Since $\xtp\stps_{\tpTtp} =
+  \tpIpp$ is not a king type, there are enough elements 
+  $\eb_{\tpTtp} \in \domA_0^{\stps_{\tpTtp}}$ having intended star-type
+  $\stps_{\tpTtp}$.
+  We assign $\tpIab\StrA\ea{\eb_\tpTtp} = \tpTtp$.
+  \end{enumerate}
+  \item[Realization of peasants] We now find witnesses for the remaining
+  elements that realize $1$-types which are not king types. Let $\stps \in \Cert$ be such that $\tpIp =
+  \xtp\stps$ is not a king type. Let $a = a_{ij}^\stps$ be an arbitrary element
+  with intended star-type $\stps$. For every $\tpTt \in \stps$ we will find an
+  element $\eb_\tpTt$ for the assignment $\tpIab\StrA\ea{\eb_\tpTt} = \tpTt$.
+  \begin{enumerate}
+    \item If $\ytp\tpTt = \tpIkp$ is a king type then let $\ec$ be the element
+    realizing it: $\tpIp(\ec) = \tpIkp$.
+    We consider two cases.
+    First suppose that $\tpIab\StrA\ec\ea = \tpTtp$ has already been assigned
+    during the realization of kings.
+    By construction we must have that $\inv{(\tpTtp)} \in \stps(\ea) = \stps$.
+    Since $\ytp\inv{(\tpTtp)} = \tpIkp$ is a king type,
+    by Condition~\ref{cond:cert-2}
+    for certificate, the king type $\tpIkp$ is witnessed once in the star-type
+    $\stps$. Hence $\tpTt = \inv{(\tpTt')}$, and so $\tpTt$ is already witnessed
+    by $\eb_\tpTt = \ec$.
+    
+    Next suppose that $\tpIab\StrA\ec\ea$ has not been assigned during the
+    realization of kings. Then just assign $\tpIab\StrA\ea\ec = \tpTt$.
+    Note that this may extend the actual star-type of the king $\ec$ beyond its
+    intended star-type $\stps(\ec)$ by adding the type $\inv\tpTt$, but
+    by~\Cref{rem:star-type-ext}, this extension is still a star-type. That is,
+    in the end, the structure may realize \emph{more} than the intended
+    star-types, but, importantly, \emph{not less}.
+    \item If $\ytp\tpTt = \tpIpp$ is not a king type, we simultaneously find
+    distinct peasants $\eb_{\tpTtp}$ for all $\tpTtp \in \stps$ having
+    $\ytp\tpTtp = \tpIpp$.
+    Let $\tpTtp = \setbd{\tpTtp \in \stps}{\ytp\tpTtp = \tpIpp}$ be the set of
+    all such $\tpTtp$.
+    By Condition~\ref{cond:cert-3} for certificate, we can find a star-type
+    $\stps_\tpTtp \in \Cert$ containing $\inv{(\tpTtp)}$ for every $\tpTtp \in
+    \TpiTp$. The key to consistency is to use elements from the \emph{next copy}
+    of peasants: let $i' = (i+1 \bmod 3) \in \set{0,1,2}$. Since
+    $\xtp{\stps_{\tpTtp}} = \tpIpp$ is not a king type, there are enough
+    peasants ${\eb_\tpTtp} \in \domA_{i'}^{\stps_{\tpTtp}}$ having intended
+    star-type $\stps_{\tpTtp}$. We assign $\tpIab\StrA\ea{\eb_\tpTtp} = \tpTtp$.
+    None of these assignments clash with each other.
+  \end{enumerate}
+  \item[Completion] For any pair of distinct elements $\ea, \eb \in \domA$ that
+  has not yet been assigned a $2$-type, assign $\tpIab\StrA\ea\eb = \tpTt$ to
+  arbitrary $2$-type $\tpTt$ that connects the $1$-types $\tpIp(\ea)$ and
+  $\tpIp(\eb)$. This is possible because the type instance $\Tpi\TpiP\TpiT$ is
+  connected.
+\end{description}
 \end{proof}
 
 \begin{proposition}
