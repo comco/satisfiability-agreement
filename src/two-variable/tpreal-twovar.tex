@@ -116,7 +116,7 @@ of a $1$-type or a $2$-type over $\SigS$ is polynomially bounded by $\sizes$.
 Hence we can reduce the (finite) classified satisfiability problem to the
 (finite) type realizibility problem in exponential time:
 \[
-  \FinASat{\vFo2} \red\cExpTime \FinAReal{\vFo2}.
+  \FinAClSat{\vFo2} \red\cExpTime \FinAReal{\vFo2}.
 \]
 \end{remark}
 
@@ -226,14 +226,17 @@ We check the conditions for a certificate:
 
 \begin{lemma}[Certificate expansion]\label{lem:cert-expand}
 Let $\Cert$ be a certificate for the connected type instance $\Tpi\TpiP\TpiT$.
-Then $\Tpi\TpiP\TpiT$ has a finite full model.
+Then $\Tpi\TpiP\TpiT$ has a finite full model. More precisely, let $t \geq
+\card\TpiT$. Then $\Tpi\TpiP\TpiT$ has a finite model $\StrA$ in which for every
+star-type $\stps \in \Cert$ such that $\xtp\stps$ is not a king type, there are
+at least $t$ elements $\ea \in \domA$ such that $\stps \subseteq
+\stpIa\StrA\ea$.
 \end{lemma}
 \begin{proof}
 We adapt the standard strategy used in the proof of the finite model property
 for the logic $\vFo2$, as presented in~\cite{gradel1999logics}\footnote{with
-the slight modification that our approach doesn't need \emph{a king court},
+the slight difference that our approach doesn't need \emph{a court},
 since the information about it is implicit in the certificate}.
-Let $t = \card{\TpiT}$.
 We build a model $\StrA$ for $\Tpi\TpiP\TpiT$ as follows.
 The domain $\domA$ of $\StrA$ is the union of the disjoint sets of elements
 $\domA^\stps$ for all $\stps \in \Cert$, that have intended star-type $\stps$
