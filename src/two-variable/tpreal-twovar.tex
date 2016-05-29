@@ -1,7 +1,7 @@
 % Type realizibility of the two-variable first-order logic
 Recall from~\Cref{sec:scott-nf} about normal forms that every $\vFo2$-sentence
-$\fphi$ can be reduced in polynomial time sentence $\sctr\fphi$ in Scott normal
-form:
+$\fphi$ can be reduced in polynomial time to a sentence $\sctr\fphi$ in Scott
+normal form:
 \[
   \forall\xx\forall\yy (\falpp0(\xx,\yy) \lor \xx = \yy) \land
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy(
@@ -41,10 +41,10 @@ symbols from $\SigS$ having intended interpretation
 \end{equation}
 \end{definition}
 That is, a classified signature \emph{automatically includes} the
-$\forall\exists$-part of formulas and $\ClSig\SigS\sms$-structures
-automatically satisfy the $\forall\exists$-part.
+$\forall\exists$-parts of formulas and $\ClSig\SigS\sms$-structures
+\emph{automatically satisfy} the $\forall\exists$-parts.
 
-\begin{definition}
+\begin{definition}\label{def:clsig-twovar}
 The \emph{(finite) classified satisfiability problem for two-variable
 first-order logic} is:
 given a classified signature $\ClSig\SigS\sms$ and a quantifier-free
@@ -61,7 +61,7 @@ to (finite) classified satisfiability:
 \]
 
 Let $\ClSig\SigS\sms$ be a classified signature for $\vFo2$.
-\begin{definition}
+\begin{definition}\label{def:tpinst-twovar}
 A \emph{type instance} $\gls{type-instance-P-T}$ over $\ClSig\SigS\sms$ is a
 pair of a set of $1$-types $\TpiP \subseteq \TpI\SigS$ and a set of $2$-types
 $\TpiT \subseteq \TpT\SigS$ such that $\xtp\tpTt \in \TpiP$ and $\ytp\tpTt \in
