@@ -88,9 +88,9 @@ equivalence symbol in $\DSp$. Define the following formulas:
 \begin{align}
   &\fposeq\DSp(\xx,\yy) = \fEq\DS(\xx,\yy) \nonumber \\
   &\fbitO\DSp(\xx) = \forall\yy(\se(\yy,\xx) \land 
-    \fposeq\DSp(\yy,\xx) \limp \yy = \xx) \nonumber \\
+    \fposeq\DSp(\yy,\xx) \limp \sd(\yy, \xx)) \nonumber \\
   &\fbitI\DSp(\xx) = \exists\yy(\se(\yy,\xx) \land
-    \fposeq\DSp(\yy,\xx) \land \yy \neq \xx) \nonumber \\
+    \fposeq\DSp(\yy,\xx) \land \lnot\sd(\yy,\xx)) \nonumber \\
   &\fposzero\DSp(\xx) = \fZero\DS(\xx) \nonumber \\
   &\fposmax\DSp(\xx) = \fLargest\DS(\xx) \nonumber \\
   &\fposless\DSp(\xx,\yy) = \se(\xx,\yy) \land

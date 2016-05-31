@@ -30,8 +30,9 @@ polynomially as $\sze$ grows, we have:
 
 Consider the opposite direction.
 Let $\ES = \seq{\see1,\see2,\dots,\see\sze}$ be a predicate signature consisting
-of the binary predicate symbols $\see\ii$ (not necessarily interpreted as
-equivalences).
+of the binary predicate symbols $\see\ii$ (later, we will need these to be
+not necessarily interpreted as equivalences, but for now we will interpret
+them as such).
 Let $\StrA$ be an $\ES$-structure and suppose that the symbols $\see\ii$ are
 interpreted in $\StrA$ as equivalence relations on $\domA$ in local agreement.
 Let $\relEE\ii = \at\StrA{\see\ii}$ for $\ii \in [1,\sze]$.
@@ -114,8 +115,8 @@ $\relEE\kk[\ea]$ are either equal or disjoint.
 \end{proof}
 
 Let
-$\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze} \subseteq \domAA$ be
-the levels of $\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\sze}$.
+$\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze}$ be the levels of
+$\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\sze}$.
 Recall that by \Cref{rem:local-lvl-refine}, the levels are equivalence relations
 on $\domA$ in refinement.
 
@@ -179,7 +180,8 @@ Then $\perma(\kk) = \permb(\kk)$.
 \end{remark}
 \begin{proof}
 Since $\StrA \vDash \ffixperm\LS$ and $\StrA \vDash \slee\kk(\ea,\eb)$, we have
-$\StrA \vDash \feqA\PS\kk(\ea,\eb)$, which means $\perma(\kk) = \permb(\kk)$.
+$\StrA \vDash \feq{\PS(\kk)}(\ea,\eb)$, which means $\perma(\kk) =
+\permb(\kk)$.
 \end{proof}
 
 \begin{definition}
@@ -187,7 +189,7 @@ For $\ii \in [1,\sze]$, define the quantifier-free $\vFoF2\LS$-formula
 $\gls{fel-L-i}$ by:
 \[
   \fel\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \nn}
-  \left(\feqAA\LS\kk\ii(\xx) \limp \slee\kk(\xx,\yy)\right).
+  \left(\feqA{\PS(\kk)}\ii(\xx) \limp \slee\kk(\xx,\yy)\right).
 \]
 \end{definition}
 
@@ -213,7 +215,7 @@ We have to show that $\relEE\ii[\ea] = \relLL\kk[\ea]$.
 Since $\perma$ is a permutation, for every $\kkp \in [1,\sze]$ we have:
 \begin{equation}\label{eq:local-e-equiv}
   \mifff{
-  \StrA \vDash \feqAA\PS\kkp\ii(\ea)}{
+  \StrA \vDash \feqA{\PS(\kkp)}\ii(\ea)}{
   \perma(\kkp) = \ii}{ 
   \kkp = \kk}.
 \end{equation}
@@ -224,8 +226,8 @@ $\StrA \vDash \slee\kk(\ea,\eb)$, hence $\eb \in \relLL\kk[\ea]$.
 Next, suppose $\eb \not\in \relEE\ii[\ea]$.
 Then $\StrA \vDash \lnot\fel\LS\ii(\ea,\eb)$, so there is some
 $\kkp \in [1,\sze]$ such that 
-$\StrA \vDash \lnot(\feqAA\LS\kkp\ii(\ea) \limp \slee\kkp(\ea,\eb)) 
-\equiv \feqAA\LS\kkp\ii(\ea) \land \lnot\slee\kkp(\ea,\eb)$.
+$\StrA \vDash \lnot(\feqA{\PS(\kkp)}\ii(\ea) \limp \slee\kkp(\ea,\eb)) 
+\equiv \feqA{\PS(\kkp)}\ii(\ea) \land \lnot\slee\kkp(\ea,\eb)$.
 By \cref{eq:local-e-equiv} we have $\kkp = \kk$.
 Hence $\StrA \vDash \lnot \slee\kk(\ea,\eb)$, so $\eb \not\in \relLL\kk[\ea]$.
 \end{proof}

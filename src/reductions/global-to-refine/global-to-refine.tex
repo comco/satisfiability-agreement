@@ -34,7 +34,7 @@ $\sze$-permutation setup (where $\tbit = \bsz\sze$).
 Define the $\vFoF2\PS$-sentence $\gls{falleq-P}$ by:
 \[
   \falleq\PS = \forall\xx \forall\yy \bigwedge_{1 \leq \ii \leq \sze}
-  \feqA\PS\ii(\xx,\yy).
+  \feq{\PS(\ii)}(\xx,\yy).
 \]
 \end{definition}
 If $\StrA$ is a $\PS$-structure, then $\StrA \vDash \falleq\PS$ iff
@@ -68,7 +68,7 @@ For $\ii \in [1, \sze]$, define the quantifier-free $\vFoF2\LS$-formula
 $\gls{feg-L-i-x-y}$ by:
 \[
   \feg\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \sze}
-  \left(\feqAA\PS\kk\ii(\xx) \limp \slee\kk(\xx, \yy)\right).
+  \left(\feqA{\PS(\kk)}\ii(\xx) \limp \slee\kk(\xx, \yy)\right).
 \]
 \end{definition}
 \begin{remark}\label{rem:global-e-m}
@@ -92,20 +92,21 @@ $\data{\PSp\kk}\StrA\ea = \ii$.
 Since $\permnu$ is a permutation, for every $\kkp \in [1, \sze]$:
 \begin{equation}\label{eq:global-e}
 \mifff{
-  \StrA \vDash \feqAA\PS\kkp\ii(\ea)}{
+  \StrA \vDash \feqA{\PS(\kkp)}\ii(\ea)}{
   \data{\PSp\kkp}\StrA\ea = \ii}{
   \kkp = \kk}.
 \end{equation}
 Let $\ea, \eb \in \domA$.
 First suppose that $\StrA \vDash \feg\LS\ii(\ea,\eb)$.
-By \cref{eq:global-e} we have $\StrA \vDash \feqAA\PS\kk\ii(\ea)$, hence
+By \cref{eq:global-e} we have $\StrA \vDash \feqA{\PS(\kk)}\ii(\ea)$, hence
 $\StrA \vDash \slee\kk(\ea,\eb)$.
 
 Now suppose that $\StrA \vDash \lnot\feg\LS\ii(\ea,\eb)$. There is some
 $\kkp \in [1, \sze]$ such that:
 \[
-  \StrA \vDash \lnot\left(\feqAA\PS\kkp\ii(\ea) \limp \slee\kkp(\ea,\eb)\right)
-  \equiv \feqAA\PS\kkp\ii(\ea) \land \lnot\slee\kkp(\ea,\eb).
+  \StrA \vDash \lnot\left(\feqA{\PS(\kkp)}\ii(\ea) \limp
+  \slee\kkp(\ea,\eb)\right) \equiv \feqA{\PS(\kkp)}\ii(\ea) \land
+  \lnot\slee\kkp(\ea,\eb).
 \]
 By \cref{eq:global-e} we have $\kkp = \kk$, hence
 $\StrA \vDash \lnot\slee\kk(\ea,\eb)$.
@@ -186,9 +187,8 @@ By \Cref{rem:global-e-m},
 $\seqsm{\at\StrAp{\see1}, \at\StrAp{\see2}, \dots, \at\StrAp{\see\sze}}$
 is a sequence of equivalence relations on $\domA$ in global agreement.
 For every $\ii \in [1,\sze]$ we have 
-$\StrAp \vDash
- \left(\forall\xx\forall\yy \see\ii(\xx,\yy) \lequ \feg\LS\ii(\xx,\yy)\right)$
-by definition.
+$\StrAp \vDash \forall\xx\forall\yy(\see\ii(\xx,\yy) \lequ
+\feg\LS\ii(\xx,\yy))$ by definition.
 Since $\StrAp \vDash \gtr\fphi$ we have $\StrAp \vDash \fphi$.
 \end{proof}
 
@@ -214,4 +214,5 @@ $\FinASat\aL\Eea\nosze\agglobal \redeq\cP \FinASat\aL\Eea\nosze\agrefine$.
 The reduction is two-variable first-order and uses additional $(\sze\tbit)$
 unary predicate symbols for the permutation setup $\PS$, so it is also valid
 for the two-variable fragments $\Lvp\aL20\Eea\sze\ag$, $\Lvp\aL21\Eea\sze\ag$
-and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\agglobal, \agrefine}$.
+and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\agglobal, \agrefine}$ (but not
+for the fragment $\Lvp\aL20\Eea\nosze\ag$).
