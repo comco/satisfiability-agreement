@@ -6,24 +6,24 @@
 \newcommand{\sms}{\many\sm}
 \newcommand{\ClSig}[2]{\seq{#1,#2}}
 
-\newcommand{\ClSat}[1]{\satname{CLSAT}#1}
+\newcommand{\ClSat}[1]{\satnameI{CL}{SAT}{#1}}
 
-\newcommand{\FinClSat}[1]{\satname{FINCLSAT}#1}
+\newcommand{\FinClSat}[1]{\satnameII{FIN}{CL}{SAT}{#1}}
 
-\newcommand{\FinAClSat}[1]{\satname{(FIN)CLSAT}#1}
+\newcommand{\FinAClSat}[1]{\satnameII{(FIN}{)CL}{SAT}{#1}}
 
 % type instance
 \newcommand{\Tpi}[2]{(#1,#2)}
 \newcommand{\TpiP}{\Pi}
+\newcommand{\TpiK}{\Kappa}
 \newcommand{\TpiT}{\Tau}
 \newcommand{\TpiTp}{{\Tau'}}
-
-\newcommand{\Real}[1]{\satname{REAL}#1}
-\newcommand{\FinReal}[1]{\satname{FINREAL}#1}
-\newcommand{\FinAReal}[1]{\satname{(FIN)REAL}#1}
-\newcommand{\FullReal}[1]{\satname{FULLREAL}#1}
-\newcommand{\FinFullReal}[1]{\satname{FINFULLREAL}#1}
-\newcommand{\FinAFullReal}[1]{\satname{(FIN)FULLREAL}#1}
+\newcommand{\Real}[1]{\satnameI{TP}{REALIZ}{#1}}
+\newcommand{\FinReal}[1]{\satnameII{FIN}{TP}{REALIZ}{#1}}
+\newcommand{\FinAReal}[1]{\satnameII{(FIN}{)TP}{REALIZ}{#1}}
+\newcommand{\FullReal}[1]{\satnameII{FULL}{TP}{REALIZ}{#1}}
+\newcommand{\FinFullReal}[1]{\satnameIII{FIN}{FULL}{TP}{REALIZ}{#1}}
+\newcommand{\FinAFullReal}[1]{\satnameIII{(FIN}{)FULL}{TP}{REALIZ}{#1}}
 
 % connectible types
 \newcommand{\conn}{\sim}
