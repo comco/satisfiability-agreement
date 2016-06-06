@@ -142,8 +142,9 @@ equivalences.
 Let $(\TpiP,\TpiT)$ be a type instance over $\ClSig\SigS\sms$.
 Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} (written
 $\gls{connectable-p-pp}$), if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for some $\tpTt \in \TpiT$. A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if
-$\tpIk \not\conn \tpIk$. Denote the set of king types for the type instance
-$(\TpiP,\TpiT)$ by $\TpiK$.
+$\tpIk \not\conn \tpIk$, otherwise it is a \emph{peasant type}. The set of king
+types for the type instance $(\TpiP,\TpiT)$ is $\TKg$ and the set of peasant
+types is $\TPs = \TpiP \sub \TKg$.
 \end{definition}
 \begin{remark}\label{rem:twovar-king-once}
 If $\StrA$ is a full model for $(\TpiP,\TpiT)$, then every two distinct elements
@@ -159,18 +160,15 @@ $\Tpi\TpiP\TpiT$ is a nonempty set of $2$-types satisfying the following conditi
 \begin{enumerate}
   \item\label{cond:star-1} If $\tpTt, \tpTtp \in \stps$, then $\xtp\tpTt =
   \xtp\tpTtp$, that is the $\xx$-type of every element of $\stps$ is the same.
-  Denote the $\xx$-type of every element of $\stps$ by $\xtp\stps$.
-  \item\label{cond:star-2} If $\tpIk = \xtp\stps \in \TpiK$ is a king type, then
-  no $\tpTt \in \stps$ has $\ytp\tpTt = \tpIk$.
-  \item\label{cond:star-3} If $\tpIp = \xtp\stps \not\in \TpiK$ is not a king
-  type, then some (possibly many) $\tpTt \in \stps$ has
-  \item TODO: FIX!
-  $\xtp\tpTt = \tpIp$.
-  \item\label{cond:star-4} If $\tpIk \in \TpiK$, $\tpIk \neq \xtp\stps$ is any
-  other king type, then only one $\tpTt \in \stps$ has $\ytp\tpTt = \tpIk$. Note
-  that the existence is already implied by condition~\ref{cond:star-3}.
-  \item\label{cond:star-5} If $\sm \in \sms$, then $\sm \in \tpTt$ for some
-  (possibly many) $\tpTt \in \stps$.
+  Denote the $\xx$-type of every element of $\stps$ by $\tpIp = \xtp\stps$.
+  \item\label{cond:star-2} If $\tpIpp \in \TPs$ is a peasant type, then some
+  (possibly many) $\tpTt \in \stps$ have $\ytp\tpTt = \tpIpp$.
+  \item\label{cond:star-3} If $\tpIkp \in \TKg$ is a king type and 
+  $\tpIkp \neq \tpIp$, then a unique $\tpTt \in \stps$ has $\ytp\tpTt = \tpIkp$.
+  \item\label{cond:star-4} If $\tpIp = \tpIk \in \TKg$ is a king type, then no
+  $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$.
+  \item\label{cond:star-5} If $\sm \in \sms$, then $\sm(\xx,\yy) \in \tpTt$ for
+  some (possibly many) $\tpTt \in \stps$.
 \end{enumerate}
 Note that the size of a star-type is polynomially bounded by the size of the
 type instance.
@@ -195,24 +193,29 @@ conditions for a star-type:
   \item If $\tpTt, \tpTtp \in \stps$, then $\tpTt = \tpIab\StrA\ea\eb$ and
   $\tpTtp = \tpIab\StrA\ea\ec$ for some $\eb,\ec\neq\ea\in\domA$, hence
   $\xtp\tpTt = \tpIa\StrA\ea = \xtp\tpTtp$.
-  \item If $\tpIk = \xtp\stps$ is a king type, then suppose that some $\tpTt
-  \in \stps$ has $\ytp\tpTt = \tpIk$. But then $\xtp\tpTt = \tpIk$, so $\tpIk
-  \conn \tpIk$, which is a contradiction with the definition of a king type.
-  \item If $\tpIp \in \TpiP$, $\tpIp \neq \xtp\stps$ is any other $1$-type, then
-  since $\StrA$ is a full model, there is some $\eb \in \ea$ such that
-  $\tpIa\StrA\eb = \tpIp$, so $\tpTt = \tpIab\StrA\ea\eb \in \stps$ connects
-  $\xtp\stps$ and $\tpIp$ and $\tpTt \in \stps$.
-  \item If $\tpIk \in \TpiK$, $\tpIk \neq \xtp\stps$ is any king type, then
-  suppose that $\tpTt \neq \tpTtp \in \stps$ have $\ytp\tpTt = \ytp\tpTtp =
-  \tpIk$. Then by definition $\tpTt = \tpIab\StrA\ea\eb$ and $\tpTtp =
-  \tpIab\StrA\ea\ec$ for some elements $\eb \neq \ec \neq \ea \in \domA$. Since
-  $\StrA$ is a full $(\TpiP,\TpiT)$-model, we must have that $\tpIr =
-  \tpIab\StrA\eb\ec \in \TpiT$. But then $\tpIr$ connects $\tpIk$ with $\tpIk$
-  --- a contradiction with $\tpIk$ being a king type.
+  \item Let $\tpIpp\in\TPs$ be a peasant type. We claim that there is some
+  element $\eb \neq \ea$ that has $\tpIa\StrA\eb = \tpIpp$. If $\tpIpp \neq
+  \xtp\stps$, this $\eb$ is evident since $\StrA$ is a full model.
+  If $\tpIpp = \xtp\stps$, since $\tpIpp$ is a peasant type we have
+  $\tpIpp\conn\tpIpp$, so there is some $\tpTtp \in \TpiT$ such that $\xtp\tpTtp
+  = \ytp\tpTtp = \tpIpp$. Since $\StrA$ is a full model, there are two distinct
+  elements $\ebb1 \neq \ebb2 \in \domA$ such that $\tpIab\StrA{\ebb1}{\ebb2} =
+  \tpTtp$, hence $\tpIa\StrA{\ebb1} = \tpIa\StrA{\ebb2} = \tpIpp$. Choose $\eb
+  \in \set{\ebb1,\ebb2}\sub\set{\ea}$ to be distinct from $\ea$. Then for $\tpTt
+  = \tpIab\StrA\ea\eb$ we have that $\tpTt \in \stps$ and $\ytp\tpTt = \tpIpp$.
+  \item Let $\tpIkp\in\TKg$ be a king type and suppose that $\tpIkp \neq \tpIp$.
+  Since $\StrA$ is a full model there is some $\ec\in\domA$ such realizing
+  $\tpIkp$ and since $\tpIkp\neq\tpIp$, we have $\ec \neq \ea$.
+  By~\Cref{rem:twovar-king-once}, such $\ec$ is unique. Hence $\tpTt =
+  \tpIab\StrA\ea\ec$ is the unique $2$-type satisfying $\tpTt\in\stps$ and
+  $\ytp\tpTt = \tpIkp$.
+  \item Let $\tpIp = \tpIk \in \TKg$ be a king type. Then no $\tpTt\in\stps$ has
+  $\ytp\tpTt$, since by definition $\tpIk\not\conn\tpIk$ and $\StrA$ is a model
+  for $(\TpiP,\TpiT)$.
   \item Since $\StrA$ is a $\ClSig\SigS\sms$-structure, it automatically
   satisfies the $\forall\exists$-parts of~\cref{eq:twovar-ms-iinter}, hence for 
   every $\sm \in \sms$ there must be some $\eb \neq \ea \in \domA$ such that
-  $\sm \in \tpIab\StrA\ea\eb$.
+  $\sm(\xx,\yy) \in \tpIab\StrA\ea\eb$.
 \end{enumerate}
 \end{proof}
 
@@ -229,11 +232,11 @@ nonempty set of star-types satisfying the following conditions:
 \begin{enumerate}
   \item\label{cond:cert-1} If $\tpIp \in \TpiP$ then some (possibly many) $\stps
   \in \Cert$ has $\xtp\stps = \tpIp$, that is every $1$-type is witnessed.
-  \item\label{cond:cert-2} If $\tpIk \in \TpiK$ is a king type, then one $\stps
+  \item\label{cond:cert-2} If $\tpTt \in \TpiT$ then some (possibly many)
+  $\stps\in\Cert$ has $\tpTt \in \stps$, that is every $2$-type is witnessed.
+  \item\label{cond:cert-3} If $\tpIk \in \TpiK$ is a king type, then one $\stps
   \in \Cert$ has $\xtp\stps = \tpIk$, that is every king type is witnessed once.
-  \item\label{cond:cert-3} For every $\tpTt \in \TpiT$ there is some
-  $\stps\in\Cert$ such that $\tpTt \in \stps$, that is every $2$-type is
-  witnessed.
+  Note that the existence is already implied by condition~\ref{cond:cert-1}.
 \end{enumerate}
 \end{definition}
 Note that in general the size of a certificate may be exponential in terms of
@@ -256,15 +259,16 @@ We check the conditions for a certificate:
   \item Let $\tpIp \in \TpiP$ be a $1$-type. Since $\StrA$ is a full
   model for $\Tpi\TpiP\TpiT$ and $\domA$ has cardinality at least $2$, we may
   choose a pair of distinct elements $\ea\neq\eb\in\domA$ such that $\ea$
-  realizes $\tpIp$. Let $\tpTt = \tpIab\StrA\ea\eb$. Then $\tpIp = \xtp\tpTt$
-  and $\tpTt \in \stpIa\StrA{\ea_\tpTt} \in \Cert$.
+  realizes $\tpIp$. Let $\tpTt = \tpIab\StrA\ea\eb$.
+  Then $\tpIp = \xtp\tpTt$ and $\stps = \stpIa\StrA{\ea_\tpTt} \in \Cert$ has
+  $\xtp\stps = \tpIp$.
+  \item Let $\tpTt \in \TpiT$ be a $2$-type. Then
+  $\tpTt \in \stps = \tpIa\StrA{\ea_\tpTt} \in \Cert$.
   \item If $\tpIk \in \TpiP$ is a king type, by~\Cref{rem:twovar-king-once} it
   is realized once in $\StrA$.
   Let $\ec \in \domA$ be the unique element realizing $\tpIk$.
   If $\stps \in \Cert$ has $\xtp\stps = \tpIk$, then $\stps = \stpIa\StrA\ec$
   so such $\stps$ is unique.
-  \item Let $\tpTt \in \TpiT$. Then $\tpTt \in \stpIa\StrA{\ea_\tpTt} \in
-  \Cert$.
 \end{enumerate}
 \end{proof}
 
@@ -307,20 +311,21 @@ the structure on stages.
   For every $\tpTt \in \stps$ we will find an element $\eb_\tpTt$ for the
   assignment $\tpIab\StrA\ea{\eb_\tpTt} = \tpTt$.
   \begin{enumerate}
-  \item If $\ytp\tpTt = \tpIkp$ is a king type, by Condition~\ref{cond:star-2}
+  \item If $\ytp\tpTt = \tpIkp$ is a king type, by Condition~\ref{cond:star-4}
   for star-types we have $\tpIkp \neq \tpIk$, so there is a unique star-type
   $\stps'$ having $\xtp\stps' = \tpIk'$ and a unique king $\eb_\tpTt =
-  \ea^{\stps'} \neq \ea$ having intended star-type $\tpIkp$. Note that this
+  \ea^{\stps'} \neq \ea$ having intended star-type $\stps'$. Note that this
   assigment is symmetric, that is at the point of considering the type
   $\inv\tpTt$ for the king $\eb_\tpTt$, we would choose $\ea$ as the
-  opposite side of the assignment.
-  \item If $\ytp\tpTt = \tpIpp$ is not a king type (hence
-  $\tpIpp \neq \tpIk$), we simultaneously find distinct elements $\eb_{\tpTt'}$ for all $\tpTtp \in
-  \stps$ having $\ytp\tpTtp = \tpIpp$.
+  opposite side of the assignment (recall that by definition $\TpiT$ is closed
+  under inversions).
+  \item If $\ytp\tpTt = \tpIpp \in \TPs$ is is a peasant type (hence
+  $\tpIpp \neq \tpIk$), we simultaneously find distinct elements $\eb_{\tpTt'}$
+  for all $\tpTtp \in \stps$ having $\ytp\tpTtp = \tpIpp$.
   Let $\TpiTp = \setbd{\tpTtp \in \stps}{\ytp\tpTtp = \tpIpp}$ be the set of
   all such $\tpTtp$.
   Since $\TpiTp \subseteq \TpiT$, there are
-  at most $t$ such $2$-types $\tpTtp$. By Condition~\ref{cond:cert-3} for
+  at most $t$ such $2$-types $\tpTtp$. By Condition~\ref{cond:cert-2} for
   certificate, we can find a star-type $\stps_{\tpTtp} \in \Cert$ containing
   $\inv{(\tpTtp)}$ for every $\tpTtp \in \TpiTp$. Since $\xtp\stps_{\tpTtp} =
   \tpIpp$ is not a king type, there are enough elements 
@@ -330,8 +335,8 @@ the structure on stages.
   \end{enumerate}
   \item[Realization of peasants] We now find witnesses for the remaining
   elements that realize $1$-types which are not king types. Let $\stps \in \Cert$ be such that $\tpIp =
-  \xtp\stps$ is not a king type. Let $a = a_{ij}^\stps$ be an arbitrary element
-  with intended star-type $\stps$. For every $\tpTt \in \stps$ we will find an
+  \xtp\stps \in \TPs$ is a peasant type. Let $a = a_{ij}^\stps$ be an arbitrary
+  element with intended star-type $\stps$. For every $\tpTt \in \stps$ we will find an
   element $\eb_\tpTt$ for the assignment $\tpIab\StrA\ea{\eb_\tpTt} = \tpTt$.
   \begin{enumerate}
     \item If $\ytp\tpTt = \tpIkp$ is a king type then let $\ec$ be the element
