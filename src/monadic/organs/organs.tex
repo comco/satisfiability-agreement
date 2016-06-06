@@ -85,43 +85,42 @@ Note that for all elements $\ea \in \domA$:
 \begin{equation}\label{eq:monadic-organ}
   \card{\selh[\ea]} = \min(\card{\Org[\relD[\ea]]}, \nr).
 \end{equation}
-Consider the set $\pisoI$ of partial isomorphisms from $\StrA$ to $\StrB$ that
-have cardinality at most $\nr$ and that are included in $\selh$. This set is
-nonempty since it contains the empty partial isomorphism.
-We claim that the sequence $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
-satisfies the back-and-forth conditions of \Cref{thm:game-ef}.
-Let $\ii \in [1,\nr]$ and let 
+For $\ii\in[0,\nr]$ let $\pisoII\ii$ be the set of partial isomorphisms from
+$\StrA$ to $\StrB$ that have length $\ii$ and that are included in $\selh$.
+The set $\pisoII0$ is nonempty since it contains the empty partial isomorphism.
+We claim that the sequence $\pisoII0,\pisoII1,\dots,\pisoII\nr$ satisfies the
+back-and-forth conditions of \Cref{thm:game-ef}.
+Let $\ii \in [0,\nr-1]$ and let 
 \[
   \pisop = \many\ea \mapsto \many\eb =
-  \eaa1\eaa2\dots\eaa\nr \mapsto \ebb1\ebb2\dots\ebb\nr \in \pisoI
+  \eaa1\eaa2\dots\eaa\ii \mapsto \ebb1\ebb2\dots\ebb\ii \in \pisoI
 \]
 be any partial isomorphism.
-Without loss of generality, suppose $\ii = 1$.
 \begin{enumerate}
-  \item For the forth condition, let $\ea \in \domA$. We have to find some $\eb
-  \in \domB$ such that
-  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
-  If $\ea \in \relD[\eaa\kk]$ for some $\kk \in [2,\nr]$,
+  \item For the forth condition, let $\ea \in \domA$.
+  We have to find some $\eb \in \domB$ such that
+  $\many\ea\ea \mapsto \many\eb\eb \in \pisoII{\ii+1}$.
+  If $\ea \in \relD[\eaa\kk]$ for some $\kk \in [1,\ii]$,
   then $\eb = \isoh{\relD[\eaa\kk]}{\relD[\ebb\kk]}(\ea)$ is appropriate.
   
-  Suppose $\ea \not\in \relD[\eaa\kk]$ for all $\kk \in [2,\nr]$.
+  Suppose $\ea \not\in \relD[\eaa\kk]$ for all $\kk \in [1,\ii]$.
   Let $\EclS \subseteq \Org[\relD[\ea]]$ be the set of $\relD$-classes of
   $\many\ea$-elements in the same $\StrA$-organ as $\relD[\ea]$:
   \[
-    \EclS = \setbd{\relD[\eaa\kk] \in \Org[\relD[\ea]]}{\kk \in [2,\nr]}.
+    \EclS = \setbd{\relD[\eaa\kk] \in \Org[\relD[\ea]]}{\kk \in [1,\ii]}.
   \]
   Note that $\card\EclS \leq \nr-1$ and
   $\card{\Org[\relD[\ea]]} \geq \card\EclS + 1$.
   By \cref{eq:monadic-organ}, $\card{\selh[\ea]} \geq \card\EclS + 1$.
   Hence there is some $\eb \in \selh[\ea]$ such that $\eb \not\in
-  \relD[\ebb\kk]$ for all $\kk \in [2,\nr]$. This $\eb$ is appropriate.
+  \relD[\ebb\kk]$ for all $\kk \in [1,\ii]$. This $\eb$ is appropriate.
   \item For the back condition, let $\eb \in \domB$.
   We have to find some $\ea \in \domA$ such that
-  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
-  If $\eb \in \relD[\ebb\kk]$ for some $\kk \in [2,\nr]$,
+  $\many\ea\ea \mapsto \many\eb\eb \in \pisoI$.
+  If $\eb \in \relD[\ebb\kk]$ for some $\kk \in [1,\ii]$,
   then $\ea = \isoh{\relD[\ebb\kk]}{\relD[\eaa\kk]}(\eb)$ is appropriate.
   
-  Suppose that $\eb \not\in \relD[\ebb\kk]$ for all $\kk \in [2,\nr]$.
+  Suppose that $\eb \not\in \relD[\ebb\kk]$ for all $\kk \in [1,\ii]$.
   Since $\eb \in \selh[\eb]$, $\ea = \eb$ is appropriate.
 \end{enumerate}
 By \Cref{thm:game-ef}, $\StrA \requiv\nr \StrB$.

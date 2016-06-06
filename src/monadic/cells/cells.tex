@@ -55,43 +55,45 @@ Note that for all $\ea \in \domA$:
 \begin{equation}\label{eq:monadic-cell-little}
   \card{\selh[\ea]} = \min(\card{\relC[\ea]}, \nr).
 \end{equation}
-Consider the set $\pisoI$ of partial isomorphisms from $\StrA$ to $\StrB$ that
-have cardinality at most $\nr$ and that are included in $\selh$.
-This set is nonempty since it contains the empty partial isomorphism.
-We claim that the sequence $\pisoII0 = \pisoII1 = \dots = \pisoII\nr = \pisoI$
+For $\ii\in[0,\nr]$ let $\pisoII\ii$ be the set of partial isomorphisms from
+$\StrA$ to $\StrB$ that have length $\ii$ and that are included in $\selh$.
+The set $\pisoII0$ is nonempty since it contains the empty partial isomorphism.
+We claim that the sequence $\pisoII0, \pisoII1, \dots, \pisoII\nr$
 satisfies the back-and-forth conditions of \Cref{thm:game-ef}.
-Let $\ii \in [1,\nr]$ and let 
+Let $\ii \in [0,\nr-1]$ and let 
 \[
   \pisop = \many\ea \mapsto \many\eb =
-  \eaa1\eaa2\dots\eaa\nr \mapsto \ebb1\ebb2\dots\ebb\nr \in \pisoI
+  \eaa1\eaa2\dots\eaa\ii \mapsto \ebb1\ebb2\dots\ebb\ii
+  \in
+  \pisoII\ii
 \]
 be any partial isomorphism.
-Without loss of generality, suppose $\ii = 1$.
 \begin{enumerate}
   \item For the forth condition, let $\ea \in \domA$.
   We have to find some $\eb \in \domB$ such that
-  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
-  If $\ea = \eaa\kk$ for some $\kk \in [2,\nr]$, then $\eb = \ebb\kk$ is
+  $\many\ea\ea \mapsto \many\eb\eb \in \pisoII{\ii+1}$.
+  If $\ea = \eaa\kk$ for some $\kk \in [1,\ii]$, then $\eb = \ebb\kk$ is
   appropriate.
   
-  Suppose that $\ea \neq \eaa\kk$ for all $\kk \in [2,\nr]$.
+  Suppose that $\ea \neq \eaa\kk$ for all $\kk \in [1,\ii]$.
   Let $\setS \subseteq \relC[\ea]$ be the set of $\many\ea$-elements in the same
   $\StrA$-cell as $\ea$:
   \[
-    \setS = \setbd{\eaa\kk \in \relC[\ea]}{\kk \in [2,\nr]}.
+    \setS = \setbd{\eaa\kk \in \relC[\ea]}{\kk \in [1,\ii]}.
   \]
   Note that $\card\setS \leq \nr-1$ and
   $\card{\relC[\ea]} \geq \card{\setS} + 1$.
   By \cref{eq:monadic-cell-little}, $\card{\selh[\ea]} \geq \card\setS + 1$.
   Hence there is an element $\eb \in \selh[\ea]$ that is distinct from
-  $\ebb\kk$ for all $\kk \in [2,\nr]$.
+  $\ebb\kk$ for all $\kk \in [1,\ii]$ and this $\eb$ is appropriate.
+
   \item For the back condition, let $\eb \in \domB$.
   We have to find some $\ea \in \domA$ such that
-  $\vectsub{\many\ea}\ii\ea \mapsto \vectsub{\many\eb}\ii\eb \in \pisoI$.
-  If $\eb = \ebb\kk$ for some $\kk \in [2,\nr]$, then $\ea = \eaa\kk$ is
+  $\many\ea\ea \mapsto \many\eb\eb \in \pisoII{\ii+1}$.
+  If $\eb = \ebb\kk$ for some $\kk \in [1,\ii]$, then $\ea = \eaa\kk$ is
   appropriate.
   
-  Suppose that $\eb \neq \ebb\kk$ for all $\kk \in [2,\nr]$. Since $\eb \in
+  Suppose that $\eb \neq \ebb\kk$ for all $\kk \in [1,\ii]$. Since $\eb \in
   \selh[\eb]$, $\ea = \eb$ is appropriate.
 \end{enumerate}
 By \Cref{thm:game-ef}, $\StrA \requiv\nr \StrB$.
