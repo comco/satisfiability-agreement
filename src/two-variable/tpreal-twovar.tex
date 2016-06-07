@@ -45,7 +45,8 @@ $\forall\exists$-parts of formulas and $\ClSig\SigS\sms$-structures
 \emph{automatically satisfy} the $\forall\exists$-parts. We also require that
 all $\ClSig\SigS\sms$-structures contain at least two elements (that can be
 enforced by adding the formula $\forall\xx\exists\yy(\xx\neq\yy)$ to the
-intended interpretation of $\SigS$).
+intended interpretation of $\SigS$ and it doesn't make the problem simpler,
+since satisfiability in the class of structures of cardianlity $1$ is trivial).
 
 \begin{definition}\label{def:clsig-twovar}
 The \emph{(finite) classified satisfiability problem for two-variable
@@ -54,7 +55,7 @@ given a classified signature $\ClSig\SigS\sms$ and a quantifier-free
 $\vFoF2\SigS$-formula $\falp(\xx,\yy)$, is there a (finite)
 $\ClSig\SigS\sms$-structure satisfying~\cref{eq:twovar-msg-nf}.
 Note that by virtue of the structure being a $\ClSig\SigS\sms$-structure, it
-will also satisfy~\cref{eq:twovar-ms-iinter} and have cardinality at least two.
+will also satisfy~\cref{eq:twovar-ms-iinter} and have cardinality at least $2$.
 Denote tha classified satisfiability problem for two-variable first-order logic
 by $\ClSat{\vFo2}$ and its finite version by $\FinClSat{\vFo2}$.
 \end{definition}
@@ -70,20 +71,27 @@ cardinality $1$ is trivial:
 A \emph{type instance} $(\TpiP,\TpiT)$ over the classified
 signature $\ClSig\SigS\sms$ is a pair of a nonempty set of $1$-types
 $\TpiP\subseteq\TpI\SigS$ and a nonempty set of $2$-types
-$\TpiT\subseteq\TpT\SigS$ that is closed under inversion
-that is if $\tpTt \in \TpiT$, then $\inv\tpTt \in \TpiT$ and
-such that every $\tpTt \in \TpiT$ connects $1$-types from $\TpiP$, that is
-$\xtp\tpTt, \ytp\tpTt \in \TpiP$, equivalently (since $\TpiT$ is closed under
-inversion) $(\xtp \restriction \TpiT) \subseteq \TpiP$.
+$\TpiT\subseteq\TpT\SigS$ such that:
+\begin{itemize}
+  \item The set of $2$-types $\TpiT$ is closed under inversion, that is
+  $\inv\tpTt\in\TpiT$ for every $\tpTt\in\TpiT$.
+  \item Every $2$-type $\tpTt\in\TpiT$ connects $1$-types from $\TpiP$,
+  that is $\xtp\tpTt\in\TpiP$ and $\ytp\tpTt\in\TpiP$ for every $\tpTt\in\TpiT$.
+  Equivalently, (since $\TpiT$ is closed under inversion)
+  $(\xtp\restriction\TpiT)\subseteq\TpiP$.
+\end{itemize}
 
 A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} (or is a model of) the
-type instance $(\TpiP,\TpiT)$, if $\tpIa\StrA\ea \in \TpiP$ for all $\ea \in
-\domA$ and if $\tpIab\StrA\ea\eb \in \TpiT$ for all $\ea \in \domA$
+type instance $(\TpiP,\TpiT)$, if all $1$-types and $2$-types realized in
+$\StrA$ come from the type instance, that is if:
+\begin{itemize}
+  \item $\tpIa\StrA\ea \in \TpiP$ for all $\ea\in\domA$, and
+  \item $\tpIab\StrA\ea\eb \in \TpiT$ for all $\ea \in \domA$
 and $\eb \in \domA \sub \set{\ea}$.
-The structure \emph{fully realizes} $(\TpiP,\TpiT)$, if additionally for every
-$1$-type $\tpIp \in \TpiP$ there is an element $\ea \in \domA$ realizing $\tpIp$
-and for every $2$-type $\tpTt \in \TpiT$, there is a pair of distinct elements
-$\ea \neq \eb \in \domA$ realizing $\tpTt$.
+\end{itemize}
+The structure $\StrA$ \emph{fully realizes} $(\TpiP,\TpiT)$, if additionally for
+every $1$-type $\tpIp \in \TpiP$ there is an element $\ea \in \domA$ realizing $\tpIp$
+(we don't require analogous condition for the $2$-types).
 
 The \emph{type instance} of $\StrA$ is the type instance $(\TpiP,\TpiT)$ defined
 by:
@@ -91,16 +99,20 @@ by:
   \TpiP &= \setbd{\tpIa\StrA\ea}{\ea\in\domA} \\
   \TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea\neq\eb \in \domA}.
 \end{align*}
-Clearly, the structure $\StrA$ fully realizes $(\TpiP,\TpiT)$.
+Clearly, $(\TpiP,\TpiT)$ is indeed a type instance and $\StrA$ fully realizes
+$(\TpiP,\TpiT)$.
 
 The \emph{(finite) (full) type realizibility problem for $\vFo2$} is the
 following:
 given a classified signature $\ClSig\SigS\sms$ and a type instance
 $(\TpiP,\TpiT)$ over $\ClSig\SigS\sms$, is there a (finite)
 $\ClSig\SigS\sms$-structure that (fully) realizes $(\TpiP,\TpiT)$.
-Denote the type realizibility problem for $\vFo2$ by
+Denote the type realizibility problem\footnote{The reason we study the type
+realizibility problem instead of directly studying the satisfiability problem is
+that it is flexible enough to allow us to employ its solutions in simpler cases
+to construct solutions in more complicated cases.} for $\vFo2$ by
 $\Real{\vFo2}$ and its finite version by $\FinReal{\vFo2}$.
-Analogously, Denote the full type realizibility problem for $\vFo2$ by
+Similarly, denote the full type realizibility problem for $\vFo2$ by
 $\FullReal{\vFo2}$ and its finite version by $\FinFullReal{\vFo2}$.
 \end{definition}
 
@@ -134,22 +146,24 @@ Hence we can reduce the (finite) classified satisfiability problem to the
 \]
 \end{remark}
 
-We study the type realizibility problem instead of directly studying the
-satisfiability problem because it is flexible enough to allow us to employ its
-solutions in simpler logics to construct a solution in logics with more
-equivalences.
 \begin{definition}\label{def:connectable}
 Let $(\TpiP,\TpiT)$ be a type instance over $\ClSig\SigS\sms$.
-Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} (written
-$\gls{connectable-p-pp}$), if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for some $\tpTt \in \TpiT$. A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if
-$\tpIk \not\conn \tpIk$, otherwise it is a \emph{peasant type}. The set of king
-types for the type instance $(\TpiP,\TpiT)$ is $\TKg$ and the set of peasant
-types is $\TPs = \TpiP \sub \TKg$.
+Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} 
+(written $\gls{connectable-p-pp}$), 
+if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for some $\tpTt \in \TpiT$.
+Note that connectability is symmetric since $\TpiT$ is closed under inversion.
+However, connectability is not necessarly neither transitive nor reflexive:
+
+A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if $\tpIk \not\conn \tpIk$.
+A $1$-type $\tpIp \in \TpiP$ that is not a king type is a \emph{peasant type}.
+The set of king types for the type instance $(\TpiP,\TpiT)$ is $\TKg =
+\TKg(\TpiP,\TpiT)$ and the set of peasant types is $\TPs = \TPs(\TpiP,\TpiT) =
+\TpiP \sub \TKg(\TpiP,\TpiT)$.
 \end{definition}
 \begin{remark}\label{rem:twovar-king-once}
 If $\StrA$ is a full model for $(\TpiP,\TpiT)$, then every two distinct elements
 $\ea \neq \eb \in \domA$ realize connectable $1$-types. Hence every king type
-$\tpIk \in \TpiK$ must be realized once in $\StrA$.
+$\tpIk \in \TpiK(\TpiP,\TpiT)$ must be realized once in $\StrA$.
 \end{remark}
 
 The next definition characterizes the local structure of the ray of $2$-types
@@ -160,14 +174,13 @@ $\Tpi\TpiP\TpiT$ is a nonempty set of $2$-types satisfying the following conditi
 \begin{enumerate}
   \item\label{cond:star-1} If $\tpTt, \tpTtp \in \stps$, then $\xtp\tpTt =
   \xtp\tpTtp$, that is the $\xx$-type of every element of $\stps$ is the same.
-  Denote the $\xx$-type of every element of $\stps$ by $\tpIp = \xtp\stps$.
-  \item\label{cond:star-2} If $\tpIpp \in \TPs$ is a peasant type, then some
-  (possibly many) $\tpTt \in \stps$ have $\ytp\tpTt = \tpIpp$.
-  \item\label{cond:star-3} If $\tpIkp \in \TKg$ is a king type and 
-  $\tpIkp \neq \tpIp$, then a unique $\tpTt \in \stps$ has $\ytp\tpTt = \tpIkp$.
-  \item\label{cond:star-4} If $\tpIp = \tpIk \in \TKg$ is a king type, then no
-  $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$.
-  \item\label{cond:star-5} If $\sm \in \sms$, then $\sm(\xx,\yy) \in \tpTt$ for
+  Denote the $\xx$-type of every element of $\stps$ by $\xtp\stps$.
+  \item\label{cond:star-2} If $\tpIk = \xtp\stps \in \TKg$ is a king type,
+  then no $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$.
+  \item\label{cond:star-3} If $\tpIk \in \TKg \sub \set{\xtp\stps}$ is any king
+  type distinct from $\xtp\stps$ (note that here $\xtp\stps$ may as well be a
+  peasant type), then only one $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$.
+  \item\label{cond:star-4} If $\sm \in \sms$, then $\sm(\xx,\yy) \in \tpTt$ for
   some (possibly many) $\tpTt \in \stps$.
 \end{enumerate}
 Note that the size of a star-type is polynomially bounded by the size of the
@@ -179,8 +192,9 @@ If $\StrA$ is a full $\Tpi\TpiP\TpiT$-model and $\ea \in \domA$, the
   \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set{\ea}}.
 \]
 \end{definition}
+We now verify that the star-type realized by $\ea$ is indeed a star-type:
 \begin{remark}
-Let $(\TpiP,\TpiT)$ be a type instance for $\ClSig\SigS\sms$, let $\StrA$ be
+Let $(\TpiP,\TpiT)$ be a type instance for $\ClSig\SigS\sms$, $\StrA$ be
 a full $(\TpiP,\TpiT)$-model and let $\ea \in \domA$. Then the star-type
 $\stps = \stpIa\StrA\ea$ realized by $\ea$ is a star-type for the type instance
 $(\TpiP,\TpiT)$.
@@ -193,25 +207,14 @@ conditions for a star-type:
   \item If $\tpTt, \tpTtp \in \stps$, then $\tpTt = \tpIab\StrA\ea\eb$ and
   $\tpTtp = \tpIab\StrA\ea\ec$ for some $\eb,\ec\neq\ea\in\domA$, hence
   $\xtp\tpTt = \tpIa\StrA\ea = \xtp\tpTtp$.
-  \item Let $\tpIpp\in\TPs$ be a peasant type. We claim that there is some
-  element $\eb \neq \ea$ that has $\tpIa\StrA\eb = \tpIpp$. If $\tpIpp \neq
-  \xtp\stps$, this $\eb$ is evident since $\StrA$ is a full model.
-  If $\tpIpp = \xtp\stps$, since $\tpIpp$ is a peasant type we have
-  $\tpIpp\conn\tpIpp$, so there is some $\tpTtp \in \TpiT$ such that $\xtp\tpTtp
-  = \ytp\tpTtp = \tpIpp$. Since $\StrA$ is a full model, there are two distinct
-  elements $\ebb1 \neq \ebb2 \in \domA$ such that $\tpIab\StrA{\ebb1}{\ebb2} =
-  \tpTtp$, hence $\tpIa\StrA{\ebb1} = \tpIa\StrA{\ebb2} = \tpIpp$. Choose $\eb
-  \in \set{\ebb1,\ebb2}\sub\set{\ea}$ to be distinct from $\ea$. Then for $\tpTt
-  = \tpIab\StrA\ea\eb$ we have that $\tpTt \in \stps$ and $\ytp\tpTt = \tpIpp$.
-  \item Let $\tpIkp\in\TKg$ be a king type and suppose that $\tpIkp \neq \tpIp$.
-  Since $\StrA$ is a full model there is some $\ec\in\domA$ such realizing
-  $\tpIkp$ and since $\tpIkp\neq\tpIp$, we have $\ec \neq \ea$.
-  By~\Cref{rem:twovar-king-once}, such $\ec$ is unique. Hence $\tpTt =
-  \tpIab\StrA\ea\ec$ is the unique $2$-type satisfying $\tpTt\in\stps$ and
-  $\ytp\tpTt = \tpIkp$.
-  \item Let $\tpIp = \tpIk \in \TKg$ be a king type. Then no $\tpTt\in\stps$ has
-  $\ytp\tpTt$, since by definition $\tpIk\not\conn\tpIk$ and $\StrA$ is a model
-  for $(\TpiP,\TpiT)$.
+  \item If $\tpIk = \xtp\stps\in\TKg$ is a king type, then by definition we have
+  that no $2$-type $\tpTt\in\TpiT$ has $\xtp\tpTt = \tpIk$ and $\ytp\tpTt =
+  \tpIk$, and so no $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$ since
+  $\stps\subseteq\TpiT$ since $\StrA$ realizes $(\TpiP,\TpiT)$.
+  \item Let $\tpIk\in\TKg\sub\set{\xtp\stps}$ be any king type.
+  By~\Cref{rem:twovar-king-once}, there is a unique element $\ec \neq \ea \in
+  \domA$ realizing $\tpIk$. Then the $2$-type $\tpTt = \tpIab\StrA\ea\ec$ is the
+  unique satisfying $\tpTt\in\stps$ and $\ytp\tpTt = \tpIk$.
   \item Since $\StrA$ is a $\ClSig\SigS\sms$-structure, it automatically
   satisfies the $\forall\exists$-parts of~\cref{eq:twovar-ms-iinter}, hence for 
   every $\sm \in \sms$ there must be some $\eb \neq \ea \in \domA$ such that
@@ -228,14 +231,29 @@ Then $\stps \cup \set{\tpTt}$ is also a star-type.
 
 \begin{definition}
 A \emph{certificate} $\Cert$ for the type instance $\Tpi\TpiP\TpiT$ is a
-nonempty set of star-types satisfying the following conditions:
+nonempty set of star-types for $\Tpi\TpiP\TpiT$ satisfying the following
+conditions:
 \begin{enumerate}
+  \item\label{cond:cert-0} If $\tpTt\in\stps$ for some $\stps\in\Cert$, then
+  $\inv\tpTt\in\stps'$ for some $\stps'\in\Cert$, that is there are witnesses
+  for the endpoints for every $2$-type used in the certificate.
+  Equivalently, $\cup\Cert$ is closed under inversion. Let $\TpiTp = \cup\Cert$.
+  Clearly, $\TpiTp\subseteq\TpiT$. We require that $\Tpi\TpiP\TpiTp$ is a type
+  instance --- the \emph{refined type instance} --- and that all star-types
+  $\stps\in\Cert$ be star-types \emph{for that refined type instance}.
+  In this context we define the king types $\TKg = \TKg(\TpiP,\TpiTp)$ and the
+  peasant types $\TPs = \TPs(\TpiP,\TpiTp)$ with respect to the refined type
+  instance. Note that since $\TpiTp \subseteq \TpiT$, a king type with respect
+  to the original type instance must remain a king type with respect to the
+  refined type instance. However, there might be king types with respect to the
+  original type instance that were peasant types with respect of the original
+  type instance (this might happen if we remove all $2$-types connecting a
+  peasant type when going from $\TpiT$ to $\TpiTp$).
   \item\label{cond:cert-1} If $\tpIp \in \TpiP$ then some (possibly many) $\stps
   \in \Cert$ has $\xtp\stps = \tpIp$, that is every $1$-type is witnessed.
-  \item\label{cond:cert-2} If $\tpTt \in \TpiT$ then some (possibly many)
-  $\stps\in\Cert$ has $\tpTt \in \stps$, that is every $2$-type is witnessed.
-  \item\label{cond:cert-3} If $\tpIk \in \TpiK$ is a king type, then one $\stps
-  \in \Cert$ has $\xtp\stps = \tpIk$, that is every king type is witnessed once.
+  \item\label{cond:cert-2} If $\tpIk \in \TpiK$ is a king type with respect to
+  the refined type instance $\Tpi\TpiP\TpiTp$, then one $\stps \in \Cert$ has
+  $\xtp\stps = \tpIk$, that is every king type is witnessed once.
   Note that the existence is already implied by condition~\ref{cond:cert-1}.
 \end{enumerate}
 \end{definition}
@@ -243,12 +261,16 @@ Note that in general the size of a certificate may be exponential in terms of
 the size of the type instance. However, polynomial certificates exist:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
 Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$.
-For every $2$-type $\tpTt \in \TpiT$,
+Let $\TpiTp \subseteq \TpiT$ be the (nonempty) set of $2$-types realized in
+$\StrA$. Note that $\TpiTp$ is closed under inversion. 
+For every $2$-type $\tpTt \in \TpiTp$,
 let $\ea_\tpTt \neq \eb_\tpTt \in \domA$ be two distinct elements realizing
-$\tpTt$: $\tpIab\StrA{\ea_\tpTt}{\eb_\tpTt} = \tpTt$.
+$\tpTt$: $\tpIab\StrA{\ea_\tpTt}{\eb_\tpTt} = \tpTt$. Also, the choice of the
+elements can be made symmetric, that is $\ea_{\inv\tpTt} = \eb_\tpTt$ and
+$\eb_{\inv\tpTt} = \ea_\tpTt$ for every $\tpTt\in\TpiTp$.
 Let 
 \[
-  \Cert = \setbd{\stpIa\StrA{\ea_\tpTt}}{\tpTt\in\TpiT}.
+  \Cert = \setbd{\stpIa\StrA{\ea_\tpTt}}{\tpTt\in\TpiTp}.
 \]
 Then $\Cert$ is a certificate for the type instance. Moreover, its size is
 linearly bounded by $\card{\TpiT}$, hence also by the size of the type instance.
@@ -256,22 +278,23 @@ linearly bounded by $\card{\TpiT}$, hence also by the size of the type instance.
 \begin{proof}
 We check the conditions for a certificate:
 \begin{enumerate}
-  \item Let $\tpIp \in \TpiP$ be a $1$-type. Since $\StrA$ is a full
-  model for $\Tpi\TpiP\TpiT$ and $\domA$ has cardinality at least $2$, we may
-  choose a pair of distinct elements $\ea\neq\eb\in\domA$ such that $\ea$
-  realizes $\tpIp$. Let $\tpTt = \tpIab\StrA\ea\eb$.
-  Then $\tpIp = \xtp\tpTt$ and $\stps = \stpIa\StrA{\ea_\tpTt} \in \Cert$ has
-  $\xtp\stps = \tpIp$.
-  \item Let $\tpTt \in \TpiT$ be a $2$-type. Then
-  $\tpTt \in \stps = \tpIa\StrA{\ea_\tpTt} \in \Cert$.
+  \item That $\Tpi\TpiP\TpiTp$ is a type instance follows from the observations
+  that $\cup\Cert = \TpiTp$, $\TpiTp \subseteq \TpiT$ and that all $\xx$-types
+  and $\yy$-types of $2$-types from $\TpiTp$ are contained in $\TpiP$. Note that
+  $\StrA$ is a full model for the type instance $\Tpi\TpiP\TpiTp$, hence every
+  star-type $\stpIa\StrA\ea$ is a star-type for the type instance
+  $\Tpi\TpiP\TpiTp$.
+  \item That every $1$-type is witnessed follows from the observation that
+  $\StrA$ is a full model for $\Tpi\TpiP\TpiTp$
   \item If $\tpIk \in \TpiP$ is a king type, by~\Cref{rem:twovar-king-once} it
   is realized once in $\StrA$.
   Let $\ec \in \domA$ be the unique element realizing $\tpIk$.
-  If $\stps \in \Cert$ has $\xtp\stps = \tpIk$, then $\stps = \stpIa\StrA\ec$
-  so such $\stps$ is unique.
+  If $\stps \in \Cert$ has $\xtp\stps = \tpIk$, then $\stps = \stpIa\StrA\ec$,
+  so such $\stps$ is unique (more precisely, for every $\tpTt\in\TpiTp$ such
+  that $\xtp\tpTt = \tpIk$ we must have that $\ea_\tpTt = \ec$).
 \end{enumerate}
 \end{proof}
-
+% TODO: Fix the proof
 \begin{lemma}[Certificate expansion]\label{lem:cert-expand}
 Let $\Cert$ be a certificate for the connected type instance $\Tpi\TpiP\TpiT$.
 Then $\Tpi\TpiP\TpiT$ has a finite full model. More precisely, let $t \geq
