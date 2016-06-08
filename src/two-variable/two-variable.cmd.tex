@@ -15,11 +15,13 @@
 % type instance
 \newcommand{\Tpi}[2]{(#1,#2)}
 \newcommand{\TpiP}{\Pi}
+\newcommand{\TpiPp}{{\TpiP'}}
 \newcommand{\TpiK}{\Kappa}
 \newcommand{\TKg}{\Kappa}
 \newcommand{\TPs}{\mathrm{P}}
 \newcommand{\TpiT}{\Tau}
-\newcommand{\TpiTp}{{\Tau'}}
+\newcommand{\TpiU}{\mathrm{U}}
+\newcommand{\TpiTp}{{\TpiT'}}
 \newcommand{\Real}[1]{\satnameI{TP}{REALIZ}{#1}}
 \newcommand{\FinReal}[1]{\satnameII{FIN}{TP}{REALIZ}{#1}}
 \newcommand{\FinAReal}[1]{\satnameII{(FIN}{)TP}{REALIZ}{#1}}
@@ -32,6 +34,34 @@
 
 % star-type
 \newcommand{\stps}{\sigma}
+\newcommand{\stpsp}{{\stps'}}
+\newcommand{\stpspt}[1]{{\stps_{#1}'}}
 
 % certificate
 \newcommand{\Cert}{\mathcal{S}}
+
+% paramter t
+\newcommand{\pt}{t}
+
+\newcommand{\As}[1]{\domA^{#1}}
+\newcommand{\as}[1]{\ea^{#1}}
+\newcommand{\bs}[1]{\eb^{#1}}
+\newcommand{\Asi}[2]{\domA^{#1}_{#2}}
+\newcommand{\asij}[3]{\ea^{#1}_{#2 #3}}
+\newcommand{\TKgi}[2]{\TKg(#1,#2)}
+\newcommand{\TPsi}[2]{\TPs(#1,#2)}
+\newcommand{\eat}[1]{\ea_{#1}}
+\newcommand{\ebt}[1]{\eb_{#1}}
+
+% Intended types
+\newcommand{\itpsOP}{\stps}
+\newcommand{\itps}[1]{\itpsOP(#1)}
+
+\newcommand{\itpiOP}{\tpIp}
+\newcommand{\itpi}[1]{\tpIp(#1)}
+
+\newcommand{\stpcond}[1]{$(\stps #1)$}
+\newcommand{\refstpcond}[1]{\hyperref[cond:stp-#1]{\stpcond{#1}}}
+
+\newcommand{\certcond}[1]{$(\Cert #1)$}
+\newcommand{\refcertcond}[1]{\hyperref[cond:cert-#1]{\certcond{#1}}}

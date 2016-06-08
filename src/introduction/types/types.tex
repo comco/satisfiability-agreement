@@ -35,10 +35,14 @@ $\xx$. Similarly, the \emph{$\yy$-type} of $\tau$ is the $1$-type
 $\gls{y-type-t}$ consisting of all the literals of $\tpTt$ featuring only the
 variable symbol $\yy$, that is replaced by $\xx$.
 For instance we have the identity $\xtp\inv\tpTt = \ytp\tpTt$.
-We say that $\tpTt$ \emph{connects} the $1$-types $\xtp\tpTt$ and $\ytp\tpTt$.
+We say that $\tpTt$ \emph{connects} the $1$-types $\xtp\tpTt$ and $\ytp\tpTt$
+and we refer to $\xtp\tpTt$ and $\ytp\tpTt$ as the \emph{endpoints} of $\tpTt$.
+Two $2$-types $\tpTt,\tpTtp$ are \emph{parallel} if they have the same
+endpoints, that is if $\xtp\tpTt = \xtp\tpTtp$ and $\ytp\tpTt = \ytp\tpTtp$.
+We use the notation $\gls{parallel-t-tp}$ to denote parallel $2$-types.
 
-If $\StrA$ is a $\SigS$-structure and $\ea \in \domA$, the \emph{$1$-type of
-$\ea$ in $\StrA$} is
+If $\StrA$ is a $\SigS$-structure and $\ea \in \domA$, the
+\emph{$1$-type of $\ea$ in $\StrA$} is
 \[
   \gls{1-type-a-A} = \setbd{\litl(\xx) \in \LitF\SigS}{\StrA \vDash \litl(\ea)}.
 \]

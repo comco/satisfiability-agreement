@@ -29,7 +29,22 @@
   urlcolor={blue!80!black}
 }
 
-%\usepackage{breqn}
+% Make references to description work:
+% http://tex.stackexchange.com/questions/1230/reference-name-of-description-list-item-in-latex
+\usepackage{nameref}
+\makeatletter
+\let\orgdescriptionlabel\descriptionlabel
+\renewcommand*{\descriptionlabel}[1]{%
+  \let\orglabel\label
+  \let\label\@gobble
+  \phantomsection
+  \edef\@currentlabel{#1}%
+  %\edef\@currentlabelname{#1}%
+  \let\label\orglabel
+  \orgdescriptionlabel{#1}%
+}
+\makeatother
+
 
 \input{theorems.cmd.tex}
 \input{missinggreek.cmd.tex}
