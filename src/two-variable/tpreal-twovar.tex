@@ -238,7 +238,7 @@ conditions:
 \begin{itemize}
   \item[\certcond1]\label{cond:cert-1} If $\tpTt\in\stps$ for some
   $\stps\in\Cert$, then $\inv\tpTt\in\stps'$ for some $\stps'\in\Cert$, that is there are witnesses
-  for the endpoints for every $2$-type used in the certificate.
+  for the endpoints of every $2$-type used in the certificate.
   Equivalently, $\cup\Cert$ is closed under inversion.
   
   Let $\TpiTp = \cup\Cert$.
@@ -256,14 +256,14 @@ conditions:
   \item[\certcond2]\label{cond:cert-2} If $\tpIp \in \TpiP$ then some (possibly
   many) $\stps \in \Cert$ has $\xtp\stps = \tpIp$, that is every $1$-type is witnessed.
   \item[\certcond3]\label{cond:cert-3} If $\tpIk \in \TKgi\TpiP\TpiTp$ is a king
-  type, then one $\stps \in \Cert$ has $\xtp\stps = \tpIk$, that is every king type is
-  witnessed once.
+  type, then only one $\stps \in \Cert$ has $\xtp\stps = \tpIk$, that is every
+  king type is witnessed once.
   Note that the existence is already implied by~\refcertcond2.
   \item[\certcond4]\label{cond:cert-4} If $\tpIp,\tpIpp \in \TpiP$ are (possibly
-  the same) $1$-types that are not connected, that is no $\tpTt\in\TpiTp$ has $\xtp\tpTt
-  = \tpIp$ and $\ytp\tpTt = \tpIpp$, then $\tpIp = \tpIpp \in
-  \TKg(\TpiP,\TpiTp)$, that is two $1$-types are not connected iff they are the
-  same king type.
+  the same) $1$-types that are not connectable, that is no $\tpTt\in\TpiTp$ has
+  $\xtp\tpTt = \tpIp$ and $\ytp\tpTt = \tpIpp$, then $\tpIp = \tpIpp \in
+  \TKg(\TpiP,\TpiTp)$, that is two $1$-types are not connectable iff they are
+  the same king type.
 \end{itemize}
 \end{definition}
 Note that in general the size of a certificate may be exponential in terms of
@@ -276,7 +276,7 @@ Note that $\TpiTp$ is closed under inversion.
 For every $2$-type $\tpTt \in \TpiTp$,
 let $\eat\tpTt \neq \ebt\tpTt \in \domA$ be two distinct elements realizing
 $\tpTt$: $\tpIab\StrA{\eat\tpTt}{\ebt\tpTt} = \tpTt$. The choice of the
-elements is made symmetric, that is $\eat{\inv\tpTt} = \ebt\tpTt$ and
+elements is made symmetrically, that is $\eat{\inv\tpTt} = \ebt\tpTt$ and
 $\ebt{\inv\tpTt} = \eat\tpTt$ for every $\tpTt\in\TpiTp$.
 Let 
 \[
@@ -300,8 +300,8 @@ We check the conditions for a certificate:
   by~\Cref{rem:twovar-king-once} it is realized once in $\StrA$.
   Let $\ec \in \domA$ be the unique element realizing $\tpIk$.
   If $\stps \in \Cert$ has $\xtp\stps = \tpIk$, then $\stps = \stpIa\StrA\ec$,
-  so such $\stps$ is unique (more precisely, for every $\tpTt\in\TpiTp$ such
-  that $\xtp\tpTt = \tpIk$ we must have that $\eat\tpTt = \ec$).
+  so such $\stps$ is unique. More precisely, for every $\tpTt\in\TpiTp$ such
+  that $\xtp\tpTt = \tpIk$, we must have that $\eat\tpTt = \ec$.
   \item[\refcertcond4] Let $\tpIp, \tpIpp \in \TpiP$ be two $1$-types and
   suppose that no $\tpTt\in\TpiTp$ connects them. Let $\ea\in\domA$ be an element realizing
   $\tpIp$ and $\eb$ be an element realizing $\tpIpp$. If $\ea \neq \eb$, then
