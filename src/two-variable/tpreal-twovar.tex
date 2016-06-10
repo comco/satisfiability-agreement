@@ -46,7 +46,7 @@ $\forall\exists$-parts of formulas and $\ClSig\SigS\sms$-structures
 all $\ClSig\SigS\sms$-structures contain at least two elements (that can be
 enforced by adding the formula $\forall\xx\exists\yy(\xx\neq\yy)$ to the
 intended interpretation of $\SigS$ and it doesn't make the problem simpler,
-since satisfiability in the class of structures of cardianlity $1$ is trivial).
+since satisfiability in the class of structures of cardinality $1$ is trivial).
 
 \begin{definition}\label{def:clsig-twovar}
 The \emph{(finite) classified satisfiability problem for two-variable
@@ -102,14 +102,14 @@ defined by:
 Clearly, $\Tpi\TpiP\TpiT$ is indeed a type instance and $\StrA$ realizes
 $\Tpi\TpiP\TpiT$.
 
-The \emph{(finite) type realizibility problem\footnote{The reason we study the
-type realizibility problem instead of directly studying the satisfiability problem is that it is flexible enough to allow us to employ its
-solutions in simpler cases to construct solutions in more complicated cases.}
+The \emph{(finite) type realizability problem\footnote{The reason we study the
+type realizability problem instead of directly studying the satisfiability
+problem is that it is flexible enough to allow us to employ its solutions in simpler cases to construct solutions in more complicated cases.}
 for $\vFo2$} is the following:
 given a classified signature $\ClSig\SigS\sms$ and a type instance
 $\Tpi\TpiP\TpiT$ over $\ClSig\SigS\sms$, is there a (finite)
 $\ClSig\SigS\sms$-structure that realizes $\Tpi\TpiP\TpiT$.
-Denote the type realizibility problem for $\vFo2$ by
+Denote the type realizability problem for $\vFo2$ by
 $\Real{\vFo2}$ and its finite version by $\FinReal{\vFo2}$.
 \end{definition}
 
@@ -128,7 +128,7 @@ Recall that the number of possible $1$-types or $2$-types over $\SigS$ is
 exponentially bounded by the length $\sizes$ of $\SigS$ and that the cardinality
 of a $1$-type or a $2$-type over $\SigS$ is polynomially bounded by $\sizes$.
 Hence we can reduce the (finite) classified satisfiability problem to the
-(finite) type realizibility problem in nondeterministic exponential time:
+(finite) type realizability problem in nondeterministic exponential time:
 \[
   \FinAClSat{\vFo2} \red\cNExpTime \FinAReal{\vFo2}.
 \]
@@ -364,8 +364,8 @@ the structure on stages.
   by~\refstpcond2 we have $\tpIkp \neq \tpIk$. By~\refcertcond3
   there is a unique star-type $\stpsp$ having $\xtp\stpsp = \tpIkp$ and a unique
   king $\ebt\tpTt = \eat\stpsp \neq \ea$ having intended star-type $\stpsp$.
-  Note that this assigment is symmetric, that is at the point of considering the
-  type $\inv\tpTt \in \stpsp$ for the king $\ebt\tpTt$, we would choose $\ea$ as
+  Note that this assignment is symmetric, that is at the point of considering
+  the type $\inv\tpTt \in \stpsp$ for the king $\ebt\tpTt$, we would choose $\ea$ as
   the opposite side of the assignment: we claim that $\inv\tpTt \in
   \stpsp$ and it is the unique $2$-type from $\stpsp$ having $\ytp{\inv\tpTt}
   = \tpIk$.
@@ -460,7 +460,7 @@ is a model for $\Tpi\TpiP\TpiT$ by~\refcertcond2.
 \end{proof}
 
 \begin{proposition}
-The logic $\vFo2$ has the finite model property. The (finite) type realizibility
+The logic $\vFo2$ has the finite model property. The (finite) type realizability
 problem for $\vFo2$ is in $\cNP$.
 \end{proposition}
 \begin{proof}
