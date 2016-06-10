@@ -83,15 +83,15 @@ $\TpiT\subseteq\TpT\SigS$ such that:
 
 A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} (or is a model of) the
 type instance $\Tpi\TpiP\TpiT$, if all $1$-types and $2$-types realized in
-$\StrA$ come from the type instance, that is if:
+$\StrA$ come from the type instance and also every $1$-type from the type
+instance is realized, that is if:
 \begin{itemize}
-  \item $\tpIa\StrA\ea \in \TpiP$ for all $\ea\in\domA$, and
+  \item $\tpIa\StrA\ea \in \TpiP$ for all $\ea\in\domA$,
   \item $\tpIab\StrA\ea\eb \in \TpiT$ for all $\ea\in\domA$ and
-  $\eb \in \domA\sub\set{\ea}$.
+  $\eb \in \domA\sub\set{\ea}$, and
+  \item for every $1$-type $\tpIp \in \TpiP$ there is an element $\ea \in \domA$
+realizing $\tpIp$ (we don't require an analogous condition for the $2$-types).
 \end{itemize}
-The structure $\StrA$ \emph{fully realizes} $\Tpi\TpiP\TpiT$, if additionally
-for every $1$-type $\tpIp \in \TpiP$ there is an element $\ea \in \domA$
-realizing $\tpIp$ (we don't require analogous condition for the $2$-types).
 
 The \emph{type instance} of $\StrA$ is the type instance $\Tpi\TpiP\TpiT$
 defined by:
@@ -99,33 +99,19 @@ defined by:
   \TpiP &= \setbd{\tpIa\StrA\ea}{\ea \in \domA} \\
   \TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea\neq\eb \in \domA}.
 \end{align*}
-Clearly, $\Tpi\TpiP\TpiT$ is indeed a type instance and $\StrA$ fully realizes
+Clearly, $\Tpi\TpiP\TpiT$ is indeed a type instance and $\StrA$ realizes
 $\Tpi\TpiP\TpiT$.
 
-The \emph{(finite) (full) type realizibility problem\footnote{The
-reason we study the type realizibility problem instead of directly studying the
-satisfiability problem is that it is flexible enough to allow us to employ its
+The \emph{(finite) type realizibility problem\footnote{The reason we study the
+type realizibility problem instead of directly studying the satisfiability problem is that it is flexible enough to allow us to employ its
 solutions in simpler cases to construct solutions in more complicated cases.}
 for $\vFo2$} is the following:
 given a classified signature $\ClSig\SigS\sms$ and a type instance
 $\Tpi\TpiP\TpiT$ over $\ClSig\SigS\sms$, is there a (finite)
-$\ClSig\SigS\sms$-structure that (fully) realizes $\Tpi\TpiP\TpiT$.
+$\ClSig\SigS\sms$-structure that realizes $\Tpi\TpiP\TpiT$.
 Denote the type realizibility problem for $\vFo2$ by
 $\Real{\vFo2}$ and its finite version by $\FinReal{\vFo2}$.
-Similarly, denote the full type realizibility problem for $\vFo2$ by
-$\FullReal{\vFo2}$ and its finite version by $\FinFullReal{\vFo2}$.
 \end{definition}
-
-\begin{remark}\label{rem:red-real-to-full-real}
-Since the type instance $\Tpi\TpiPp\TpiTp$ of every model $\StrA$ of the type
-instance $\Tpi\TpiP\TpiT$ consists of subsets: $\TpiPp \subseteq \TpiP$ and
-$\TpiTp \subseteq \TpiT$, by guessing these subsets we can reduce the (finite)
-type realizability problem to the (finite) full type realizability problem in
-nondeterministic polynomial time:
-\[
-  \FinAReal{\vFo2} \red\cNP \FinAFullReal{\vFo2}.
-\]
-\end{remark}
 
 \begin{remark}\label{rem:red-sat-to-real}
 Let $\alpha(\xx,\yy)$ be a quantifier-free $\vFoF2\SigS$-formula.
@@ -134,15 +120,17 @@ $1$-types consistent with $\alpha(\xx,\yy)$ and the intended
 interpretation~\cref{eq:twovar-ms-iinter} and where $\TpiT$ is the set of
 those $2$-types $\tpTt$ over $\ClSig\SigS\sms$ such that both $\tpTt$ and 
 $\inv\tpTt$ are consistent with $\alpha$ and the intended interpretation~\cref{eq:twovar-ms-iinter}. Then a $\ClSig\SigS\sms$-structure
-$\StrA$ is a model for $\alpha$ iff it is a model for $\Tpi\TpiP\TpiT$.
+$\StrA$ is a model for $\alpha$ iff there are some $\TpiPp \subseteq \TpiP$ and
+$\TpiTp \subseteq \TpiT$ such that $\Tpi\TpiPp\TpiTp$ is a type instance and
+$\StrA$ is a model for $\Tpi\TpiPp\TpiTp$.
 
 Recall that the number of possible $1$-types or $2$-types over $\SigS$ is
 exponentially bounded by the length $\sizes$ of $\SigS$ and that the cardinality
 of a $1$-type or a $2$-type over $\SigS$ is polynomially bounded by $\sizes$.
 Hence we can reduce the (finite) classified satisfiability problem to the
-(finite) type realizibility problem in deterministic exponential time:
+(finite) type realizibility problem in nondeterministic exponential time:
 \[
-  \FinAClSat{\vFo2} \red\cExpTime \FinAReal{\vFo2}.
+  \FinAClSat{\vFo2} \red\cNExpTime \FinAReal{\vFo2}.
 \]
 \end{remark}
 
@@ -151,8 +139,8 @@ Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
 Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} 
 (written $\gls{connectable-p-pp}$), 
 if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for some $\tpTt \in \TpiT$.
-Note that connectability is symmetric since $\TpiT$ is closed under inversion.
-However, connectability is not necessarly neither transitive nor reflexive:
+Connectability is symmetric since $\TpiT$ is closed under inversion.
+However, connectability is not necessarily neither transitive nor reflexive:
 
 A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if $\tpIk \not\conn \tpIk$.
 A $1$-type $\tpIp \in \TpiP$ that is not a king type is a \emph{peasant type}.
@@ -161,15 +149,15 @@ $\TKg = \TKgi\TpiP\TpiT$ and the set of peasant types is
 $\TPs = \TPsi\TpiP\TpiT = \TpiP \sub \TKg(\TpiP,\TpiT)$.
 \end{definition}
 \begin{remark}\label{rem:twovar-king-once}
-If $\StrA$ is a full model for $\Tpi\TpiP\TpiT$, then every two distinct
+If $\StrA$ is a model for $\Tpi\TpiP\TpiT$ then any two distinct
 elements $\ea \neq \eb \in \domA$ realize connectable $1$-types. Hence every king type
 $\tpIk \in \TKgi\TpiP\TpiT$ must be realized once in $\StrA$.
 \end{remark}
 
 The next definition characterizes the local structure of the ray of $2$-types
-realized around an element of a full model of a type instance.
+realized around an element in a model of a type instance.
 \begin{definition}
-A \emph{star-type} $\stps \subseteq \TpiT$ for the type instance
+A \emph{star-type} $\stps \subseteq \TpiT$ over the type instance
 $\Tpi\TpiP\TpiT$ is a nonempty set of $2$-types satisfying the following conditions:
 \begin{itemize}
   \item[\stpcond1]\label{cond:stp-1} If $\tpTt, \tpTtp \in \stps$, then
@@ -189,17 +177,19 @@ a \emph{king star-type}. Otherwise $\stps$ is a \emph{peasant star-type}.
 Note that the size of a star-type is polynomially bounded by the size of the
 type instance.
 
-If $\StrA$ is a full $\Tpi\TpiP\TpiT$-model and $\ea \in \domA$, the
+If $\StrA$ is a model for $\Tpi\TpiP\TpiT$ and $\ea \in \domA$, the
 \emph{star-type realized by $\ea$} is:
 \[
   \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set{\ea}}.
 \]
 \end{definition}
-We proceed to verify that the star-type realized by $\ea$ is indeed a star-type:
+We verify that the star-type realized by $\ea$ is indeed a star-type:
 \begin{remark}
-Let $\Tpi\TpiP\TpiT$ be a type instance for $\ClSig\SigS\sms$, $\StrA$ be
-a full $\Tpi\TpiP\TpiT$-model and let $\ea \in \domA$. Then the star-type
-$\stps = \stpIa\StrA\ea$ realized by $\ea$ is a star-type for the type instance
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$, let $\StrA$ be
+a model for $\Tpi\TpiP\TpiT$ and let $\ea \in \domA$ be any element of the
+model.
+Then the star-type $\stps = \stpIa\StrA\ea$ realized by $\ea$ is a star-type
+over the type instance
 $(\TpiP,\TpiT)$.
 \end{remark}
 \begin{proof}
@@ -220,16 +210,17 @@ conditions for a star-type:
   unique satisfying $\tpTt\in\stps$ and $\ytp\tpTt = \tpIk$.
   \item[\refstpcond4] Since $\StrA$ is a $\ClSig\SigS\sms$-structure, it
   automatically satisfies the $\forall\exists$-parts of~\cref{eq:twovar-ms-iinter}, hence for 
-  every $\sm \in \sms$ there must be some $\eb \neq \ea \in \domA$ such that
-  $\sm(\xx,\yy) \in \tpIab\StrA\ea\eb$.
+  every $\sm \in \sms$ there must be some $\eb \in \domA \sub \set{\ea}$ such
+  that $\sm(\xx,\yy) \in \tpIab\StrA\ea\eb$.
 \end{itemize}
 \end{proof}
 
 \begin{remark}[Star-type extension]\label{rem:star-type-ext}
-Let $\stps$ be a star-type having $\xx$-type $\tpIp = \xtp\stps$.
-Let $\tpTt \in \TpiT$ be a $2$-type and suppose that $\xtp\tpTt = \tpIp$ and
-that $\ytp\tpTt$ is not a king type.
-Then $\stpsp = \stps \cup \set{\tpTt}$ is also a star-type.
+Let $\stps$ be a star-type over $\Tpi\TpiP\TpiT$ and let $\tpIp = \xtp\stps$.
+Let $\tpTt \in \TpiT$ be a $2$-type such that $\xtp\tpTt = \tpIp$ and
+$\ytp\tpTt$ is not a king type.
+Then $\stpsp = \stps \cup \set{\tpTt}$ is also a star-type over
+$\Tpi\TpiP\TpiT$.
 \end{remark}
 \begin{proof}
 It is straightforward to verify the conditions for a star-type:~\refstpcond1
@@ -278,9 +269,10 @@ conditions:
 Note that in general the size of a certificate may be exponential in terms of
 the size of the type instance. However, polynomial certificates exist:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
-Let $\StrA$ be a full model for the type instance $\Tpi\TpiP\TpiT$.
+Let $\StrA$ be a model for the type instance $\Tpi\TpiP\TpiT$.
 Let $\TpiTp \subseteq \TpiT$ be the (nonempty) set of $2$-types realized in
-$\StrA$. Note that $\TpiTp$ is closed under inversion. 
+$\StrA$, so $\Tpi\TpiP\TpiTp$ is the type instance of $\StrA$.
+Note that $\TpiTp$ is closed under inversion.
 For every $2$-type $\tpTt \in \TpiTp$,
 let $\eat\tpTt \neq \ebt\tpTt \in \domA$ be two distinct elements realizing
 $\tpTt$: $\tpIab\StrA{\eat\tpTt}{\ebt\tpTt} = \tpTt$. The choice of the
@@ -290,9 +282,8 @@ Let
 \[
   \Cert = \setbd{\stpIa\StrA{\eat\tpTt}}{\tpTt\in\TpiTp}.
 \]
-Then $\Cert$ is a certificate for the type instance. Moreover, its size is
-linearly bounded by $\card{\TpiTp}$, hence also by the size of the type
-instance.
+Then $\Cert$ is a certificate for $\Tpi\TpiP\TpiT$. Moreover, its size is
+linearly bounded by $\card{\TpiTp}$, hence also by the size of $\Tpi\TpiP\TpiT$.
 \end{lemma}
 \begin{proof}
 We check the conditions for a certificate:
@@ -300,11 +291,11 @@ We check the conditions for a certificate:
   \item[\refcertcond1] That $\Tpi\TpiP\TpiTp$ is a type instance follows from
   the observations that $\cup\Cert = \TpiTp$, $\TpiTp \subseteq \TpiT$ and that all $\xx$-types
   and $\yy$-types of $2$-types from $\TpiTp$ are contained in $\TpiP$. Note that
-  $\StrA$ is a full model for the type instance $\Tpi\TpiP\TpiTp$, hence every
+  $\StrA$ is a model for the type instance $\Tpi\TpiP\TpiTp$, hence every
   star-type $\stpIa\StrA\ea$ is a star-type for the type instance
   $\Tpi\TpiP\TpiTp$.
   \item[\refcertcond2] That every $1$-type is witnessed follows from the
-  observation that $\StrA$ is a full model for $\Tpi\TpiP\TpiTp$.
+  observation that $\StrA$ is a model for $\Tpi\TpiP\TpiTp$.
   \item[\refcertcond3] If $\tpIk \in \TKgi\TpiP\TpiTp$ is a king type,
   by~\Cref{rem:twovar-king-once} it is realized once in $\StrA$.
   Let $\ec \in \domA$ be the unique element realizing $\tpIk$.
@@ -323,13 +314,12 @@ We check the conditions for a certificate:
 \begin{lemma}[Certificate expansion]\label{lem:cert-expand}
 Let $\Cert$ be a certificate for the type instance $\Tpi\TpiP\TpiT$ over the
 classified signature $\ClSig\SigS\sms$.
-Then $\Tpi\TpiP\TpiT$ has a finite full model.
+Then $\Tpi\TpiP\TpiT$ has a finite model.
 
 More precisely, let $\TpiTp = \cup\Cert \subseteq \TpiT$
 and let $\pt \geq \card\TpiTp$ be a parameter.
-Then the filtered type instance $\Tpi\TpiP\TpiTp$ has a finite full model
-$\StrA$ in which every king star-type $\stps\in\Cert$, $\xtp\stps \in
-\TKgi\TpiP\TpiTp$ is realized only once and every peasant star-type
+Then the filtered type instance $\Tpi\TpiP\TpiTp$ has a finite model $\StrA$ in
+which every king star-type $\stps\in\Cert$, $\xtp\stps \in \TKgi\TpiP\TpiTp$ is realized only once and every peasant star-type
 $\stps\in\Cert$, $\xtp\stps \in \TPsi\TpiP\TpiTp$ is realized at least $\pt$
 times.
 \end{lemma}
@@ -465,29 +455,25 @@ the structure on stages.
   $\tpIp(\eb)$. This is possible because during realization of kings we have
   assigned a $2$-type between every pair of distinct kings and by~\refcertcond4.
 \end{description}
-The constructed model is a $\ClSig\SigS\sms$-structure by~\refstpcond4 and is a
-full model for $\Tpi\TpiP\TpiT$ by~\refcertcond2.
+This structure is a $\ClSig\SigS\sms$-structure by~\refstpcond4 and
+is a model for $\Tpi\TpiP\TpiT$ by~\refcertcond2.
 \end{proof}
 
 \begin{proposition}
-The logic $\vFo2$ has the finite model property. The (finite) full type
-realizibility problem for $\vFo2$ is in $\cNP$.
+The logic $\vFo2$ has the finite model property. The (finite) type realizibility
+problem for $\vFo2$ is in $\cNP$.
 \end{proposition}
 \begin{proof}
 Let $\Tpi\TpiP\TpiT$ be a type instance for the classified signature
-$\ClSig\SigS\sms$.
-It is trivial to check satisfiability in the class of structures of cardinality
-$1$. If this fails to yield a model, guess a certificate of polynomial size.
-By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand} such a certificate exists
-iff $\Tpi\TpiP\TpiT$ is fully satisfiable.
-Recall that \Cref{rem:red-sat-to-real} states that a structure is a model for a
-formula iff it is a model for the type instance consisting of the types
-consistent with the formula. Also recall~\Cref{rem:red-real-to-full-real}
-stating that type realizability reduces in nondeterministic polynomial time to
-full type realizability. The logic has the finite model property since
-in~\Cref{lem:cert-expand} we constructed a finite full model.
+$\ClSig\SigS\sms$. Guess a polynomial certificate for $\Tpi\TpiP\TpiT$.
+By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand}, such a certificate exists
+iff $\Tpi\TpiP\TpiT$ is realizable.
+The logic has the finite model property since the model constructed
+in~\Cref{lem:cert-expand} is finite.
 \end{proof}
-As a corollary we get the standard result:
+Recall \Cref{rem:red-sat-to-real}, stating that a structure is a model for a
+formula iff it is a model for the type instance consisting of the types
+consistent with the formula, so as a corollary we get the standard result:
 \begin{corollary}
 The logic $\vFo2$ has the finite model property and its (finite) satisfiability
 problem is in $\cNExpTime$.
