@@ -37,7 +37,7 @@
 \newcommand{\TpiPb}{\TpiP_{\bullet}}
 \newcommand{\TpiTb}{\TpiT_{\bullet}}
 % connectible types
-\newcommand{\conn}{\sim}
+\newcommand{\conn}[1]{\sim^{#1}}
 
 % star-type
 \newcommand{\stps}{\sigma}
@@ -73,3 +73,50 @@
 
 \newcommand{\certcond}[1]{$(\Cert #1)$}
 \newcommand{\refcertcond}[1]{\hyperref[cond:cert-#1]{\certcond{#1}}}
+
+% new conditions
+% Type instance model
+\newcommand{\condrealizI}{$(\mathcal{R}1)$}
+\newcommand{\refcondrealizI}{\hyperref[cond:realizI]{\condrealizI} }
+
+\newcommand{\condrealizII}{$(\mathcal{R}2)$}
+\newcommand{\refcondrealizII}{\hyperref[cond:realizII]{\condrealizII} }
+
+\newcommand{\condrealizp}{$(\mathcal{R}\tpIp)$}
+\newcommand{\refcondrealizp}{\hyperref[cond:realizp]{\condrealizp} }
+
+\newcommand{\condrealizk}{$(\mathcal{R}\tpIk)$}
+\newcommand{\refcondrealizk}{\hyperref[cond:realizk]{\condrealizk} }
+
+% nobly distinguished models
+\newcommand{\condrealizd}{$(\mathcal{R}d)$}
+\newcommand{\refcondrealizd}{\hyperref[cond:realizd]{\condrealizd} }
+
+\newcommand{\condrealizn}{$(\mathcal{R}\tpIn)$}
+\newcommand{\refcondrealizn}{\hyperref[cond:realizn]{\condrealizn} }
+
+% Star-type
+\newcommand{\condstpx}{$(\stps\xx)$}
+\newcommand{\refcondstpx}{\hyperref[cond:stpx]{\condstpx} }
+
+\newcommand{\condstpkx}{$(\stps\tpIk\xx)$}
+\newcommand{\refcondstpkx}{\hyperref[cond:stpkx]{\condstpkx} }
+
+\newcommand{\condstpky}{$(\stps\tpIk\yy)$}
+\newcommand{\refcondstpky}{\hyperref[cond:stpky]{\condstpky} }
+
+\newcommand{\condstpm}{$(\stps\sm)$}
+\newcommand{\refcondstpm}{\hyperref[cond:stpm]{\condstpm} }
+
+% Certificate
+\newcommand{\condcerti}{$(\inv\Cert)$}
+\newcommand{\refcondcerti}{\hyperref[cond:certi]{\condcerti} }
+
+\newcommand{\condcertp}{$(\Cert\tpIp)$}
+\newcommand{\refcondcertp}{\hyperref[cond:certp]{\condcertp} }
+
+\newcommand{\condcertk}{$(\Cert\tpIk)$}
+\newcommand{\refcondcertk}{\hyperref[cond:certk]{\condcertk} }
+
+\newcommand{\condcertc}{$(\Cert c)$}
+\newcommand{\refcondcertc}{\hyperref[cond:certc]{\condcertc} }

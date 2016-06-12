@@ -8,9 +8,9 @@
 \newcommand{\TpTc}[1]{\Tau_{\mathrm{c}}[#1]}
 
 % galactically connectable
-\newcommand{\gconn}{\sim_{\mathrm{g}}}
+\newcommand{\gconn}[1]{\sim_{\mathrm{g}}^{#1}}
 % cosmic connectable
-\newcommand{\cconn}{\sim_{\mathrm{c}}}
+\newcommand{\cconn}[1]{\sim_{\mathrm{c}}^{#1}}
 
 \DeclareMathOperator{\TpOP}{Tp}
 
@@ -37,15 +37,13 @@
 \newcommand{\csps}{\sigma}
 \newcommand{\cspsp}{{\csps'}}
 
-\newcommand{\cspcondIp}{$\bcancel{(\csps1')}$}
-\newcommand{\cspcondIIp}{$(\csps2')$}
-\newcommand{\cspcondIIIp}{$(\csps3')$}
-\newcommand{\cspcondIVp}{$\bcancel{(\csps4')}$}
+\newcommand{\condcspx}{$\bcancel{(\csps\xx)}$}
+\newcommand{\condcspnx}{$(\csps\tpIn\xx)$}
+\newcommand{\condcspny}{$(\csps\tpIn\yy)$}
+\newcommand{\condcspm}{$\bcancel{(\csps\sm)}$}
 
-\newcommand{\refcspcondIp}{\hyperref[cond:csp-Ip]{\cspcondIp}}
-\newcommand{\refcspcondIIp}{\hyperref[cond:csp-IIp]{\cspcondIIp}}
-\newcommand{\refcspcondIIIp}{\hyperref[cond:csp-IIIp]{\cspcondIIIp}}
-\newcommand{\refcspcondIVp}{\hyperref[cond:csp-IVp]{\cspcondIVp}}
+\newcommand{\refcondcspnx}{\hyperref[cond:cspnx]{\condcspnx}}
+\newcommand{\refcondcspny}{\hyperref[cond:cspny]{\condcspny}}
 
 \newcommand{\certcondIp}{$(\Cert1')$}
 \newcommand{\certcondIIp}{$(\Cert2')$}
