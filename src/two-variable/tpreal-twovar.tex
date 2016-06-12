@@ -301,7 +301,7 @@ satisfying the following conditions:
   $\ClSig\SigS\sms$ and also that every star-type $\stps \in \Cert$ is a also a
   star-type over $\Tpi\TpiP\TpiTp$. Call $\Tpi\TpiP\TpiTp$ the \emph{filtered
   type instance} of $\Cert$.
-  \item[\condcertc]\label{cond:certc}
+  \item[\condcertK]\label{cond:certK}
   We require that $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$, that is the notion of a
   king type with respect to the filtered type instance is the same as the notion
   of a king type with respect to the original type instance.
@@ -312,6 +312,11 @@ satisfying the following conditions:
   If $\tpIk \in \TKgi\TpiP\TpiT$, then a unique $\stps \in \Cert$ has
   $\xtp\stps = \tpIk$, that is there is a unique star-type for every king-type.
   Note that the existence is already implied by~\refcondcertp.
+  \item[\condcertc]\label{cond:certc}
+  Let $\tpIp, \tpIpp \in \TpiP$. If it is not the case that $\tpIp =
+  \tpIpp = \tpIk \in \TKgi\TpiP\TpiTp$, then some $\tpTt \in \TpiTp$ has
+  $\xtp\tpTt = \tpIp$ and $\ytp\tpTt = \tpIpp$, that is if $\tpIp$ and $\tpIpp$
+  are not the same king type, then they are connectable.
 \end{itemize}
 \end{definition}
 
@@ -362,7 +367,7 @@ We verify the conditions for a certificate:
 \begin{itemize}
   \item[\refcondcerti] 
   That $\cup\Cert = \TpiTp$ is closed under inversion is immediate.
-  \item[\refcondcertc]
+  \item[\refcondcertK]
   That $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$ follows
   from~\Cref{rem:str-tpi-kings-eq}.
   \item[\refcondcertp]
@@ -372,6 +377,24 @@ We verify the conditions for a certificate:
   That every king-type $\tpIk \in \TKgi\TpiP\TpiT$ has a unique star-type
   $\stps \in \Cert$ such that $\xtp\stps = \tpIk$ follows from
   Condition~\refcondrealizk for $\StrA$.
+  \item[\refcondcertc]
+  Let $\tpIp, \tpIpp \in \TpiP$ be such that they are not the same king type.
+  We will find distinct elements $\ea \neq \eb \in \domA$ such that
+  $\tpIa\StrA\ea = \tpIp$ and $\tpIa\StrA\eb = \tpIpp$. Then $\tpTt =
+  \tpIab\StrA\ea\eb \in \TpiTp$ will connect $\tpIp$ and $\tpIpp$.
+  
+  First suppose that $\tpIp$ is a peasant type. By
+  Conditions~\refcondrealizI and~\refcondrealizk for $\StrA$, we must have that
+  $\tpIp$ is realized at least $2$ times in $\StrA$. Let $\ea_1 \neq \ea_2 \in
+  \domA$ be two distinct elements realizing $\tpIp$ and let $\eb \in \domA$ be
+  an element realizing $\tpIpp$. Then $H = \set{\ea_1,\ea_2} \sub \set{\eb}$ is
+  nonempty and let $\ea \in H$. Then $\ea \neq \eb$ and $\tpTt =
+  \tpIab\StrA\ea\eb \in \TpiTp$.
+  
+  Next suppose that $\tpIp \in \TKgi\TpiP\TpiTp$ is a king type. Then $\tpIpp
+  \neq \tpIp$ by assumption, so for any two elements $\ea, \eb \in \domA$ such
+  that $\tpIa\StrA\ea = \tpIp$ and $\tpIa\StrA\eb = \tpIpp$ we have that $\ea
+  \neq \eb$, so $\tpTt = \tpIab\StrA\ea\eb$ is appropriate.
 \end{itemize}
 \end{proof}
 
