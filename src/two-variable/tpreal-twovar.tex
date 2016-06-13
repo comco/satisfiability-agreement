@@ -222,6 +222,27 @@ $\StrA$.
 That $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$ follows from Condition~\refcondrealizk
 for $\StrA$.
 \end{proof}
+\begin{remark}\label{rem:tpi-str-ext}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$, let $\TpiTp \subseteq
+\TpiT$ be a nonempty subset closed under inversion and suppose that
+$\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$. Then any model $\StrAp$ for
+$\Tpi\TpiP\TpiTp$ is also a model for $\Tpi\TpiP\TpiT$.
+\end{remark}
+\begin{proof}
+We verify the conditions for $\StrAp$ to be a model for the type instance
+$\Tpi\TpiP\TpiT$:
+\begin{itemize}
+  \item[\refcondrealizI] follows from Condition~\refcondrealizI for the
+  $\Tpi\TpiP\TpiTp$-model $\StrAp$.
+  \item[\refcondrealizII] follows from Condition~\refcondrealizII for the
+  $\Tpi\TpiP\TpiTp$-model $\StrAp$.
+  \item[\refcondrealizp] follows from Condition~\refcondrealizp for the
+  $\Tpi\TpiP\TpiTp$-model $\StrAp$.
+  \item[\refcondrealizk] follows from Condition~\refcondrealizk for the
+  $\Tpi\TpiP\TpiTp$-model $\StrAp$ together with the assumption
+  $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$.
+\end{itemize}
+\end{proof}
 \begin{remark}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$,
 let $\StrA$ be a model for $\Tpi\TpiP\TpiT$
@@ -278,7 +299,7 @@ Define the following sets of types:
 Then a $\ClSig\SigS\sms$-structure $\StrA$ is a classified model for
 $\falp(\xx,\yy)$ iff there are some subsets $\TpiP \subseteq \TpiP^\falp$ and
 $\TpiT \subseteq \TpiT^\falp$ such that $\Tpi\TpiP\TpiT$ is a type instance
-over $\ClSig\SigS\sms$ and $\StrA$ realizes $\Tpi\TpiP\TpiT$.
+over $\SigS$ and $\StrA$ realizes $\Tpi\TpiP\TpiT$.
 % TODO: Prove this!
 
 Recall that the number of possible $1$-types or $2$-types over $\SigS$ is
@@ -291,8 +312,18 @@ Hence we can reduce the (finite) classified satisfiability problem to the
 \]
 \end{remark}
 
+\begin{definition}
+We say that $\Tpi\TpiT\TpiP$ is a type instance over \emph{the classified
+signature} $\ClSig\SigS\sms$ if $\Tpi\TpiT\TpiP$ is a type instance over $\SigS$
+and with the implicit requirement that we are interested only in models of
+$\Tpi\TpiT\TpiP$ that are $\ClSig\SigS\sms$-structures, that is the intended
+interpretation of a type instance over a classified signature is the class of
+classified structures. Note that this is exactly the content of the type
+realizability problem.
+\end{definition}
 
-
+The next definition characterizes the $2$-types emitted by an element in a model
+of a type instance.
 \begin{definition}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
 A \emph{star-type} $\stps \subseteq \TpiT$ over $\Tpi\TpiP\TpiT$ is a nonempty
@@ -319,9 +350,38 @@ Otherwise the star-type $\stps$ is called a \emph{peasant star-type}.
 Note that the size of a star-type is polynomially bounded by the size of the
 type instance.
 \end{definition}
+\begin{remark}\label{rem:stp-sub}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$. Let $\TpiTp
+\subseteq \TpiT$ be a nonempty subset that is closed under inversion. According
+to~\Cref{rem:tpi-sub}, $\Tpi\TpiP\TpiTp$ is a type instance over
+$\ClSig\SigS\sms$. Suppose that $\TKgi\TpiP\TpiT = \TKgi\TpiP\TpiTp$.
+
+Then if $\stps \subseteq \TpiTp$ is a star-type over $\Tpi\TpiP\TpiT$, then it
+is also a star-type over $\Tpi\TpiP\TpiTp$.
+\end{remark}
+\begin{proof}
+We verify the conditions for a star-type over $\Tpi\TpiP\TpiTp$:
+\begin{itemize}
+  \item[\refcondstpx]
+  follows from Condition~\refcondstpx for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$.
+  \item[\refcondstpkx]
+  follows from Condition~\refcondstpkx for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$ together with the assumption $\TKgi\TpiP\TpiT =
+  \TKgi\TpiP\TpiTp$.
+  \item[\refcondstpky]
+  follows from Condition~\refcondstpky for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$ together with the assumption $\TKgi\TpiP\TpiT =
+  \TKgi\TpiP\TpiTp$.
+  \item[\refcondstpm]
+  follows from Condition~\refcondstpm for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$.
+\end{itemize}
+\end{proof}
+
 \begin{definition}\label{def:stp-str}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
-Let $\StrA$ realizes $\Tpi\TpiP\TpiT$.
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$
+and let $\StrA$ be a model for $\Tpi\TpiP\TpiT$.
 If $\ea \in \domA$, \emph{the star-type} $\stps = \stpIa\StrA\ea$ of $\ea$ is
 defined by:
 \[
@@ -332,8 +392,8 @@ defined by:
 Then $\stps$ is indeed a star-type over $\Tpi\TpiP\TpiT$.
 \end{remark}
 \begin{proof}
-That $\stps$ is nonempty follows from the observation that $\StrA$ must have
-cardinality at least $2$.
+That $\stps$ is nonempty follows from the observation that $\StrA$ as a
+$\ClSig\SigS\sms$-structure must have cardinality at least $2$.
 We verify the conditions for a star-type:
 \begin{itemize}
   \item[\refcondstpx]
@@ -341,8 +401,9 @@ We verify the conditions for a star-type:
   Then $\tpTt = \tpIab\StrA\ea\eb$ and $\tpTtp = \tpIab\StrA\ea\ec$ for some
   $\eb,\ec \in \domA \sub \set{\ea}$, so $\xtp\tpTt = \tpIa\StrA\ea =
   \xtp\tpTtp$.
-  
+\end{itemize}
   Let $\tpIp = \xtp\stps = \tpIa\StrA\ea$.
+\begin{itemize}[resume]
   \item[\refcondstpkx]
   Suppose that $\tpIp = \tpIk \in \TKgi\TpiP\TpiT$ is a king type,
   so $\tpIk \not\conn\TpiT \tpIk$. Since $\stps \subseteq \TpiT$ and every
@@ -363,7 +424,8 @@ We verify the conditions for a star-type:
 \end{proof}
 
 \begin{remark}[Star-type extension]\label{rem:star-type-ext}
-Let $\stps$ be a star-type over $\Tpi\TpiP\TpiT$ and let $\tpIp = \xtp\stps$.
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$,
+let $\stps$ be a star-type over $\Tpi\TpiP\TpiT$ and let $\tpIp = \xtp\stps$.
 Let $\tpTt \in \TpiT$ be a $2$-type such that $\xtp\tpTt = \tpIp$ and
 $\ytp\tpTt$ is not a king type.
 Then $\stpsp = \stps \cup \set{\tpTt}$ is also a star-type over
@@ -382,8 +444,7 @@ It is straightforward to verify the conditions for a star-type:
 \end{proof}
 
 \begin{definition}
-Let $\Tpi\TpiP\TpiT$ be a type instance over the classified signature
-$\ClSig\SigS\sms$.
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
 A \emph{certificate} $\Cert$ for the type instance
 $\Tpi\TpiP\TpiT$ is a nonempty set of star-types over $\Tpi\TpiP\TpiT$
 satisfying the following conditions:
@@ -392,56 +453,51 @@ satisfying the following conditions:
   If $\tpTt\in\stps$ for some $\stps\in\Cert$, then $\inv\tpTt\in\stps'$ for
   some $\stps'\in\Cert$, that is there are star-types for the endpoints of every
   $2$-type used in the certificate. Equivalently, $\TpiTp = \cup\Cert$ is closed
-  under inversion. Note that then $\Tpi\TpiP\TpiTp$ is also a type instance over
-  $\ClSig\SigS\sms$ and also that every star-type $\stps \in \Cert$ is a also a
-  star-type over $\Tpi\TpiP\TpiTp$. Call $\Tpi\TpiP\TpiTp$ the \emph{filtered
-  type instance} of $\Cert$.
+  under inversion.
+  Note that by~\Cref{rem:tpi-sub}, $\Tpi\TpiP\TpiTp$ is also a type instance
+  over $\SigS$. Call $\Tpi\TpiP\TpiTp$ the \emph{filtered type instance} of
+  $\Cert$.
   \item[\condcertK]\label{cond:certK}
   We require that $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$, that is the notion of a
   king type with respect to the filtered type instance coincides with the notion
   of a king type with respect to the original type instance.
+  Note that then by~\Cref{rem:stp-sub}, we may think of $\Tpi\TpiP\TpiTp$ as a
+  type instance over $\ClSig\SigS\sms$ and also that every star-type
+  $\stps \in \Cert$ is a also a star-type over $\Tpi\TpiP\TpiTp$. 
+  
+  
   \item[\condcertp]\label{cond:certp}
   If $\tpIp \in \TpiP$, then some (possibly many) $\stps \in \Cert$ has
   $\xtp\stps = \tpIp$, that is there is a star-type for every $1$-type.
   \item[\condcertk]\label{cond:certk}
   If $\tpIk \in \TKgi\TpiP\TpiT$, then a unique $\stps \in \Cert$ has
   $\xtp\stps = \tpIk$, that is there is a unique star-type for every king-type.
-  Note that the existence is already implied by~\refcondcertp.
+  Note that the existence is already implied by Condition~\refcondcertp.
   \item[\condcertc]\label{cond:certc}
   Let $\tpIp, \tpIpp \in \TpiP$. If it is not the case that $\tpIp =
-  \tpIpp = \tpIk \in \TKgi\TpiP\TpiTp$, then some $\tpTt \in \TpiTp$ has
+  \tpIpp = \tpIk \in \TKgi\TpiP\TpiT$, then some $\tpTt \in \TpiTp$ has
   $\xtp\tpTt = \tpIp$ and $\ytp\tpTt = \tpIpp$, that is if $\tpIp$ and $\tpIpp$
   are not the same king type, then they are connectable.
 \end{itemize}
 \end{definition}
 
 \begin{remark}\label{rem:filtered-realiz}
-Let $\Tpi\TpiP\TpiT$ be a type instance over the classified signature
-$\ClSig\SigS\sms$, $\Cert$ be a certificate for $\Tpi\TpiP\TpiT$ and let
-$\TpiTp = \cup\Cert$. If a structure $\StrA$ realizes the
-filtered type instance $\Tpi\TpiP\TpiTp$, then it realizes $\Tpi\TpiP\TpiT$.
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$,
+let $\Cert$ be a certificate for $\Tpi\TpiP\TpiT$ and let $\TpiTp = \cup\Cert$.
+If a structure $\StrA$ realizes the filtered type instance $\Tpi\TpiP\TpiTp$,
+then it realizes $\Tpi\TpiP\TpiT$.
 \end{remark}
 \begin{proof}
-It is straightforward to check the conditions for realizability:
-\begin{itemize}
-  \item[\refcondrealizI] follows from Condition~\refcondrealizI for $\StrA$ as a
-  $\Tpi\TpiP\TpiTp$-model.
-  \item[\refcondrealizII] follows from Condition~\refcondrealizII for $\StrA$ as
-  a $\Tpi\TpiP\TpiTp$-model together with $\TpiTp \subseteq \TpiT$.
-  \item[\refcondrealizp] follows from Condition~\refcondrealizp for $\StrA$ as a
-  $\Tpi\TpiP\TpiTp$-model.
-  \item[\refcondrealizk] follows from Condition~\refcondrealizk for $\StrA$ as a
-  $\Tpi\TpiP\TpiTp$-model together with Condition~\refcondcertc for the
-  certificate $\Cert$.
-\end{itemize}
+Follows from~\Cref{rem:tpi-str-ext}.
 \end{proof}
 
 Note that in general the size of a certificate may be exponential in
 the size of the type instance. However, polynomial certificates exist:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
-Let $\StrA$ realizes $\Tpi\TpiP\TpiT$ and let $\Tpi\TpiP\TpiTp =
-\TpiP\TpiT[\StrA]$ according to~\Cref{rem:str-tpi-kings-eq} be the type instance
-of $\StrA$.
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$,
+let $\StrA$ be a model for $\Tpi\TpiP\TpiT$ and let 
+$\Tpi\TpiP\TpiTp = \TpiP\TpiT[\StrA]$, $\TpiTp \subseteq \TpiT$ according
+to~\Cref{rem:str-tpi-kings-eq} be the type instance of $\StrA$.
 For every $2$-type $\tpTt \in \TpiTp$,
 let $\eat\tpTt \neq \ebt\tpTt \in \domA$ be two distinct elements realizing
 $\tpTt$: $\tpIab\StrA{\eat\tpTt}{\ebt\tpTt} = \tpTt$. The choice of the
@@ -461,7 +517,8 @@ $\Tpi\TpiP\TpiT$ follows from~\Cref{rem:stp-str}.
 We verify the conditions for a certificate:
 \begin{itemize}
   \item[\refcondcerti] 
-  That $\cup\Cert = \TpiTp$ is closed under inversion is immediate.
+  That $\cup\Cert = \TpiTp$ is closed under inversion follows from
+  Condition~\refcondtpii for the type instance $\Tpi\TpiP\TpiTp$.
   \item[\refcondcertK]
   That $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$ follows
   from~\Cref{rem:str-tpi-kings-eq}.
@@ -486,10 +543,10 @@ We verify the conditions for a certificate:
   nonempty and let $\ea \in H$. Then $\ea \neq \eb$ and $\tpTt =
   \tpIab\StrA\ea\eb \in \TpiTp$.
   
-  Next suppose that $\tpIp \in \TKgi\TpiP\TpiTp$ is a king type. Then $\tpIpp
+  Next suppose that $\tpIp \in \TKgi\TpiP\TpiT$ is a king type. Then $\tpIpp
   \neq \tpIp$ by assumption, so for any two elements $\ea, \eb \in \domA$ such
   that $\tpIa\StrA\ea = \tpIp$ and $\tpIa\StrA\eb = \tpIpp$ we have that $\ea
-  \neq \eb$, so $\tpTt = \tpIab\StrA\ea\eb$ is appropriate.
+  \neq \eb$, so $\tpTt = \tpIab\StrA\ea\eb \in \TpiTp$ is appropriate.
 \end{itemize}
 \end{proof}
 
