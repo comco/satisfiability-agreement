@@ -1,33 +1,31 @@
 % Type realizibility of the two-variable first-order logic
 Recall from~\Cref{sec:scott-nf} about normal forms that every $\vFo2$-sentence
-$\fphi$ can be reduced in polynomial time to a sentence $\sctr\fphi$ in Scott
-normal form:
+$\fphi$ can be reduced in deterministic polynomial time to a sentence
+$\sctr\fphi$ in Scott normal form:
 \[
   \forall\xx\forall\yy (\falpp0(\xx,\yy) \lor \xx = \yy) \land
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy(
   \falpp\ii(\xx,\yy) \land \xx \neq \yy),
 \]
-where the formulas $\falpp\ii$ are quantifier-free and use at most linearly many
-new unary predicate symbols. We refer to $\falpp0$ as the \emph{universal part},
-or the $\forall\forall$-part of the formula $\sctr\fphi$ and to $\falpp\ii$ as
-the \emph{existential parts}, or the $\forall\exists$-parts of the formula,
+where $\nm \geq 1$, all the formulas $\falpp\ii$ are quantifier-free and use at
+most linearly many new unary predicate symbols.
+The semantical connection between $\fphi$ and $\sctr\fphi$ is that they are
+essentially equisatisfiable. More precisely, every model of $\fphi$ of
+cardinality at least $2$ can be enriched to a model for $\sctr\fphi$ and also
+every model of $\sctr\fphi$ (which by $\nm \geq 1$ must have cardinality at
+least $2$) is a model for $\fphi$.
+We refer to $\falpp0$ as the \emph{universal part}, or the
+$\forall\forall$-part of the formula $\sctr\fphi$ and to $\falpp\ii$ as the \emph{existential parts}, or the $\forall\exists$-parts of the formula,
 for $\ii \in [1,\nm]$.
-Note that $\nm \geq 1$ implies that a model of $\sctr\fphi$ must contain at
-least $2$ elements. Also note that satisfiability of a formula in the class of
-models of cardinality $1$ is trivially decidable is deterministic exponential
-time.
-Hence we will without loss of generality assume that $\nm \geq 1$ and that
-$\fphi$ and $\sctr\fphi$ are equisatisfiable in the class of structures of
-cardinality at least $2$ by using a tautology as $\falpp1$ in case the Scott
-normal form contains no existential parts.
-
-For any formula in Scott normal form, we may replace its existential parts by
-fresh binary predicate symbols: for $\ii \in [1,\nm]$, let $\smm\ii$ be a fresh binary predicate symbol with the intended interpretation $\forall\xx\forall\yy (\smm\ii(\xx,\yy) \lequ \falpp\ii(\xx,\yy))$.
+\subsection{Classified signatures}
+For any formula $\sctr\fphi$ in Scott normal form, we may replace its
+existential parts by fresh binary predicate symbols: for $\ii \in [1,\nm]$, let $\smm\ii$ be a fresh binary predicate symbol with the intended interpretation $\forall\xx\forall\yy (\smm\ii(\xx,\yy) \lequ \falpp\ii(\xx,\yy))$.
 Since this is a universal sentence, it can be incorporated into the
 $\forall\forall$-part $\falpp0$ of the formula.
 We refer to the symbols $\gls{message-symbol-m-i}$ as the \emph{message
 symbols}.
-Hence the formula can be transformed in polynomial time to the form:
+Hence $\sctr\fphi$ can be transformed in deterministic polynomial time to the
+form:
 \begin{equation}\label{eq:twovar-msg-nf}
   \forall\xx\forall\yy (\falp(\xx,\yy) \lor \xx = \yy) \land
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
@@ -40,8 +38,8 @@ term similar to the one defined in~\cite{MALQ:MALQ201400102}:
 \begin{definition}
 A \emph{classified signature} $\gls{classified-signature-S-m}$ for the
 two-variable first-order logic $\vFo2$ is a predicate signature $\SigS$ together
-with a sequence $\sms = \smm1\smm2\dots\smm\nm$ of distinct binary predicate
-symbols from $\SigS$ having intended interpretation
+with a nonempty sequence $\sms = \smm1\smm2\dots\smm\nm$ of distinct binary
+predicate symbols from $\SigS$ having intended interpretation
 \begin{equation}\label{eq:twovar-ms-iinter}
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy 
   (\smm\ii(\xx,\yy) \land \xx \neq \yy).
@@ -69,51 +67,81 @@ Denote the classified satisfiability problem by $\ClSat{\vFo2}$ and its finite
 version by $\FinClSat{\vFo2}$.
 \end{definition}
 
-%TODO: Not exactly! 
-Scott normal form shows that (finite) satisfiability reduces
-in polynomial time to (finite) classified satisfiability, since satisfiability in structures of
-cardinality $1$ is trivial:
+\begin{remark}
+The problem of (finite) satisfiability reduces in nondeterministic polynomial
+time to the problem of (finite) classified satisfiability:
 \[
-  \FinASat{\vFo2} \red\cP \FinAClSat{\vFo2}.
+  \FinASat{\vFo2} \red\cNP \FinAClSat{\vFo2}.
 \]
+\end{remark}
+\begin{proof}
+
+Note that (finite) satisfiability in the class of models of cardinality $1$ is
+trivially decidable in nondeterministic polynomial time --- just guess the
+atomic $1$-type (whose size is polynomially bounded by the size of the
+predicate signature) of the unique element of the structure and check (in
+deterministic polynomial time) that it satisfies the original formula.
+
+Scott normal form shows that (finite) satisfiability in the class of models of
+cardinality at least $2$ reduces in deterministic polynomial time to (finite)
+classified satisfiability.
+Hence the following nondeterministic polynomial time procedure reduces an
+instance $(\SigS, \fphi)$ of the (finite) satisfiability problem to an instance
+$(\ClSig\SigSp\sms, \falp)$ of the (finite) classified satisfiability problem:
+First check if $\fphi$ is satisfiable in the class of models of cardinality $1$.
+If that is the case, then extend $\SigS$ to $\SigSp$ by adding a single message
+symbol $\smm1$ and let $\falp = (\xx = \xx)$ be a fixed predicate tautology.
+Otherwise transform $\fphi$ into Scott normal form and let $\falp$ be the
+universal part of that normal form.
+\end{proof}
+
+\subsection{Type instances}
 \begin{definition}\label{def:tpinst-twovar}
-A \emph{type instance} $\Tpi\TpiP\TpiT$ over the classified
-signature $\ClSig\SigS\sms$ is a pair of a nonempty set of $1$-types
-$\TpiP\subseteq\TpI\SigS$ and a nonempty set of $2$-types
+A \emph{type instance} $\Tpi\TpiP\TpiT$ over the predicate signature $\SigS$ is
+a pair of a nonempty set of $1$-types $\TpiP\subseteq\TpI\SigS$ and a nonempty set of $2$-types
 $\TpiT\subseteq\TpT\SigS$ satisfying the following conditions:
 \begin{itemize}
-  \item The set of $2$-types $\TpiT$ is closed under
-  inversion, that is $\inv\tpTt\in\TpiT$ for every $\tpTt\in\TpiT$.
-  \item Every $2$-type $\tpTt\in\TpiT$ connects $1$-types
+  \item[\condtpii]\label{cond:tpii}
+  The set of $2$-types $\TpiT$ is closed under inversion, that is
+  $\inv\tpTt\in\TpiT$ for every $\tpTt\in\TpiT$.
+  \item[\condtpic]\label{cond:tpic}
+  Every $2$-type $\tpTt\in\TpiT$ connects $1$-types
   from $\TpiP$, that is $\xtp\tpTt\in\TpiP$ and $\ytp\tpTt\in\TpiP$ for every
   $\tpTt\in\TpiT$.
   Equivalently, since $\TpiT$ is closed under inversion,
-  $(\xtp\restriction\TpiT)\subseteq\TpiP$.
+  we require that $(\xtp\restriction\TpiT)\subseteq\TpiP$.
 \end{itemize}
-Note that if $\Tpi\TpiP\TpiT$ is a type instance over $\ClSig\SigS\sms$ and
-$\TpiTp \subseteq \TpiT$ is a nonempty subset of $2$-types that is closed 
-under inversion, then $\Tpi\TpiP\TpiTp$ is also a type instance over
-$\ClSig\SigS\sms$.
 \end{definition}
+\begin{remark}\label{rem:tpi-sub}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$ and
+$\TpiTp \subseteq \TpiT$ be a nonempty subset of $2$-types that is closed 
+under inversion. Then $\Tpi\TpiP\TpiTp$ is also a type instance over $\SigS$.
+\end{remark}
+
 \begin{definition}\label{def:connectable}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$.
 Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} 
 (written $\gls{connectable-p-pp}$)
 if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for some $\tpTt \in \TpiT$.
 Connectability is symmetric since $\TpiT$ is closed under inversion.
 However, connectability is not necessarily neither transitive nor reflexive:
 
-A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if $\tpIk \not\conn\TpiT
-\tpIk$ and the set of king types is
-$\TKgi\TpiP\TpiT = \setbd{\tpIk\in\TpiP}{\tpIk \not\conn\TpiT \tpIk}$.
+A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if 
+$\tpIk \not\conn\TpiT\tpIk$. 
+The set of king types is:
+\[
+  \TKgi\TpiP\TpiT = \setbd{\tpIk\in\TpiP}{\tpIk \not\conn\TpiT \tpIk}.
+\]
 A $1$-type $\tpIp \in \TpiP$ that is not a king type is a \emph{peasant type}
 and the set of peasant types is $\TPsi\TpiP\TpiT = \TpiP \sub
 \TKg(\TpiP,\TpiT)$.
 \end{definition}
 
 \begin{definition}
-A $\ClSig\SigS\sms$-structure $\StrA$ \emph{realizes} (or is a model of) the
-type instance $\Tpi\TpiP\TpiT$ if the following conditions are satisfied:
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$ and let $\StrA$ be a
+$\SigS$-structure.
+Then $\StrA$ \emph{realizes} (or is
+a model of) the type instance $\Tpi\TpiP\TpiT$ if the following conditions are satisfied:
 \begin{itemize}
   \item[\condrealizI]\label{cond:realizI}
   $\tpIa\StrA\ea \in \TpiP$ for every $\ea\in\domA$.
@@ -132,16 +160,108 @@ type instance $\Tpi\TpiP\TpiT$ if the following conditions are satisfied:
 \end{definition}
 
 \begin{definition}
-The \emph{(finite) type realizability problem\footnote{The reason we study the
-type realizability problem instead of directly studying the satisfiability
-problem is that it is flexible enough to allow us to employ its solutions in simpler cases to construct solutions in more complicated cases.}
-for $\vFo2$} is the following:
+Let $\StrA$ be a $\SigS$-structure of cardinality at least $2$.
+\emph{The type instance} $\TpiP\TpiT[\StrA] = \Tpi\TpiP\TpiT$ of $\StrA$ is
+defined by:
+\begin{align*}
+  \TpiP &= \setbd{\tpIa\StrA\ea}{\ea \in \domA} \\
+  \TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea \in \domA, \eb \in \domA \sub \set\ea}.
+\end{align*}
+\end{definition}
+\begin{remark}\label{rem:tpi-str}
+Then $\TpiP\TpiT[\StrA] = \Tpi\TpiP\TpiT$ is indeed a type instance over
+$\SigS$ and $\StrA$ is a model for $\Tpi\TpiP\TpiT$.
+\end{remark}
+\begin{proof} 
+That $\TpiP$ and $\TpiT$ are nonempty follows from the assumption that the
+cardinality of $\StrA$ is at least $2$.
+First we verify the conditions for $\Tpi\TpiP\TpiT$ to be a type instance over
+$\SigS$.
+\begin{itemize}
+  \item[\refcondtpii]
+  If $\tpTt \in \TpiT$, then $\tpTt = \tpIab\StrA\ea\eb$ for
+  some $\ea \neq \eb \in \domA$, hence $\inv\tpTt = \tpIab\StrA\eb\ea \in
+  \TpiT$, so $\TpiT$ is closed under inversion.
+  \item[\refcondtpic]
+  If $\tpTt \in \TpiT$, then $\tpTt = \tpIab\StrA\ea\eb$, hence
+  $\xtp\tpTt = \tpIa\StrA\ea \in \TpiP$, so $(\xtp\restriction\TpiT) \subseteq
+  \TpiP$.
+\end{itemize}
+Next we verify the conditions for $\StrA$ to be a model for the type instance
+$\Tpi\TpiP\TpiT$:
+\begin{itemize}
+  \item[\refcondrealizI] follows by definition of $\TpiP$.
+  \item[\refcondrealizII] follows by definition of $\TpiT$.
+  \item[\refcondrealizp] follows by definition of $\TpiP$.
+  \item[\refcondrealizk] Let $\tpIp \in \TpiP$.
+  By Condition~\refcondrealizI the type $\tpIp$ is realized (possibly many
+  times) in $\StrA$.
+  If $\tpIp$ is realized by a unique element $\ea \in \domA$, then there is
+  no $\eb \in \domA \sub \set\ea$ such that $\tpIa\StrA\eb = \tpIp$, so no
+  $\tpTt \in \TpiT$ connects $\tpIp$ with itself, therefore $\tpIp$ is a king
+  type.
+  Next, if $\tpIp \in \TKgi\TpiP\TpiT$ is a king type, then no $\tpTt \in \TpiT$
+  connects $\tpIp$ with itself, so there is not a pair of distinct elements
+  $\ea \neq \eb \in \domA$ such that $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpIp$,
+  therefore $\tpIp$ is realized by a unique element in $\StrA$.
+\end{itemize}
+\end{proof}
+
+\begin{remark}\label{rem:str-tpi-kings-eq}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$, 
+let $\StrA$ be a model for $\Tpi\TpiP\TpiT$
+and let $\Tpi\TpiPp\TpiTp =\TpiP\TpiT[\StrA]$ be the type instance of $\StrA$.
+Then $\TpiPp = \TpiP$, $\TpiTp \subseteq \TpiT$ and $\TKgi\TpiP\TpiTp =
+\TKgi\TpiP\TpiT$.
+\end{remark}
+\begin{proof}
+That $\TpiPp = \TpiP$ follows from Conditions \refcondrealizI
+and~\refcondrealizp for $\StrA$.
+That $\TpiTp \subseteq \TpiT$ follows from Condition~\refcondrealizII for
+$\StrA$.
+That $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$ follows from Condition~\refcondrealizk
+for $\StrA$.
+\end{proof}
+\begin{remark}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$,
+let $\StrA$ be a model for $\Tpi\TpiP\TpiT$
+and let $\StrB$ be a $\SigS$-structure.
+If $\TpiP\TpiT[\StrB] = \TpiP\TpiT[\StrA]$ then $\StrB$ is also a model for
+$\Tpi\TpiP\TpiT$.
+\end{remark}
+\begin{proof}
+Let $\Tpi\TpiP\TpiTp = \TpiP\TpiT[\StrA] = \TpiP\TpiT[\StrB]$,
+according to~\Cref{rem:str-tpi-kings-eq}.
+We verify the conditions for $\StrB$ to be a model for $\Tpi\TpiP\TpiT$:
+\begin{itemize}
+  \item[\refcondrealizI]
+  follows from Condition~\refcondrealizI for the $\Tpi\TpiP\TpiTp$-model $\StrB$.
+  \item[\refcondrealizII]
+  follows from Condition~\refcondrealizII for the $\Tpi\TpiP\TpiTp$-model
+  $\StrB$ together with $\TpiTp \subseteq \TpiT$, according
+  to~\Cref{rem:str-tpi-kings-eq}.
+  \item[\refcondrealizp]
+  follows from Condition~\refcondrealizp for the $\Tpi\TpiP\TpiTp$-model
+  $\StrB$.
+  \item[\refcondrealizk]
+  follows from Condition~\refcondrealizk for the $\Tpi\TpiP\TpiTp$-model
+  $\StrB$ together with $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$, according
+  to~\Cref{rem:str-tpi-kings-eq}.
+\end{itemize}
+\end{proof}
+
+\subsection{Type realizability}
+\begin{definition}
+The \emph{(finite) type realizability problem} is the following:
 given a classified signature $\ClSig\SigS\sms$ and a type instance
-$\Tpi\TpiP\TpiT$ over $\ClSig\SigS\sms$, is there a (finite)
+$\Tpi\TpiP\TpiT$ over $\SigS$, is there a (finite)
 $\ClSig\SigS\sms$-structure that realizes $\Tpi\TpiP\TpiT$.
 Denote the type realizability problem for $\vFo2$ by
 $\Real{\vFo2}$ and its finite version by $\FinReal{\vFo2}$.
 \end{definition}
+
+We begin the study of the type realizability problem by reducing the
+classified satisfiability problem to it.
 
 \begin{remark}\label{rem:red-sat-to-real}
 Let $\ClSig\SigS\sms$ be a classified signature and let $\falp(\xx,\yy)$ be a
@@ -171,32 +291,7 @@ Hence we can reduce the (finite) classified satisfiability problem to the
 \]
 \end{remark}
 
-\begin{definition}
-\emph{The type instance} $\Tpi\TpiP\TpiT = \TpiP\TpiT[\StrA]$ of a
-$\ClSig\SigS\sms$-structure $\StrA$ is defined by:
-\begin{align*}
-  \TpiP &= \setbd{\tpIa\StrA\ea}{\ea \in \domA} \\
-  \TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea\neq\eb \in \domA}.
-\end{align*}
-Clearly, $\Tpi\TpiP\TpiT$ is indeed a type instance over $\ClSig\SigS\sms$ and
-$\StrA$ realizes $\Tpi\TpiP\TpiT$.
-\end{definition}
-\begin{remark}\label{rem:str-tpi-kings-eq}
-Let $\Tpi\TpiP\TpiT$ be a type instance over the classified signature
-$\ClSig\SigS\sms$.
-Let $\StrA$ realizes $\Tpi\TpiP\TpiT$ and let $\Tpi\TpiPp\TpiTp =
-\TpiP\TpiT[\StrA]$ be the type instance of $\StrA$.
-Then $\TpiPp = \TpiP$, $\TpiTp \subseteq \TpiT$ and $\TKgi\TpiP\TpiTp =
-\TKgi\TpiP\TpiT$.
-\end{remark}
-\begin{proof}
-That $\TpiPp = \TpiP$ follows from Conditions \refcondrealizI
-and~\refcondrealizp for $\StrA$.
-That $\TpiTp \subseteq \TpiT$ follows from Condition~\refcondrealizII for
-$\StrA$.
-That $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$ follows from Condition~\refcondrealizk
-for $\StrA$.
-\end{proof}
+
 
 \begin{definition}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
@@ -303,7 +398,7 @@ satisfying the following conditions:
   type instance} of $\Cert$.
   \item[\condcertK]\label{cond:certK}
   We require that $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$, that is the notion of a
-  king type with respect to the filtered type instance is the same as the notion
+  king type with respect to the filtered type instance coincides with the notion
   of a king type with respect to the original type instance.
   \item[\condcertp]\label{cond:certp}
   If $\tpIp \in \TpiP$, then some (possibly many) $\stps \in \Cert$ has
