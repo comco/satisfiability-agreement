@@ -97,136 +97,92 @@ universal part of that normal form.
 
 \subsection{Type instances}
 \begin{definition}\label{def:tpinst-twovar}
-A \emph{type instance} $\Tpi\TpiP\TpiT$ over the predicate signature $\SigS$ is
-a pair of a nonempty set of $1$-types $\TpiP\subseteq\TpI\SigS$ and a nonempty set of $2$-types
-$\TpiT\subseteq\TpT\SigS$ satisfying the following conditions:
+A \emph{type instance} $\Tpi\TpiP\TpiT$ over the classified signature
+$\ClSig\SigS\sms$ is a pair of a nonempty set of $1$-types
+$\TpiP\subseteq\TpI\SigS$ and a nonempty set of $2$-types $\TpiT\subseteq\TpT\SigS$ satisfying the following conditions:
 \begin{itemize}
-  \item[\condtpii]\label{cond:tpii}
+  \item[\condtpii]
   The set of $2$-types $\TpiT$ is closed under inversion, that is
   $\inv\tpTt\in\TpiT$ for every $\tpTt\in\TpiT$.
-  \item[\condtpic]\label{cond:tpic}
+  \item[\condtpic]
   Every $2$-type $\tpTt\in\TpiT$ connects $1$-types
   from $\TpiP$, that is $\xtp\tpTt\in\TpiP$ and $\ytp\tpTt\in\TpiP$ for every
   $\tpTt\in\TpiT$.
   Equivalently, since $\TpiT$ is closed under inversion,
   we require that $(\xtp\restriction\TpiT)\subseteq\TpiP$.
 \end{itemize}
-\end{definition}
-\begin{remark}\label{rem:tpi-sub}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$ and
-$\TpiTp \subseteq \TpiT$ be a nonempty subset of $2$-types that is closed 
-under inversion. Then $\Tpi\TpiP\TpiTp$ is also a type instance over $\SigS$.
-\end{remark}
-
-\begin{definition}\label{def:connectable}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$.
 Two $1$-types $\tpIp, \tpIpp \in \TpiP$ are \emph{connectable} 
-(written $\gls{connectable-p-pp}$)
+(written $\gls{connectable-p-pp}$),
 if $\tpIp = \xtp\tpTt$ and $\tpIpp = \ytp\tpTt$ for some $\tpTt \in \TpiT$.
 Connectability is symmetric since $\TpiT$ is closed under inversion.
 However, connectability is not necessarily neither transitive nor reflexive:
-
 A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if 
 $\tpIk \not\conn\TpiT\tpIk$. 
-The set of king types is:
-\[
-  \TKgi\TpiP\TpiT = \setbd{\tpIk\in\TpiP}{\tpIk \not\conn\TpiT \tpIk}.
-\]
+The set of king types is $\TKgi\TpiP\TpiT$.
 A $1$-type $\tpIp \in \TpiP$ that is not a king type is a \emph{peasant type}
 and the set of peasant types is $\TPsi\TpiP\TpiT = \TpiP \sub
 \TKg(\TpiP,\TpiT)$.
 \end{definition}
+\begin{remark}\label{rem:tpi-sub}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$ and let
+$\TpiTp \subseteq \TpiT$ be a nonempty subset of $2$-types that is closed 
+under inversion. Then $\Tpi\TpiP\TpiTp$ is also a type instance over
+$\ClSig\SigS\sms$ and $\TKgi\TpiP\TpiT \subseteq \TKgi\TpiP\TpiTp$ and
+$\TPsi\TpiP\TpiTp \subseteq \TPsi\TpiP\TpiT$.
+\end{remark}
 
 \begin{definition}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$ and let $\StrA$ be a
-$\SigS$-structure.
-Then $\StrA$ \emph{realizes} (or is
-a model of) the type instance $\Tpi\TpiP\TpiT$ if the following conditions are satisfied:
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$ and let
+$\StrA$ be a $\ClSig\SigS\sms$-structure.
+Then $\StrA$ \emph{realizes} (or is a model of) the type instance
+$\Tpi\TpiP\TpiT$ if the following conditions are satisfied:
 \begin{itemize}
   \item[\condrealizI]\label{cond:realizI}
-  $\tpIa\StrA\ea \in \TpiP$ for every $\ea\in\domA$.
+  $\tpIa\StrA\ea \in \TpiP$ for every $\ea\in\domA$, that is the $1$-types
+  realized in $\StrA$ are from $\TpiP$.
   \item[\condrealizII]\label{cond:realizII}
   $\tpIab\StrA\ea\eb \in \TpiT$ for every $\ea\in\domA$
-  and $\eb \in \domA\sub\set{\ea}$.
+  and $\eb \in \domA\sub\set{\ea}$, that is the $2$-types realized in $\StrA$
+  are from $\TpiT$.
   \item[\condrealizp]\label{cond:realizp}
-  For every  $1$-type $\tpIp \in \TpiP$ there is
-  an element $\ea \in \domA$ realizing $\tpIp$: $\tpIa\StrA\ea = \tpIp$.
+  If $\tpIp \in \TpiP$ then some (possibly many) $\ea \in \domA$ realizes it.
   We don't require an analogous condition for $2$-types.
   \item[\condrealizk]\label{cond:realizk}
-  Let $\tpIp \in \TpiP$ be any $1$-type. Then $\tpIp$ is realized by
-  a unique element $\ea \in \domA$ iff $\tpIp \in \TKgi\TpiP\TpiT$ is a king
-  type.
+  If $\tpIp \in \TpiP$ is realized by a unique element $\ea \in \domA$, then
+  $\tpIp \in \TKgi\TpiP\TpiT$ is a king type.
 \end{itemize}
 \end{definition}
-
-\begin{definition}
-Let $\StrA$ be a $\SigS$-structure of cardinality at least $2$.
-\emph{The type instance} $\TpiP\TpiT[\StrA] = \Tpi\TpiP\TpiT$ of $\StrA$ is
-defined by:
-\begin{align*}
-  \TpiP &= \setbd{\tpIa\StrA\ea}{\ea \in \domA} \\
-  \TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea \in \domA, \eb \in \domA \sub \set\ea}.
-\end{align*}
-\end{definition}
-\begin{remark}\label{rem:tpi-str}
-Then $\TpiP\TpiT[\StrA] = \Tpi\TpiP\TpiT$ is indeed a type instance over
-$\SigS$ and $\StrA$ is a model for $\Tpi\TpiP\TpiT$.
-\end{remark}
-\begin{proof} 
-That $\TpiP$ and $\TpiT$ are nonempty follows from the assumption that the
-cardinality of $\StrA$ is at least $2$.
-First we verify the conditions for $\Tpi\TpiP\TpiT$ to be a type instance over
-$\SigS$.
-\begin{itemize}
-  \item[\refcondtpii]
-  If $\tpTt \in \TpiT$, then $\tpTt = \tpIab\StrA\ea\eb$ for
-  some $\ea \neq \eb \in \domA$, hence $\inv\tpTt = \tpIab\StrA\eb\ea \in
-  \TpiT$, so $\TpiT$ is closed under inversion.
-  \item[\refcondtpic]
-  If $\tpTt \in \TpiT$, then $\tpTt = \tpIab\StrA\ea\eb$, hence
-  $\xtp\tpTt = \tpIa\StrA\ea \in \TpiP$, so $(\xtp\restriction\TpiT) \subseteq
-  \TpiP$.
-\end{itemize}
-Next we verify the conditions for $\StrA$ to be a model for the type instance
-$\Tpi\TpiP\TpiT$:
-\begin{itemize}
-  \item[\refcondrealizI] follows by definition of $\TpiP$.
-  \item[\refcondrealizII] follows by definition of $\TpiT$.
-  \item[\refcondrealizp] follows by definition of $\TpiP$.
-  \item[\refcondrealizk] Let $\tpIp \in \TpiP$.
-  By Condition~\refcondrealizI the type $\tpIp$ is realized (possibly many
-  times) in $\StrA$.
-  If $\tpIp$ is realized by a unique element $\ea \in \domA$, then there is
-  no $\eb \in \domA \sub \set\ea$ such that $\tpIa\StrA\eb = \tpIp$, so no
-  $\tpTt \in \TpiT$ connects $\tpIp$ with itself, therefore $\tpIp$ is a king
-  type.
-  Next, if $\tpIp \in \TKgi\TpiP\TpiT$ is a king type, then no $\tpTt \in \TpiT$
-  connects $\tpIp$ with itself, so there is not a pair of distinct elements
-  $\ea \neq \eb \in \domA$ such that $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpIp$,
-  therefore $\tpIp$ is realized by a unique element in $\StrA$.
-\end{itemize}
-\end{proof}
-
-\begin{remark}\label{rem:str-tpi-kings-eq}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$, 
-let $\StrA$ be a model for $\Tpi\TpiP\TpiT$
-and let $\Tpi\TpiPp\TpiTp =\TpiP\TpiT[\StrA]$ be the type instance of $\StrA$.
-Then $\TpiPp = \TpiP$, $\TpiTp \subseteq \TpiT$ and $\TKgi\TpiP\TpiTp =
-\TKgi\TpiP\TpiT$.
+\begin{remark}\label{rem:tpi-char}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$ and let $\StrA$
+be a model for $\Tpi\TpiP\TpiT$.
+Then $\TpiP$ is the set of $1$-types that are realized by some (possibly many)
+element in $\StrA$, $\TKgi\TpiP\TpiT$ is the set of $1$-types that are realized by a unique
+element in $\StrA$ and $\TPsi\TpiP\TpiT$ is the set of $1$-types that are
+realized by at least $2$ elements in $\StrA$.
 \end{remark}
 \begin{proof}
-That $\TpiPp = \TpiP$ follows from Conditions \refcondrealizI
-and~\refcondrealizp for $\StrA$.
-That $\TpiTp \subseteq \TpiT$ follows from Condition~\refcondrealizII for
-$\StrA$.
-That $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$ follows from Condition~\refcondrealizk
-for $\StrA$.
+By Condition~\refcondrealizI and Condition~\refcondrealizp, $\TpiP$ is the set
+of $1$-types that are realized by some element in $\StrA$.
+By Condition~\refcondrealizk any $1$-type that is realized by a unique element
+is a king type. Let $\tpIk$ be a king type. By Condition~\refcondrealizp there
+is some $\ea \in \domA$ that realizes $\tpIk$. Suppose towards a contradiction
+that some other $\eb \in \domA \sub \set\ea$ also realizes $\tpIk$. Then the
+$2$-type $\tpTt = \tpIab\StrA\ea\eb$ connects $\tpIk$ with itself.
+By Condition~\refcondrealizII we have that $\tpTt \in \TpiT$, hence $\tpIk
+\conn\TpiT \tpIk$ --- a contradiction. Therefore $\TKgi\TpiP\TpiT$ is the set of
+$1$-types that are realized by a unique element in $\StrA$, and so
+$\TPsi\TpiP\TpiT = \TpiP \sub \TKgi\TpiP\TpiT$ is the set of $1$-types that are
+realized by at least $2$ elements in $\StrA$.
 \end{proof}
-\begin{remark}\label{rem:tpi-str-ext}
+
+\begin{remark}\label{rem:tpi-sub-ex}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$, let $\TpiTp \subseteq
-\TpiT$ be a nonempty subset closed under inversion and suppose that
-$\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$. Then any model $\StrAp$ for
-$\Tpi\TpiP\TpiTp$ is also a model for $\Tpi\TpiP\TpiT$.
+\TpiT$ be a nonempty subset of $2$-types that is closed under inversion.
+Note that $\TKgi\TpiP\TpiT \subseteq \TKgi\TpiP\TpiTp$ according
+to~\Cref{rem:tpi-sub}.
+Suppose that $\TKgi\TpiP\TpiTp \subseteq \TKgi\TpiP\TpiT$, or equivalently that
+$\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$.
+Then any model $\StrAp$ for $\Tpi\TpiP\TpiTp$ is also a model for $\Tpi\TpiP\TpiT$.
 \end{remark}
 \begin{proof}
 We verify the conditions for $\StrAp$ to be a model for the type instance
@@ -243,7 +199,62 @@ $\Tpi\TpiP\TpiT$:
   $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$.
 \end{itemize}
 \end{proof}
-\begin{remark}
+
+
+\begin{definition}
+Let $\StrA$ be a $\ClSig\SigS\sms$-structure.
+\emph{The type instance} $\TpiP\TpiT[\StrA] = \Tpi\TpiP\TpiT$ of $\StrA$ is
+defined by:
+\begin{align*}
+  \TpiP &= \setbd{\tpIa\StrA\ea}{\ea \in \domA} \\
+  \TpiT &= \setbd{\tpIab\StrA\ea\eb}{\ea \in \domA, \eb \in \domA \sub \set\ea}.
+\end{align*}
+That is, $\TpiP$ is the set of $1$-types realized in $\StrA$ and $\TpiT$ is the
+set of $2$-types realized in $\StrA$.
+\end{definition}
+\begin{remark}\label{rem:tpi-str}
+Then $\TpiP\TpiT[\StrA] = \Tpi\TpiP\TpiT$ is indeed a type instance over
+$\ClSig\SigS\sms$ and $\StrA$ is a model for $\Tpi\TpiP\TpiT$.
+\end{remark}
+\begin{proof} 
+That $\TpiP$ and $\TpiT$ are nonempty follows from the observation that the
+cardinality of $\StrA$ is at least $2$.
+First we verify the conditions for $\Tpi\TpiP\TpiT$ to be a type instance over
+$\ClSig\SigS\sms$.
+\begin{itemize}
+  \item[\refcondtpii]
+  If $\tpTt \in \TpiT$, then $\tpTt = \tpIab\StrA\ea\eb$ for
+  some $\ea \neq \eb \in \domA$, hence $\inv\tpTt = \tpIab\StrA\eb\ea \in
+  \TpiT$, so $\TpiT$ is closed under inversion.
+  \item[\refcondtpic]
+  If $\tpTt \in \TpiT$, then $\tpTt = \tpIab\StrA\ea\eb$, hence
+  $\xtp\tpTt = \tpIa\StrA\ea \in \TpiP$, so $(\xtp\restriction\TpiT) \subseteq
+  \TpiP$.
+\end{itemize}
+Next we verify the conditions for $\StrA$ to be a model for the type instance
+$\Tpi\TpiP\TpiT$.
+\begin{itemize}
+  \item[\refcondrealizI] follows by definition of $\TpiP$.
+  \item[\refcondrealizII] follows by definition of $\TpiT$.
+  \item[\refcondrealizp] follows by definition of $\TpiP$.
+  \item[\refcondrealizk] Let $\tpIp \in \TpiP$ be realized by a a unique element
+  $\ea \in \domA$. Then there is no $\eb \in \domA \sub \set\ea$ such that
+  $\tpIa\StrA\eb = \tpIp$, so no $\tpTt \in \TpiT$ connects $\tpIp$ with itself, therefore $\tpIp$ is a king
+  type.
+\end{itemize}
+\end{proof}
+
+\begin{remark}\label{rem:tpi-str-ex}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$, 
+let $\StrA$ be a model for $\Tpi\TpiP\TpiT$
+and let $\Tpi\TpiPp\TpiTp =\TpiP\TpiT[\StrA]$ be the type instance of $\StrA$.
+Then $\TpiPp = \TpiP$, $\TpiTp \subseteq \TpiT$ and $\TKgi\TpiP\TpiTp =
+\TKgi\TpiP\TpiT$.
+\end{remark}
+\begin{proof}
+Immediate by~\Cref{rem:tpi-char}.
+\end{proof}
+\begin{remark}\label{rem:tpi-str-inv}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\SigS$,
 let $\StrA$ be a model for $\Tpi\TpiP\TpiT$
 and let $\StrB$ be a $\SigS$-structure.
@@ -251,26 +262,20 @@ If $\TpiP\TpiT[\StrB] = \TpiP\TpiT[\StrA]$ then $\StrB$ is also a model for
 $\Tpi\TpiP\TpiT$.
 \end{remark}
 \begin{proof}
-Let $\Tpi\TpiP\TpiTp = \TpiP\TpiT[\StrA] = \TpiP\TpiT[\StrB]$,
-according to~\Cref{rem:str-tpi-kings-eq}.
-We verify the conditions for $\StrB$ to be a model for $\Tpi\TpiP\TpiT$:
-\begin{itemize}
-  \item[\refcondrealizI]
-  follows from Condition~\refcondrealizI for the $\Tpi\TpiP\TpiTp$-model $\StrB$.
-  \item[\refcondrealizII]
-  follows from Condition~\refcondrealizII for the $\Tpi\TpiP\TpiTp$-model
-  $\StrB$ together with $\TpiTp \subseteq \TpiT$, according
-  to~\Cref{rem:str-tpi-kings-eq}.
-  \item[\refcondrealizp]
-  follows from Condition~\refcondrealizp for the $\Tpi\TpiP\TpiTp$-model
-  $\StrB$.
-  \item[\refcondrealizk]
-  follows from Condition~\refcondrealizk for the $\Tpi\TpiP\TpiTp$-model
-  $\StrB$ together with $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$, according
-  to~\Cref{rem:str-tpi-kings-eq}.
-\end{itemize}
+By~\Cref{rem:tpi-str-ex} we have $\TpiP\TpiT[\StrA] = \TpiP\TpiT[\StrB] =
+\Tpi\TpiP\TpiTp$ where $\TpiTp \subseteq \TpiT$ and $\TKgi\TpiP\TpiTp =
+\TKgi\TpiP\TpiT$. Then by~\Cref{rem:tpi-sub-ex} any model for $\Tpi\TpiP\TpiTp$
+is also a model for $\Tpi\TpiT\TpiT$.
 \end{proof}
-
+% Structure:
+% 1. type instance + connectability
+% 2. tpi-sub: inexact
+% 3. model
+% 4. tpi-char: exact
+% 5. tpi-sub-ex
+% 6. tpi-str
+% 7. tpi-str-ex
+% 8. tpi-inv
 \subsection{Type realizability}
 \begin{definition}
 The \emph{(finite) type realizability problem} is the following:
@@ -350,34 +355,6 @@ Otherwise the star-type $\stps$ is called a \emph{peasant star-type}.
 Note that the size of a star-type is polynomially bounded by the size of the
 type instance.
 \end{definition}
-\begin{remark}\label{rem:stp-sub}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$. Let $\TpiTp
-\subseteq \TpiT$ be a nonempty subset that is closed under inversion. According
-to~\Cref{rem:tpi-sub}, $\Tpi\TpiP\TpiTp$ is a type instance over
-$\ClSig\SigS\sms$. Suppose that $\TKgi\TpiP\TpiT = \TKgi\TpiP\TpiTp$.
-
-Then if $\stps \subseteq \TpiTp$ is a star-type over $\Tpi\TpiP\TpiT$, then it
-is also a star-type over $\Tpi\TpiP\TpiTp$.
-\end{remark}
-\begin{proof}
-We verify the conditions for a star-type over $\Tpi\TpiP\TpiTp$:
-\begin{itemize}
-  \item[\refcondstpx]
-  follows from Condition~\refcondstpx for the star-type $\stps$ over
-  $\Tpi\TpiP\TpiT$.
-  \item[\refcondstpkx]
-  follows from Condition~\refcondstpkx for the star-type $\stps$ over
-  $\Tpi\TpiP\TpiT$ together with the assumption $\TKgi\TpiP\TpiT =
-  \TKgi\TpiP\TpiTp$.
-  \item[\refcondstpky]
-  follows from Condition~\refcondstpky for the star-type $\stps$ over
-  $\Tpi\TpiP\TpiT$ together with the assumption $\TKgi\TpiP\TpiT =
-  \TKgi\TpiP\TpiTp$.
-  \item[\refcondstpm]
-  follows from Condition~\refcondstpm for the star-type $\stps$ over
-  $\Tpi\TpiP\TpiT$.
-\end{itemize}
-\end{proof}
 
 \begin{definition}\label{def:stp-str}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$
@@ -420,6 +397,34 @@ We verify the conditions for a star-type:
   satisfy the intended interpretation~\cref{eq:twovar-ms-iinter}, so in
   particular there is some $\eb \in \domA \sub \set{\ea}$ such that $\tpTt =
   \tpIab\StrA\ea\eb$ has $\sm(\xx,\yy) \in \tpTt$.
+\end{itemize}
+\end{proof}
+\begin{remark}\label{rem:stp-sub}
+Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$. Let $\TpiTp
+\subseteq \TpiT$ be a nonempty subset that is closed under inversion. According
+to~\Cref{rem:tpi-sub}, $\Tpi\TpiP\TpiTp$ is a type instance over
+$\ClSig\SigS\sms$. Suppose that $\TKgi\TpiP\TpiT = \TKgi\TpiP\TpiTp$.
+
+Then if $\stps \subseteq \TpiTp$ is a star-type over $\Tpi\TpiP\TpiT$, then it
+is also a star-type over $\Tpi\TpiP\TpiTp$.
+\end{remark}
+\begin{proof}
+We verify the conditions for a star-type over $\Tpi\TpiP\TpiTp$:
+\begin{itemize}
+  \item[\refcondstpx]
+  follows from Condition~\refcondstpx for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$.
+  \item[\refcondstpkx]
+  follows from Condition~\refcondstpkx for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$ together with the assumption $\TKgi\TpiP\TpiT =
+  \TKgi\TpiP\TpiTp$.
+  \item[\refcondstpky]
+  follows from Condition~\refcondstpky for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$ together with the assumption $\TKgi\TpiP\TpiT =
+  \TKgi\TpiP\TpiTp$.
+  \item[\refcondstpm]
+  follows from Condition~\refcondstpm for the star-type $\stps$ over
+  $\Tpi\TpiP\TpiT$.
 \end{itemize}
 \end{proof}
 
