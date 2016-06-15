@@ -119,8 +119,8 @@ However, connectability is not necessarily neither transitive nor reflexive:
 A $1$-type $\tpIk \in \TpiP$ is a \emph{king type} if 
 $\tpIk \not\conn\TpiT\tpIk$. 
 The set of king types is $\TKgi\TpiP\TpiT$.
-A $1$-type $\tpIp \in \TpiP$ that is not a king type is a \emph{peasant type}
-and the set of peasant types is $\TPsi\TpiP\TpiT = \TpiP \sub
+A $1$-type $\tpIp \in \TpiP$ that is not a king type is a \emph{worker type}
+and the set of worker types is $\TWki\TpiP\TpiT = \TpiP \sub
 \TKg(\TpiP,\TpiT)$.
 \end{definition}
 \begin{remark}\label{rem:tpi-sub}
@@ -128,7 +128,7 @@ Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$ and let
 $\TpiTp \subseteq \TpiT$ be a nonempty subset of $2$-types that is closed 
 under inversion. Then $\Tpi\TpiP\TpiTp$ is also a type instance over
 $\ClSig\SigS\sms$ and $\TKgi\TpiP\TpiT \subseteq \TKgi\TpiP\TpiTp$ and
-$\TPsi\TpiP\TpiTp \subseteq \TPsi\TpiP\TpiT$.
+$\TWki\TpiP\TpiTp \subseteq \TWki\TpiP\TpiT$.
 \end{remark}
 
 \begin{definition}
@@ -156,9 +156,13 @@ $\Tpi\TpiP\TpiT$ if the following conditions are satisfied:
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$ and let $\StrA$
 be a model for $\Tpi\TpiP\TpiT$.
 Then $\TpiP$ is the set of $1$-types that are realized by some (possibly many)
-element in $\StrA$, $\TKgi\TpiP\TpiT$ is the set of $1$-types that are realized by a unique
-element in $\StrA$ and $\TPsi\TpiP\TpiT$ is the set of $1$-types that are
-realized by at least $2$ elements in $\StrA$.
+element in $\StrA$,
+$\TKgi\TpiP\TpiT$ is the set of $1$-types that are realized by a unique element
+in $\StrA$ and 
+$\TWki\TpiP\TpiT$ is the set of $1$-types that are realized by at least $2$
+elements in $\StrA$.
+A \emph{king} is an element that realizes a king type.
+A \emph{worker} is an element that realizes a worker type.
 \end{remark}
 \begin{proof}
 By Condition~\refcondrealizI and Condition~\refcondrealizp, $\TpiP$ is the set
@@ -171,7 +175,7 @@ $2$-type $\tpTt = \tpIab\StrA\ea\eb$ connects $\tpIk$ with itself.
 By Condition~\refcondrealizII we have that $\tpTt \in \TpiT$, hence $\tpIk
 \conn\TpiT \tpIk$ --- a contradiction. Therefore $\TKgi\TpiP\TpiT$ is the set of
 $1$-types that are realized by a unique element in $\StrA$, and so
-$\TPsi\TpiP\TpiT = \TpiP \sub \TKgi\TpiP\TpiT$ is the set of $1$-types that are
+$\TWki\TpiP\TpiT = \TpiP \sub \TKgi\TpiP\TpiT$ is the set of $1$-types that are
 realized by at least $2$ elements in $\StrA$.
 \end{proof}
 
@@ -345,14 +349,14 @@ set of $2$-types satisfying the following conditions:
   $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$.
   \item[\condstpky]\label{cond:stpky}
   If $\tpIk \in \TKgi\TpiP\TpiT \sub \set{\tpIp}$ is any king type distinct
-  from $\tpIp$ (note that $\tpIp$ may possibly be a peasant type), then
+  from $\tpIp$ (note that $\tpIp$ may possibly be a worker type), then
   a unique $\tpTt\in\stps$ has $\ytp\tpTt = \tpIk$.
   \item[\condstpm]\label{cond:stpm} If $\sm \in \sms$, then $\sm(\xx,\yy)
   \in \tpTt$ for some (possibly many) $\tpTt \in \stps$.
 \end{itemize}
 A star-type $\stps$ is a \emph{king star-type} if $\xtp\stps \in
 \TKgi\TpiP\TpiT$ is a king type. 
-Otherwise the star-type $\stps$ is called a \emph{peasant star-type}.
+Otherwise the star-type $\stps$ is called a \emph{worker star-type}.
 Note that the size of a star-type is polynomially bounded by the size of the
 type instance.
 \end{definition}
@@ -541,7 +545,7 @@ We verify the conditions for a certificate:
   $\tpIa\StrA\ea = \tpIp$ and $\tpIa\StrA\eb = \tpIpp$. Then $\tpTt =
   \tpIab\StrA\ea\eb \in \TpiTp$ will connect $\tpIp$ and $\tpIpp$.
   
-  First suppose that $\tpIp$ is a peasant type. By
+  First suppose that $\tpIp$ is a worker type. By
   Conditions~\refcondrealizI and~\refcondrealizk for $\StrA$, we must have that
   $\tpIp$ is realized at least $2$ times in $\StrA$. Let $\ea_1 \neq \ea_2 \in
   \domA$ be two distinct elements realizing $\tpIp$ and let $\eb \in \domA$ be
@@ -577,13 +581,11 @@ elements:
 \begin{itemize}
   \item The singleton set $\As\stps = \set{\as\stps}$ for every king
   star-type $\stps\in\Cert$, $\xtp\stps \in \TKgi\TpiP\TpiTp$.
-  Call the elements $\as\stps$ the kings.
   \item The three disjoint copies of $\pt$ elements
   $\As\stps = \Asi\stps0 \cup \Asi\stps1 \cup \Asi\stps2$ for every
-  peasant star-type $\stps \in \Cert$, $\xtp\stps \in \TPsi\TpiP\TpiTp$, where
+  worker star-type $\stps \in \Cert$, $\xtp\stps \in \TPsi\TpiP\TpiTp$, where
   $\Asi\stps\ii = \set{\asij\stps\ii1, \asij\stps\ii2, \dots, \asij\stps\ii\pt}$
   for $\ii \in \set{0,1,2}$.
-  Call the elements $\asij\stps\ii\jj$ the peasants.
 \end{itemize}
 Let $\itpsOP : \domA \to \Cert$ denote the intended star-type of the elements:
 $\itps\ea = \stps$ on $\As\stps$.
@@ -623,7 +625,7 @@ the structure on stages.
   from the origin), we have assigned a $2$-types between every pair of distinct
   kings.
   
-  \item If $\ytp\tpTt = \tpIpp \in \TPsi\TpiP\TpiTp$ is a peasant type (hence
+  \item If $\ytp\tpTt = \tpIpp \in \TPsi\TpiP\TpiTp$ is a worker type (hence
   $\tpIpp \neq \tpIk$), we simultaneously find distinct elements $\ebt\tpTu$
   for all $2$-types $\tpTu \in \stps$ that are parallel to $\tpTt$.
   Let
@@ -642,11 +644,11 @@ the structure on stages.
   $\ea$, since $\ea$ is a king.
   We assign $\tpIab\StrA\ea{\ebt\tpTu} = \tpTu$ for all $\tpTu \in \TpiU$.
   \end{enumerate}
-  \item[Realization of peasants] We now find witnesses for the intended
-  star-types of the remaining peasant elements.
+  \item[Realization of workers] We now find witnesses for the intended
+  star-types of the remaining worker elements.
   Let $\stps \in \Cert$ be such that $\tpIp = \xtp\stps \in \TPsi\TpiP\TpiTp$ is
-  a peasant type. Let $\ea = \asij\stps\ii\jj$, where $\ii \in \set{0,1,2}$ and
-  $\jj \in [1,\pt]$ be an arbitrary peasant with intended star-type $\stps$.
+  a worker type. Let $\ea = \asij\stps\ii\jj$, where $\ii \in \set{0,1,2}$ and
+  $\jj \in [1,\pt]$ be an arbitrary worker with intended star-type $\stps$.
   For every $\tpTt \in \stps$ we will find an element $\eb_\tpTt$ for the
   assignment $\tpIab\StrA\ea{\eb_\tpTt} = \tpTt$, and again we will ensure that
   all $\ebt\tpTt$ are distinct and distinct from $\ea$ and also that $\ytp\tpTt
@@ -674,7 +676,7 @@ the structure on stages.
     in the end, the structure may realize \emph{more} than the intended
     star-types, but, importantly, \emph{not less}.
     \item If $\ytp\tpTt = \tpIpp$ is not a king type, we simultaneously find
-    distinct peasants $\ebt\tpTu$ for all $\tpTu \in \stps$ that are parallel to
+    distinct workers $\ebt\tpTu$ for all $\tpTu \in \stps$ that are parallel to
     $\tpTt$.
     Let $\TpiU = \setbd{\tpTu \in \stps}{\ytp\tpTu = \tpIpp}$ be the set of
     all such $2$-types $\tpTu$.
@@ -685,7 +687,7 @@ the structure on stages.
     $\stpspt\tpTu \in \Cert$ containing its inverse: $\inv\tpTu \in
     \stpspt\tpTu$. Since $\xtp{\stpspt\tpTu} = \xtp{\inv\tpTu} = \tpIpp$ is not
     a king type, there are enough distinct elements $\ebt\tpTu \in
-    \Asi{\stpspt\tpTu}\iip$ from the next copy of peasants having intended
+    \Asi{\stpspt\tpTu}\iip$ from the next copy of workers having intended
     star-type $\stpspt\tpTu$. Since these elements are from the next copy, they
     are distinct from $\ea$.
     We assign $\tpIab\StrA\ea{\ebt\tpTu} = \tpTu$ for all $\tpTu \in \TpiU$.
