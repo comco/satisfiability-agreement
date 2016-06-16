@@ -261,16 +261,10 @@ the size of the type instance. However, polynomial certificates exist:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$ and let $\StrA$
 be a model for $\Tpi\TpiP\TpiT$.
-For every king type $\tpIk \in \TKgi\TpiP\TpiT$, let $\eat\tpIk$ be the unique
-element realizing $\tpIk$.
 For every $2$-type $\tpTt \in \TpiT$, let $\eat\tpTt \neq \ebt\tpTt \in \domA$
 be two distinct elements realizing $\tpTt$, that is
 $\tpIab\StrA{\eat\tpTt}{\ebt\tpTt} = \tpTt$.
-Let
-\[
-  \Cert = \setbd{\stpIa\StrA{\eat\tpIk}}{\tpIk \in \TKgi\TpiP\TpiT}
-  \cup \setbd{\stpIa\StrA{\eat\tpTt}}{\tpTt\in\TpiT}.
-\]
+Let $\Cert = \setbd{\stpIa\StrA{\eat\tpTt}}{\tpTt\in\TpiT}$.
 Then $\Cert$ is a certificate for $\Tpi\TpiP\TpiT$.
 Note that the size of $\Cert$ is linearly bounded by the size of the type
 instance.
@@ -331,12 +325,12 @@ the structure on stages.
   also $\cspsp \neq \csps$ and $\eat\cspsp \neq \ea$.
   Let $\ebt\tpTt = \eat\cspsp$ and assign $\tpIab\StrA\ea{\ebt\tpTt} = \tpTt$.
   We must verify that the assignment is appropriate.
-  First, since $\tpIkp \in \tsub\TpiP\TpiT\tpIk$, by~\refcondstpky~ no other
+  First, since $\tpIkp \in \tsub\TpiP\TpiT\tpIk$, by~\refcondstpky~no other
   $\tpTtp \in \csps$ has $\ytp\tpTtp = \tpIkp$.
   Next, the assignment is symmetric.
   Indeed, $\inv\tpTt \in \TpiT$ and by~\refcondcertT, $\inv\tpTt \in \stpspp$
   for some $\stpspp \in \Cert$. Since $\xtp{\inv\tpTt} = \tpIkp$ is a king type,
-  by~\refcondcertk~ we get $\stpspp = \stpsp$. Since $\ytp{\inv\tpTt} = \tpIk
+  by~\refcondcertk~we get $\stpspp = \stpsp$. Since $\ytp{\inv\tpTt} = \tpIk
   \neq \tpIkp$ is a king type, by~\refcondstpky~the $2$-type $\inv{\tpTt} \in
   \stpsp$ is the unique that has $\ytp\tpTt = \tpIk$.
   
@@ -374,7 +368,7 @@ the structure on stages.
     First suppose that $\tpIab\StrA{\ebt\tpTt}\ea = \tpTu$ has already
     been assigned during the realization of the kings. By that construction
     $\inv\tpTu \in \stpspN\tpTu = \csps$. Since $\ytp{\inv\tpTu} = \tpIkp$,
-    by~\refcondstpky~ we have that $\inv\tpTu \in \csps$ is the unique having
+    by~\refcondstpky~we have that $\inv\tpTu \in \csps$ is the unique having
     $\ytp{\inv\tpTu} = \tpIkp$, so $\tpTt = \inv\tpTu$ has already been
     assigned.
     
@@ -386,51 +380,49 @@ the structure on stages.
     by~\Cref{rem:star-type-ext}, this extension is still a star-type. That is,
     in the end, the structure may realize \emph{more} than the intended
     star-types, but, importantly, \emph{not less}.
-    \item If $\ytp\tpTt = \tpIpp$ is not a king type, we simultaneously find
-    distinct workers $\ebt\tpTu$ for all $\tpTu \in \stps$ that are parallel to
-    $\tpTt$.
-    Let $\TpiU = \setbd{\tpTu \in \stps}{\ytp\tpTu = \tpIpp}$ be the set of
-    all such $2$-types $\tpTu$.
-    The key to consistency is to use elements from the \emph{next copy} as
-    witnesses. Let $\iip = (\ii+1 \bmod 3) \in \set{0,1,2}$. Since $\TpiU
-    \subseteq \stps \subseteq \TpiTp$, there are at most $\pt$ $2$-types $\tpTu$ in $\TpiU$. Since $\TpiTp = \cup\Cert$ and $\TpiTp$ is
-    closed under inversion, for every $\tpTu \in \TpiU$ we can find a star-type
-    $\stpspt\tpTu \in \Cert$ containing its inverse: $\inv\tpTu \in
-    \stpspt\tpTu$. Since $\xtp{\stpspt\tpTu} = \xtp{\inv\tpTu} = \tpIpp$ is not
-    a king type, there are enough distinct elements $\ebt\tpTu \in
-    \Asi{\stpspt\tpTu}\iip$ from the next copy of workers having intended
-    star-type $\stpspt\tpTu$. Since these elements are from the next copy, they
-    are distinct from $\ea$.
-    We assign $\tpIab\StrA\ea{\ebt\tpTu} = \tpTu$ for all $\tpTu \in \TpiU$.
-    None of these assignments clash with each other, since they have been made
-    between pairs of elements from consecutive copies.
+    \item 
+    Suppose that $\tpIpp \in \TWki\TpiP\TpiT$ is a worker type.
+    We simultaneously find distinct workers $\ebt\tpTu$ \emph{from the next
+    copy} for all $\tpTu \in \stps$ that are parallel to $\tpTt$.
+    Let $\TpiU = \setbd{\tpTu \in \stps}{\ytp\tpTu = \tpIpp}$.
+    Let $\iip = (\ii+1 \bmod 3) \in \set{0,1,2}$.
+    Again, there are at most $\pt$ $2$-types $\tpTu$ in $\TpiU$.
+    By~\refcondcertT, for every $\tpTu \in \TpiU$ let $\stpspN\tpTu \in \Cert$
+    be such that $\inv\tpTu \in \stpspN\tpTu$.
+    Again, there are enough distinct elements $\ebt\tpTu \in
+    \Asi{\stpspt\tpTu}\iip$ having intended star-type $\stpspt\tpTu$.
+    We assign $\tpIab\StrA\ea{\ebt\tpTu} = \tpTu$ for every $\tpTu \in \TpiU$.
+    All these assignments are appropriate, since they have been made between
+    workers from consecutive copies in the structure.
   \end{enumerate}
-  \item[Completion] For any pair of distinct elements $\ea, \eb \in \domA$ that
-  has not yet been assigned a $2$-type, assign $\tpIab\StrA\ea\eb = \tpTt$ to
-  arbitrary $2$-type $\tpTt$ that connects the $1$-types $\tpIp(\ea)$ and
-  $\tpIp(\eb)$. This is possible because during realization of kings we have
-  assigned a $2$-type between every pair of distinct kings and by~\refcertcond4.
+  \item[Completion]
+  Suppose that $\ea \neq \eb \in \domA$ are distinct elements such that
+  $\tpIab\StrA\ea\eb$ has not yet been assigned. By~\refcondstpky~we must have
+  that $\eb$ is a worker and symmetrically $\ea$ is a worker.
+  Let $\tpIp = \tpIp(\ea)$ and $\tpIpp = \tpIp(\eb)$ be their intended types and
+  let $\stps = \stps(\ea)$. Then since $\tpIpp \in \tsub\TpiP\TpiT\tpIp$,
+  by~\refcondstppy~some $\tpTt \in \stps$ connects $\tpIp$ with $\tpIpp$. Then
+  assign $\tpIab\StrA\ea\eb = \tpTt$. Again, this might extend the actual
+  star-types of $\ea$ and $\eb$ beyond their intended star-types, but
+  by~\Cref{rem:star-type-ext}, this extension is still a star-type.
 \end{description}
-This structure is a $\ClSig\SigS\sms$-structure by~\refstpcond4 and
-is a model for $\Tpi\TpiP\TpiT$ by~\refcertcond2.
+The structure $\StrA$ is a $\ClSig\SigS\sms$-structure by~\refcondstpm~and is a
+model for $\Tpi\TpiP\TpiT$ by~\refcondcertT.
 \end{proof}
 
 \begin{proposition}
-The logic $\vFo2$ has the finite model property. The (finite) type realizability
-problem for $\vFo2$ is in $\cNP$.
+The type realizability problem for $\vFo2$ coincides with the finite type
+realizability problem and is in $\cNP$.
 \end{proposition}
 \begin{proof}
 Let $\Tpi\TpiP\TpiT$ be a type instance for the classified signature
 $\ClSig\SigS\sms$. Guess a polynomial certificate for $\Tpi\TpiP\TpiT$.
 By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand}, such a certificate exists
 iff $\Tpi\TpiP\TpiT$ is realizable.
-The logic has the finite model property since the model constructed
-in~\Cref{lem:cert-expand} is finite.
+The general version coincides with the finite version since the model
+constructed in~\Cref{lem:cert-expand} is finite.
 \end{proof}
-Recall \Cref{rem:red-sat-to-real}, stating that a structure is a model for a
-formula iff it is a model for the type instance consisting of the types
-consistent with the formula, so as a corollary we get the standard result:
-\begin{corollary}
+\begin{corollary}\cite{gradel1997decision}
 The logic $\vFo2$ has the finite model property and its (finite) satisfiability
 problem is in $\cNExpTime$.
 \end{corollary}
