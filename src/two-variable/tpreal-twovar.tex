@@ -454,6 +454,7 @@ It is straightforward to verify the conditions for a star-type:
 \end{itemize}
 \end{proof}
 
+\subsection{Certificates}
 \begin{definition}
 Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$.
 A \emph{certificate} $\Cert$ for the type instance
@@ -465,18 +466,14 @@ satisfying the following conditions:
   some $\stps'\in\Cert$, that is there are star-types for the endpoints of every
   $2$-type used in the certificate. Equivalently, $\TpiTp = \cup\Cert$ is closed
   under inversion.
-  Note that by~\Cref{rem:tpi-sub}, $\Tpi\TpiP\TpiTp$ is also a type instance
-  over $\SigS$. Call $\Tpi\TpiP\TpiTp$ the \emph{filtered type instance} of
-  $\Cert$.
+  By~\Cref{rem:tpi-sub}, $\Tpi\TpiP\TpiTp$ is also a type instance over $\SigS$.
+  Call $\Tpi\TpiP\TpiTp$ the \emph{filtered type instance} of $\Cert$.
   \item[\condcertK]\label{cond:certK}
   We require that $\TKgi\TpiP\TpiTp = \TKgi\TpiP\TpiT$, that is the notion of a
   king type with respect to the filtered type instance coincides with the notion
   of a king type with respect to the original type instance.
-  Note that then by~\Cref{rem:stp-sub}, we may think of $\Tpi\TpiP\TpiTp$ as a
-  type instance over $\ClSig\SigS\sms$ and also that every star-type
-  $\stps \in \Cert$ is a also a star-type over $\Tpi\TpiP\TpiTp$. 
-  
-  
+  By~\Cref{rem:stp-sub}, every star-type $\stps \in \Cert$ is also a star-type
+  over $\Tpi\TpiP\TpiTp$.
   \item[\condcertp]\label{cond:certp}
   If $\tpIp \in \TpiP$, then some (possibly many) $\stps \in \Cert$ has
   $\xtp\stps = \tpIp$, that is there is a star-type for every $1$-type.
@@ -491,16 +488,6 @@ satisfying the following conditions:
   are not the same king type, then they are connectable.
 \end{itemize}
 \end{definition}
-
-\begin{remark}\label{rem:filtered-realiz}
-Let $\Tpi\TpiP\TpiT$ be a type instance over $\ClSig\SigS\sms$,
-let $\Cert$ be a certificate for $\Tpi\TpiP\TpiT$ and let $\TpiTp = \cup\Cert$.
-If a structure $\StrA$ realizes the filtered type instance $\Tpi\TpiP\TpiTp$,
-then it realizes $\Tpi\TpiP\TpiT$.
-\end{remark}
-\begin{proof}
-Follows from~\Cref{rem:tpi-str-ext}.
-\end{proof}
 
 Note that in general the size of a certificate may be exponential in
 the size of the type instance. However, polynomial certificates exist:
