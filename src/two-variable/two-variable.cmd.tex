@@ -66,6 +66,9 @@
 \newcommand{\symInt}{\mathcal{I}}
 % external symbol
 \newcommand{\symExt}{\mathcal{O}}
+% black hole
+\newcommand{\symBlH}{\mathcal{B}}
+
 % internal noble types
 \newcommand{\TNoii}[3]{\TNo_{#1}^\symInt(#2,#3)}
 % external noble types
@@ -74,6 +77,14 @@
 \newcommand{\TKgii}[3]{\TKg_{#1}^\symInt(#2,#3)}
 % external king types
 \newcommand{\TKgio}[3]{\TKg_{#1}^\symExt(#2,#3)}
+
+
+\newcommand{\tii}[1]{{#1}^{\symInt\symInt}}
+\newcommand{\tio}[1]{{#1}^{\symInt\symExt}}
+\newcommand{\toi}[1]{{#1}^{\symExt\symInt}}
+\newcommand{\too}[2]{\tpTt^{\symExt\symExt}(#1,#2)}
+\newcommand{\tib}[1]{\tpTt^{\symInt\symBlH}(#1)}
+\newcommand{\tob}[1]{\tpTt^{\symExt\symBlH}(#1)}
 
 \newcommand{\eat}[1]{\ea_{#1}}
 \newcommand{\ebt}[1]{\eb_{#1}}
