@@ -104,10 +104,10 @@ A \emph{type instance} $\Tpi\TpiP\TpiT$ over the classified signature
 $\ClSig\SigS\sms$ is a pair of a nonempty set of $1$-types
 $\TpiP\subseteq\TpI\SigS$ and a nonempty set of $2$-types $\TpiT\subseteq\TpT\SigS$ satisfying the following conditions:
 \begin{itemize}
-  \item[\condtpii]
+  \item
   The set of $2$-types $\TpiT$ is closed under inversion, that is
   $\inv\tpTt\in\TpiT$ for every $\tpTt\in\TpiT$.
-  \item[\condtpic]
+  \item
   Every $2$-type $\tpTt\in\TpiT$ connects $1$-types
   from $\TpiP$, that is $\xtp\tpTt\in\TpiP$ and $\ytp\tpTt\in\TpiP$ for every
   $\tpTt\in\TpiT$.
@@ -152,15 +152,17 @@ Let $\StrA$ be a $\ClSig\SigS\sms$-structure and let $\Tpi\TpiP\TpiT =
 \TPI\StrA$ be the type instance of $\StrA$.
 Then $\TKgi\TpiP\TpiT$ is the set of $1$-types that are realized by a unique
 element in $\StrA$ and $\TWki\TpiP\TpiT$ is the set of $1$-types that are
-realized by at least $2$ elements in $\StrA$.
-Let $\tpIp \in \TpiP$ and let $\ea \in \domA$ realizes $\tpIp$. Then the type
-subtraction $\tsub\TpiP\TpiT\tpIp = \setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ is the set of $1$-types
-realized by elements other than $\ea$.
+realized by at least $2$ elements in $\StrA$. Let $\tpIp \in \TpiP$ and let $\ea
+\in \domA$ realizes $\tpIp$. Then the type subtraction 
+$\tsub\TpiP\TpiT\tpIp = \setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ 
+is the set of $1$-types realized by elements other than $\ea$.
+An element $\ea \in \domA$ that realizes a king type is a \emph{king}.
+An element $\ea \in \domA$ that realizes a worker type is a \emph{worker}.
 \end{remark}
 
 \begin{definition}
-The \emph{(finite) type realizability problem} is: given a classified signature
-$\ClSig\SigS\sms$ and a type instance $\Tpi\TpiP\TpiT$ over $\ClSig\SigS\sms$,
+The \emph{(finite) type realizability problem} for $\vFo2$ is: given a
+classified signature $\ClSig\SigS\sms$ and a type instance $\Tpi\TpiP\TpiT$ over $\ClSig\SigS\sms$,
 is there a (finite) $\ClSig\SigS\sms$-structure $\StrA$ such that $\TPI\StrA =
 \Tpi\TpiP\TpiT$.
 Denote the type realizability problem by $\Real{\vFo2}$ and its finite version
