@@ -1,0 +1,63 @@
+% Type instance
+\newcommand{\TypeInstance}[1]{\mathrm{#1}}
+\newcommand{\TI}{\TypeInstance{T}}
+% Dependence on a type instance
+\newcommand{\onTI}[2]{#1_#2}
+% one types
+\newcommand{\TP}[1]{\onTI{\Pi}#1}
+% king types
+\newcommand{\TK}[1]{\onTI{\mathrm{K}}#1}
+% worker types
+\newcommand{\TW}[1]{\onTI{\mathrm{W}}#1}
+
+\newcommand{\TU}{\mathrm{U}}
+
+\newcommand{\tpx}[1]{\mathrm{tp}_{\xx}#1}
+\newcommand{\tpy}[1]{\mathrm{tp}_{\yy}#1}
+
+% set of $1$-type
+\newcommand{\TPP}{\Pi}
+
+\newcommand{\tpt}{\tau}
+\newcommand{\tptp}{{\tpt'}}
+
+\newcommand{\tpu}{\eta}
+\newcommand{\tpup}{{\tpu'}}
+
+\newcommand{\tpp}{\pi}
+\newcommand{\tppp}{{\tpp'}}
+
+\newcommand{\tpk}{\kappa}
+\newcommand{\tpkp}{{\tpk'}}
+
+\def\onetype/{$1$-type}
+\def\onetypes/{$1$-types}
+
+\def\twotype/{$2$-type}
+\def\twotypes/{$2$-types}
+
+% Type subtraction
+\newcommand{\tsub}[3]{#1 \onTI{-}{#2} #3}
+
+% Type instance of a structure
+\newcommand{\TIS}[1]{\TI[#1]}
+
+% star-type conditions
+\newcommand{\condstpx}{$(\stps\xx)$}
+\newcommand{\refcondstpx}{\hyperref[cond:stpx]{\condstpx}}
+
+\newcommand{\condstppy}{$(\stps\tpp\yy)$}
+\newcommand{\refcondstppy}{\hyperref[cond:stppy]{\condstppy}}
+
+\newcommand{\condstpky}{$(\stps\tpk\yy)$}
+\newcommand{\refcondstpky}{\hyperref[cond:stpky]{\condstpky}}
+
+\newcommand{\condstpm}{$(\stps\sm)$}
+\newcommand{\refcondstpm}{\hyperref[cond:stpm]{\condstpm}}
+
+% certificate conditions
+\newcommand{\condcertT}{$(\Cert\TI)$}
+\newcommand{\refcondcertT}{\hyperref[cond:certT]{\condcertT}}
+
+\newcommand{\condcertk}{$(\Cert\tpk)$}
+\newcommand{\refcondcertk}{\hyperref[cond:certk]{\condcertk}}
