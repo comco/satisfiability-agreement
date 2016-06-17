@@ -140,6 +140,8 @@ elements in $\StrA$.
 If $\ea \in \domA$, the type subtraction $\tsub{\TP\TI}\TI{\tpIa\StrA\ea} =
 \setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ is the set of \onetypes/ that
 are realized by elements other than $\ea$.
+The element $\ea$ is a \emph{king} if it realizes a king type; otherwise $\ea$
+is a \emph{worker}.
 
 \begin{definition}
 The \emph{(finite) type realizability problem} for $\vFo2$ is: given a
@@ -383,7 +385,7 @@ iff $\Tpi\TpiP\TpiT$ is realizable.
 The general version coincides with the finite version since the model
 constructed in~\Cref{lem:cert-expand} is finite.
 \end{proof}
-\begin{corollary}\cite{gradel1997decision}
+\begin{corollary}[\cite{gradel1997decision}]
 The logic $\vFo2$ has the finite model property and its (finite) satisfiability
 problem is in $\cNExpTime$.
 \end{corollary}
