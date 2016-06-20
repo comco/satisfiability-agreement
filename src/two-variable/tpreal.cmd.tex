@@ -2,17 +2,17 @@
 \newcommand{\TypeInstance}[1]{\mathrm{#1}}
 \newcommand{\TI}{\TypeInstance{T}}
 % Dependence on a type instance
-\newcommand{\onTI}[2]{#1_#2}
+\newcommand{\onTI}[2]{{#1}_{#2}}
 % one types
-\newcommand{\TP}[1]{\onTI{\Pi}#1}
+\newcommand{\TP}[1]{\onTI{\Pi}{#1}}
 % king types
-\newcommand{\TK}[1]{\onTI{\mathrm{K}}#1}
+\newcommand{\TK}[1]{\onTI{\mathrm{K}}{#1}}
 % worker types
-\newcommand{\TW}[1]{\onTI{\mathrm{W}}#1}
+\newcommand{\TW}[1]{\onTI{\mathrm{W}}{#1}}
 % noble types
-\newcommand{\TN}[1]{\onTI{\mathrm{N}}#1}
+\newcommand{\TN}[1]{\onTI{\mathrm{N}}{#1}}
 % peasant types
-\newcommand{\TPs}[1]{\onTI{\mathrm{P}}#1}
+\newcommand{\TPs}[1]{\onTI{\mathrm{P}}{#1}}
 
 % parallel types
 \newcommand{\TU}{\mathrm{U}}
@@ -37,6 +37,9 @@
 
 \newcommand{\tpn}{\nu}
 \newcommand{\tpnp}{{\tpn'}}
+
+\newcommand{\tpr}{\rho}
+\newcommand{\tprp}{\tpr'}
 
 \def\onetype/{$1$-type}
 \def\onetypes/{$1$-types}
@@ -87,3 +90,7 @@
 \newcommand{\galX}{X}
 \newcommand{\galXX}[1]{\galX_{#1}}
 \newcommand{\galY}{Y}
+
+% maximal promotion type instance
+\newcommand{\TIpm}{\TI'}
+\newcommand{\TIp}{\TI_{\bullet}}
