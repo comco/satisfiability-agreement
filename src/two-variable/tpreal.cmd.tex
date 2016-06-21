@@ -22,6 +22,7 @@
 
 % set of $1$-type
 \newcommand{\TPP}{\Pi}
+\newcommand{\TPD}{\Delta}
 
 \newcommand{\tpt}{\tau}
 \newcommand{\tptp}{{\tpt'}}
@@ -47,7 +48,7 @@
 \def\twotype/{$2$-type}
 \def\twotypes/{$2$-types}
 
-% Type subtraction
+% type subtraction
 \newcommand{\tsub}[3]{#1 \onTI{-}{#2} #3}
 
 % Type instance of a structure
@@ -94,3 +95,36 @@
 % maximal promotion type instance
 \newcommand{\TIpm}{\TI'}
 \newcommand{\TIp}{\TI_{\bullet}}
+
+\newcommand{\IntChar}{\mathcal{I}}
+\newcommand{\BndChar}{\mathcal{B}}
+\newcommand{\ExtChar}{\mathcal{E}}
+
+\newcommand{\csps}{\sigma}
+\newcommand{\cspsp}{{\csps'}}
+
+\newcommand{\ci}[1]{{#1}_\IntChar}
+\newcommand{\cb}[1]{{#1}_\BndChar}
+\newcommand{\ce}[1]{{#1}_\ExtChar}
+
+% cosmic spectrum conditions
+\newcommand{\condcspsx}{$(\csps\xx)$}
+\DeclareMathOperator{\TpOP}{Tp}
+\newcommand{\Tpx}[1]{\TpOP_{\xx}{#1}}
+\newcommand{\Tpy}[1]{\TpOP_{\yy}{#1}}
+
+\newcommand{\si}{\predname{in}}
+% spectral type instance
+\newcommand{\TIs}[1]{\TI^{#1}}
+
+\newcommand{\noe}[1]{#1^{-}}
+
+% nobly distinguished cosmic spectrum
+\newcommand{\condcspx}{$(\csps\xx')$}
+\newcommand{\refcondcspx}{\hyperref[cond:cspx]{\condcspx}}
+
+\newcommand{\condcsppy}{$(\csps\tpp\yy')$}
+\newcommand{\refcondcsppy}{\hyperref[cond:csppy]{\condcsppy}}
+
+\newcommand{\condcspky}{$(\csps\tpk\yy')$}
+\newcommand{\refcondcspky}{\hyperref[cond:cspky]{\condcspky}}
