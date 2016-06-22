@@ -5,6 +5,10 @@
 \newcommand{\onTI}[2]{{#1}_{#2}}
 % one types
 \newcommand{\TP}[1]{\onTI{\Pi}{#1}}
+\newcommand{\TPi}[1]{\Pi^\IntChar_{#1}}
+\newcommand{\TPe}[1]{\Pi^\ExtChar_{#1}}
+\newcommand{\TIsi}{\TI^\IntChar_\csps}
+
 % king types
 \newcommand{\TK}[1]{\onTI{\mathrm{K}}{#1}}
 % worker types
@@ -74,6 +78,12 @@
 \newcommand{\condcertk}{$(\Cert\tpk)$}
 \newcommand{\refcondcertk}{\hyperref[cond:certk]{\condcertk}}
 
+\newcommand{\condcertTc}{$(\Cert\TIc)$}
+\newcommand{\refcondcertTc}{\hyperref[cond:certTc]{\condcertTc}}
+
+\newcommand{\condcertn}{$(\Cert\tpn)$}
+\newcommand{\refcondcertn}{\hyperref[cond:certn]{\condcertn}}
+
 % get of galactic
 \newcommand{\galactic}{\mathrm{g}}
 \newcommand{\cosmic}{\mathrm{c}}
@@ -91,21 +101,26 @@
 \newcommand{\galX}{X}
 \newcommand{\galXX}[1]{\galX_{#1}}
 \newcommand{\galY}{Y}
+\newcommand{\galXs}[1]{\galX^{#1}}
+\newcommand{\galXsij}[3]{\galX^{#1}_{#2#3}}
 
 % maximal promotion type instance
 \newcommand{\TIpm}{\TI'}
 \newcommand{\TIp}{\TI_{\bullet}}
 
 \newcommand{\IntChar}{\mathcal{I}}
-\newcommand{\BndChar}{\mathcal{B}}
 \newcommand{\ExtChar}{\mathcal{E}}
 
-\newcommand{\csps}{\sigma}
+\newcommand{\csps}{\varsigma}
 \newcommand{\cspsp}{{\csps'}}
+\newcommand{\cspspp}{\csps''}
+\newcommand{\ci}[1]{#1^\IntChar}
+\newcommand{\cie}[1]{#1^{\IntChar\ExtChar}}
+\newcommand{\ce}[1]{#1^\ExtChar}
+\newcommand{\cei}[1]{#1^{\ExtChar\IntChar}}
 
-\newcommand{\ci}[1]{{#1}_\IntChar}
-\newcommand{\cb}[1]{{#1}_\BndChar}
-\newcommand{\ce}[1]{{#1}_\ExtChar}
+\newcommand{\di}[1]{{#1}^\IntChar}
+\newcommand{\db}[1]{{#1}^\BndChar}
 
 % cosmic spectrum conditions
 \newcommand{\condcspsx}{$(\csps\xx)$}
@@ -117,7 +132,8 @@
 % spectral type instance
 \newcommand{\TIs}[1]{\TI^{#1}}
 
-\newcommand{\noe}[1]{#1^{-}}
+\newcommand{\noe}[1]{#1^{-\se}}
+\newcommand{\noin}[1]{#1^{-\si}}
 
 % nobly distinguished cosmic spectrum
 \newcommand{\condcspx}{$(\csps\xx')$}
