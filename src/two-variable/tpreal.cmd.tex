@@ -115,9 +115,11 @@
 \newcommand{\cspsp}{{\csps'}}
 \newcommand{\cspspp}{\csps''}
 \newcommand{\ci}[1]{#1^\IntChar}
-\newcommand{\cie}[1]{#1^{\IntChar\ExtChar}}
 \newcommand{\ce}[1]{#1^\ExtChar}
+\newcommand{\cii}[1]{#1^{\IntChar\IntChar}}
+\newcommand{\cie}[1]{#1^{\IntChar\ExtChar}}
 \newcommand{\cei}[1]{#1^{\ExtChar\IntChar}}
+\newcommand{\cee}[1]{#1^{\ExtChar\ExtChar}}
 
 \newcommand{\di}[1]{{#1}^\IntChar}
 \newcommand{\db}[1]{{#1}^\BndChar}
@@ -144,3 +146,19 @@
 
 \newcommand{\condcspky}{$(\csps\tpk\yy')$}
 \newcommand{\refcondcspky}{\hyperref[cond:cspky]{\condcspky}}
+
+% cosmic spectrum conditions
+\newcommand{\condcspII}{$(\csps\IntChar\IntChar)$}
+\newcommand{\refcondcspII}{\hyperref[cond:cspII]{\condcspII}}
+
+\newcommand{\condcspIE}{$(\csps\IntChar\ExtChar)$}
+\newcommand{\refcondcspIE}{\hyperref[cond:cspIE]{\condcspIE}}
+
+\newcommand{\condcspEE}{$(\csps\ExtChar\ExtChar)$}
+\newcommand{\refcondcspEE}{\hyperref[cond:cspEE]{\condcspEE}}
+
+\newcommand{\condcspT}{$(\csps\TI)$}
+\newcommand{\refcondcspT}{\hyperref[cond:cspT]{\condcspT}}
+
+\newcommand{\condcspNP}{$(\csps\mathrm{N}\mathrm{P})$}
+\newcommand{\refcondcspNP}{\hyperref[cond:cspNP]{\condcspNP}}
