@@ -111,12 +111,12 @@ the set of king types is $\TK\TI$.
 A \onetype/ that is not a king type is a \emph{worker type};
 the set of worker types is $\TW\TI$.
 
-If $\TPP \subseteq \TP\TI$ and $\tpp \in \TP\TI$, define the
-\emph{type subtraction} $\tsub\TPP\TI\tpp$ by:
+If $\tpp\in\TP\TI$, the \emph{neighbours} $\nb\TI\tpp\subseteq\TP\TI$ of $\tpp$
+are:
 \[
-  \tsub\TPP\TI\tpp = \begin{cases}
-    \TPP &\text{if } \tpp \text{ is a worker type} \\
-    \TPP \sub \set\tpp &\text{otherwise, that is if } \tpIp \text{ is a king
+  \nb\TI\tpp = \begin{cases}
+    \TP\TI &\text{if } \tpp \text{ is a worker type} \\
+    \TP\TI \sub \set\tpp &\text{otherwise, that is if } \tpIp \text{ is a king
     type.}
   \end{cases}
 \]
@@ -135,9 +135,9 @@ Then $\TP\TI$ is the set of \onetypes/ that are realized in $\StrA$;
 $\TK\TI$ is the set of \onetypes/ that are realized by a unique element in
 $\StrA$ and $\TW\TI$ is the set of \onetypes/ that are realized by at least $2$
 elements in $\StrA$.
-If $\ea \in \domA$, the type subtraction $\tsub{\TP\TI}\TI{\tpIa\StrA\ea} =
-\setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ is the set of \onetypes/ that
-are realized by elements other than $\ea$.
+If $\ea \in \domA$ realizes $\tpp=\tpIa\StrA\ea$, then the neighbours
+$\nb\TI\tpp = \setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ are exactly the
+\onetypes/ realized by elements other than $\ea$.
 The element $\ea$ is a \emph{king} if it realizes a king type; otherwise $\ea$
 is a \emph{worker}.
 
@@ -179,12 +179,14 @@ subset satisfying the following conditions:
   The star-type is a \emph{king star-type} if $\tpx\stps$ is a king type.
   Otherwise the star-type is a \emph{worker star-type}.
   
+  Let $\tpp=\tpx\stps$.
+  
   \item[\condstppy]\label{cond:stppy}
-  If $\tppp \in \tsub{\TP\TI}\TI{\tpx\stps}$, then some $\tpt\in\stps$ has
+  If $\tppp \in \nb\TI\tpp$, then some $\tpt\in\stps$ has
   $\tpy\tpt = \tppp$.
   
   \item[\condstpky]\label{cond:stpky}
-  If $\tpkp \in \tsub{\TK\TI}\TI{\tpx\stps}$, then a unique $\tpt\in\stps$ has
+  If $\tpkp \in \nb\TI\tpp\cap\TK\TI$, then a unique $\tpt\in\stps$ has
   $\tpy\tpt = \tpkp$. The existence follows from~\refcondstppy.
   
   \item[\condstpm]\label{cond:stpm}

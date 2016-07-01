@@ -81,6 +81,9 @@
 \newcommand{\condcertTc}{$(\Cert\TIc)$}
 \newcommand{\refcondcertTc}{\hyperref[cond:certTc]{\condcertTc}}
 
+\newcommand{\condcertTg}{$(\Cert\TIg)$}
+\newcommand{\refcondcertTg}{\hyperref[cond:certTg]{\condcertTg}}
+
 \newcommand{\condcertn}{$(\Cert\tpn)$}
 \newcommand{\refcondcertn}{\hyperref[cond:certn]{\condcertn}}
 
@@ -121,8 +124,16 @@
 \newcommand{\cei}[1]{#1^{\ExtChar\IntChar}}
 \newcommand{\cee}[1]{#1^{\ExtChar\ExtChar}}
 
-\newcommand{\di}[1]{{#1}^\IntChar}
-\newcommand{\db}[1]{{#1}^\BndChar}
+% neighbours
+\newcommand{\nb}[2]{#1[#2]}
+
+% down interior-exterior notations
+\newcommand{\di}[1]{#1_{\IntChar}}
+\newcommand{\de}[1]{#1_{\ExtChar}}
+\newcommand{\dii}[1]{#1_{\IntChar\IntChar}}
+\newcommand{\die}[1]{#1_{\IntChar\ExtChar}}
+\newcommand{\dei}[1]{#1_{\ExtChar\IntChar}}
+\newcommand{\dee}[1]{#1_{\ExtChar\ExtChar}}
 
 % cosmic spectrum conditions
 \newcommand{\condcspsx}{$(\csps\xx)$}
