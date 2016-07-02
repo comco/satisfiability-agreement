@@ -9,23 +9,23 @@ $\sctr\fphi$ in Scott normal form:
 \]
 where $\nm \geq 1$, all the formulas $\falpp\ii$ are quantifier-free and use at
 most linearly many new unary predicate symbols.
-The semantical connection between $\fphi$ and $\sctr\fphi$ is that they are
-essentially equisatisfiable. More precisely, every model of $\fphi$ of
+The semantic connection between $\fphi$ and $\sctr\fphi$ is that they are
+essentially equisatisfiable. More precisely, every model for $\fphi$ of
 cardinality at least $2$ can be enriched to a model for $\sctr\fphi$ and also
 every model of $\sctr\fphi$ (which by $\nm \geq 1$ must have cardinality at
 least $2$) is a model for $\fphi$.
-We refer to $\falpp0$ as the \emph{universal part}, or the $\forall\forall$-part
-of the formula $\sctr\fphi$ and to $\falpp\ii$ as the \emph{existential parts},
-or the $\forall\exists$-parts of the formula, for $\ii \in [1,\nm]$.
+We refer to $\falpp0$ as the \emph{universal part} of the formula $\sctr\fphi$
+and to $\falpp\ii$ for $\ii\in[1,\nm]$ as the \emph{existential parts} of
+$\sctr\fphi$.
 
 For any formula $\sctr\fphi$ in Scott normal form, we may replace its
-existential parts by fresh binary predicate symbols: for $\ii \in [1,\nm]$, let
-$\smm\ii$ be a fresh binary predicate symbol with the intended interpretation
-$\forall\xx\forall\yy (\smm\ii(\xx,\yy) \lequ \falpp\ii(\xx,\yy))$. Since this
-is a universal sentence, it can be incorporated into the $\forall\forall$-part
-$\falpp0$ of the formula.
-We refer to the symbols $\gls{message-symbol-m-i}$ as the \emph{message
-symbols}.
+existential parts by fresh binary predicate symbols:
+for $\ii \in [1,\nm]$ let $\smm\ii$ be a fresh binary predicate symbol with
+intended interpretation
+$\forall\xx\forall\yy (\smm\ii(\xx,\yy) \lequ \falpp\ii(\xx,\yy))$.
+Since this is a universal sentence, it can be added to the universal part
+$\falpp0$.
+The symbols $\gls{message-symbol-m-i}$ are the \emph{message symbols}.
 Hence $\sctr\fphi$ can be transformed in deterministic polynomial time to the
 form:
 \begin{equation}\label{eq:twovar-msg-nf}
@@ -33,10 +33,11 @@ form:
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
   (\smm\ii(\xx,\yy) \land \xx \neq \yy),
 \end{equation}
-where the $\forall\forall$-part $\falp$ is quantifier-free and over an extended
-signature. For convenience, we make the existential parts of the formula part of
-the signature, so we can focus only on the universal part. The following is a
-term similar to the one defined in~\cite{MALQ:MALQ201400102}:
+where the universal part $\falp$ is quantifier-free and over an extended
+signature.
+For convenience, we make the existential parts part of the signature, so we can
+focus only on the universal part.
+The following term is similar to the one defined in~\cite{MALQ:MALQ201400102}:
 \begin{definition}
 A \emph{classified signature} $\gls{classified-signature-S-m}$ for the
 two-variable first-order logic $\vFo2$ is a predicate signature $\SigS$ together
@@ -48,13 +49,13 @@ predicate symbols from $\SigS$ having intended interpretation
 \end{equation}
 \end{definition}
 That is, a classified signature \emph{automatically includes} the
-$\forall\exists$-parts of formulas and $\ClSig\SigS\sms$-structures
-\emph{automatically satisfy} the $\forall\exists$-parts:
+existential parts, so $\ClSig\SigS\sms$-structures \emph{automatically satisfy}
+the the existential parts:
 \begin{definition}
 A structure $\StrA$ for the classified signature $\ClSig\SigS\sms$ is a
 structure for the predicate signature $\SigS$ that satisfies the intended
-interpretation~\cref{eq:twovar-ms-iinter} of the message symbols. Note that
-$\StrA$ must have cardinality at least $2$.
+interpretation~\cref{eq:twovar-ms-iinter} of the message symbols.
+Note that $\StrA$ must have cardinality at least $2$ by $\nm \geq 1$.
 \end{definition}
 
 \begin{definition}\label{def:clsig-twovar}
@@ -93,10 +94,11 @@ $(\ClSig\SigSp\sms, \falp)$ of the (finite) classified satisfiability problem:
 First check if $\fphi$ is satisfiable in the class of models of cardinality $1$.
 If that is the case, then extend $\SigS$ to $\SigSp$ by adding a single message
 symbol $\smm1$ and let $\falp = (\xx = \xx)$ be a fixed predicate tautology.
-Otherwise transform $\fphi$ into Scott normal form and let $\falp$ be the
-universal part of that normal form.
+Otherwise transform $\fphi$ into the form~\cref{eq:twovar-msg-nf} and let
+$\falp$ be the universal part of that normal form.
 \end{proof}
 
+\subsection{Type instances}
 A \emph{type instance} $\TI \subseteq \TpT\SigS$ over the classified signature
 $\ClSig\SigS\sms$ is a nonempty set of \twotypes/ that is closed under
 inversion.
@@ -127,10 +129,12 @@ is:
   \TIS\StrA = \setbd{\tpIab\StrA\ea\eb}{
     \ea \in \domA, \eb \in \domA \sub\set\ea}.
 \]
-That is $\TI = \TIS\StrA$ is the set of \twotypes/ that is realized in $\StrA$.
+That is $\TI = \TIS\StrA$ is the set of \twotypes/ realized in $\StrA$.
+Note that this is indeed a type instance over $\ClSig\SigS\sms$ since $\StrA$
+has cardinality at least $2$ and since it is closed under inversion by
+construction.
 If $\TI$ is the type instance of $\StrA$, then $\StrA$ is a \emph{model} for
 $\TI$.
-Since $\StrA$ has cardinality at least $2$, this set is nonempty.
 Then $\TP\TI$ is the set of \onetypes/ that are realized in $\StrA$;
 $\TK\TI$ is the set of \onetypes/ that are realized by a unique element in
 $\StrA$ and $\TW\TI$ is the set of \onetypes/ that are realized by at least $2$
@@ -171,15 +175,13 @@ Hence the (finite) classified satisfiability problem reduces to the
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
 A \emph{star-type} $\stps \subseteq \TI$ over $\TI$ is a nonempty
-subset satisfying the following conditions:
+set of \twotypes/ satisfying the following conditions:
 \begin{itemize}
   \item[\condstpx]\label{cond:stpx}
   If $\tpt, \tptp \in \stps$, then $\tpx\tpt = \tpx\tptp$.
-  Denote $\tpx\tpt$ for any $\tpt \in \stps$ by $\tpx\stps$.
-  The star-type is a \emph{king star-type} if $\tpx\stps$ is a king type.
+  Denote $\tpx\tpt$ for any $\tpt \in \stps$ by $\tpp=\tpx\stps$.
+  The star-type is a \emph{king star-type} if $\tpp$ is a king type.
   Otherwise the star-type is a \emph{worker star-type}.
-  
-  Let $\tpp=\tpx\stps$.
   
   \item[\condstppy]\label{cond:stppy}
   If $\tppp \in \nb\TI\tpp$, then some $\tpt\in\stps$ has
@@ -200,22 +202,54 @@ $\stpIa\StrA\ea$ of any element $\ea \in \domA$ is:
 \[
   \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set\ea}.
 \]
-
-\begin{remark}[Star-type extension]\label{rem:star-type-ext}
-Let $\stps$ be a star-type over $\TI$, let $\tpp = \tpx\stps$ and let
-$\tpt \in \TI$ be any \twotype/ such that $\tpx\tpt = \tpp$ and
-$\tpy\tpt$ is not a king type.
-Then $\stpsp = \stps \cup \set\tpt$ is also a star-type over $\TI$.
+\begin{remark}
+Indeed $\stps=\stpIa\StrA\ea$ is a star-type over $\TI$.
 \end{remark}
+\begin{proof}
+That $\stps$ is nonempty follows from the observation that $\domA$ has
+cardinality at most $2$.
+We check the conditions for $\stps$ to be a star-type over $\TI$:
+\begin{itemize}
+  \item[\refcondstpx]
+  Let $\tpt,\tptp\in\stps$.
+  Then $\tpt=\tpIab\StrA\ea\eb$ and $\tptp=\tpIab\StrA\ea\ebp$ for some
+  $\eb,\ebp\in\domA\sub\set{\ea}$.
+  Then $\tpx\tpt=\tpIa\StrA\ea=\tpx\tptp=\tpp$.
+  \item[\refcondstppy]
+  Let $\tppp\in\nb\TI\tpp$.
+  If $\tppp$ is a worker type then at least $2$ elements in $\StrA$ realize
+  $\tppp$.
+  Let $\eb\neq\ec\in\domA$ realize $\tppp$.
+  Let $\ebp\in\set{\eb,\ec}\sub\set\ea$.
+  Then $\tpt = \tpIab\StrA\ea\ebp\in\stps$ has $\tpy\tpt=\tppp$.
+  If $\tppp$ is a king type then $\tppp\neq\tpp$ and some
+  $\eb\in\domA\sub\set\ea$ realizes $\tppp$.
+  Then $\tpt = \tpIab\StrA\ea\eb\in\stps$ has $\tpy\tpt=\tppp$.
+  \item[\refcondstpky]
+  Let $\tpkp\in\nb\TI\tpp\cap\TK\TI$. Then $\tpkp\neq\tpp$.
+  Suppose towards a contradiction that some $\tpt\neq\tptp\in\stps$ have
+  $\tpy\tpt=\tpy\tptp=\tpkp$.
+  Then $\tpt=\tpIab\StrA\ea\eb$ and $\tptp=\tpIab\StrA\ea\ebp$ for some
+  $\eb\neq\ebp\in\domA\sub\set\ea$.
+  Then $\tpIa\StrA\eb=\tpIa\StrA\ebp=\tpkp$ --- a contradiction with the
+  observation that king types are realized by a unique element in $\StrA$.
+  \item[\refcondstpm]
+  Let $\sm\in\sms$. Since $\StrA$ is a $\ClSig\SigS\sms$-structure, some
+  $\eb\in\domA\sub\set\ea$ has $\sm(\xx,\yy) \in \tpIab\StrA\ea\eb$.
+  Now $\tpt = \tpIab\StrA\ea\eb \in \stps$.
+\end{itemize}
+\end{proof}
 
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-A \emph{certificate} $\Cert$ for $\TI$ is a nonempty set of star-types
-satisfying the following conditions:
+A \emph{certificate} $\Cert$ for $\TI$ is a nonempty set of star-types over
+$\TI$ satisfying the following conditions:
 \begin{itemize}
   \item[\condcertT]\label{cond:certT}
-  $\cup\Cert = \TI$, that is there is a star-type containing each \twotype/.
-  
+  If $\tpt\in\TI$ then some $\stps\in\Cert$ has $\tpt\in\stps$,
+  that is there is a star-type containing each \twotype/.
+  Note that if $\tpp\in\TP\TI$ then some $\stps\in\Cert$ has $\tpx\stps=\tpp$.
+  Indeed, if $\tpp\in\TP\TI$ then some $\tpt\in\TI$ has $\tpx\tpt=\tpp$.
   \item[\condcertk]\label{cond:certk}
   If $\tpk \in \TK\TI$, then a unique $\stps\in\Cert$ has $\xtp\stps = \tpIk$.
   The existence follows from~\refcondcertT.
@@ -226,13 +260,32 @@ Note that in general the size of a certificate may be exponential in
 the size of the type instance. However, polynomial certificates exist:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
 Let $\StrA$ be a model for the type instance $\TI$.
-For each \twotype/ $\tpp\in\TI$ let $\eat\tpt \neq \ebt\tpt \in \domA$
-be two distinct elements realizing $\tpTt$, that is
-$\tpIab\StrA{\eat\tpTt}{\ebt\tpTt} = \tpTt$.
+For each \twotype/ $\tpt\in\TI$ let $\eat\tpt \neq \ebt\tpt \in \domA$
+be two distinct elements realizing $\tpt$, that is
+$\tpIab\StrA{\eat\tpt}{\ebt\tpt} = \tpt$.
 Let $\Cert = \setbd{\stpIa\StrA{\eat\tpt}}{\tpt \in \TI}$.
 Then $\Cert$ is a certificate for $\TI$.
 The size of $\Cert$ is quadratic with respect to the size of the type instance.
 \end{lemma}
+\begin{proof}
+That $\Cert$ is nonempty follows from $\TI$ being nonempty.
+We check the conditions for a certificate for $\TI$:
+\begin{itemize}
+  \item[\refcondcertT]
+  Let $\tpt\in\TI$.
+  Then $\tpt=\tpIab\StrA{\eat\tpt}{\ebt\tpt} \in \stpIa\StrA{\eat\tpt} \in
+  \Cert$.
+  \item[\refcondcertk]
+  Let $\tpk\in\TK\TI$ and let $\stps,\stpsp \in \Cert$ have
+  $\tpx\stps = \tpx\stpsp = \tpk$. We claim that $\stps = \stpsp$.
+  We have $\stps=\stpIa\StrA{\eat\tpt}$ and $\stpsp=\stpIa\StrA{\eat\tptp}$
+  for some $\tpt,\tptp\in\TI$.
+  We claim that $\eat\tpt=\eat\tptp$. Indeed, if $\eat\tpt\neq\eat\tptp$ then
+  $\tptpp = \tpIab\StrA{\eat\tpt}{\eat\tptp} \in \stpIa\StrA{\eat\tpt}$ connects
+  $\tpk$ with itself --- a contradiction.
+  So $\eat\tpt = \eat\tptp$, hence $\stps=\stpsp$.
+\end{itemize}
+\end{proof}
 
 \begin{lemma}[Certificate expansion]\label{lem:cert-expand}
 Let $\Cert$ be a certificate for the type instance $\TI$ over the classified
@@ -269,105 +322,72 @@ Let $\itpiOP : \domA \to \TP\TI$ denote the intended \onetype/ of the elements:
 $\itpi\ea = \tpx(\stps(\ea))$.
 We consistently assign \twotypes/ between distinct elements on stages.
 \begin{description}
-  \item[Realization of kings] We first find witnesses for the intended
-  star-types of the kings.
-  Let $\stps \in \Cert$, $\tpk = \tpx\stps \in \TK\TI$ be a king
-  star-type and let $\ea = \eat\stps$ be the unique by~\refcondcertk{} king that
-  intends to realize $\tpk$.
-  For every $\tpt \in \stps$ we will find a distinct element $\ebt\tpt \in
-  \domA \sub \set\ea$ for the assignment $\tpIab\StrA\ea{\ebb\tpTt} = \tpt$.
-  Let $\tpt \in \csps$ and $\tppp = \tpy\tpt$.
-  \begin{enumerate}
-  \item 
-  Suppose that $\tppp = \tpkp \in \TK\TI$ is a king type.
-  By~\refcondcertk\ there is a unique $\cspsp \in \Cert$ having $\tpx\cspsp =
-  \tpkp$.
-  Since $\tpt$ connects $\tpk$ with $\tpkp$ and a king type is not connectable
-  with itself, we must have $\tpkp \neq \tpk$, hence $\eat\cspsp \neq \ea$.
-  Let $\ebt\tpTt = \eat\cspsp$ and assign $\tpIab\StrA\ea{\ebt\tpTt} = \tpt$.
-  We must verify that the assignment is appropriate.
-  First, since $\tpkp \in \tsub{\TP\TI}\TI\tpk$, by~\refcondstpky{} no other
-  $\tptp \in \csps$ has $\ytp\tptp = \tpkp$.
-  Next, the assignment is symmetric.
-  Indeed, $\inv\tpt \in \TI$ and by~\refcondcertT, $\inv\tpt \in \stpspp$
-  for some $\stpspp \in \Cert$. Since $\tpx{\inv\tpt} = \tpkp$ is a king type,
-  by~\refcondcertk{} we get $\stpspp = \stpsp$.
-  Since $\tpy{\inv\tpt} = \tpk \neq \tpkp$ is a king type,
-  by~\refcondstpky{} the \twotype/ $\inv{\tpt} \in \stpsp$ is the unique that
-  has $\tpy\tpt = \tpk$.
-  
-  \item
-  Suppose that $\tpIpp \in \TW\TI$ is a worker type (hence $\tppp \neq \tpk$).
-  We simultaneously find distinct $\ebt\tpu$ for all $2$-types $\tpu\in\stps$
-  that are parallel to $\tpt$.
-  Let $\TU = \setbd{\tpu \in \stps}{\tpy\tpu = \tppp}$ be the set of all
-  such $2$-types $\tpu$.
-  Since $\TU \subseteq \stps$ there are at most $\pt$ such \twotypes/ $\tpu$.
-  By~\refcondcertT, for every $\tpu \in \TU$ let $\stpspN\tpu \in \Cert$ be
-  such that $\inv\tpu \in \stpspN\tpu$.
-  Since $\tpx\stpspt\tpu = \xtp{\inv\tpu} = \tppp$ is a worker type, there
-  are enough distinct elements $\ebt\tpu \in \Asi{\stpspt\tpu}0$ having
-  intended star-type $\stpspt\tpu$.
-  We assign $\tpIab\StrA\ea{\ebt\tpu} = \tpu$ for every $\tpu \in \TU$.
-  \end{enumerate}
+  \item[Realization of kings]
+  We first assign \twotypes/ consistently between the kings and any other
+  element.
+  Let $\ea\in\domA$ be any king.
+  Then $\ea = \as\stps$ for some king star-type $\stps\in\Cert$.
+  Let $\tpk = \tpp(\ea) = \tpx\stps$ be the intended (king) \onetype/ of $\ea$.
+  Let $\eb \in \domA \sub \set\ea$ be any other element and let
+  $\stpsp=\stps(\eb)$ and $\tppp=\tpp(\eb)$ be its intended star-type and
+  \onetype/, respectively.
+  By~\refcondcertk, $\stpsp \neq \stps$ and $\tppp \neq \tpk$,
+  so $\tpk \in \nb\TI\tppp \cap \TK\TI$.
+  By~\refcondstpky, a unique $\tptp\in\stpsp$ has $\tpy\tptp = \tpk$.
+  We assign $\tpIab\StrA\eb\ea = \tptp$.
+  We claim that this assignment is consistent.
+  First, it is symmetric: suppose that $\eb$ is a king, so that $\tppp$ is a
+  king type.
+  Then by~\refcondstpky, there is a unique $\tpt\in\stps$ having
+  $\tpy\tpt = \tppp$.
+  Since $\TI$ is closed under inversion, $\inv\tpt \in \stpspp$ for some
+  $\stpspp\in\Cert$.
+  Since $\tpx\stpspp = \tppp$ is a king type, by~\refcondcertk{} $\stpspp =
+  \stpsp$ and by~\refcondstpky, $\inv\tpt = \tptp$.
+  That is, at the opposite situation we would assign exactly the inverse type
+  consistently.
+  Next, the assignment covers the star-type $\stps$. Indeed, let $\tpt\in\stps$
+  be any \twotype/ that needs to be realized.
+  Since $\tpk$ is a king type, $\tppp=\tpy\tpt\neq\tpk$.
+  Since $\TI$ is closed under inversion, $\inv\tpt \in \stpsp$ for some
+  $\stpsp\in\Cert$. Since $\tpx\stpsp = \tppp \neq \tpk$, $\stpsp \neq \stps$
+  and $\tpk \in \nb\TI\tppp \cap \TK\TI$, so $\tptp = \inv\tpt \in \stpsp$ is
+  the unique having $\tpy\tptp = \tpk$, and for every element $\eb\in\domA$
+  having intended star-type $\stpsp$, we would have assigned
+  $\tpIab\StrA\eb\ea = \tptp$, so $\tpIab\StrA\ea\eb = \tpt$ is realized.
+  Note that these assigments fix the \twotype/ between any king and any other
+  element.
   \item[Realization of workers]
-  We now find witnesses for the intended star-types of the worker elements.
-  Let $\stps \in \Cert$, $\tpp = \xtp\stps \in \TW\TI$ be a worker star-type 
-  and let $\ea = \asij\stps\ii\jj$, $\ii \in \set{0,1,2}$, $\jj \in [1,\pt]$ be
-  any worker having intended star-type $\stps$.
-  For every $\tpt\in\stps$ we will find a distinct element $\ebt\tpt \in
-  \domA \sub \set\ea$ for the assignment $\tpIab\StrA\ea{\ebt\tpt} = \tpt$.
-  Let $\tpt\in\stps$ and $\tppp = \tpy\tpt$.
-  \begin{enumerate}
-    \item 
-    Suppose that $\tppp = \tpkp \in \TK\TI$ is a king type (hence
-    $\tpkp \neq \tpp$).
-    By~\refcondcertk{} there is a unique $\stpsp\in\Cert$
-    having $\tpx\stpsp = \tpkp$.
-    Let $\ebt\tpt = \eat\stpsp$ be the unique king that intends to realize
-    $\tpkp$. 
-    First suppose that $\tpIab\StrA{\ebt\tpt}\ea = \tpu$ has already
-    been assigned during the realization of the kings.
-    By that construction $\inv\tpu \in \stpspN\tpu = \csps$.
-    Since $\ytp{\inv\tpu} = \tpkp$, by~\refcondstpky{} we have that
-    $\inv\tpu \in \csps$ is the unique having $\ytp{\inv\tpu} = \tpkp$, so
-    $\tpt = \inv\tpu$ has already been assigned.
-    
-    Next suppose that $\tpIab\StrA{\ebt\tpt}\ea$ has not been assigned during
-    the realization of the kings.
-    Then just assign $\tpIab\StrA\ea{\ebt\tpt} = \tpt$.
-    Note that this may extend the actual star-type of the king $\ebt\tpt$ beyond
-    his intended star-type by adding the type $\inv\tpt$, but
-    by~\Cref{rem:star-type-ext} this extension is still a star-type.
-    That is, in the end, the structure may realize \emph{more} than the intended
-    star-types, but importantly \emph{not less}.
-    \item
-    Suppose that $\tppp \in \TW\TI$ is a worker type.
-    We simultaneously find distinct workers $\ebt\tpu$ \emph{from the next copy}
-    for all $\tpu\in\stps$ that are parallel to $\tpt$.
-    Let $\TU = \setbd{\tpu\in\stps}{\tpy\tpu = \tpIpp}$.
-    Let $\iip = (\ii+1 \bmod 3) \in \set{0,1,2}$.
-    Again, there are at most $\pt$ \twotypes/ $\tpu$ in $\TU$.
-    By~\refcondcertT{}, for every $\tpu \in \TU$ let $\stpspN\tpu \in \Cert$
-    be such that $\inv\tpu \in \stpspN\tpu$.
-    Again, there are enough distinct elements $\ebt\tpu \in
-    \Asi{\stpspt\tpu}\iip$ having intended star-type $\stpspt\tpu$.
-    We assign $\tpIab\StrA\ea{\ebt\tpu} = \tpu$ for every $\tpu \in \TU$.
-    All these assignments are appropriate, since they have been made between
-    workers from consecutive copies in the structure.
-  \end{enumerate}
+  Next we consistently assign \twotypes/ between workers.
+  Let $\ea\in\domA$ be any worker and let $\stps=\stps(\ea)$ and
+  $\tpp=\tpp(\ea)$ be its intended star-type and \onetype/, respectively.
+  Then $\ea = \asij\stps\ii\jj$ for some $\ii\in\set{0,1,2}$ and
+  $\jj\in[1,\pt]$.
+  Let $\iip=(\ii+1\bmod3)\in\set{0,1,2}$ be the index of \emph{the next copy} of
+  the workers.
+  Let $\tpt\in\stps$ be any \twotype/ such that $\tppp = \tpy\tpt$ is a worker
+  type (the case where $\tpy\tpt$ is a king type has been taken care of during
+  the realization of kings).
+  Let $\TU = \setbd{\tpu\in\stps}{\tpy\tpu = \tppp}$ be the set of all
+  \twotypes/ from $\stps$ parallel to $\tpt$.
+  We simultaneously find distinct elements $\ebt\tpu$ that are distinct from
+  $\ea$ for the assignments $\tpIab\StrA\ea{\ebt\tpu} = \tpu$.
+  By~\refcondcertT{} and since $\TI$ is closed under inversion, for every
+  $\tpu\in\TU$ there is some star-type $\stpspt\tpu \in \Cert$ such that
+  $\inv\tpu \in \stpspt\tpu$.
+  Note that $\tpx{\stpspt\tpu} = \tppp$ is a worker type.
+  Since $\TU\subseteq\TI$ we have $\card{\TU} \leq \pt$, so there are enough
+  distinct peasants from the next copy $\ebt\tpu \in \Asi{\stpspt\tpu}\iip$ for
+  the assignments $\tpIab\StrA\ea{\ebt\tpu} = \tpu$.
+  These assignments do not clash with each other, since they are made between
+  \emph{consecutive copies} of worker elements.
   \item[Completion]
-  Suppose that $\ea\neq\eb \in \domA$ are distinct elements such that
+  Suppose that $\ea\neq\eb \in \domA$ are any two distinct elements such that
   $\tpIab\StrA\ea\eb$ has not yet been assigned. 
-  By~\refcondstpky{} we must have that $\eb$ is a worker and symmetrically $\ea$
-  is a worker.
-  Let $\tpp = \tpIp(\ea)$ and $\tppp = \tpIp(\eb)$ be their intended types and
-  let $\stps = \stps(\ea)$. 
-  Then since $\tppp \in \tsub{\TP\TI}\TI\tpp$, by~\refcondstppy{} some
-  $\tpt\in\stps$ connects $\tpp$ with $\tppp$.
-  Then assign $\tpIab\StrA\ea\eb = \tpt$. Again, this might extend the actual
-  star-types of $\ea$ and $\eb$ beyond their intended star-types, but
-  by~\Cref{rem:star-type-ext}, this extension is still a star-type.
+  Then both $\tpp(\ea)$ and $\tpp(\eb)$ are worker types, so $\tpp(\eb) \in
+  \nb\TI{\tpp(\ea)} = \TP\TI$.
+  By~\refcondstppy, some $\tpt\in\stps(\ea)$ has $\tpy\tpt = \tpp(\eb)$, so we
+  may assign $\tpIab\StrA\ea\eb = \tpt$.
 \end{description}
 The structure $\StrA$ is a $\ClSig\SigS\sms$-structure by~\refcondstpm{} and is
 a model for $\TI$ by~\refcondcertT.
