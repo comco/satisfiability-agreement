@@ -135,15 +135,18 @@ has cardinality at least $2$ and since it is closed under inversion by
 construction.
 If $\TI$ is the type instance of $\StrA$, then $\StrA$ is a \emph{model} for
 $\TI$.
-Then $\TP\TI$ is the set of \onetypes/ that are realized in $\StrA$;
-$\TK\TI$ is the set of \onetypes/ that are realized by a unique element in
+The element $\ea$ is a \emph{king} if it realizes a king type; otherwise $\ea$
+is a \emph{worker}.
+
+\begin{remark}\label{rem:type-char}
+Then $\TP\TI = \setbd{\tpIa\StrA\ea}{\ea\in\domA}$ is the set of \onetypes/ that
+are realized in $\StrA$; $\TK\TI$ is the set of \onetypes/ that are realized by a unique element in
 $\StrA$ and $\TW\TI$ is the set of \onetypes/ that are realized by at least $2$
 elements in $\StrA$.
 If $\ea \in \domA$ realizes $\tpp=\tpIa\StrA\ea$, then the neighbours
 $\nb\TI\tpp = \setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ are exactly the
 \onetypes/ realized by elements other than $\ea$.
-The element $\ea$ is a \emph{king} if it realizes a king type; otherwise $\ea$
-is a \emph{worker}.
+\end{remark}
 
 \begin{definition}
 The \emph{(finite) type realizability problem} for $\vFo2$ is: given a
@@ -393,7 +396,7 @@ The structure $\StrA$ is a $\ClSig\SigS\sms$-structure by~\refcondstpm{} and is
 a model for $\TI$ by~\refcondcertT.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:tprealiz-1}
 The type realizability problem for $\vFo2$ coincides with the finite type
 realizability problem and is in $\cNP$.
 \end{proposition}
