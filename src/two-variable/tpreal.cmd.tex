@@ -110,7 +110,9 @@
 \newcommand{\galX}{X}
 \newcommand{\galXX}[1]{\galX_{#1}}
 \newcommand{\galY}{Y}
-\newcommand{\galXs}[1]{\galX^{#1}}
+
+\newcommand{\galXss}[1]{\galX^{#1}}
+\newcommand{\galXs}{\galXss\csps}
 \newcommand{\galXsij}[3]{\galX^{#1}_{#2#3}}
 
 % maximal promotion type instance
@@ -149,7 +151,11 @@
 
 \newcommand{\si}{\predname{in}}
 % spectral type instance
-\newcommand{\TIs}[1]{\TI^{#1}}
+\newcommand{\TIss}[1]{\TI^{#1}}
+\newcommand{\TIs}{\TIss\csps}
+
+\newcommand{\domAss}[1]{\domA^{#1}}
+\newcommand{\domAs}{\domAss\csps}
 
 \newcommand{\noe}[1]{#1^{-\se}}
 \newcommand{\noin}[1]{#1^{-\si}}
