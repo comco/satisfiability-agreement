@@ -107,20 +107,22 @@ Two \onetypes/ $\tpp,\tppp \in \TP\TI$ are \emph{connectable} if some
 $\tpTt\in\TI$ connects them.
 Connectability is symmetric, however it is not necessarily neither transitive
 nor reflexive.
-A \onetype/ is a \emph{king type} if it is not connectable with itself;
+A \onetype/ $\tpk$ is a \emph{king type} if it is not connectable with itself;
 the set of king types is $\TK\TI$.
-A \onetype/ that is not a king type is a \emph{worker type};
+A \onetype/ $\tpw$ that is not a king type is a \emph{worker type};
 the set of worker types is $\TW\TI$.
+So we have $\TP\TI = \TK\TI \cup \TW\TI$.
 
 If $\tpp\in\TP\TI$, the \emph{neighbours} $\nb\TI\tpp\subseteq\TP\TI$ of $\tpp$
-are:
+are defined by:
 \[
   \nb\TI\tpp = \begin{cases}
-    \TP\TI &\text{if } \tpp \text{ is a worker type} \\
-    \TP\TI \sub \set\tpp &\text{otherwise, that is if } \tpIp \text{ is a king
-    type.}
+    \TP\TI &\text{if } \tpp\in\TW\TI \text{ is a worker type} \\
+    \TP\TI \sub \set\tpp &\text{otherwise, that is if }
+    \tpIp\in\TK\TI \text{ is a king type.}
   \end{cases}
 \]
+Note that $\tpp \in \nb\TI\tpp$ iff $\tpp \in \TW\TI$ is a worker type.
 
 If $\StrA$ is a $\ClSig\SigS\sms$-structure, the \emph{type instance} of $\StrA$
 is:
@@ -129,23 +131,11 @@ is:
     \ea \in \domA, \eb \in \domA \sub\set\ea}.
 \]
 That is $\TI = \TIS\StrA$ is the set of \twotypes/ realized in $\StrA$.
-Note that this is indeed a type instance over $\ClSig\SigS\sms$ since $\StrA$
-has cardinality at least $2$ and since it is closed under inversion by
-construction.
+Note that this is indeed a type instance over $\ClSig\SigS\sms$:
+$\TIS\StrA$ is nonempty since $\StrA$ has cardinality at least $2$
+and $\TIS\StrA$ is closed under inversion by construction.
 If $\TI$ is the type instance of $\StrA$, then $\StrA$ is a \emph{model} for
 $\TI$.
-The element $\ea$ is a \emph{king} if it realizes a king type; otherwise $\ea$
-is a \emph{worker}.
-
-\begin{remark}\label{rem:type-char}
-Then $\TP\TI = \setbd{\tpIa\StrA\ea}{\ea\in\domA}$ is the set of \onetypes/ that
-are realized in $\StrA$; $\TK\TI$ is the set of \onetypes/ that are realized by a unique element in
-$\StrA$ and $\TW\TI$ is the set of \onetypes/ that are realized by at least $2$
-elements in $\StrA$.
-If $\ea \in \domA$ realizes $\tpp=\tpIa\StrA\ea$, then the neighbours
-$\nb\TI\tpp = \setbd{\tpIa\StrA\eb}{\eb \in \domA \sub \set\ea}$ are exactly the
-\onetypes/ realized by elements other than $\ea$.
-\end{remark}
 
 \begin{definition}
 The \emph{(finite) type realizability problem} for $\vFo2$ is: given a
@@ -174,6 +164,81 @@ Hence the (finite) classified satisfiability problem reduces to the
 \]
 \end{remark}
 
+\begin{lemma}[Model Characterization]\label{rem:type-char}
+Let $\StrA$ be a model for $\TI$.
+Then:
+\begin{enumerate}
+  \item
+  $\tpt\in\TI$ iff
+  some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
+  have $\tpIab\StrA\ea\eb = \tpt$.
+  \item
+  $\tpp\in\TP\TI$ iff
+  some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpp$.
+  \item
+  $\tpk\in\TK\TI$ iff
+  a unique $\ea\in\domA$ has $\tpIa\StrA\ea = \tpk$.
+  \item
+  $\tpw\in\TW\TI$ iff
+  some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
+  have $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpw$.
+  \item
+  If $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$, then
+  $\tppp\in\nb\TI\tpp$ iff
+  some $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tppp$.
+\end{enumerate}
+We will be applying this lemma implicitly.
+\end{lemma}
+\begin{proof}
+
+\begin{enumerate}
+  \item
+  By definition $\TI = \TIS\StrA$.
+  
+  \item
+  If $\tpp\in\TP\TI$ then some $\tpt\in\TI$ has $\tpx\tpt = \tpp$,
+  so some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$ has
+  $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpp$.
+  
+  If $\ea\in\domA$, then note that $\StrA$ have cardinality at least $2$
+  and let $\eb\in\domA\sub\set\ea$ be any other element.
+  Then $\tpt = \tpIab\StrA\ea\eb \in \TI$, so $\tpIa\StrA\ea = \tpx\tpt \in
+  \TP\TI$.
+  
+  \item
+  First let $\tpk\in\TK\TI$, so some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpk$.
+  Suppose towards a contradiction that
+  some $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tpk$.
+  Then $\tpt = \tpIab\StrA\ea\eb \in \TI$ connects $\tpk$ with itself
+  --- a contradiction.
+  
+  Next suppose that $\tpk\not\in\TK\TI$, so some $\tpt\in\TI$ connects $\tpk$
+  with itself. Then some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$ have
+  $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpk$.
+  
+  \item
+  If $\tpw \in \TW\TI$ then some $\tpt\in\TI$ connects $\tpw$ with itself.
+  Then some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
+  have $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpw$.
+  
+  If some $\ea\in\domA$ and $\eb \in \domA\sub\set\ea$
+  have $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpw$,
+  then $\tpt = \tpIab\StrA\ea\eb \in \TI$ connects $\tpw$ with itself.
+  
+  \item
+  Let $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$.
+  
+  Let $\tppp\in\nb\TI\tpp$.
+  If $\tppp \neq \tpp$, then some $\eb \in \domA$ has
+  $\tpIa\StrA\eb = \tppp$, so $\eb \in \domA\sub\set\ea$.
+  If $\tppp = \tpp$, then $\tpp \in \TW\TI$ is a worker type,
+  so some $\eap \in \domA$ and $\ebp \in \domA\sub\set\eap$ have
+  $\tpIa\StrA\eap = \tpIa\StrA\ebp = \tpp$.
+  Let $\eb \in \set{\eap,\ebp}\sub\set\ea$, which is nonempty.
+  Then $\tpIa\StrA\eb = \tppp$ and $\eb\in\domA\sub\set\ea$.
+\end{enumerate}
+\end{proof}
+
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
 A \emph{star-type} $\stps \subseteq \TI$ over $\TI$ is a nonempty
@@ -190,55 +255,64 @@ set of \twotypes/ satisfying the following conditions:
   $\tpy\tpt = \tppp$.
   
   \item[\condstpky]\label{cond:stpky}
-  If $\tpkp \in \nb\TI\tpp\cap\TK\TI$, then a unique $\tpt\in\stps$ has
-  $\tpy\tpt = \tpkp$. The existence follows from~\refcondstppy.
+  If $\tpkp \in \nb\TI\tpp\cap\TK\TI$
+  and if $\tpt,\tptp \in \stps$ have $\tpy\tpt = \tpy\tptp = \tpk$,
+  then $\tpt = \tptp$.
   
   \item[\condstpm]\label{cond:stpm}
   If $\sm \in \sms$, then some $\tpt\in\stps$ has $\sm(\xx,\yy) \in \tpTt$.
 \end{itemize}
-The size of a star-type is linear with respect to the size of the type instance.
 \end{definition}
+Note that the size of a star-type is linear with respect to the size of the type
+instance.
+\begin{remark}
+If $\stps$ is a star-type over $\TI$, then:
+\begin{itemize}
+  \item[\condstpkyu]\label{cond:stpkyu}
+  If $\tpkp \in \nb\TI\tpp\cap\TK\TI$,
+  then a unique $\tpt\in\stps$ has $\tpy\tpt = \tpk$.
+\end{itemize}
+\end{remark}
+\begin{proof}
+By~\refcondstppy{}, some $\tpt\in\stps$ has $\tpy\tpt = \tpk$.
+By~\refcondstpky{}, such $\tpt$ is unique.
+\end{proof}
 
-If $\StrA$ is a model for $\TI$, the \emph{star-type}
-$\stpIa\StrA\ea$ of any element $\ea \in \domA$ is:
+\begin{definition}
+Let $\StrA$ be a model for $\TI$
+and let $\ea\in\domA$.
+The \emph{star-type} $\stps = \stpIa\StrA\ea$ of $\ea$ is defined by:
 \[
   \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set\ea}.
 \]
-\begin{remark}
-Indeed $\stps=\stpIa\StrA\ea$ is a star-type over $\TI$.
-\end{remark}
+Indeed $\stps$ is a star-type over $\TI$.
+\end{definition}
 \begin{proof}
-That $\stps$ is nonempty follows from the observation that $\domA$ has
-cardinality at most $2$.
-We check the conditions for $\stps$ to be a star-type over $\TI$:
+The set $\stps$ is nonempty since $\StrA$ has cardinality at least $2$.
+We check the conditions for a star-type $\stps$ over $\TI$:
 \begin{itemize}
   \item[\refcondstpx]
-  Let $\tpt,\tptp\in\stps$.
-  Then $\tpt=\tpIab\StrA\ea\eb$ and $\tptp=\tpIab\StrA\ea\ebp$ for some
+  If $\tpt,\tptp\in\stps$,
+  then $\tpt=\tpIab\StrA\ea\eb$ and $\tptp=\tpIab\StrA\ea\ebp$ for some
   $\eb,\ebp\in\domA\sub\set{\ea}$.
-  Then $\tpx\tpt=\tpIa\StrA\ea=\tpx\tptp=\tpp$.
+  Then $\tpx\tpt = \tpx\tptp = \tpIa\StrA\ea$.
+  
+  Let $\tpp = \tpx\stps = \tpIa\StrA\ea$.
   \item[\refcondstppy]
-  Let $\tppp\in\nb\TI\tpp$.
-  If $\tppp$ is a worker type then at least $2$ elements in $\StrA$ realize
-  $\tppp$.
-  Let $\eb\neq\ec\in\domA$ realize $\tppp$.
-  Let $\ebp\in\set{\eb,\ec}\sub\set\ea$.
-  Then $\tpt = \tpIab\StrA\ea\ebp\in\stps$ has $\tpy\tpt=\tppp$.
-  If $\tppp$ is a king type then $\tppp\neq\tpp$ and some
-  $\eb\in\domA\sub\set\ea$ realizes $\tppp$.
-  Then $\tpt = \tpIab\StrA\ea\eb\in\stps$ has $\tpy\tpt=\tppp$.
+  If $\tppp\in\nb\TI\tpp$,
+  then some $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tppp$, so
+  $\tpt = \tpIab\StrA\ea\eb \in \stps$ has $\tpy\tpt = \tppp$.
   \item[\refcondstpky]
-  Let $\tpkp\in\nb\TI\tpp\cap\TK\TI$. Then $\tpkp\neq\tpp$.
+  If $\tpkp\in\nb\TI\tpp\cap\TK\TI$, then $\tpkp\neq\tpp$.
   Suppose towards a contradiction that some $\tpt\neq\tptp\in\stps$ have
   $\tpy\tpt=\tpy\tptp=\tpkp$.
   Then $\tpt=\tpIab\StrA\ea\eb$ and $\tptp=\tpIab\StrA\ea\ebp$ for some
   $\eb\neq\ebp\in\domA\sub\set\ea$.
-  Then $\tpIa\StrA\eb=\tpIa\StrA\ebp=\tpkp$ --- a contradiction with the
-  observation that king types are realized by a unique element in $\StrA$.
+  Then $\tpIa\StrA\eb=\tpIa\StrA\ebp=\tpkp$ --- a contradiction.
   \item[\refcondstpm]
-  Let $\sm\in\sms$. Since $\StrA$ is a $\ClSig\SigS\sms$-structure, some
-  $\eb\in\domA\sub\set\ea$ has $\sm(\xx,\yy) \in \tpIab\StrA\ea\eb$.
-  Now $\tpt = \tpIab\StrA\ea\eb \in \stps$.
+  Let $\sm\in\sms$.
+  Since $\StrA$ is a $\ClSig\SigS\sms$-structure, some $\eb\in\domA\sub\set\ea$
+  has $\sm(\xx,\yy) \in \tpIab\StrA\ea\eb \in \stps$.
 \end{itemize}
 \end{proof}
 
@@ -248,44 +322,67 @@ A \emph{certificate} $\Cert$ for $\TI$ is a nonempty set of star-types over
 $\TI$ satisfying the following conditions:
 \begin{itemize}
   \item[\condcertT]\label{cond:certT}
-  If $\tpt\in\TI$ then some $\stps\in\Cert$ has $\tpt\in\stps$,
+  If $\tpt\in\TI$, then some $\stps\in\Cert$ has $\tpt\in\stps$,
   that is there is a star-type containing each \twotype/.
-  Note that if $\tpp\in\TP\TI$ then some $\stps\in\Cert$ has $\tpx\stps=\tpp$.
-  Indeed, if $\tpp\in\TP\TI$ then some $\tpt\in\TI$ has $\tpx\tpt=\tpp$.
   \item[\condcertk]\label{cond:certk}
-  If $\tpk \in \TK\TI$, then a unique $\stps\in\Cert$ has $\xtp\stps = \tpIk$.
-  The existence follows from~\refcondcertT.
+  If $\tpk \in \TK\TI$ and if $\csps,\cspsp\in\Cert$
+  have $\tpx\csps = \tpx\cspsp = \tpk$, then $\csps = \cspsp$.
 \end{itemize}
 \end{definition}
+\begin{remark}
+Let $\Cert$ be a certificate over $\TI$. Then:
+\begin{itemize}
+  \item[\condcertp]\label{cond:certp}
+  If $\tpp \in \TP\TI$, then some $\stps\in\Cert$ has $\tpx\stps = \tpp$.
+  \item[\condcertku]\label{cond:certku}
+  If $\tpk \in \TK\TI$, then a unique $\stps\in\Cert$ has $\tpx\stps = \tpp$.
+\end{itemize}
+\end{remark}
+\begin{proof}
+\begin{itemize}
+  \item[\refcondcertp]
+  If $\tpp\in\TP\TI$, then some $\tpp\in\TI$ has $\tpx\tpt = \tpp$,
+  so by~\refcondcertT{} some $\stps\in\Cert$ has $\tpt\in\stps$, so
+  $\tpx\stps = \tpx\tpt = \tpp$.
+  \item[\refcondcertku]
+  If $\tpk\in\TK\TI$, then by~\refcondcertp{} some $\stps\in\Cert$ has
+  $\tpx\csps = \stps$.
+  By~\refcondcertk, such $\stps$ is unique.
+\end{itemize}
+\end{proof}
 
-Note that in general the size of a certificate may be exponential in
-the size of the type instance. However, polynomial certificates exist:
+Note that the size of a certificate may be exponential with respect to the size
+of the type instance.
+However, we may extract polynomial certificates:
 \begin{lemma}[Certificate extraction]\label{lem:cert-extract}
 Let $\StrA$ be a model for the type instance $\TI$.
-For each \twotype/ $\tpt\in\TI$ let $\eat\tpt \neq \ebt\tpt \in \domA$
-be two distinct elements realizing $\tpt$, that is
-$\tpIab\StrA{\eat\tpt}{\ebt\tpt} = \tpt$.
-Let $\Cert = \setbd{\stpIa\StrA{\eat\tpt}}{\tpt \in \TI}$.
+For each \twotype/ $\tpt\in\TI$,
+let $\eat\tpt\in\domA$ and $\ebt\tpt\in\domA\sub\set{\eat\tpt}$
+have $\tpIab\StrA{\eat\tpt}{\ebt\tpt} = \tpt$.
+Let 
+\[
+  \Cert = \setbd{\stpIa\StrA{\eat\tpt}}{\tpt \in \TI}.
+\]
 Then $\Cert$ is a certificate for $\TI$.
-The size of $\Cert$ is quadratic with respect to the size of the type instance.
+The size of $\Cert$ is quadratic with respect to the size of $\TI$.
 \end{lemma}
 \begin{proof}
-That $\Cert$ is nonempty follows from $\TI$ being nonempty.
-We check the conditions for a certificate for $\TI$:
+Since $\TI$ is nonempty, $\Cert$ is nonempty.
+We check the conditions for $\Cert$ to be a certificate for $\TI$:
 \begin{itemize}
   \item[\refcondcertT]
-  Let $\tpt\in\TI$.
-  Then $\tpt=\tpIab\StrA{\eat\tpt}{\ebt\tpt} \in \stpIa\StrA{\eat\tpt} \in
+  If $\tpt\in\TI$,
+  then $\tpt=\tpIab\StrA{\eat\tpt}{\ebt\tpt} \in \stpIa\StrA{\eat\tpt} \in
   \Cert$.
   \item[\refcondcertk]
   Let $\tpk\in\TK\TI$ and let $\stps,\stpsp \in \Cert$ have
-  $\tpx\stps = \tpx\stpsp = \tpk$. We claim that $\stps = \stpsp$.
-  We have $\stps=\stpIa\StrA{\eat\tpt}$ and $\stpsp=\stpIa\StrA{\eat\tptp}$
-  for some $\tpt,\tptp\in\TI$.
-  We claim that $\eat\tpt=\eat\tptp$. Indeed, if $\eat\tpt\neq\eat\tptp$ then
-  $\tptpp = \tpIab\StrA{\eat\tpt}{\eat\tptp} \in \stpIa\StrA{\eat\tpt}$ connects
-  $\tpk$ with itself --- a contradiction.
-  So $\eat\tpt = \eat\tptp$, hence $\stps=\stpsp$.
+  $\tpx\stps = \tpx\stpsp = \tpk$.
+  Then $\stps = \stpIa\StrA{\eat\tpt}$ and $\stpsp = \stpIa\StrA{\eat\tptp}$ for
+  some $\tpt,\tptp\in\TI$.
+  Then $\tpx\tpt = \tpx\tptp = \tpk$.
+  Then $\tpIa\StrA{\eat\tpt} = \tpx\tpk = \tpIa\StrA{\eat\tptp}$.
+  Since $\tpk$ is a king type, $\eat\tpt = \eat\tptp$, so
+  $\stps = \stpsp$.
 \end{itemize}
 \end{proof}
 
@@ -327,38 +424,44 @@ We consistently assign \twotypes/ between distinct elements on stages.
   \item[Realization of kings]
   We first assign \twotypes/ consistently between the kings and any other
   element.
-  Let $\ea\in\domA$ be any king.
-  Then $\ea = \as\stps$ for some king star-type $\stps\in\Cert$.
-  Let $\tpk = \tpp(\ea) = \tpx\stps$ be the intended (king) \onetype/ of $\ea$.
+  Let $\ea\in\domA$ be any king,
+  so $\ea = \as\stpsp$ for some king star-type $\stpsp\in\Cert$.
+  Let $\tpkp = \tpp(\ea) = \tpx\stps \in \TK\TI$
+  be the intended (king) type of $\ea$.
   Let $\eb \in \domA \sub \set\ea$ be any other element and let
-  $\stpsp=\stps(\eb)$ and $\tppp=\tpp(\eb)$ be its intended star-type and
-  \onetype/, respectively.
-  By~\refcondcertk, $\stpsp \neq \stps$ and $\tppp \neq \tpk$,
-  so $\tpk \in \nb\TI\tppp \cap \TK\TI$.
-  By~\refcondstpky, a unique $\tptp\in\stpsp$ has $\tpy\tptp = \tpk$.
-  We assign $\tpIab\StrA\eb\ea = \tptp$.
-  We claim that this assignment is consistent.
-  First, it is symmetric: suppose that $\eb$ is a king, so that $\tppp$ is a
-  king type.
-  Then by~\refcondstpky, there is a unique $\tpt\in\stps$ having
-  $\tpy\tpt = \tppp$.
-  Since $\TI$ is closed under inversion, $\inv\tpt \in \stpspp$ for some
-  $\stpspp\in\Cert$.
-  Since $\tpx\stpspp = \tppp$ is a king type, by~\refcondcertk{} $\stpspp =
-  \stpsp$ and by~\refcondstpky, $\inv\tpt = \tptp$.
-  That is, at the opposite situation we would assign exactly the inverse type
-  consistently.
-  Next, the assignment covers the star-type $\stps$. Indeed, let $\tpt\in\stps$
-  be any \twotype/ that needs to be realized.
-  Since $\tpk$ is a king type, $\tppp=\tpy\tpt\neq\tpk$.
-  Since $\TI$ is closed under inversion, $\inv\tpt \in \stpsp$ for some
-  $\stpsp\in\Cert$. Since $\tpx\stpsp = \tppp \neq \tpk$, $\stpsp \neq \stps$
-  and $\tpk \in \nb\TI\tppp \cap \TK\TI$, so $\tptp = \inv\tpt \in \stpsp$ is
-  the unique having $\tpy\tptp = \tpk$, and for every element $\eb\in\domA$
-  having intended star-type $\stpsp$, we would have assigned
-  $\tpIab\StrA\eb\ea = \tptp$, so $\tpIab\StrA\ea\eb = \tpt$ is realized.
-  Note that these assigments fix the \twotype/ between any king and any other
-  element.
+  $\stps = \stps(\eb)$ and $\tpp = \tpp(\eb) = \tpx\stps$ be its intended
+  star-type and \onetype/, respectively.
+  Since $\domA$ contains a unique element for each king star-type,
+  $\stps\neq\stpsp$.
+  By~\refcondcertk, $\tpp \neq \tpkp$,
+  so $\tpkp \in \nb\TI\tpp \cap \TK\TI$.
+  By~\refcondstpkyu, a unique $\tpt\in\stps$ has $\tpy\tpt = \tpkp$.
+  We assign $\tpIab\StrA\eb\ea = \tpt$.
+  We must check that these assignments are consistent.
+  
+  First, these assignments are symmetric over the kings.
+  Suppose that $\eb$ is a king, so $\tpp = \tpk$ is a king type.
+  Since $\tpkp \neq \tpk$, $\tpk \in \nb\TI\tpkp \cap \TK\TI$.
+  By~\refcondstpkyu, a unique $\tptp\in\stpsp$ has $\tpy\tptp = \tpk$ and we
+  would want to assign $\tpIab\StrA\ea\eb = \tptp$.
+  We claim that $\tptp = \inv\tpt$.
+  Indeed, by~\refcondcertT, $\inv\tpt \in \stpspp$ for some $\stpspp\in\Cert$.
+  Then $\tpx\stpspp = \tpx{(\inv\tpt)} = \tpk$, so by~\refcondcertk, $\stpspp =
+  \stps$.
+  Then $\inv\tpt \in \stps$ has $\tpy{\inv\tpt} = \tpk$, so $\inv\tpt = \tptp$.
+  
+  Next, these assignments cover $\stpsp$.
+  Let $\tptp\in\stpsp$ be any.
+  Then by~\refcondcertT, some $\stps\in\Cert$ has $\tpt = \inv\tptp\in\stps$.
+  If $\stps = \stpsp$, then $\tpy\tptp = \tpx{\tpt} = \tpx\stps = \tpk$,
+  so $\tptp$ would connect $\tpk$ with itself --- a contradiction.
+  So $\stps \neq \stpsp$.
+  By~\refcondcertk, $\tpp \neq \tpk$, so $\tpk \in \nb\TI\tpp$.
+  Then by~\refcondstpkyu, $\tpt\in\stps$ is the unique having $\tpy\tpt = \tpk$.
+  Since $\StrA$ contains some element for each star-type,
+  some $\eb\in\domA\sub\set\ea$ has $\stps(\eb) = \stps$, so we had assigned
+  $\tpIab\StrA\eb\ea = \tpt$.
+  
   \item[Realization of workers]
   Next we consistently assign \twotypes/ between workers.
   Let $\ea\in\domA$ be any worker and let $\stps=\stps(\ea)$ and
@@ -367,19 +470,28 @@ We consistently assign \twotypes/ between distinct elements on stages.
   $\jj\in[1,\pt]$.
   Let $\iip=(\ii+1\bmod3)\in\set{0,1,2}$ be the index of \emph{the next copy} of
   the workers.
-  Let $\tpt\in\stps$ be any \twotype/ such that $\tppp = \tpy\tpt$ is a worker
-  type (the case where $\tpy\tpt$ is a king type has been taken care of during
-  the realization of kings).
+  Let $\tpt\in\stps$ be any \twotype/.
+  
+  First suppose that $\tpy\tpt = \tpkp \in \TK\TI$ is a king type.
+  By~\refcondcertku, let $\stpsp\in\Cert$ be the unique star-type having
+  $\tpx\stpsp = \tpkp$ and let $\eb = \as\stpsp$ be the unique king having
+  $\tpp(\eb) = \tpkp$.
+  Since $\tpkp\neq\tpp$, $\tpkp \in \nb\TI\tpp$ and by~\refcondstpkyu,
+  $\tpt\in\stps$ is the unique having $\tpy\tpt = \tpkp$.
+  So we had already assigned $\tpIab\StrA\ea\eb = \tpt$ during the realization
+  of kings.
+  
+  Next suppose that $\tpy\tpt = \tppp \in \TW\TI$ is a worker type.
   Let $\TU = \setbd{\tpu\in\stps}{\tpy\tpu = \tppp}$ be the set of all
   \twotypes/ from $\stps$ parallel to $\tpt$.
   We simultaneously find distinct elements $\ebt\tpu$ that are distinct from
   $\ea$ for the assignments $\tpIab\StrA\ea{\ebt\tpu} = \tpu$.
-  By~\refcondcertT{} and since $\TI$ is closed under inversion, for every
+  By~\refcondcertT{}, for each
   $\tpu\in\TU$ there is some star-type $\stpspt\tpu \in \Cert$ such that
   $\inv\tpu \in \stpspt\tpu$.
   Note that $\tpx{\stpspt\tpu} = \tppp$ is a worker type.
   Since $\TU\subseteq\TI$ we have $\card{\TU} \leq \pt$, so there are enough
-  distinct peasants from the next copy $\ebt\tpu \in \Asi{\stpspt\tpu}\iip$ for
+  distinct workers from the next copy $\ebt\tpu \in \Asi{\stpspt\tpu}\iip$ for
   the assignments $\tpIab\StrA\ea{\ebt\tpu} = \tpu$.
   These assignments do not clash with each other, since they are made between
   \emph{consecutive copies} of worker elements.
@@ -390,6 +502,8 @@ We consistently assign \twotypes/ between distinct elements on stages.
   \nb\TI{\tpp(\ea)} = \TP\TI$.
   By~\refcondstppy, some $\tpt\in\stps(\ea)$ has $\tpy\tpt = \tpp(\eb)$, so we
   may assign $\tpIab\StrA\ea\eb = \tpt$.
+  Note that this may extend the actual star-type of $\ea$ and $\eb$, but this is
+  appropriate.
 \end{description}
 The structure $\StrA$ is a $\ClSig\SigS\sms$-structure by~\refcondstpm{} and is
 a model for $\TI$ by~\refcondcertT.
@@ -400,10 +514,11 @@ The type realizability problem for $\vFo2$ coincides with the finite type
 realizability problem and is in $\cNP$.
 \end{proposition}
 \begin{proof}
-Let $\Tpi\TpiP\TpiT$ be a type instance for the classified signature
-$\ClSig\SigS\sms$. Guess a polynomial certificate for $\Tpi\TpiP\TpiT$.
+Let $\TI$ be a type instance for the classified signature
+$\ClSig\SigS\sms$.
+Guess a polynomial certificate for $\TI$.
 By~\Cref{lem:cert-extract} and~\Cref{lem:cert-expand}, such a certificate exists
-iff $\Tpi\TpiP\TpiT$ is realizable.
+iff $\TI$ has a model.
 The general version coincides with the finite version since the model
 constructed in~\Cref{lem:cert-expand} is finite.
 \end{proof}
