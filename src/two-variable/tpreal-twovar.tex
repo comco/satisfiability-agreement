@@ -109,7 +109,7 @@ Connectability is symmetric, however it is not necessarily neither transitive
 nor reflexive.
 A \onetype/ $\tpk$ is a \emph{king type} if it is not connectable with itself;
 the set of king types is $\TK\TI$.
-A \onetype/ $\tpw$ that is not a king type is a \emph{worker type};
+A \onetype/ $\tpp$ that is not a king type is a \emph{worker type};
 the set of worker types is $\TW\TI$.
 So we have $\TP\TI = \TK\TI \cup \TW\TI$.
 
@@ -136,10 +136,12 @@ $\TIS\StrA$ is nonempty since $\StrA$ has cardinality at least $2$
 and $\TIS\StrA$ is closed under inversion by construction.
 If $\TI$ is the type instance of $\StrA$, then $\StrA$ is a \emph{model} for
 $\TI$.
+An element realizing a king type is a \emph{king element}.
+An element realizing a worker type is a \emph{worker element}.
 
 \begin{definition}
-The \emph{(finite) type realizability problem} for $\vFo2$ is: given a
-classified signature $\ClSig\SigS\sms$ and a type instance $\TI$ over
+The \emph{(finite) type realizability problem} for $\vFo2$ is the following:
+given a classified signature $\ClSig\SigS\sms$ and a type instance $\TI$ over
 $\ClSig\SigS\sms$, is there a (finite) model for $\TI$.
 Denote the type realizability problem by $\Real{\vFo2}$ and its finite version
 by $\FinReal{\vFo2}$.
@@ -179,9 +181,9 @@ Then:
   $\tpk\in\TK\TI$ iff
   a unique $\ea\in\domA$ has $\tpIa\StrA\ea = \tpk$.
   \item
-  $\tpw\in\TW\TI$ iff
-  some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
-  have $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpw$.
+  $\tpp\in\TW\TI$ iff
+  for every $\ea\in\domA$ such that $\tpIa\StrA\ea = \tpp$
+  there is some $\eb\in\domA\sub\set\ea$ such that $\tpIa\StrA\eb = \tpp$.
   \item
   If $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$, then
   $\tppp\in\nb\TI\tpp$ iff
@@ -217,25 +219,34 @@ We will be applying this lemma implicitly.
   $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpk$.
   
   \item
-  If $\tpw \in \TW\TI$ then some $\tpt\in\TI$ connects $\tpw$ with itself.
-  Then some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
-  have $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpw$.
+  First let $\tpp\in\TW\TI$, so some $\tpt\in\TI$ connects $\tpp$ with itself.
+  Let $\ea\in\domA$ have $\tpIa\StrA\ea = \tpp$.
+  Let $\eap\in\domA$ and $\ebp\in\domA\sub\set\eap$ have
+  $\tpIab\StrA\ea\eb = \tpt$.
+  Then $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpp$.
+  Let $\eb \in \set{\eap,\ebp}\sub\set\ea$, which is nonempty.
+  Then $\tpIa\StrA\eb = \tpp$ and $\eb\in\domA\sub\set\ea$.
   
-  If some $\ea\in\domA$ and $\eb \in \domA\sub\set\ea$
-  have $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpw$,
-  then $\tpt = \tpIab\StrA\ea\eb \in \TI$ connects $\tpw$ with itself.
+  Next suppose that for every $\ea\in\domA$ having $\tpIa\StrA\ea = \tpt$, there
+  is some $\eb\in\domA\sub\set\ea$ having $\tpIa\StrA\eb = \tpp$.
+  Since $\tpp\in\TP\TI$, some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpp$, so some
+  $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tpp$, so
+  $\tpt = \tpIab\StrA\ea\eb$ connects $\tpp$ with itself, so $\tpp\in\TP\TI$.
   
   \item
   Let $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$.
   
-  Let $\tppp\in\nb\TI\tpp$.
+  First let $\tppp\in\nb\TI\tpp$.
   If $\tppp \neq \tpp$, then some $\eb \in \domA$ has
   $\tpIa\StrA\eb = \tppp$, so $\eb \in \domA\sub\set\ea$.
   If $\tppp = \tpp$, then $\tpp \in \TW\TI$ is a worker type,
-  so some $\eap \in \domA$ and $\ebp \in \domA\sub\set\eap$ have
-  $\tpIa\StrA\eap = \tpIa\StrA\ebp = \tpp$.
-  Let $\eb \in \set{\eap,\ebp}\sub\set\ea$, which is nonempty.
-  Then $\tpIa\StrA\eb = \tppp$ and $\eb\in\domA\sub\set\ea$.
+  so some $\eb\in\domA\sub\set\ea$ has
+  $\tpIa\StrA\eb = \tpp = \tppp$.
+  
+  Next suppose that some $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tppp$.
+  If $\tppp \neq \tpp$, then $\tppp \in \nb\TI\tpp$.
+  If $\tppp = \tpp$, then $\tpp$ must be a worker type,
+  so $\tppp \in \nb\TI\tpp = \TP\TI$.
 \end{enumerate}
 \end{proof}
 

@@ -43,8 +43,6 @@
 \newcommand{\tpps}[1]{\tpp_{#1}}
 \newcommand{\tppp}{{\tpp'}}
 
-\newcommand{\tpw}{\tpp}
-
 \newcommand{\tpk}{\kappa}
 \newcommand{\tpkp}{{\tpk'}}
 
@@ -112,13 +110,14 @@
 \newcommand{\TIg}{\TI^\galactic}
 \newcommand{\TIc}{\TI^\cosmic}
 
+\newcommand{\NobChar}{\mathrm{N}}
+\newcommand{\PeaChar}{\mathrm{P}}
+
 % galaxies
-\newcommand{\Gals}{\mathcal{G}}
-\newcommand{\Galsp}{{\Gals'}}
-\newcommand{\GalsN}{\Gals_{\mathrm{N}}}
-\newcommand{\GalsNp}{\Gals'_{\mathrm{N}}}
-\newcommand{\GalsP}{\Gals_{\mathrm{P}}}
-\newcommand{\GalsPp}{\Gals'_{\mathrm{P}}}
+\newcommand{\Gals}[1]{\mathcal{G}^{#1}}
+\newcommand{\GalsN}[1]{\Gals{#1}_\NobChar}
+\newcommand{\GalsP}[1]{\Gals{#1}_\PeaChar}
+
 \newcommand{\galX}{X}
 \newcommand{\galXX}[1]{\galX_{#1}}
 \newcommand{\galY}{Y}
