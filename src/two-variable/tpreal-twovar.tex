@@ -183,7 +183,7 @@ Then:
   \item
   $\tpp\in\TW\TI$ iff
   for every $\ea\in\domA$ such that $\tpIa\StrA\ea = \tpp$
-  there is some $\eb\in\domA\sub\set\ea$ such that $\tpIa\StrA\eb = \tpp$.
+  there is some $\eb\in\domA\sub\set\ea$ having $\tpIa\StrA\eb = \tpp$.
   \item
   If $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$, then
   $\tppp\in\nb\TI\tpp$ iff
@@ -214,25 +214,26 @@ We will be applying this lemma implicitly.
   Then $\tpt = \tpIab\StrA\ea\eb \in \TI$ connects $\tpk$ with itself
   --- a contradiction.
   
-  Next suppose that $\tpk\not\in\TK\TI$, so some $\tpt\in\TI$ connects $\tpk$
-  with itself. Then some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$ have
-  $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpk$.
+  Next suppose that $\tpp\in\TP\TI\sub\TK\TI = \TW\TI$,
+  so some $\tpt\in\TI$ connects $\tpk$ with itself.
+  Then some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
+  have $\tpIab\StrA\ea\eb = \tpt$,
+  so $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpp$,
+  so there is not a unique $\ea\in\domA$ having $\tpIa\StrA\ea = \tpp$.
   
   \item
-  First let $\tpp\in\TW\TI$, so some $\tpt\in\TI$ connects $\tpp$ with itself.
-  Let $\ea\in\domA$ have $\tpIa\StrA\ea = \tpp$.
-  Let $\eap\in\domA$ and $\ebp\in\domA\sub\set\eap$ have
-  $\tpIab\StrA\ea\eb = \tpt$.
-  Then $\tpIa\StrA\ea = \tpIa\StrA\eb = \tpp$.
-  Let $\eb \in \set{\eap,\ebp}\sub\set\ea$, which is nonempty.
-  Then $\tpIa\StrA\eb = \tpp$ and $\eb\in\domA\sub\set\ea$.
+  First suppose that $\tpp\in\TW\TI$ and that $\ea\in\domA$
+  has $\tpIa\StrA\ea = \tpp$.
+  Since $\tpp\not\in\TK\TI$, such $\ea$ is not unique, so there is some
+  $\eb\in\domA\sub\set\ea$ having $\tpIa\StrA\eb = \tpp$.
   
-  Next suppose that for every $\ea\in\domA$ having $\tpIa\StrA\ea = \tpt$, there
-  is some $\eb\in\domA\sub\set\ea$ having $\tpIa\StrA\eb = \tpp$.
+  Next suppose that $\tpp\in\TP\TI$ and that for every $\ea\in\domA$ such that
+  $\tpIa\StrA\ea = \tpp$ there is some $\eb\in\domA\sub\set\ea$ having
+  $\tpIa\StrA\eb = \tpp$.
   Since $\tpp\in\TP\TI$, some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpp$, so some
-  $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tpp$, so
-  $\tpt = \tpIab\StrA\ea\eb$ connects $\tpp$ with itself, so $\tpp\in\TP\TI$.
-  
+  $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tpp$, so there is not a unique
+  $\ea\in\domA$ having $\tpIa\StrA\ea = \tpp$, so $\tpp\not\in\TK\TI$, so
+  $\tpp\in\TW\TI$.
   \item
   Let $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$.
   
