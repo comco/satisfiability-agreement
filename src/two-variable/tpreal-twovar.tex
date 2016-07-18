@@ -171,23 +171,40 @@ Let $\StrA$ be a model for $\TI$.
 Then:
 \begin{enumerate}
   \item
-  $\tpt\in\TI$ iff
-  some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
+  If $\tpt\in\TI$
+  then some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$
   have $\tpIab\StrA\ea\eb = \tpt$.
+  
+  If $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$,
+  then $\tpIab\StrA\ea\eb = \tpt$ for some $\tpt\in\TI$.
+  
+  Equivalently $\TI =
+  \setbd{\tpIab\StrA\ea\eb}{\ea\in\domA,\eb\in\domA\sub\set\ea}$.
   \item
-  $\tpp\in\TP\TI$ iff
-  some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpp$.
+  If $\tpp\in\TP\TI$
+  then some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpp$.
+  
+  If $\ea\in\domA$
+  then $\tpIa\StrA\ea = \tpp$ for some $\tpp\in\TP\TI$.
+  
+  Equivalently $\TP\TI = \setbd{\tpIa\StrA\ea}{\ea\in\domA}$.
   \item
-  $\tpk\in\TK\TI$ iff
-  a unique $\ea\in\domA$ has $\tpIa\StrA\ea = \tpk$.
+  Let $\tpk\in\TP\TI$.
+  Then $\tpk\in\TK\TI$ iff a unique $\ea\in\domA$ has $\tpIa\StrA\ea = \tpk$.
+  
   \item
-  $\tpp\in\TW\TI$ iff
-  for every $\ea\in\domA$ such that $\tpIa\StrA\ea = \tpp$
-  there is some $\eb\in\domA\sub\set\ea$ having $\tpIa\StrA\eb = \tpp$.
+  Let $\tpp\in\TP\TI$.
+  Then $\tpp\in\TW\TI$ iff for every $\ea\in\domA$ such that $\tpIa\StrA\ea =
+  \tpp$ there is some $\eb\in\domA\sub\set\ea$ having $\tpIa\StrA\eb = \tpp$.
+  
   \item
-  If $\ea\in\domA$ and $\tpp = \tpIa\StrA\ea$, then
-  $\tppp\in\nb\TI\tpp$ iff
-  some $\eb\in\domA\sub\set\ea$ has $\tpIa\StrA\eb = \tppp$.
+  Let $\ea\in\domA$ and let $\tpp = \tpIa\StrA\ea$.
+  
+  If $\tppp \in \nb\TI\tpp$ then some $\eb\in\domA\sub\set\ea$ has
+  $\tpIa\StrA\eb = \tppp$.
+  
+  If $\eb\in\domA\sub\set\ea$ then $\tpIa\StrA\eb = \tppp$ for some
+  $\tppp\in\nb\TI\tpp$.
 \end{enumerate}
 We will be applying this lemma implicitly.
 \end{lemma}
@@ -195,17 +212,18 @@ We will be applying this lemma implicitly.
 
 \begin{enumerate}
   \item
-  By definition $\TI = \TIS\StrA$.
+  By definition $\TI = \TIS\StrA =
+  \setbd{\tpIab\StrA\ea\eb}{\ea\in\domA,\eb\in\domA\sub\set\ea}$.
   
   \item
   If $\tpp\in\TP\TI$ then some $\tpt\in\TI$ has $\tpx\tpt = \tpp$,
   so some $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$ has
   $\tpIab\StrA\ea\eb = \tpt$, so $\tpIa\StrA\ea = \tpp$.
   
-  If $\ea\in\domA$, then note that $\StrA$ have cardinality at least $2$
+  If $\ea\in\domA$, then note that $\StrA$ has cardinality at least $2$
   and let $\eb\in\domA\sub\set\ea$ be any other element.
-  Then $\tpt = \tpIab\StrA\ea\eb \in \TI$, so $\tpIa\StrA\ea = \tpx\tpt \in
-  \TP\TI$.
+  Then $\tpIab\StrA\ea\eb = \tpt \in \TI$,
+  so $\tpp = \tpIa\StrA\ea = \tpx\tpt \in \TP\TI$.
   
   \item
   First let $\tpk\in\TK\TI$, so some $\ea\in\domA$ has $\tpIa\StrA\ea = \tpk$.
