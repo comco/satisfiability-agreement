@@ -1,1 +1,24 @@
 % Counting commands
+
+\newcommand{\arn}{\star}
+\newcommand{\arm}{\mathrm{m}}
+\newcommand{\ars}{\mathrm{s}}
+\newcommand{\tput}[3]{{{}^{#2}{#1}^{#3}}}
+
+\newcommand{\TIann}{\tput\TI\arn\arn}
+\newcommand{\TIanm}{\tput\TI\arn\arm}
+\newcommand{\TIans}{\tput\TI\arn\ars}
+
+\newcommand{\TIamn}{\tput\TI\arm\arn}
+\newcommand{\TIamm}{\tput\TI\arm\arm}
+\newcommand{\TIams}{\tput\TI\arm\ars}
+
+\newcommand{\TIasn}{\tput\TI\ars\arn}
+\newcommand{\TIasm}{\tput\TI\ars\arm}
+\newcommand{\TIass}{\tput\TI\ars\ars}
+
+\newcommand{\TIall}{
+\TIann,\TIanm,\TIans;
+\TIamn,\TIamm,\TIams;
+\TIasn,\TIasm,\TIass
+}
