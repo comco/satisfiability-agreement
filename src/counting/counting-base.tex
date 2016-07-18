@@ -1,0 +1,114 @@
+% Counting base case
+Recall from~\Cref{sec:scott-nf} about normal forms that every $\vFoc2$-sentence
+$\fphi$ can be reduced in deterministic polynomial time to a sentence
+\[
+  \forall\xx\forall\yy(\falpp0(\xx,\yy) \lor \xx=\yy) \land
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\existseq{\nMM\ii}\yy
+  (\falpp\ii(\xx,\yy) \land \xx\neq\yy),
+\]
+where $\nm\geq1$, $\nMM\ii\geq1$, all the formulas $\falpp\ii$ are
+quantifier-free and use at most linearly many new unary and binary predicate symbols.
+Let $\nM = 1 + \max\set{\nMM1,\nMM2,\dots,\nMM\nm}$.
+The semantic connection between $\fphi$ and $\prtr\fphi$ is that they are
+essentially equisatisfiable.
+More precisely, every model for $\fphi$ of cardinality at least $2$ can be
+enriched to a model for $\prtr\fphi$ and every model for $\prtr\fphi$ of
+cardinality at least $\nM$ is a model for $\fphi$.
+We refer to $\falpp0$ as the universal part of $\fphi$ and to $\falpp\ii$ for
+$\ii\in[1,\nm]$ as the existenial parts of $\fphi$.
+
+We replace the existential parts of a formula in normal form with fresh binary
+predicate symbols $\smm\ii$ (the message symbols) for $\ii\in[1,\nm]$
+having intended interpretation
+$\forall\xx\forall\yy(\smm\ii(\xx,\yy)\lequ\falpp\ii(\xx,\yy))$.
+Hence any $\vFoc2$-sentence can be transformed in deterministic polynomial time
+into the form:
+\begin{equation}\label{eq:counting-base}
+\forall\xx\forall\yy(\falp(\xx,\yy)\lor\xx=\yy) \land
+\bigwedge_{1\leq\ii\leq\nm} \forall\xx\existseq{\nMM\ii}\yy
+(\smm\ii(\xx,\yy)\land\xx\neq\yy),
+\end{equation}
+where the universal part $\falp$ is quantifier-free and over an extended
+signature.
+
+\begin{definition}
+A \emph{classified signature} $\ClSig\SigS\sms$ for the two-variable logic with
+counting quantifiers $\vFoc2$ is a predicate signature $\SigS$ together with a
+nonempty sequence
+\[
+\sms = \underbrace{\smm1\smm1\dots\smm1}_{\nMM1}
+\underbrace{\smm2\smm2\dots\smm2}_{\nMM2}
+\dots
+\underbrace{\smm\nm\smm\nm\dots\smm\nm}_{\nMM\nm}
+\]
+($\nMM\ii\geq1$) of distinct binary predicate symbols $\smm\ii$ from $\SigS$
+having intended interpretation
+\begin{equation}\label{eq:counting-base-clsig}
+\bigwedge_{1\leq\ii\leq\nm}\forall\xx\existseq{\nMM\ii}\yy
+(\smm\ii(\xx,\yy)\land\xx\neq\yy).
+\end{equation}
+Whenever $\ClSig\SigS\sms$ is a classified signature, we will denote
+\[
+  \nM = 1 +\max\set{\nMM1,\nMM2,\dots,\nMM\nm}
+\].
+\end{definition}
+Note that a classified signature may be exponentially larger than its intended
+interpretation, since the counting quantifiers are coded succinctly in binary.
+Note that $\nM$ is polynomial with respect to the size of the classified
+signature.
+\begin{definition}
+A structure $\StrA$ over the classified signature $\ClSig\SigS\sms$ is a
+structure over $\SigS$ having cardinality at least $\nM$ and satisfying the
+intended interpretation~\cref{eq:counting-base-clsig} of the message symbols.
+Note that $\StrA$ must have cardinality at least $\nM$.
+\end{definition}
+\begin{definition}
+The (finite) classified satisfiability problem for $\vFoc2$ is the following:
+given a classified signature $\ClSig\SigS\sms$ and a quantifier-free
+$\vFocF2\SigS$-formula $\falp(\xx,\yy)$, is there a (finite)
+$\ClSig\SigS\sms$-structure $\StrA$ satisfying~\ref{eq:counting-base}.
+Denote the classified satisfiability problem by $\ClSat{\vFoc2}$ and its finite
+version by $\FinClSat{\vFoc2}$.
+\end{definition}
+
+Similarly to~\Cref{ch:twovar} that a type instance $\TI\subseteq\TIS\SigS$
+over $\ClSig\SigS\sms$ is a set of $2$-types that is closed under inversion.
+If $\StrA$ is a $\ClSig\SigS\sms$-structure, its type instance is:
+\[
+  \TIS\StrA = \setbd{\tpIab\StrA\ea\eb}{\ea\in\domA,\eb\in\domA\sub\set\ea}.
+\]
+
+\begin{definition}
+The (finite) type realizability problem for $\vFoc2$ is the following:
+given a classified signature $\ClSig\SigS\sms$ and a type instance $\TI$ over
+$\ClSig\SigS\sms$, is there a (finite) model for $\TI$.
+Denote the type realizability problem for $\vFoc2$ by $\Real{\vFoc2}$
+and its finite version by $\FinReal{\vFoc2}$.
+\end{definition}
+
+\begin{remark}
+\[
+\FinASat{\vFoc2} \red\cNExpTime \FinAReal{\vFoc2}.
+\]
+\end{remark}
+\begin{proof}
+Let $\SigS$ be a predicate signature and let $\fphi$ be a $\SigS$-sentence.
+Generate $\prtr\fphi$ of the form~\cref{eq:counting-base} in deterministic
+polynomial time and extract a classified signature $\ClSig\SigS\sms$ out of it.
+Note that $\nM$ is exponentially bounded by the length of $\fphi$.
+First check if some $\SigS$-structure of cardinality less than $\nM$ satisfies
+$\fphi$. This can be done in nondeterministic exponential time by guessing such
+a structure, if it exists.
+If such a structure exists, map the input $(\SigS,\fphi)$ to a fixed positive
+instance of the (finite) type realizability problem.
+Otherwise $\fphi$ is (finitely) satisfiable iff $\prtr\fphi$ is finitely
+satisfiable.
+Consider $\TI^\falp \subseteq \TpT\SigS$ to be the set of those \twotypes/ that
+are consistent with $\falp(\xx,\yy)$ and the indended interpretation for
+classified signature~\cref{eq:counting-base-clsig}, where $\falp$ is the
+universal part of $\prtr\fphi$.
+Then $\ClSig\SigS\sms$-structure $\StrA$ is a classified model for
+$\falp(\xx,\yy)$ iff $\TIS\StrA \subseteq \TI^\falp$.
+So in this case $\fphi$ is (finitely) satisfiable iff some
+type instance $\TI\subseteq\TI^\falp$ is (finitely) realizable.
+\end{proof}
