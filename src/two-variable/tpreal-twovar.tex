@@ -277,8 +277,6 @@ set of \twotypes/ satisfying the following conditions:
   \item[\condstpx]\label{cond:stpx}
   If $\tpt, \tptp \in \stps$, then $\tpx\tpt = \tpx\tptp$.
   Denote $\tpx\tpt$ for any $\tpt \in \stps$ by $\tpp=\tpx\stps$.
-  The star-type is a \emph{king star-type} if $\tpp$ is a king type.
-  Otherwise the star-type is a \emph{worker star-type}.
   
   \item[\condstppy]\label{cond:stppy}
   If $\tppp \in \nb\TI\tpp$, then some $\tpt\in\stps$ has
@@ -293,6 +291,8 @@ set of \twotypes/ satisfying the following conditions:
   If $\sm \in \sms$, then some $\tpt\in\stps$ has $\sm(\xx,\yy) \in \tpTt$.
 \end{itemize}
 \end{definition}
+A star-type $\stps$ is a \emph{king star-type} if $\tpx\stps$ is a king type.
+Otherwise the star-type is a \emph{worker star-type}.
 Note that the size of a star-type is linear with respect to the size of the type
 instance.
 \begin{remark}
@@ -311,12 +311,14 @@ By~\refcondstpky{}, such $\tpt$ is unique.
 \begin{definition}
 Let $\StrA$ be a model for $\TI$
 and let $\ea\in\domA$.
-The \emph{star-type} $\stps = \stpIa\StrA\ea$ of $\ea$ is defined by:
+The \emph{star-type} $\stpIa\StrA\ea$ of $\ea$ is defined by:
 \[
   \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set\ea}.
 \]
-Indeed $\stps$ is a star-type over $\TI$.
 \end{definition}
+\begin{remark}
+Indeed $\stps = \stpIa\StrA\ea$ is a star-type over $\TI$.
+\end{remark}
 \begin{proof}
 The set $\stps$ is nonempty since $\StrA$ has cardinality at least $2$.
 We check the conditions for a star-type $\stps$ over $\TI$:
@@ -355,8 +357,8 @@ $\TI$ satisfying the following conditions:
   If $\tpt\in\TI$, then some $\stps\in\Cert$ has $\tpt\in\stps$,
   that is there is a star-type containing each \twotype/.
   \item[\condcertk]\label{cond:certk}
-  If $\tpk \in \TK\TI$ and if $\csps,\cspsp\in\Cert$
-  have $\tpx\csps = \tpx\cspsp = \tpk$, then $\csps = \cspsp$.
+  If $\tpk\in\TK\TI$ and if $\stps,\stpsp\in\Cert$
+  have $\tpx\stps = \tpx\stpsp = \tpk$, then $\stps = \stpsp$.
 \end{itemize}
 \end{definition}
 \begin{remark}
@@ -371,12 +373,12 @@ Let $\Cert$ be a certificate over $\TI$. Then:
 \begin{proof}
 \begin{itemize}
   \item[\refcondcertp]
-  If $\tpp\in\TP\TI$, then some $\tpp\in\TI$ has $\tpx\tpt = \tpp$,
+  If $\tpp\in\TP\TI$, then some $\tpt\in\TI$ has $\tpx\tpt = \tpp$,
   so by~\refcondcertT{} some $\stps\in\Cert$ has $\tpt\in\stps$, so
   $\tpx\stps = \tpx\tpt = \tpp$.
   \item[\refcondcertku]
   If $\tpk\in\TK\TI$, then by~\refcondcertp{} some $\stps\in\Cert$ has
-  $\tpx\csps = \stps$.
+  $\tpx\stps = \tpk$.
   By~\refcondcertk, such $\stps$ is unique.
 \end{itemize}
 \end{proof}
@@ -456,7 +458,7 @@ We consistently assign \twotypes/ between distinct elements on stages.
   element.
   Let $\ea\in\domA$ be any king,
   so $\ea = \as\stpsp$ for some king star-type $\stpsp\in\Cert$.
-  Let $\tpkp = \tpp(\ea) = \tpx\stps \in \TK\TI$
+  Let $\tpkp = \tpp(\ea) = \tpx\stpsp \in \TK\TI$
   be the intended (king) type of $\ea$.
   Let $\eb \in \domA \sub \set\ea$ be any other element and let
   $\stps = \stps(\eb)$ and $\tpp = \tpp(\eb) = \tpx\stps$ be its intended
