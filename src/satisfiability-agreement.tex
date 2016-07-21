@@ -172,8 +172,11 @@
 \tableofcontents
 \printglossary[style=mcolindex]
 
+\chapter{Abstract}
+\input{abstract.tex}
+
 \mainmatter
-\chapter{Introduction}
+\chapter{Introduction}\label{ch:intro}
 \section{Notation}
 \input{introduction/notation/sets/sets.tex}
 \input{introduction/notation/relations/relations.tex}
@@ -216,8 +219,9 @@
 \input{introduction/complexity/reductions/reductions.tex}
 \input{introduction/complexity/tilings/tilings.tex}
 
+\chapter{Counter setups}\label{ch:setups}
+\input{setups/introduction.tex}
 
-\chapter{Counter setups}
 \section{Bits}
 \input{setups/bits/bits.tex}
 
@@ -230,7 +234,7 @@
 \section{Permutations}
 \input{setups/permutations/permutations.tex}
 
-\chapter{Equivalence relations}
+\chapter{Equivalence relations}\label{ch:equivalences}
 \input{equivalences/introduction/introduction.tex}
 
 \section{Two equivalence relations in agreement}
@@ -240,7 +244,7 @@
 \input{equivalences/agreement-many/agreement-many.tex}
 
 
-\chapter{Reductions}
+\chapter{Reductions}\label{ch:reductions}
 \input{reductions/introduction/introduction.tex}
 
 \section{Global agreement to refinement}

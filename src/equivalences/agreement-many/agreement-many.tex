@@ -112,7 +112,7 @@ equivalence relation on $\domA$.
 
 Suppose that the sequence
 $\seqE = \seq{\relEE1, \relEE2, \dots, \relEE\sze}$ is in local agreement.
-\begin{definition}
+\begin{definition}\label{def:lvl-seq}
 An \emph{index set} is an element $\istI \in \nepset[1, \sze]$.
 Define $\istap\seqE\cdot : \nepset[1, \sze] \to \nepset\seqE$ by:
 \[
@@ -141,10 +141,10 @@ relation on $\domA$, the level
 $\relLL\kk = \cap \setbd{\cup \istap\seqE\istK}{\istK \in \cpset\kk[1,\sze]}$
 is an equivalence relation on $\domA$.
 \end{proof}
-\begin{remark}\label{rem:local-lvl-refine}
+\begin{lemma}\label{lem:local-lvl-refine}
 The level sequence $\seqL = \seq{\relLL1,\relLL2,\dots,\relLL\sze}$ is a
 sequence of equivalence relations on $\domA$ in refinement.
-\end{remark}
+\end{lemma}
 \begin{proof}
 Let $\ii < \jj \in [1, \sze]$.
 Let $\istJ \in \cpset\jj[1, \sze]$ be any $\jj$-index set.

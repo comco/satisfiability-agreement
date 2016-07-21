@@ -1,13 +1,14 @@
 % Reductions
 
 If $\dpA \subseteq \Words\alphO_1$ and $\dpB \subseteq \Words\alphO_2$ are
-decision problems, the problem $\dpA$ is \emph{many-one polynomial-time
-reducible} to $\dpB$ (written $\gls{A-polyred-B}$) if there is a polynomial-time
-algorithm $f : \Words\alphO_1 \to \Words\alphO_2$ such that $\ea \in \dpA$ iff
-$f(\ea) \in \dpB$. Similar reductions are defined analogously.
-The decision problems $\dpA$ and $\dpB$ are \emph{many-one polynomial-time
-equivalent} (written $\gls{A-polyequ-B}$) if $\dpA \red\cP \dpB$ and
-$\dpB \red\cP \dpA$.
+decision problems, the problem $\dpA$ is \emph{polynomial-time reducible} to
+$\dpB$ (written $\gls{A-polyred-B}$) if there is a polynomial-time algorithm
+$f : \Words\alphO_1 \to \Words\alphO_2$ such that $\ea \in \dpA$ iff
+$f(\ea) \in \dpB$.
+Similar reductions where $f$ might be in another complexity class are defined
+analogously.
+The decision problems $\dpA$ and $\dpB$ are \emph{polynomial-time equivalent}
+(written $\gls{A-polyequ-B}$) if $\dpA \red\cP \dpB$ and $\dpB \red\cP \dpA$.
 
 A decision problem is \emph{hard} for a complexity class if any decision problem
 of that complexity class is polynomial-time reducible to it. A decision problem

@@ -37,8 +37,8 @@ variable symbol $\yy$, that is replaced by $\xx$.
 For instance we have the identity $\xtp\inv\tpTt = \ytp\tpTt$.
 We say that $\tpTt$ \emph{connects} the $1$-types $\xtp\tpTt$ and $\ytp\tpTt$
 and we refer to $\xtp\tpTt$ and $\ytp\tpTt$ as the \emph{endpoints} of $\tpTt$.
-Two $2$-types $\tpTt,\tpTtp$ are \emph{parallel} if they have the same
-endpoints, that is if $\xtp\tpTt = \xtp\tpTtp$ and $\ytp\tpTt = \ytp\tpTtp$.
+Two $2$-types $\tpTt,\tpTtp$ are \emph{parallel} if $\xtp\tpTt = \xtp\tpTtp$
+and $\ytp\tpTt = \ytp\tpTtp$.
 
 If $\StrA$ is a $\SigS$-structure and $\ea \in \domA$, the
 \emph{$1$-type of $\ea$ in $\StrA$} is
@@ -52,7 +52,8 @@ the set of elements realizing $\tpIp$:
   \gls{1-type-interpretation-A} = \setbd{\ea \in \domA}{\tpIa\StrA\ea = \tpIp}.
 \]
 
-If $\ea \neq \eb \in \domA$, the \emph{$2$-type of $(\ea, \eb)$ in $\StrA$} is
+If $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$, the \emph{$2$-type of $(\ea,
+\eb)$ in $\StrA$} is
 \[
   \gls{2-type-a-b-A} = \setbd{\litl(\xx,\yy) \in \LitF\SigS}{\StrA \vDash
   \litl(\ea, \eb)}.

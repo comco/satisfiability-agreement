@@ -1,0 +1,73 @@
+% Abstract
+
+A sequence of equivalence relations $\relEE1,\relEE2,\dots,\relEE\nn$ on $\domA$
+is in \emph{refinement} if $\relEE\ii\subseteq\relEE{\ii+1}$ for
+$\ii\in[1,\nn-1]$, that is if
+$\relEE1\subseteq\relEE2\subseteq\dots\subseteq\relEE\nn$.
+The sequence is in \emph{global agreement} if there is some permutation
+$\permnu$ of $[1,\nn]$ such that the sequence
+$\relEE{\permnu(1)}, \relEE{\permnu(2)}, \dots, \relEE{\permnu(\nn)}$ is in
+refinement.
+The sequence is in \emph{local agreement} if for every $\ea\in\domA$ there is
+some permutation $\permnu = \permnu(\ea)$ of $[1,\nn]$ such that
+$\relEE{\permnu(1)}[\ea]\subseteq\relEE{\permnu(2)}[\ea]\subseteq\dots\subseteq\relEE{\permnu(\nn)}[\ea]$.
+
+The topic of this work is to investigate questions about the algorithmic
+complexity of the satisfiability and finite satisfiability of logics featuring
+equivalence symbols at different levels of agreement.
+A summary of this work is as follows:
+\begin{itemize}
+  \item
+  In~\Cref{ch:intro} we introduce the notations and the tools that we will
+  need further.
+  
+  \item
+  In~\Cref{ch:setups} we define various \emph{setups} --- suites of appropriate
+  formulas --- that allow us to model bounded discrete objects such as $\tbit$
+  numbers or permutations of $[1,\nn]$ into logical structures.
+
+  \item
+  In~\Cref{ch:equivalences} we define the three agreement properties:
+  local, global agreement and refinement and develop the theory of equivalence relations
+  in local agreement sufficiently for our purposes.
+  In particular, we prove~\Cref{thm:local} that a sequence $\relE =
+  \relEE1,\relEE2,\dots,\relEE\nn$ of equivalence relations on $\domA$ is in
+  local agreement iff the union $\cup\setS$ of any nonempty subsequence $\setS$
+  of $\relE$ is an equivalence relation on $\domA$.
+  This allows us to define the \emph{level sequence} (\Cref{def:lvl-seq}) of a
+  sequence of equivalence relations in local agreement and to characterize as a
+  some kind of a ``skeleton'', which combined with a local permutation at every
+  element $\ea\in\domA$ completely characterizes the sequence $\relE$
+  (\Cref{lem:local-lvl-refine} and~\Cref{lem:local-lvl-perm}).
+  
+  \item
+  In~\Cref{ch:reductions} we provide deterministic polynomial-time reductions
+  for the (finite) satisfiability problem featuring equivalence symbols in
+  global and local agreement into the corresponding problem for equivalence
+  symbols in refinement (\Cref{prop:global-to-refine-n},
+  \Cref{prop:global-to-refine}, \Cref{prop:local-to-refine-n},
+  \Cref{prop:local-to-refine}).
+  This allows us to concentrate on the case of refinement further.
+  
+  \item
+  In~\Cref{ch:monadic} we determine the computational complexity of the
+  (finite) satisfiability problem for the first-order logic featruing only unary
+  predicate symbols together with $\sze$ equivalence symbols in agreement:
+  $\Lvp\Fo\nonv1\Eea\sze\agrefine$,
+  $\Lvp\Fo\nonv1\Eea\sze\agglobal$ and 
+  $\Lvp\Fo\nonv1\Eea\sze\aglocal$.
+  We prove that these logics have the finite model property and that the
+  (finite) satisfiability problem for any of them is
+  $\ceNExpTime{(\sze+1)}$-complete (\Cref{prop:mon-in}
+  and~\Cref{prop:mon-hard}).
+  
+  \item
+  In~\Cref{ch:twovar} we determine the computational complexity of the (finite)
+  satisfiability problem for the two-variable first-order logic featuring unary
+  and binary predicate symbols together with $\sze$ equivalence symbols in
+  refinement:
+  $\Lvp\Fo2\nopow\Eea\sze\agrefine$.
+  We prove that this logic has the finite model property and that its (finite)
+  satisfiability problem is in $\cNExpTime$ (\Cref{cor:twovar-log}).
+
+\end{itemize}

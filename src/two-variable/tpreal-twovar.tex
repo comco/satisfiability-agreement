@@ -98,23 +98,23 @@ Otherwise transform $\fphi$ into the form~\cref{eq:twovar-msg-nf} and let
 $\falp$ be the universal part of that normal form.
 \end{proof}
 
-A \emph{type instance} $\TI \subseteq \TpT\SigS$ over the classified signature
+A \emph{type instance} $\gls{type-instance-T-S}$ over the classified signature
 $\ClSig\SigS\sms$ is a nonempty set of \twotypes/ that is closed under
 inversion.
 The set of \onetypes/ included in the type instance $\TI$ is
-$\TP\TI = \setbd{\xtp\tpt}{\tpt\in\TI}$.
+$\gls{onetypes-T} = \setbd{\xtp\tpt}{\tpt\in\TI}$.
 Two \onetypes/ $\tpp,\tppp \in \TP\TI$ are \emph{connectable} if some
 $\tpTt\in\TI$ connects them.
 Connectability is symmetric, however it is not necessarily neither transitive
 nor reflexive.
-A \onetype/ $\tpk$ is a \emph{king type} if it is not connectable with itself;
-the set of king types is $\TK\TI$.
+A \onetype/ $\gls{king-type-k}$ is a \emph{king type} if it is not connectable
+with itself; the set of king types over $\TI$ is $\gls{king-types-T}$.
 A \onetype/ $\tpp$ that is not a king type is a \emph{worker type};
-the set of worker types is $\TW\TI$.
-So we have $\TP\TI = \TK\TI \cup \TW\TI$.
+the set of worker types is $\gls{worker-types-T}$.
+So we have $\TW\TI = \TK\TI \cup \TW\TI$.
 
-If $\tpp\in\TP\TI$, the \emph{neighbours} $\nb\TI\tpp\subseteq\TP\TI$ of $\tpp$
-are defined by:
+If $\tpp\in\TP\TI$, the \emph{neighbours} $\gls{neighbours-p-T} \subseteq\TP\TI$
+of $\tpp$ are defined by:
 \[
   \nb\TI\tpp = \begin{cases}
     \TP\TI &\text{if } \tpp\in\TW\TI \text{ is a worker type} \\
@@ -127,7 +127,7 @@ Note that $\tpp \in \nb\TI\tpp$ iff $\tpp \in \TW\TI$ is a worker type.
 If $\StrA$ is a $\ClSig\SigS\sms$-structure, the \emph{type instance} of $\StrA$
 is:
 \[
-  \TIS\StrA = \setbd{\tpIab\StrA\ea\eb}{
+  \gls{type-instance-A} = \setbd{\tpIab\StrA\ea\eb}{
     \ea \in \domA, \eb \in \domA \sub\set\ea}.
 \]
 That is $\TI = \TIS\StrA$ is the set of \twotypes/ realized in $\StrA$.
@@ -271,8 +271,8 @@ We will be applying this lemma implicitly.
 
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-A \emph{star-type} $\stps \subseteq \TI$ over $\TI$ is a nonempty
-set of \twotypes/ satisfying the following conditions:
+A \emph{star-type} $\gls{star-type-s} \subseteq \TI$ over $\TI$ is a
+nonempty set of \twotypes/ satisfying the following conditions:
 \begin{itemize}
   \item[\condstpx]\label{cond:stpx}
   If $\tpt, \tptp \in \stps$, then $\tpx\tpt = \tpx\tptp$.
@@ -311,7 +311,7 @@ By~\refcondstpky{}, such $\tpt$ is unique.
 \begin{definition}
 Let $\StrA$ be a model for $\TI$
 and let $\ea\in\domA$.
-The \emph{star-type} $\stpIa\StrA\ea$ of $\ea$ is defined by:
+The \emph{star-type} $\gls{star-type-A-a}$ of $\ea$ is defined by:
 \[
   \stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb \in \domA \sub \set\ea}.
 \]
@@ -350,8 +350,8 @@ We check the conditions for a star-type $\stps$ over $\TI$:
 
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-A \emph{certificate} $\Cert$ for $\TI$ is a nonempty set of star-types over
-$\TI$ satisfying the following conditions:
+A \emph{certificate} $\gls{certificate-T}$ for $\TI$ is a nonempty set of
+star-types over $\TI$ satisfying the following conditions:
 \begin{itemize}
   \item[\condcertT]\label{cond:certT}
   If $\tpt\in\TI$, then some $\stps\in\Cert$ has $\tpt\in\stps$,
