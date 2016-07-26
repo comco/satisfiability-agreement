@@ -363,6 +363,109 @@ $\StrAp$ to a $\SigS$-structure is a chromatic model for $\TI$ by the promotion
 condition.
 \end{proof}
 
+As a next step, we want to ensure that any king sends some invertible message
+type.
+\begin{remark}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
+Then $\TI$ has a (finite) model iff some $\nZ$-differentiated promotion $\TIp$
+of $\TI$ has a (finite) model and also has at least two different king types,
+that is $\card{\TK\TIp}\geq2$, where $\nZ = 3$.
+\end{remark}
+\begin{proof}
+First let $\StrA$ be a model for $\TI$. Note that $\StrA$ contains at least two
+elements.
+We enrich $\StrA$ to a $\mr\SigS\nZ$-structure $\StrAp$ as follows:
+let $\eb\in\domA$, $\ec\in\domA\sub\set\ea$ be two arbitrary elements of
+$\StrA$. We turn them into kings.
+More precisely, for every $\ea\in\domA$ define the enrichment as follows:
+\begin{itemize}
+  \item $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}1$ if $\ea=\eb$
+  \item $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}2$ if $\ea=\ec$
+  \item $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}3$ otherwise.
+\end{itemize}
+Let $\TIp = \TIS\StrAp$.
+Then $\TIp$ is a promotion for $\TI$ and $\StrAp$ contains at least two king
+types --- $\tpIa\StrAp\eb$ and $\tpIa\StrAp\ec$ --- by construction.
+
+Next if $\TIp$ is a $\nZ$-differentiated promotion of $\TI$,
+the reduct of any $\TIp$-model $\StrAp$ to $\SigS$ is a model for $\TI$.
+\end{proof}
+
+\begin{definition}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ such that
+$\card{\TK\TI}\geq2$.
+Let $\nM_{\nn+1} = \card{\TK\TI}-1$,
+let $\SigSp = \SigS + \seq{\smm{\nn+1}}$ be an enrichment of $\SigS$ with the
+new binary \emph{message} symbol $\smm{\nn+1}$, let
+\[
+\sms' = \sms +
+\underbrace{\smm{\nn+1},\smm{\nn+1},\dots,\smm{\nn+1}}_{\nMM{\nn+1}}
+\]
+and consider the classified signature $\ClSig\SigSp\smsp$.
+For any \twotype/ $\tpt$ over $\SigS$, consider the following \twotypes/ over
+$\SigSp$:
+\begin{align*}
+\mrr\tpt\kk\kk &=
+\tpt\cup\set{\smm{\nn+1}(\xx,\yy),\smm{\nn+1}(\yy,\xx),
+\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)} \\
+\mrr\tpt\kk\bot &=
+\tpt\cup\set{\smm{\nn+1}(\xx,\yy),\lnot\smm{\nn+1}(\yy,\xx),
+\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)} \\
+\mrr\tpt\bot\kk &=
+\tpt\cup\set{\lnot\smm{\nn+1}(\xx,\yy),\smm{\nn+1}(\yy,\xx),
+\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)} \\
+\mrr\tpt\bot\bot &=
+\tpt\cup\set{\lnot\smm{\nn+1}(\xx,\yy),\lnot\smm{\nn+1}(\yy,\xx),
+\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)}.
+\end{align*}
+Define the following sets of \twotypes/ over $\SigSp$:
+\begin{align*}
+\mrr\TI\kk\kk &=
+\setbd{\mrr\tpt\kk\kk}{\tpt\in\TI,\tpx\tpt\in\TK\TI,\tpy\tpt\in\TK\TI} \\
+\mrr\TI\kk\bot &=
+\setbd{\mrr\tpt\kk\bot}{\tpt\in\TI,\tpx\tpt\in\TK\TI,\tpy\tpt\in\TW\TI} \\
+\mrr\TI\bot\kk &=
+\setbd{\mrr\tpt\bot\kk}{\tpt\in\TI,\tpx\tpt\in\TW\TI,\tpy\tpt\in\TK\TI} \\
+\mrr\TI\bot\bot &=
+\setbd{\mrr\tpt\bot\bot}{\tpt\in\TI,\tpx\tpt\in\TW\TI\lor\tpy\tpt\in\TW\TI}.
+\end{align*}
+Let $\TI' =
+\mrr\TI\kk\kk\cup\mrr\TI\kk\bot\cup\mrr\TI\bot\kk\cup\mrr\TI\bot\bot$ be a type
+instance over $\ClSig\SigSp\smsp$.
+A \emph{king-differentiated promotion} $\TIp\subseteq\TI'$ for $\TI$ is a type
+instance over $\ClSig\SigSp\smsp$ such that for each $\tpt\in\TI$ there are some
+$u,v\in\set{\kk,\bot}$ such that $\mrr\tpt{u}{v}\in\TIp$.
+\end{definition}
+
+\begin{remark}\label{rem:kings-rare}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ such that
+$\card{\TK\TI}\geq2$.
+Then $\TI$ has a (finite) model iff some king-differentiated promotion $\TIp$ of
+$\TI$ has a finite model in which every king sends some invertible message type.
+\end{remark}
+\begin{proof}
+First let $\StrA$ be a model for $\TI$.
+Then $\StrA$ contains exactly $\card{\TK\TI}$ kings.
+Let $\domB\subset\domA$ be any set of $\nMM{\nn+1} = \card{\TK\TI}-1$ kings.
+Define the enrichment $\StrAp$ of $\StrA$ to a $\SigSp$-structure as follows:
+for any $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$, let $\tpt=\tpIab\StrA\ea\eb$
+and:
+\begin{itemize}
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\kk\kk$ if both $\ea$ and $\eb$ are kings
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\kk\bot$ if $\ea$ is worker and
+  $\eb\in\setB$.
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\bot\bot$ if $\ea$ is worker otherwise,
+  that is when $\eb\not\in\domB$ is a king or if $\eb$ is also a worker.
+\end{itemize}
+Then if we take $\TIp = \TIS\StrAp$, it is evident that this is a
+king-differentiated promotion of $\TIp$ and that every king in $\StrAp$ sends an
+invertible message type.
+
+Next, if $\TIp$ is any king-differentiated promotion of $\TI$ and if $\StrAp$ is
+any model of $\TIp$, then the reduct of $\StrAp$ to a $\SigS$-structure is a
+model for $\TI$ by the promotion condition.
+\end{proof}
+
 \begin{definition}
 Let $\StrA$ be a model for the type instance $\TI$.
 An element $\ea\in\domA$ is an \emph{origin} for a \twotype/ $\tpt\in\TI$ if
@@ -373,8 +476,8 @@ Note that this set is nonempty.
 \begin{definition}
 Let $\nW\geq1$ be a parameter.
 A structure $\StrA$ for $\TI$ is $\nW$-invertible message type differentiated
-if any invertible message type realized in $\StrA$ has either one or more than
-$\nW$ origins.
+if any invertible message type $\tpt\in\TIamm$ has either one or more than $\nW$
+origins.
 An invertible message type that is realized once in $\StrA$ is \emph{rare}.
 An origin of a rare message type is a \emph{rare element}.
 \end{definition}
