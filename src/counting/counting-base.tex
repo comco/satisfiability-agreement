@@ -8,10 +8,10 @@ $\fphi$ can be reduced in deterministic polynomial time to a sentence
 \]
 where $\nm\geq1$, $\nMM\ii\geq1$, all the formulas $\falpp\ii$ are
 quantifier-free and use at most linearly many new unary and binary predicate symbols.
-Let $\nM = 1 + \max\set{\nMM1,\nMM2,\dots,\nMM\nm}$.
+Let $\nM = \max\set{\nMM1,\nMM2,\dots,\nMM\nm}$.
 The semantic connection between $\fphi$ and $\prtr\fphi$ is that they are
 essentially equisatisfiable.
-More precisely, every model for $\fphi$ of cardinality at least $2$ can be
+More precisely, every model for $\fphi$ of cardinality more than $\nM$ can be
 enriched to a model for $\prtr\fphi$ and every model for $\prtr\fphi$ of
 cardinality at least $\nM$ is a model for $\fphi$.
 We refer to $\falpp0$ as the universal part of $\fphi$ and to $\falpp\ii$ for
@@ -49,8 +49,8 @@ having intended interpretation
 \end{equation}
 Whenever $\ClSig\SigS\sms$ is a classified signature, we will denote
 \[
-  \nM = 1 +\max\set{\nMM1,\nMM2,\dots,\nMM\nm}
-\].
+  \nM = \max\set{\nMM1,\nMM2,\dots,\nMM\nm}.
+\]
 \end{definition}
 Note that a classified signature may be exponentially larger than its intended
 interpretation, since the counting quantifiers are coded succinctly in binary.
@@ -58,9 +58,9 @@ Note that $\nM$ is polynomial with respect to the size of the classified
 signature.
 \begin{definition}
 A structure $\StrA$ over the classified signature $\ClSig\SigS\sms$ is a
-structure over $\SigS$ having cardinality at least $\nM$ and satisfying the
-intended interpretation~\cref{eq:counting-base-clsig} of the message symbols.
-Note that $\StrA$ must have cardinality at least $\nM$.
+structure over $\SigS$ satisfying the intended
+interpretation~\cref{eq:counting-base-clsig} of the message symbols.
+Note that $\StrA$ must have cardinality greater than $\nM$.
 \end{definition}
 \begin{definition}
 The (finite) classified satisfiability problem for $\vFoc2$ is the following:
@@ -71,9 +71,10 @@ Denote the classified satisfiability problem by $\ClSat{\vFoc2}$ and its finite
 version by $\FinClSat{\vFoc2}$.
 \end{definition}
 
-Similarly to~\Cref{ch:twovar} that a type instance $\TI\subseteq\TIS\SigS$
-over $\ClSig\SigS\sms$ is a set of $2$-types that is closed under inversion.
-If $\StrA$ is a $\ClSig\SigS\sms$-structure, its type instance is:
+Similarly to~\Cref{ch:twovar}, we define a type instance
+$\TI\subseteq\TIS\SigS$ over $\ClSig\SigS\sms$ as a set of $2$-types that is
+closed under inversion.
+If $\StrA$ is a $\ClSig\SigS\sms$-structure, its type instance again is:
 \[
   \TIS\StrA = \setbd{\tpIab\StrA\ea\eb}{\ea\in\domA,\eb\in\domA\sub\set\ea}.
 \]
@@ -96,9 +97,9 @@ Let $\SigS$ be a predicate signature and let $\fphi$ be a $\SigS$-sentence.
 Generate $\prtr\fphi$ of the form~\cref{eq:counting-base} in deterministic
 polynomial time and extract a classified signature $\ClSig\SigS\sms$ out of it.
 Note that $\nM$ is exponentially bounded by the length of $\fphi$.
-First check if some $\SigS$-structure of cardinality less than $\nM$ satisfies
-$\fphi$. This can be done in nondeterministic exponential time by guessing such
-a structure, if it exists.
+First check if some $\SigS$-structure of cardinality less than or equal to $\nM$
+satisfies $\fphi$. This can be done in nondeterministic exponential time by
+guessing such a structure if it exists.
 If such a structure exists, map the input $(\SigS,\fphi)$ to a fixed positive
 instance of the (finite) type realizability problem.
 Otherwise $\fphi$ is (finitely) satisfiable iff $\prtr\fphi$ is finitely
@@ -112,6 +113,78 @@ $\falp(\xx,\yy)$ iff $\TIS\StrA \subseteq \TI^\falp$.
 So in this case $\fphi$ is (finitely) satisfiable iff some
 type instance $\TI\subseteq\TI^\falp$ is (finitely) realizable.
 \end{proof}
+We are now going to perform a sequence of reductions of the general type
+realizability problem to type realizability over a class of very well-behaved
+structures, which then we can attack directly, in a way similar to what we did
+in~\Cref{ch:twovar}.
+\begin{definition}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ and let $\nZ\geq1$.
+A model $\StrA$ for $\TI$ is \emph{$\nZ$-differentiated}
+if each \onetype/ $\tpp\in\TP\TI$ realized in $\StrA$ is realized by either a
+unique element or more than $\nZ$ elements in $\StrA$.
+\end{definition}
+We can restrict our attention to $\nZ$-differentiated models where $\nZ$ is
+polynomial with respect to the size of an instance of the type realizability
+problem for $\vFoc2$.
+Indeed, we can use $\nZ$ new unary predicate symbols to distinguish elements of
+the same \onetype/ in a structure.
+More precisely, let $\nZ\geq1$ be a parameter.
+For any predicate signature $\SigS$
+let $\mr\SigS\nZ = \SigS + \seq{\spp1,\spp2,\dots,\spp\nZ}$ be an enrichment of
+$\SigS$ with $\nZ$ new unary predicate symbols.
+For any $\ii\in[1,\nZ]$ let $\sPe\ii(\xx)$ be the following set of literals over
+$\mr\SigS\nZ$:
+\[
+\sPe\ii(\xx) =
+\set{\spp\ii(\xx)}\cup\setbd{\lnot\spp\kk(\xx)}{\kk\in[1,\nZ]\sub\set\ii}.
+\]
+
+For any \onetype/ $\tpp$ over $\SigS$ and for $\ii\in[1,\nZ]$,
+let $\mr\tpp\ii = \tpp\cup\sPe\ii(\xx)$ be a \onetype/ over $\mr\SigS\nZ$.
+For any \twotype/ $\tpt$ over $\SigS$ and for $\ii,\jj\in[1,\nZ]$
+let $\mrr\tpt\ii\jj = \tpt\cup\sPe\ii(\xx)\cup\sPe\jj(\yy)$ be a \twotype/ over
+$\mr\SigS\nZ$.
+Let $\ClSig\SigS\sms$ be a classified signature based on $\SigS$.
+For any type instance $\TI$ over $\ClSig\SigS\sms$, let $\mr\TI\nZ =
+\setbd{\mrr\tpt\ii\jj}{\ii,\jj\in[1,\nZ]}$ be a type instance over
+$\ClSig{\mr\SigS\nZ}\sms$.
+A \emph{$\nZ$-differentiated promotion} $\TIp\subseteq\mr\TI\nZ$ for the type
+instance $\TI$ is a type instance over $\ClSig{\mr\SigS\nZ}\sms$ such that for
+each $\tpt\in\TI$ there are some $\ii,\jj\in[1,\nZ]$ such that
+$\mrr\tpt\ii\jj\in\TIp$.
+
+\begin{remark}\label{rem:z-diff}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ and let $\nZ\geq1$.
+Then $\TI$ has a (finite) model
+iff some $\nZ$-differentiated promotion $\TIp$ of $\TI$ has a (finite)
+$\nZ$-differentiated model.
+\end{remark}
+\begin{proof}
+First let $\StrA$ be a model for $\TI$.
+We define a $\mr\SigS\nZ$-enrichment $\StrAp$ of $\StrA$ such that $\TIp =
+\TIS\StrAp$ is a $\nZ$-differentiated promotion of $\TI$.
+We partition the \onetypes/ $\TP\TI$ into two classes: $\TP\TI^{\leq\nZ}$,
+consisting of the \onetypes/ realized at most $\nZ$ times in $\StrA$ and
+$\TP\TI^{>\nZ}$ of the \onetypes/ realized more than $\nZ$ times in $\StrA$.
+For each $\tpp\in\TP\TI^{\leq\nZ}$, let
+$\at\StrA\tpp = \set{\ea_1^\tpp,\ea_2^\tpp,\dots,\ea_{s_\tpp}^\tpp}$ be an
+enumeration of the elements realizing $\tpp$, where
+$s_\tpp=\card{\at\StrA\tpp}\in[1,\nZ]$ is the cardinality of $\at\StrA\tpp$.
+Define the enrichment as follows:
+\begin{itemize}
+  \item If $\ea = \ea_\ii^\tpp$ for some $\tpp\in\TP\TI^{\leq\nZ}$ and
+  $\ii\in[1,s(\tpp)]$, then let $\tpIa\StrAp\ea = \mr{\tpIa\StrAp\ea}\ii$.
+  \item Otherwise let $\tpIa\StrAp\ea = \mr{\tpIa\StrAp\ea}1$.
+\end{itemize}
+By construction $\StrAp$ is $\nZ$-differentiated and $\TIp\subseteq\mr\TI\nZ$;
+furthermore $\TIp$ is a $\nZ$-differentiated promotion for $\TI$ since $\StrA$
+was a model for $\TI$.
+
+Next, let $\TIp$ be any $\nZ$-differentiated promotion for $\TI$ and suppose
+that $\StrAp$ is a model for $\TIp$. Then the reduct of $\StrAp$ to a
+$\SigS$-structure is a model for $\TI$ by the promotion condition.
+\end{proof}
+
 
 %\section{Message types and Silent types}
 \begin{definition}
@@ -132,7 +205,7 @@ Then:
 \end{itemize}
 We use the following notation to denote particular sets of types:
 \[
-\TIall.
+  \TIall.
 \]
 The left index denotes the $\xx$-kind of a type;
 the right index denotes the $\yy$-kind.
@@ -149,28 +222,238 @@ $\TIasm = \setbd{\inv\tpt}{\tpt\in\TIams}$ and
 $\TIams = \setbd{\inv\tpt}{\tpt\in\TIasm}$.
 \end{definition}
 
-\begin{definition}
-Let $\TI$ be a type instance over the classified signature $\ClSig\SigS\sms$.
-A \emph{message star-type} $\mstps\subseteq\TIamn$ over $\TI$ is a nonempty set
-of $\xx$-message types such that if $\ii\in[1,\nm]$ then there are exactly
-$\nMM\ii$ types $\tpt\in\mstps$ having $\smm\ii(\xx,\yy)\in\tpt$.
-\end{definition}
 
 \begin{definition}
-Let $\StrA$ be a $\ClSig\SigS\sms$-structure and let $\ea\in\domA$.
-The \emph{message star-type} $\mstpIa\StrA\ea$ of $\ea$ is defined by:
-\[
-  \mstpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb\in\TIamn}{\eb\in\domA\sub\set\ea}.
-\]
-Then indeed $\mstps = \mstpIa\StrA\ea$ is a message star-type over $\TI$.
+A type instance $\TI$ \emph{has silent types} if whenever $\tpp,\tppp\in\TW\TI$
+are worker types, then there is some silent $\tpt\in\TIass$ connecting $\tpp$
+and $\tppp$.
 \end{definition}
+\begin{remark}\label{rem:silent}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ and let $\nZ\geq2\nM+2$.
+Suppose that $\StrA$ is a $\nZ$-differentiated model for $\TI$.
+Then $\TI$ has silent types.
+\end{remark}
 \begin{proof}
-TODO
+Note that there are more than $\nZ$ elements realizing $\tpp$ and there are
+more than $\nZ$ elements realizing $\tppp$ in $\StrA$, since otherwise $\tpp$ or
+$\tppp$ would be king types.
+
+First suppose that $\tpp=\tppp$.
+Let $\domB\subseteq\domA$ be any set of $(\nZ+1)$ elements realizing $\tpp$ in
+$\StrA$.
+We claim that some pair of elements from $\domB$ is connected by a silent type,
+that is $\ea\in\domB$ and $\eb\in\domB\sub\set\ea$ have
+$\tpIab\StrA\ea\eb\in\TIass$.
+Suppose not towards a contradiction.
+Then for every $\ea\in\domB$ and $\eb\in\domB\sub\set\ea$ we would have
+$\tpIab\StrA\ea\eb\in\TIamn\cup\TIanm$.
+Note that any element can sent at most $\nM$ $\xx$-message types.
+Hence the number of message types between elements from $\domB$ is
+$\nE\leq(\nZ+1)\nM$.
+But the total number of edges between elements from $\domB$ is $(\nZ+1)\nZ/2 >
+\nE$ --- a contradiction.
+
+Next suppose that $\tpp\neq\tppp$.
+Let $\domB\subset\domA$ be a set of $(\nZ+1)$ elements realizing $\tpp$ and let
+$\domC\subset\domA$ be a set of $(\nZ+1)$ elements realizing $\tppp$.
+Suppose towards a contradiction that no $\eb\in\domB$ and $\ec\in\domC$ have
+$\tpIab\StrA\eb\ec\in\TIass$.
+Hence the number of message types between elements from $\domB$ and elements
+from $\domC$ is $\nE\leq2(\nZ+1)\nM$.
+But the total number of edges between elements from $\domB$ and $\domC$ is
+$(\nZ+1)^2 > \nE$ --- a contradiction.
 \end{proof}
 
 \begin{definition}
-Let $\nZ\geq1$.
-A structure $\StrA$ for $\TI$ is \emph{$\nZ$-message star-type differentiated}
-if each message star-type over $\TI$ is realized either at most once or at least
-$\nZ$ times in $\StrA$.
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
+A model $\StrA$ for $\TI$ is \emph{chromatic}
+if the following conditions are satisfied:
+\begin{enumerate}
+  \item If $\ea\in\domA$, $\eb\in\domA\sub\set\ea$ and
+  $\tpIab\StrA\ea\eb\in\TIamm$ is an invertible message type,
+  then $\tpIa\StrA\ea\neq\tpIa\StrA\eb$, that is invertible message types
+  connect distict \onetypes/.
+  \item If $\ea\in\domA$, $\eb\in\domA\sub\set\ea$,
+  $\ec\in\domA\sub\set{\ea,\eb}$ and $\tpIab\StrA\ea\eb, 
+  \tpIab\StrA\eb\ec\in\TIamm$, then $\tpIa\StrA\ea\neq\tpIa\StrA\ec$.
+\end{enumerate}
+That is, no chain of one or two invertible message types connects elements of
+the same \onetype/.
 \end{definition}
+\begin{remark}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
+Then $\TI$ has a (finite) model iff some $\nZ$-differentiated promotion $\TIp$
+of $\TI$ has a (finite) chromatic model, where $\nZ = \nM^2+1$.
+\end{remark}
+\begin{proof}
+Consider the graph over $\domA$ where two elements are connected iff there
+exists a chain of length $1$ or $2$ of invertible message types connecting them.
+This is an undirected graph of maximal degree $\nM + \nM(\nM-1) = \nM^2$, so it
+can be colored using $\nM^2+1$ colors so that no two connected vertices have the
+same color.
+Then we just use the $\nZ$ fresh unary predicates as colors, as we did
+for~\Cref{rem:z-diff}.
+\end{proof}
+
+\begin{definition}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
+A model $\StrA$ for $\TI$ has \emph{differentiated message types}
+if whenever $\ea\in\domA$, $\eb\in\domA\sub\set\ea$
+and $\tpt = \tpIab\StrA\ea\eb\in\TIamn$ is an $\xx$-message type,
+no $\ec\in\domA\sub\set{\ea,\eb}$ has $\tpIab\StrA\ea\ec = \tpt$.
+That is, an element is allowed to send any $\xx$-message type once.
+\end{definition}
+To achieve a reduction to the class of differentiated message types, we are
+going to define promotions at the level of two-types.
+More precisely, let $\nW\geq1$ be a parameter.
+For any predicate signature $\SigS$ let $\mtr\SigS\nW = \SigS +
+\seq{\qq1,\qq2,\dots,\qq\nW}$ be an enrichment of $\SigS$ with $\nW$ new binary
+predicate symbols $\qq\ii$.
+For $\ii\in[1,\nW]$, let $\qQ\ii(\xx)$ be the following set of literals over
+$\mtr\SigS\nW$:
+\[
+\qQ\ii(\xx) =
+\set{\qq\ii(\xx,\yy)}\cup\setbd{\lnot\qq\jj(\xx,\yy)}{\jj\in[1,\nW]\sub\set{\ii}}.
+\]
+For any \twotype/ $\tpt$ over $\SigS$ and for $\ii\in[1,\nW]$, let $\mr\tpt\ii
+= \tpt\cup\qQ\ii(\xx)$ be a corresponding \twotype/ over $\mtr\SigS\nW$.
+Let $\ClSig\SigS\sms$ be a classified signature based on $\SigS$.
+For any type instance $\TI$ over $\ClSig\SigS\sms$, let
+$\mtr\TI\nW = \setbd{\mr\tpt\ii}{\tpt\in\TI,\ii\in[1,\nW]}$ be a type instance
+over $\ClSig{\mtr\SigS\nW}\sms$.
+A \emph{$\nW$-differentiated message promotion $\TIp\subseteq\mtr\TI\nW$} of
+$\TI$ is a type instance over $\ClSig{\mtr\SigS\nW}\sms$ such that for each
+$\tpt\in\TI$ there is some $\ii\in[1,\nW]$ such that $\mr\tpt\ii\in\TIp$ and for
+each $\tpt\in\TIamm$ there is a unique $\ii\in[1,\nW]$ such that
+$\mr\tpt\ii\in\TIp$.
+\begin{remark}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
+Then $\TI$ has a (finite) chromatic model iff some $\nW$-differentiated message
+promotion $\TIp$ of $\TI$ has a (finite) chromatic model with differentiated
+message types, where $\nW = \nM$.
+\end{remark}
+\begin{proof}
+First suppose that $\StrA$ is a chromatic model for $\TI$.
+We will define an enrichment $\StrAp$ of $\StrA$ to a $\mtr\SigS\nW$-structure
+such that $\StrAp$ has differentiated message type and $\TIp = \TIS\StrAp$ is a
+$\nW$-differentiated message promotion of $\TI$.
+Recall that any element $\ea\in\domA$ sends at most $\nM$ $\xx$-message types.
+By chromaticity, no element $\ea\in\domA$ may send an invertible message type
+twice, since that would create a chain of length $2$ of invertible message types
+connecting elements of the same \onetype/.
+Hence we only have to worry about $\xx$-message $\yy$-silent types.
+For any element $\ea\in\domA$ and any $\xx$-message $\yy$-silent type
+$\tpt\in\TIams$, the set
+$B^{\ea,\tpt} = \setbd{\eb\in\domA\sub\set\ea}{\tpIab\StrA\ea\eb=\tpt}$ has
+cardinality at most $\nM$, so we can enumerate it $B^{\ea,\tpt} =
+\set{\eb^{\ea,\tpt}_1,\eb^{\ea,\tpt}_2,\dots,\eb^{\ea,\tpt}_{s(\ea,\tpt)}}$,
+where $s(\ea,\tpt)\in[1,\nW]$ and we can define the enrichment as follows:
+\begin{itemize}
+  \item $\tpIab\StrAp\ea{\eb^{\ea,\tpt}_\ii} =
+  \mr{\tpIab\StrA\ea{\eb^{\ea,\tpt}_\ii}}\ii$.
+  \item $\tpIab\StrAp\ea\eb = \mr{\tpIab\StrA\ea\eb}1$ otherwise.
+\end{itemize}
+By construction $\StrAp$ has differentiated message types; furthermore $\TIp$ is
+a $\nW$-differentiated message promotion for $\TI$ since $\StrA$ is a model for
+$\TI$.
+
+Next, let $\TIp$ be any $\nW$-differentiated message promotion for $\TI$ and
+suppose that $\StrAp$ is a chromatic model for $\StrA$. Then the reduct of
+$\StrAp$ to a $\SigS$-structure is a chromatic model for $\TI$ by the promotion
+condition.
+\end{proof}
+
+\begin{definition}
+Let $\StrA$ be a model for the type instance $\TI$.
+An element $\ea\in\domA$ is an \emph{origin} for a \twotype/ $\tpt\in\TI$ if
+some $\eb\in\domA\sub\set\ea$ has $\tpIab\StrA\ea\eb = \tpt$.
+The set of origins of $\tpt$ in $\StrA$ is $\atx\StrA\tpt$.
+Note that this set is nonempty.
+\end{definition}
+\begin{definition}
+Let $\nW\geq1$ be a parameter.
+A structure $\StrA$ for $\TI$ is $\nW$-invertible message type differentiated
+if any invertible message type realized in $\StrA$ has either one or more than
+$\nW$ origins.
+An invertible message type that is realized once in $\StrA$ is \emph{rare}.
+An origin of a rare message type is a \emph{rare element}.
+\end{definition}
+
+\begin{remark}
+Any chromatic structure can be enriched into a $\nW$-invertible message type
+differentiated one.
+\end{remark}
+\begin{proof}
+TODO.
+By chromaticity, any realization $(a,b)$ is in a bijection with its origin $a$.
+Hence we can use $\nW$ new binary predicate symbols to color each realization to
+distinguish them.
+\end{proof}
+
+\begin{definition}
+Let $\StrA$ be a $\nW$-invertible message type differentiated structure.
+The \emph{cage} of $\StrA$ is the set of rare elements.
+A structure \emph{has rare kings} if each king element in $\StrA$ is a rare
+element.
+\end{definition}
+
+\begin{remark}
+Any $\nW$-invertible message type differentiated structure can be enriched so
+that it has rare kings.
+\end{remark}
+
+\begin{remark}
+Let $\StrA$ be a $\nW$-differentiated invertible message type structure, where
+$\nW\geq\card\TI$.
+Then no rare invertible message type escapes the cage.
+In other words, whenever $\ea\in C$, $\eb\in\domA\sub C$ and $\tpIab\StrA\ea\eb$
+is an invertible message type, then there is some $\eap\in\domA\sub C$ and
+$\ebp\in\domA\sub C\sub\set\eap$ having $\tpIab\StrA\eap\ebp = \tpt$.
+\end{remark}
+
+\section{TODO}
+Next we will partition any structure $\StrA$ into the origins of rare invertible
+message types and the rest.
+Rare invertible message type: has a unique origin.
+Rare element: an origin of a rare invertible message type.
+
+Next, ensure that kings are rare.
+If a king sends any invertible message type, then the king is rare.
+However it might happen than a king sends no invertible message type.
+How to ensure that every king is rare?
+If there are no kings, there is no problem.
+Next suppose that there is at least one king.
+We are going to modify the type instance.
+We add a new message symbol of cardinality the number of king types.
+We introduce a new king type.
+The behavior of this fresh king type with respect to the old types is as
+follows:
+For the first old king type, there is a two-type between the new king type and
+the old king type that witnesses every old message type.
+
+If there are at least two kings, modify the message types connecting kings by
+appending one special message type at both ends.
+The new message type will have size $(K-1)$.
+For every type connecting a worker with a king, add the same type but witnessing
+one time the worker with the special symbol.
+
+So we can ensure that the kings are origins of rare invertible message types.
+
+Now if $R \subseteq A$ is the set of rare types, it has polynomial size.
+Indeed, its size is bounded by $\card{T}$ and it contains all king elements.
+
+Message type differentiation: no message type has the same origin.
+For invertible --- by chromaticity.
+For non-invertible --- by easy counting.
+
+So we may take the star-type to be a set.
+Then a star-type is just the same together with an updated~\refcondstpm.
+
+Then we would have to prove something in the lines of: no rare invertible
+message type escapes $R$.
+
+\section{General case}
+We model the cosmic spectrum in the same way.
+First we need to generate silent cosmic types.
+
+So we would like to do these constructions in general.
