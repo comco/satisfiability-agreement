@@ -181,7 +181,7 @@ over $\df\SigS\nZ$:
 \sPe\ii(\xx) =
 \set{\spp\ii(\xx)}\cup\setbd{\lnot\spp\kk(\xx)}{\kk\in[1,\nZ]\sub\set\ii}.
 \]
-That is, $\sPe\ii(\xx)$ \emph{selects just the $\ii$-th predicate symbol}.
+That is, $\sPe\ii(\xx)$ \emph{satisfies just the $\ii$-th predicate symbol}.
 
 For any \onetype/ $\tpp$ over $\SigS$ and for $\ii\in[1,\nZ]$,
 define $\mr\tpp\ii = \tpp\cup\sPe\ii(\xx)$ as a \onetype/ over $\df\SigS\nZ$.
@@ -194,10 +194,9 @@ For any type instance $\TI$ over $\ClSig\SigS\sms$,
 define $\df\TI\nZ = \setbd{\mrr\tpt\ii\jj}{\ii,\jj\in[1,\nZ]}$ as a type
 instance over $\ClSig{\df\SigS\nZ}\sms$.
 
-A \emph{$\nZ$-differentiated promotion} $\TIpr\subseteq\df\TI\nZ$ of the type
-instance $\TI$ is a type instance over $\ClSig{\df\SigS\nZ}\sms$
-such that for each $\tpt\in\TI$ there are some $\ii,\jj\in[1,\nZ]$ such that
-$\mrr\tpt\ii\jj\in\TIpr$.
+A \emph{$\nZ$ promotion} $\TIpr\subseteq\df\TI\nZ$ of the type instance $\TI$ is
+a type instance over $\ClSig{\df\SigS\nZ}\sms$ such that for each $\tpt\in\TI$
+there are some $\ii,\jj\in[1,\nZ]$ such that $\mrr\tpt\ii\jj\in\TIpr$.
 \end{definition}
 
 \begin{definition}
@@ -216,7 +215,7 @@ if the following conditions are satisfied:
 That is, no chain of one or two invertible message types connects elements of
 the same \onetype/.
 \end{definition}
-\begin{remark}\label{rem:prop-chroma}
+\begin{remark}[Chromaticity]\label{rem:prop-chroma}
 The type instance $\TI$ over $\ClSig\SigS\sms$ has a (finite) model
 iff some $\nZZ1$-promotion $\TIprr1$ of $\TI$ has a (finite)
 \emph{chromatic model}, where $\nZZ1 = \nM^2+1$.
@@ -253,7 +252,7 @@ By~\Cref{rem:prop-chroma},
 some $\nZZ1$-promotion $\TIprr1$
 of $\TI$ has a (finite) chromatic model $\StrA$.
 Let $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$ be two arbitrary elements of
-$\StrA$.
+$\StrA$ (recall that $\StrA$ has cardinality at least $2$).
 We enrich $\StrA$ to an $\StrAp$ by making $\ea$ and $\eb$ kings:
 $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}1$,
 $\tpIa\StrAp\eb = \mr{\tpIa\StrA\eb}2$
@@ -317,7 +316,7 @@ But the total number of edges between elements from $\domB$ and $\domC$ is
 $(\nZ+1)^2 > \nE$ --- a contradiction.
 \end{proof}
 
-\begin{remark}\label{rem:prop-silent}
+\begin{remark}[Silent types]\label{rem:prop-silent}
 The type instance $\TI$ over $\ClSig\SigS\sms$ has a (finite) model
 iff some $\nZZ3$-promotion $\TIprr3$
 of some $\nZZ2$-promotion $\TIprr2$ 
@@ -352,7 +351,7 @@ $\TIprr2$ to a $\SigS$-structure is clearly a model for $\TI$ by the promotion
 condition.
 \end{proof}
 
-\begin{remark}\label{rem:prop-twokings}
+\begin{remark}[At least $2$ kings]\label{rem:prop-twokings}
 The type instance $\TI$ over $\ClSig\SigS\sms$ has a (finite) model
 iff some $\nZZ3$-promotion $\TIprr3$
 of some $\nZZ2$-promotion $\TIprr2$
@@ -375,72 +374,93 @@ and $\tpIa\StrAp\ec = \mr{\tpIa\StrA\ec}3$ for $\ec\in\domA\sub\set{\ea,\eb}$.
 Then indeed $\TIprr3 = \TIS\StrAp$ is a $\nZZ3$-promotion of $\TIprr2$.
 We know that $\StrAp$ remains chromatic since we did not alter the kind of
 \twotypes/ between elements.
-
 \end{proof}
 
+\begin{definition}
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ such that
+$\card{\TK\TI}\geq2$ and let $\nK = \card{\TK\TI}-1$.
+Define the enrichment
+$\SigSs = \SigS + \seq{\skm0,\skm1}$
+of $\SigS$ with two new message symbols,
+let $\skms = \sms + \seq{\skm0,\skm1}$
+and consider the classified signature $\ClSig\SigSs\skms$.
+For any \twotype/ $\tpt$ over $\SigS$
+and for $\sts,\stsp\subseteq\set{0,1}$,
+define the \twotype/ $\mrr\tpt\sts\stsp$ over $\SigSs$ as:
+\begin{align*}
+\mrr\tpt\sts\stsp = \tpt
+\cup\setbd{\skm\ii(\xx,\yy)}{\ii\in\sts}
+\cup\setbd{\lnot\skm\ii(\xx,\yy)}{\ii\in\set{0,1}\sub\sts}\cup \\
+\cup\setbd{\skm\ii(\yy,\xx)}{\ii\in\stsp}
+\cup\setbd{\lnot\skm\ii(\yy,\xx)}{\ii\in\set{0,1}\sub\stsp}\cup \\
+\cup\setbd{\lnot\skm\ii(\xx,\xx)}{\ii\in\set{0,1}}
+\cup\setbd{\lnot\skm\ii(\yy,\yy)}{\ii\in\set{0,1}}.
+\end{align*}
+That is, $\mrr\tpt\sts\stsp$ is an $\xx$-message type exactly for the fresh
+message symbols from $\sts$ and a $\yy$-message type exactly for the fresh
+message symbols from $\stsp$.
 
-\begin{remark}\label{rem:z-diff}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$ and let $\nZ\geq1$.
-Then $\TI$ has a (finite) model
-iff some $\nZ$-differentiated promotion $\TIp$ of $\TI$ has a (finite)
-$\nZ$-differentiated model.
+Define the set of \twotypes/ $\TI'$ over $\SigSs$ as:
+\[
+\TI' = \setbd{\mrr\tpt\sts\stsp}{\tpt\in\TI;\sts,\stsp\subseteq\set{0,1}}.
+\]
+
+A \emph{king promotion} $\TIpr\subseteq\TI'$ for $\TI$ is a type instance over
+$\ClSig\SigSs\skms$ such that for each $\tpt\in\TI$ there are some
+$\sts,\stsp\subseteq\set{0,1}$ such that $\mrr\tpt\sts\stsp\in\TIpr$.
+\end{definition}
+
+\begin{remark}[Kings sending invertible messages]\label{rem:prop-kingsinv}
+The type instance $\TI$ over $\ClSig\SigS\sms$ has a (finite) model
+iff some king promotion $\TIprr4$
+of some $\nZZ3$-promotion $\TIprr3$
+of some $\nZZ2$-promotion $\TIprr2$
+of some $\nZZ1$-promotion $\TIprr1$ 
+of $\TI$ has a (finite) chromatic model with silent types
+\emph{where each king sends an invertible message type},
+where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$ and $\nZZ3 = 3$.
 \end{remark}
 \begin{proof}
-First let $\StrA$ be a model for $\TI$.
-We define a $\mr\SigS\nZ$-enrichment $\StrAp$ of $\StrA$ such that $\TIp =
-\TIS\StrAp$ is a $\nZ$-differentiated promotion of $\TI$.
-We partition the \onetypes/ $\TP\TI$ into two classes: $\TP\TI^{\leq\nZ}$,
-consisting of the \onetypes/ realized at most $\nZ$ times in $\StrA$ and
-$\TP\TI^{>\nZ}$ of the \onetypes/ realized more than $\nZ$ times in $\StrA$.
-For each $\tpp\in\TP\TI^{\leq\nZ}$, let
-$\at\StrA\tpp = \set{\ea_1^\tpp,\ea_2^\tpp,\dots,\ea_{s_\tpp}^\tpp}$ be an
-enumeration of the elements realizing $\tpp$, where
-$s_\tpp=\card{\at\StrA\tpp}\in[1,\nZ]$ is the cardinality of $\at\StrA\tpp$.
-Define the enrichment as follows:
+First suppose that $\TI$ has a (finite) model.
+By~\Cref{rem:prop-twokings},
+some $\nZZ3$-promotion $\TIprr3$
+of some $\nZZ2$-promotion $\TIprr2$
+of some $\nZZ1$-promotion $\TIprr1$
+of $\TI$ has a (finite) chromatic model $\StrA$ with silent types and at least
+two kings.
+Consider the classified signature $\ClSig\SigSs\skms$ for the king promotions of
+$\TIprr3$.
+We will enrich $\StrA$ into a $\ClSig\SigSs\skms$-structure $\StrAp$ such that
+$\TIprr4 = \TIS\StrAp$ is a king promotion of $\TIprr3$.
+Let $\domC = \set{\ecc1,\ecc2,\dots,\ecc\nn}\subseteq\domA$ be an enumeration
+of the kings in $\StrA$, where $\nn=\card{\TK{\TIprr3}}$.
+Define the function $s : \domA\to\domA$ as follows:
 \begin{itemize}
-  \item If $\ea = \ea_\ii^\tpp$ for some $\tpp\in\TP\TI^{\leq\nZ}$ and
-  $\ii\in[1,s(\tpp)]$, then let $\tpIa\StrAp\ea = \mr{\tpIa\StrAp\ea}\ii$.
-  \item Otherwise let $\tpIa\StrAp\ea = \mr{\tpIa\StrAp\ea}1$.
+  \item $s(\ecc\ii) = \ecc{\ii+1}$ if $\ii\in[1,\nn-1]$
+  \item $s(\ecc\nn) = \ecc1$
+  \item if $\ea\in\domA$, let $s(\ea)\in\domA\sub\set\ea$
+  be any element such that $\tpIab\StrA\ea{s(\ea)}$ is an $\xx$-message type
 \end{itemize}
-By construction $\StrAp$ is $\nZ$-differentiated and $\TIp\subseteq\mr\TI\nZ$;
-furthermore $\TIp$ is a $\nZ$-differentiated promotion for $\TI$ since $\StrA$
-was a model for $\TI$.
-
-Next, let $\TIp$ be any $\nZ$-differentiated promotion for $\TI$ and suppose
-that $\StrAp$ is a model for $\TIp$. Then the reduct of $\StrAp$ to a
-$\SigS$-structure is a model for $\TI$ by the promotion condition.
+Define the enrichment as follows:
+let $\ea\in\domA$, $\eb\in\domA\sub\set\ea$ and let $\tpt=\tpIab\StrA\ea\eb$.
+Then:
+\begin{itemize}
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\eset\eset$
+  if $c(\ea)\neq\eb$ and $c(\eb)\neq\ea$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt{\set{0,1}}\eset$
+  if $c(\ea)=\eb$ and $c(\eb)\neq\ea$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\eset{\set{0,1}}$
+  if $c(\ea)\neq\eb$ and $c(\eb)=\ea$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt{\set{0,1}}{\set{0,1}}$
+  if $c(\ea)=\eb$ and $c(\eb)=\ea$
+\end{itemize}
+It is routine to check that this assignment is sound and that $\StrAp$ is a
+$\ClSig\SigSs\skms$-structure.
+This model remains chromatic and has silent types since we did not alter the
+king (message or silent) of the \twotypes/ between worker elements.
 \end{proof}
 
-
-
-
-\begin{remark}\label{rem:step-chromatic}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-Then $\TI$ has a (finite) model iff some $\nZ$-differentiated promotion $\TIp$
-of $\TI$ has a (finite) chromatic model, where $\nZ = \nM^2+1$.
-\end{remark}
-\begin{proof}
-Consider the graph over $\domA$ where two elements are connected iff there
-exists a chain of length $1$ or $2$ of invertible message types connecting them.
-This is an undirected graph of maximal degree $\nM + \nM(\nM-1) = \nM^2$, so it
-can be colored using $\nM^2+1$ colors so that no two connected vertices have the
-same color.
-Then we just use the $\nZ$ fresh unary predicates as colors, as we did
-for~\Cref{rem:z-diff}.
-\end{proof}
-
-\begin{remark}\label{rem:step-silent}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$ and let
-$\nZ\geq(\nM^2+1)+(2\nM+2)+2$.
-Then $\TI$ has a (finite) model iff some $\nZ$-differentiated promotion $\TIp$
-of $\TI$ has a (finite) chromatic model with silent types.
-\end{remark}
-\begin{proof}[Proof Sketch]
-We have to verify that the construction in~\Cref{rem:z-diff} preserves
-chromaticity.
-This is evident since the kind of types is not altered and since we only
-differentiate 
-\end{proof}
+\section{TODODOD}
 
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
@@ -538,51 +558,6 @@ Next if $\TIp$ is a $\nZ$-differentiated promotion of $\TI$,
 the reduct of any $\TIp$-model $\StrAp$ to $\SigS$ is a model for $\TI$.
 \end{proof}
 
-\begin{definition}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$ such that
-$\card{\TK\TI}\geq2$.
-Let $\nM_{\nn+1} = \card{\TK\TI}-1$,
-let $\SigSp = \SigS + \seq{\smm{\nn+1}}$ be an enrichment of $\SigS$ with the
-new binary \emph{message} symbol $\smm{\nn+1}$, let
-\[
-\sms' = \sms +
-\underbrace{\smm{\nn+1},\smm{\nn+1},\dots,\smm{\nn+1}}_{\nMM{\nn+1}}
-\]
-and consider the classified signature $\ClSig\SigSp\smsp$.
-For any \twotype/ $\tpt$ over $\SigS$, consider the following \twotypes/ over
-$\SigSp$:
-\begin{align*}
-\mrr\tpt\kk\kk &=
-\tpt\cup\set{\smm{\nn+1}(\xx,\yy),\smm{\nn+1}(\yy,\xx),
-\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)} \\
-\mrr\tpt\kk\bot &=
-\tpt\cup\set{\smm{\nn+1}(\xx,\yy),\lnot\smm{\nn+1}(\yy,\xx),
-\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)} \\
-\mrr\tpt\bot\kk &=
-\tpt\cup\set{\lnot\smm{\nn+1}(\xx,\yy),\smm{\nn+1}(\yy,\xx),
-\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)} \\
-\mrr\tpt\bot\bot &=
-\tpt\cup\set{\lnot\smm{\nn+1}(\xx,\yy),\lnot\smm{\nn+1}(\yy,\xx),
-\smm{\nn+1}(\xx),\smm{\nn+1}(\yy)}.
-\end{align*}
-Define the following sets of \twotypes/ over $\SigSp$:
-\begin{align*}
-\mrr\TI\kk\kk &=
-\setbd{\mrr\tpt\kk\kk}{\tpt\in\TI,\tpx\tpt\in\TK\TI,\tpy\tpt\in\TK\TI} \\
-\mrr\TI\kk\bot &=
-\setbd{\mrr\tpt\kk\bot}{\tpt\in\TI,\tpx\tpt\in\TK\TI,\tpy\tpt\in\TW\TI} \\
-\mrr\TI\bot\kk &=
-\setbd{\mrr\tpt\bot\kk}{\tpt\in\TI,\tpx\tpt\in\TW\TI,\tpy\tpt\in\TK\TI} \\
-\mrr\TI\bot\bot &=
-\setbd{\mrr\tpt\bot\bot}{\tpt\in\TI,\tpx\tpt\in\TW\TI\lor\tpy\tpt\in\TW\TI}.
-\end{align*}
-Let $\TI' =
-\mrr\TI\kk\kk\cup\mrr\TI\kk\bot\cup\mrr\TI\bot\kk\cup\mrr\TI\bot\bot$ be a type
-instance over $\ClSig\SigSp\smsp$.
-A \emph{king-differentiated promotion} $\TIp\subseteq\TI'$ for $\TI$ is a type
-instance over $\ClSig\SigSp\smsp$ such that for each $\tpt\in\TI$ there are some
-$u,v\in\set{\kk,\bot}$ such that $\mrr\tpt{u}{v}\in\TIp$.
-\end{definition}
 
 \begin{remark}\label{rem:kings-rare}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$ such that
