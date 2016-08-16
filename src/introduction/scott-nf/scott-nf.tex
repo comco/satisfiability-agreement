@@ -36,21 +36,3 @@ The sentences $\fphi$ and $\sctr\fphi$ are satisfiable over the same domains of
 cardinality at least $2$.
 Moreover the length $\sctr\fphi$ is linear in the length of $\fphi$.
 \end{theorem}
-
-A completely analogous normal form can be described for the two-variable
-fragment with counting quantifiers~\cite{MALQ:MALQ201400102}:
-\begin{theorem}[Pratt-Hartmann]
-There is a polynomial-time reduction $\prtr: \vFoc2 \to \vFoc2$ with reduces
-every sentence $\fphi$ to a sentence $\prtr\fphi$ in the form:
-\[
-  \forall\xx\forall\yy(\falpp0(\xx,\yy) \lor \xx=\yy) \land
-  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\existseq{\nMM\ii}\yy
-  (\falpp\ii(\xx,\yy) \land \xx\neq\yy),
-\]
-where $\nm\geq1$, $\nMM\ii\geq1$ and the formulas $\falpp\ii$ are
-quantifier-free and may use linearly many new unary and binary predicate symbols. Let $\nM =
-1+\max\set{\nMM1,\nMM2,\dots,\nMM\nm}$.
-Then $\fphi$ and $\prtr\fphi$ are satisfiable over the same domains of
-cardinality at least $\nM$.
-Moreover the length $\prtr\fphi$ is linear in the length of $\fphi$.
-\end{theorem}

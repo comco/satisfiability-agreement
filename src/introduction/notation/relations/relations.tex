@@ -1,20 +1,21 @@
 % Relations
 
-If $\relR$ is a binary relation, its \emph{domain} is \gls{domain} and its
-\emph{range} is \gls{range}.
-The \emph{inverse} of $\relR \subseteq \setA \cprod \setB$ is 
+Let $\setA$ and $\setB$ be sets and let $\relR\subseteq\setA\cprod\setB$ be a
+binary relation.
+The \emph{domain} of $\relR$ is $\gls{domain} = A$ and its \emph{range} is
+$\gls{range} = B$.
+The \emph{inverse} $\inv\relR\subseteq\setB\cprod\setA$ of $\relR$ is
 \[
   \gls{inverse-R} = 
-  \setbd{(\eb, \ea) \in \setB \cprod \setA}{(\ea, \eb) \in \relR}.
+  \setbd{(\eb, \ea)}{(\ea, \eb) \in \relR}.
 \]
-If $\setS$ is a set and $\relR \subseteq \setA \cprod \setB$, the
-\emph{restriction} of $\relR$ to $\setS$ is
+If $\setAp\subseteq\setA$, the \emph{restriction}
+$(\relR\restriction\setAp) \subseteq \setS\cprod\setB$ of $\relR$ to $\setAp$ is
 \[
   \gls{restriction-R-S} =
   \setbd{(\ea, \eb) \in \relR}{\ea \in \setS}.
 \]
-If $\relR \subseteq \setA \cprod
-\setB$ is a binary relation and $\ea \in \setA$, the \emph{$\relR$-successors} 
+If $\ea \in \setA$, the \emph{$\relR$-successors} 
 of $\ea$ are
 \[
   \gls{R-successors-a} =
@@ -24,6 +25,7 @@ If $\relS \subseteq \setB \cprod \setC$ and $\relR \subseteq \setA \cprod \setB$
 are two binary relations, their \emph{composition} is 
 \[
   \gls{composition-S-R} =
-  \setbd{(\ea, \ec) \in \setA \cprod \setC}{(\exists \eb \in \setB) (\ea, \eb)
-  \in \relR \land (\eb, \ec) \in \relS}.
+  \setbd{(\ea, \ec) \in \setA \cprod \setC}{
+  (\exists \eb \in \setB)\left((\ea, \eb)
+  \in \relR \land (\eb, \ec) \in \relS\right)}.
 \]

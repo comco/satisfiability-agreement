@@ -1,6 +1,6 @@
 % Quantifier rank
 
-If $\fphi \in \FocF\SigS$, the \emph{quantifier rank}
+If $\fphi \in \FoF\SigS$, the \emph{quantifier rank}
 $\gls{quantifier-rank-phi} \in \Nats$ of $\fphi$ is defined as follows. If
 $\fphi$ matches:
 \begin{itemize}
@@ -12,16 +12,9 @@ $\fphi$ matches:
   then $\qr\fphi = \max(\qr{\fpsi_1},\qr{\fpsi_2})$
   \item $(\exists\gx \fpsi)$ or $(\forall\gx \fpsi)$,
   then $\qr\fphi = 1 +\qr\fpsi$
-  \item $(\existsleq\nm\gx\fpsi)$ or $(\existseq\nm\gx\fpsi)$,
-  then $\qr\fphi = \nm + 1 + \qr\fpsi$
-  \item $(\existsgeq\nm\gx\fpsi)$, then $\qr\fphi = \nm + \qr\fpsi$. 
 \end{itemize}
 An \emph{$\nr$-rank formula} is a formula having quantifier rank $\nr$.
 The set of $\nr$-rank first-order formulas over $\SigS$ is
 $\gls{r-rank-formulas-S}$.
-The set of $\nr$-rank first-order formulas with counting quantifiers over
-$\SigS$ is $\gls{r-rank-formulas-counting-S}$.
 The set of $\nr$-rank $\nv$-variable first-order formulas over $\SigS$ is
 $\gls{r-rank-v-variable-formulas-S}$.
-The set of $\nr$-rank $\nv$-variable first-order formulas with counting
-quantifiers over $\SigS$ is $\gls{r-rank-v-variable-formulas-counting-S}$.

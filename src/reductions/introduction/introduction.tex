@@ -11,7 +11,7 @@ To denote various logics with builtin equivalence symbols, we use the notation
 \]
 where:
 \begin{itemize}
-  \item $\Lambda \in \set{\mathcal{L}, \mathcal{C}}$ is the \emph{ground logic}
+  \item $\LL$ is the \emph{ground logic}
   \item $\nv$, if given, bounds the number of variables
   \item $\sze$, if given, bounds the number of builtin equivalence symbols
   \item $\ag \in \set{\agrefine, \agglobal, \aglocal}$, if given, gives the
@@ -34,18 +34,16 @@ For example $\Lvp\Fo\nonv1$ is the monadic first-order logic, featuring only
 unary predicate symbols.
 $\Lvp\Fo\nonv0\Eea1\noag$ is the first-order logic of a single equivalence
 relation.
-$\Lvp\Foc2\nopow$ is the two-variable logic with counting quantifiers, featuring
-unary and binary predicate symbols.
 $\Lvp\Fo2\nonv\Eea2\noag$ is the two-variable logic, featuring unary, binary
 predicate symbols and two builtin equivalence symbols.
-$\Lvp\Foc21\Eea2\aglocal$ is the two-variable logic with counting quantifiers,
+$\Lvp\Fo21\Eea2\aglocal$ is the two-variable logic,
 featuring unary predicate symbols and two builtin equivalence symbols in local
 agreement.
 $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ is the monadic first-order logic featuring
 many equivalence symbols in global agreement.
 
 When we working with a concrete logic, for example
-$\Lvp\Foc2\nopow\Eea2\aglocal$,
+$\Lvp\Fo2\nopow\Eea2\aglocal$,
 we implicitly assume an appropriate generic predicate signature $\SigS$ for it.
 In this case, there are two builtin equivalence symbols $\sd$ and $\se$ in
 $\SigS$ and in addition $\SigS$ contains arbitrary many unary
@@ -59,6 +57,6 @@ In this case:
 Note that the interpretation condition might in general be a first-order formula
 outside the logic in interest, as in this case, since for instance $\fequiv\sd$
 uses the variables $\xx,\yy$ and $\zz$ and the logic
-$\Lvp\Foc2\nopow\Eea2\aglocal$ is a two-variable logic.
+$\Lvp\Fo2\nopow\Eea2\aglocal$ is a two-variable logic.
 Recall that when talking about semantics, we include the intended interpretation
 condition in the definition of $\SigS$-structures.

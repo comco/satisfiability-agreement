@@ -53,9 +53,8 @@ ${\gls{color-setup} = \seq{\suu1,\suu2,\dots,\suu\tbit}}$ is just a $\tbit$-bit
 counter setup.
 \end{definition}
 
-Let $\aL \in \set{\Fo, \Foc}$ be a ground logic,
-$\gr \in \pNats$ and
-$\ColS = \seq{\suu1,\suu2,\dots,\suu\tbit}$ be a $\gr$-color setup.
+Let $\gr \in \pNats$ and let $\ColS = \seq{\suu1,\suu2,\dots,\suu\tbit}$ be a
+$\gr$-color setup.
 Let $\SigS$ be a predicate signature containing the binary symbols
 $\sd$ and $\se$ and not containing any symbols from $\ColS$.
 Let $\SigSp = \SigS + \ColS$ and $\SigG = \SigSp - \set{\sd}$.
@@ -68,8 +67,8 @@ $\gls{finer-granularity-G}(\xx,\yy)$ by:
 \]
 \end{definition}
 \begin{definition}
-Define the syntactic operation $\gls{granularity-tr} : \aLF\SigS \to
-\aLF\SigG$ by:
+Define the syntactic operation
+$\gls{granularity-tr} : \FoF\SigS \to \FoF\SigG$ by:
 \[
   \grtr\fphi = \fphip \land \fbetw\ColS1\gr,
 \]

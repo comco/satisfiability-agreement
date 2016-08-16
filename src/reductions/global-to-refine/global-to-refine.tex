@@ -6,25 +6,27 @@ satisfiability in logics featuring builtin equivalence symbols in refinement.
 Our strategy is to encode the permutation of the builtin equivalence symbols in
 global agreement that turns them in refinement into a permutation setup.
 
-Fix an arbitrary ground logic $\aL \in \set{\Fo, \Foc}$ and think of $\SigS$ as
-a predicate signature for the logics $\aL\Eea\sze\agglobal$ and
-$\aL\Eea\sze\agrefine$. The $\sze$ builtin equivalence symbols of $\SigS$ are
-$\see1, \see2, \dots, \see\sze$.
+Let $\SigS$ be a predicate signature for the logics $\Fo\Eea\sze\agglobal$
+or $\Fo\Eea\sze\agrefine$.
+The $\sze$ builtin equivalence symbols of $\SigS$ are $\see1, \see2, \dots,
+\see\sze$.
 
-Let $\fphi$ be a  $\aLF\SigS$-sentence.
-The class of $\aL\Eea\sze\agrefine$-structures satisfying $\fphi$ coincides
-with the class of $\aL\Eea\sze\agglobal$-structures satisfying:
+Let $\fphi$ be a $\SigS$-sentence.
+The class of $\Fo\Eea\sze\agrefine$-structures satisfying $\fphi$
+coincides with the class of $\Fo\Eea\sze\agglobal$-structures satisfying
 \[
   \fphi \land \frefine{\see1,\see2,\dots,\see\sze}.
 \]
 Hence:
 \[
-  \FinASat\aL\Eea\sze\agrefine \red\cP \FinASat\aL\Eea\sze\agglobal.
+  \FinASat{\Fo\Eea\sze\agrefine} \red\cP
+  \FinASat{\Fo\Eea\sze\agglobal}.
 \]
 Since the length of the formula $\frefine{\see1,\see2,\dots,\see\sze}$ grows
 polynomially as $\sze$ grows:
 \[
-  \FinASat\aL\Eea\nosze\agrefine \red\cP \FinASat\aL\Eea\nosze\agglobal.
+  \FinASat{\Fo\Eea\nosze\agrefine} \red\cP
+  \FinASat{\Fo\Eea\nosze\agglobal}.
 \]
 
 Consider the opposite direction.
@@ -121,7 +123,7 @@ Let $\SigSp = \SigS \cup \LS$ and
 $\LSp = \SigSp - \ES$.
 
 \begin{definition}
-Define the syntactic operation $\gls{gtr} : \aLF\SigS \to \aLF\LSp$ by:
+Define the syntactic operation $\gls{gtr} : \FoF\SigS \to \FoF\LSp$ by:
 \[
   \gtr\fphi = \fphip \land \fglobperm\PS,
 \]
@@ -132,14 +134,13 @@ $\ii \in [1,\sze]$.
 \end{definition}
 
 \begin{remark}\label{rem:global-e-to-m}
-Let $\fphi$ be a $\aLF\SigS$-formula and let $\StrA$ be a
-$\SigS$-structure.
+Let $\fphi$ be a $\SigS$-formula and let $\StrA$ be a $\SigS$-structure.
 Suppose that $\StrA \vDash \fphi$ and that the symbols 
-$\see1, \see2, \dots, \see\sze$ are interpreted in $\StrA$ as equivalence
+$\see1,\see2,\dots,\see\sze$ are interpreted in $\StrA$ as equivalence
 relations on $\domA$ in global agreement.
 Then there is a $\SigSp$-enrichment $\StrAp$ of $\StrA$
 such that $\StrAp \vDash \gtr\fphi$ and that the symbols
-$\slee1,\slee2, \dots, \slee\sze$ are interpreted in $\StrAp$ as equivalence
+$\slee1,\slee2,\dots,\slee\sze$ are interpreted in $\StrAp$ as equivalence
 relations on $\domA$ in refinement.
 \end{remark}
 \begin{proof}
@@ -172,8 +173,7 @@ Since $\StrAp \vDash \fphi$ we have $\StrAp \vDash \gtr\fphi$.
 \end{proof}
 
 \begin{remark}\label{rem:global-m-to-e}
-Let $\fphi$ be a $\aLF\SigS$-formula and let $\StrA$ be an
-$\LSp$-structure.
+Let $\fphi$ be a $\SigS$-formula and let $\StrA$ be an $\LSp$-structure.
 Suppose that $\StrA \vDash \gtr\fphi$ and that the symbols
 $\slee1,\slee2,\dots,\slee\sze$ are interpreted in $\StrA$ as equivalence
 relations on $\domA$ in refinement.
@@ -193,27 +193,27 @@ $\StrAp \vDash \forall\xx\forall\yy(\see\ii(\xx,\yy) \lequ
 Since $\StrAp \vDash \gtr\fphi$ we have $\StrAp \vDash \fphi$.
 \end{proof}
 
-The last two remarks show that a $\aL\Eea\sze\agglobal$-formula $\fphi$
-has essentially the same models as the $\aL\Eea\sze\agrefine$-formula
+The last two remarks show that a $\Fo\Eea\sze\agglobal$-formula $\fphi$
+has essentially the same models as the $\Fo\Eea\sze\agrefine$-formula
 $\gtr\fphi$, so we have shown:
 \begin{proposition}\label{prop:global-to-refine-n}
-The logic $\aL\Eea\sze\agglobal$ has the finite model property iff
-the logic $\aL\Eea\sze\agrefine$ has the finite model property. 
+The logic $\Fo\Eea\sze\agglobal$ has the finite model property iff
+the logic $\Fo\Eea\sze\agrefine$ has the finite model property. 
 The corresponding satisfiability problems are polynomial-time equivalent:
-$\FinASat\aL\Eea\sze\agglobal \redeq\cP \FinASat\aL\Eea\sze\agrefine$.
+$\FinASat{\Fo\Eea\sze\agglobal} \redeq\cP \FinASat{\Fo\Eea\sze\agrefine}$.
 \end{proposition}
 
 Since the relative size of $\gtr\fphi$ with respect to $\fphi$ grows
 polynomially as $\sze$ grows, we have shown:
 \begin{proposition}\label{prop:global-to-refine}
-The logic $\aL\Eea\nosze\agglobal$ has the finite model property iff
-the logic $\aL\Eea\nosze\agrefine$ has the finite model property. 
+The logic $\Fo\Eea\nosze\agglobal$ has the finite model property iff
+the logic $\Fo\Eea\nosze\agrefine$ has the finite model property. 
 The corresponding satisfiability problems are polynomial-time equivalent:
-$\FinASat\aL\Eea\nosze\agglobal \redeq\cP \FinASat\aL\Eea\nosze\agrefine$.
+$\FinASat{\Fo\Eea\nosze\agglobal} \redeq\cP \FinASat{\Fo\Eea\nosze\agrefine}$.
 \end{proposition}
 
 The reduction is two-variable first-order and uses additional $(\sze\tbit)$
 unary predicate symbols for the permutation setup $\PS$, so it is also valid
-for the two-variable fragments $\Lvp\aL20\Eea\sze\ag$, $\Lvp\aL21\Eea\sze\ag$
-and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\agglobal, \agrefine}$ (but not
-for the fragment $\Lvp\aL20\Eea\nosze\ag$).
+for the two-variable fragments $\Lvp\Fo20\Eea\sze\ag$, $\Lvp\Fo21\Eea\sze\ag$
+and $\Lvp\Fo21\Eea\nosze\ag$ for $\ag \in \set{\agglobal, \agrefine}$ (but not
+for the fragment $\Lvp\Fo20\Eea\nosze\ag$).

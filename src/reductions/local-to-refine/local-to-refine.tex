@@ -7,25 +7,26 @@ Our strategy is to start with the level equivalences which form a refinement,
 and to encode a permutation specifying the local chain structure for every
 element in the structure.
 
-Fix an arbitrary ground logic $\aL \in \set{\Fo, \Foc}$ and think of $\SigS$ as
-a predicate signature for the logics $\aL\Eea\sze\aglocal$ and
-$\aL\Eea\sze\agrefine$. The $\sze$ builtin equivalence symbols of $\SigS$ are
+Let $\SigS$ be a predicate signature for the logics $\Fo\Eea\sze\aglocal$ and
+$\Fo\Eea\sze\agrefine$. The $\sze$ builtin equivalence symbols of $\SigS$ are
 $\see1, \see2, \dots, \see\sze$.
 
-Let $\fphi$ be a $\aLF\SigS$-sentence.
-The class of $\aL\Eea\sze\agrefine$-structures satisfying $\fphi$ coincides with
-the class of $\aL\Eea\sze\aglocal$-structures satisfying
+Let $\fphi$ be a $\SigS$-sentence.
+The class of $\Fo\Eea\sze\agrefine$-structures satisfying $\fphi$ coincides with
+the class of $\Fo\Eea\sze\aglocal$-structures satisfying
 \[
   \fphi \land \frefine{\see1,\see2,\dots,\see\sze}.
 \] 
 Hence:
 \[
-  \FinASat\aL\Eea\sze\agrefine \red\cP \FinASat\aL\Eea\sze\aglocal.
+  \FinASat{\Fo\Eea\sze\agrefine} \red\cP
+  \FinASat{\Fo\Eea\sze\aglocal}.
 \]
 Since the size of the formula $\frefine{\see1,\see2,\dots,\see\sze}$ grows 
 polynomially as $\sze$ grows, we have:
 \[
-  \FinASat\aL\Eea\nosze\agrefine \red\cP \FinASat\aL\Eea\nosze\aglocal.
+  \FinASat{\Fo\Eea\nosze\agrefine} \red\cP
+  \FinASat{\Fo\Eea\nosze\aglocal}.
 \]
 
 Consider the opposite direction.
@@ -282,8 +283,7 @@ and not containing any symbols from $\LS$.
 Let $\SigSp = \SigS + \LS$ and $\LSp = \SigSp - \ES$.
 
 \begin{definition}
-Define the syntactic operation $\gls{ltr} : \aLF\SigS \to \aLF\LSp$
-by:
+Define the syntactic operation $\gls{ltr} : \FoF\SigS \to \FoF\LSp$ by:
 \[
   \ltr\fphi = \fphip \land \flocperm\LS,
 \]
@@ -293,7 +293,7 @@ where $\gx$ and $\gy$ are (not necessarily distinct) variable symbols and
 $\ii \in [1,\sze]$.
 \end{definition}
 \begin{remark}
-Let $\fphi$ be a $\aLF\SigS$-formula and let $\StrA$ be a $\SigS$-structure.
+Let $\fphi$ be a $\SigS$-formula and let $\StrA$ be a $\SigS$-structure.
 Suppose that $\StrA \vDash \fphi$ and that the symbols 
 $\see1, \see2, \dots, \see\sze$ are interpreted in $\StrA$ as equivalence
 relations on $\domA$ in local agreement.
@@ -333,7 +333,7 @@ Since $\StrAp \vDash \fphi$ we have $\StrAp \vDash \ltr\fphi$.
 \end{proof}
 
 \begin{remark}
-Let $\fphi$ be a $\aLF\SigS$-formula and let $\StrA$ be an $\LSp$-structure.
+Let $\fphi$ be a $\SigS$-formula and let $\StrA$ be an $\LSp$-structure.
 Suppose that $\StrA \vDash \ltr\fphi$ and that the symbols
 $\slee1, \slee2, \dots, \slee\sze$ are interpreted as equivalence relations on
 $\domA$ in refinement in $\StrA$.
@@ -354,27 +354,27 @@ $\StrAp \vDash \forall\xx\forall\yy \left(\see\ii(\xx,\yy) \lequ
 Since $\StrAp \vDash \ltr\fphi$ we have $\StrAp \vDash \fphi$.
 \end{proof}
 
-The last two remarks show that a $\aL\Eea\sze\aglocal$-formula $\fphi$
-has essentially the same models as the $\aL\Eea\sze\agrefine$-formula
+The last two remarks show that a $\Fo\Eea\sze\aglocal$-formula $\fphi$
+has essentially the same models as the $\Fo\Eea\sze\agrefine$-formula
 $\ltr\fphi$, so we have shown:
+
 \begin{proposition}\label{prop:local-to-refine-n}
-The logic $\aL\Eea\sze\aglocal$ has the finite model property iff
-the logic $\aL\Eea\sze\agrefine$ has the finite model property.
+The logic $\Fo\Eea\sze\aglocal$ has the finite model property iff
+the logic $\Fo\Eea\sze\agrefine$ has the finite model property.
 The corresponding satisfiability problems are polynomial-time equivalent:
-$\FinASat\aL\Eea\sze\aglocal \redeq\cP \FinASat\aL\Eea\sze\agrefine$.
+$\FinASat{\Fo\Eea\sze\aglocal} \redeq\cP \FinASat{\Fo\Eea\sze\agrefine}$.
 \end{proposition}
 
 Since the relative size of $\ltr\fphi$ with respect to $\fphi$ grows
 polynomially as $\sze$ grows, we have shown:
 \begin{proposition}\label{prop:local-to-refine}
-The logic $\aL\Eea\nosze\aglocal$ has the finite model property iff
-the logic $\aL\Eea\nosze\agrefine$ has the finite model property.
+The logic $\Fo\Eea\nosze\aglocal$ has the finite model property iff
+the logic $\Fo\Eea\nosze\agrefine$ has the finite model property.
 The corresponding satisfiability problems are polynomial-time equivalent:
-$\FinASat\aL\Eea\nosze\aglocal \redeq\cP \FinASat\aL\Eea\nosze\agrefine$.
+$\FinASat{\Fo\Eea\nosze\aglocal} \redeq\cP \FinASat{\Fo\Eea\nosze\agrefine}$.
 \end{proposition}
 
 The reduction is two-variable first-order and uses additional $(\sze\tbit)$
 unary predicate symbols for the permutation setup $\PS$, so it is also valid
-for the two-variable fragments $\Lvp\aL20\Eea\sze\ag$, $\Lvp\aL21\Eea\sze\ag$
-and $\Lvp\aL21\Eea\nosze\ag$ for $\ag \in \set{\aglocal, \agrefine}$
-respectively.
+for the two-variable fragments $\Lvp\Fo20\Eea\sze\ag$, $\Lvp\Fo21\Eea\sze\ag$
+and $\Lvp\Fo21\Eea\nosze\ag$ for $\ag \in \set{\aglocal, \agrefine}$.
