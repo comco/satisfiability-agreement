@@ -410,9 +410,45 @@ $\ClSig\SigSs\skms$ such that for each $\tpt\in\TI$ there are some
 $\sts,\stsp\subseteq\set{0,1}$ such that $\mrr\tpt\sts\stsp\in\TIpr$.
 \end{definition}
 
+\begin{definition}
+Let $\SigS$ be a predicate signature and let $\nW\geq1$ be a parameter.
+Define $\enII\SigS\nW = \SigS + \seq{\sqq1,\sqq2,\dots,\sqq\nW}$ as an
+enrichment of $\SigS$ with $\nW$ new binary predicate symbols.
+For any $\ii\in[1,\nW]$, define $\sQ\ii(\xx,\yy)$ as the following set of
+literals over $\enII\SigS\nW$:
+\[
+\sQ\ii(\xx,\yy) = \set{\sqq\ii(\xx,\yy)} \cup
+\setbd{\lnot\sqq\jj(\xx,\yy)}{\jj\in[1,\nW]\sub\set\ii} \cup
+\setbd{\lnot\sqq\kk(\xx,\xx)}{\kk\in[1,\nW]}.
+\]
+Define $\sQ\bot(\xx,\yy)$ as the following set of literals over $\enII\SigS\nW$:
+\[
+\sQ\bot(\xx,\yy) = \setbd{\lnot\sqq\jj(\xx,\yy)}{\jj\in[1,\nW]} \cup
+\setbd{\lnot\sqq\kk(\xx,\xx)}{\kk\in[1,\nW]}.
+\]
+For any \twotype/ $\tpt$ over $\SigS$ and for $\ii,\jj\in[1,\nW]\cup\set\bot$,
+define the \twotype/ $\mrr\tpt\ii\jj$ over $\enII\SigS\nW$ as follows:
+\[
+\mrr\tpt\ii\jj = \tpt \cup \sQ\ii(\xx,\yy) \cup \sQ\jj(\yy,\xx).
+\]
+Let $\ClSig\SigS\sms$ be any classified signature over $\SigS$
+and let $\TI$ be any type instance over $\ClSig\SigS\sms$.
+Define the set of \twotypes/ $\TI'$ over $\enII\SigS\nW$ as follows:
+\[
+\TI' = \setbd{\mrr\tpt\ii\jj}{\tpt\in\TI,\ii,\jj\in[1,\nW]\cup\set\bot}.
+\]
+
+A \emph{$\nW$-\twotype/-promotion} $\TIpr\subseteq\TI'$ for $\TI$ is a type
+instance over $\ClSig{\enII\SigS\nW}\sms$ such that for each $\tpt\in\TI$ there
+are some $\ii,\jj\in[1,\nW]\cup\set\bot$ such that $\mrr\tpt\ii\jj\in\TIpr$.
+
+A \emph{king-promotion} $\TIpr\subseteq\TI'$ for $\TI$ is a type instance over
+$\ClSig{\enII\SigS\nW}{\sms+\seq{\sqq1}}$ for $\nW = 1$.
+\end{definition}
+
 \begin{remark}[Kings sending invertible messages]\label{rem:prop-kingsinv}
 The type instance $\TI$ over $\ClSig\SigS\sms$ has a (finite) model
-iff some king promotion $\TIprr4$
+iff some king-promotion $\TIprr4$
 of some $\nZZ3$-promotion $\TIprr3$
 of some $\nZZ2$-promotion $\TIprr2$
 of some $\nZZ1$-promotion $\TIprr1$ 
@@ -428,39 +464,42 @@ of some $\nZZ2$-promotion $\TIprr2$
 of some $\nZZ1$-promotion $\TIprr1$
 of $\TI$ has a (finite) chromatic model $\StrA$ with silent types and at least
 two kings.
-Consider the classified signature $\ClSig\SigSs\skms$ for the king promotions of
-$\TIprr3$.
-We will enrich $\StrA$ into a $\ClSig\SigSs\skms$-structure $\StrAp$ such that
-$\TIprr4 = \TIS\StrAp$ is a king promotion of $\TIprr3$.
+Consider the classified signature $\ClSig\SigSp{\sms+\seq{\sqq1}}$ for the king
+promotion of $\TIprr3$.
+We will enrich $\StrA$ into a $\ClSig\SigSp{\sms+\seq{\sqq1}}$-structure
+$\StrAp$ such that $\TIprr4 = \TIS\StrAp$ is a king promotion of $\TIprr3$.
 Let $\domC = \set{\ecc1,\ecc2,\dots,\ecc\nn}\subseteq\domA$ be an enumeration
-of the kings in $\StrA$, where $\nn=\card{\TK{\TIprr3}}$.
+of the kings in $\StrA$, where $\nn=\card{\TK{\TIprr3}}$ is the number of kings.
 Define the function $s : \domA\to\domA$ as follows:
 \begin{itemize}
   \item $s(\ecc\ii) = \ecc{\ii+1}$ if $\ii\in[1,\nn-1]$
   \item $s(\ecc\nn) = \ecc1$
-  \item if $\ea\in\domA$, let $s(\ea)\in\domA\sub\set\ea$
+  \item if $\ea\in\domA\sub\domC$, let $s(\ea)\in\domA\sub\set\ea$
   be any element such that $\tpIab\StrA\ea{s(\ea)}$ is an $\xx$-message type
 \end{itemize}
 Define the enrichment as follows:
 let $\ea\in\domA$, $\eb\in\domA\sub\set\ea$ and let $\tpt=\tpIab\StrA\ea\eb$.
 Then:
 \begin{itemize}
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\eset\eset$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\bot\bot$
   if $c(\ea)\neq\eb$ and $c(\eb)\neq\ea$
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt{\set{0,1}}\eset$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt1\bot$
   if $c(\ea)=\eb$ and $c(\eb)\neq\ea$
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\eset{\set{0,1}}$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\bot1$
   if $c(\ea)\neq\eb$ and $c(\eb)=\ea$
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt{\set{0,1}}{\set{0,1}}$
+  \item $\tpIab\StrAp\ea\eb = \mrr\tpt11$
   if $c(\ea)=\eb$ and $c(\eb)=\ea$
 \end{itemize}
 It is routine to check that this assignment is sound and that $\StrAp$ is a
-$\ClSig\SigSs\skms$-structure.
+$\ClSig\SigSp{\sms+\seq{\sqq1}}$-structure.
 This model remains chromatic and has silent types since we did not alter the
-king (message or silent) of the \twotypes/ between worker elements.
-\end{proof}
+kind (message or silent) of any \twotype/ between a worker element and another
+element.
 
-\section{TODODOD}
+Next, if $\StrAp$ is a model for any king-promotion $\TIprr4$, then the reduct
+of $\StrAp$ to a $\SigS$-structure is a model for $\TI$ by the promotion
+condition.
+\end{proof}
 
 \begin{definition}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
@@ -468,124 +507,39 @@ A model $\StrA$ for $\TI$ has \emph{differentiated message types}
 if whenever $\ea\in\domA$, $\eb\in\domA\sub\set\ea$
 and $\tpt = \tpIab\StrA\ea\eb\in\TIamn$ is an $\xx$-message type,
 no $\ec\in\domA\sub\set{\ea,\eb}$ has $\tpIab\StrA\ea\ec = \tpt$.
-That is, an element is allowed to send any $\xx$-message type once.
+That is, an element is allowed to send any $\xx$-message type at most once.
 \end{definition}
-To achieve a reduction to the class of differentiated message types, we are
-going to define promotions at the level of two-types.
-More precisely, let $\nW\geq1$ be a parameter.
-For any predicate signature $\SigS$ let $\mtr\SigS\nW = \SigS +
-\seq{\qq1,\qq2,\dots,\qq\nW}$ be an enrichment of $\SigS$ with $\nW$ new binary
-predicate symbols $\qq\ii$.
-For $\ii\in[1,\nW]$, let $\qQ\ii(\xx)$ be the following set of literals over
-$\mtr\SigS\nW$:
-\[
-\qQ\ii(\xx) =
-\set{\qq\ii(\xx,\yy)}\cup\setbd{\lnot\qq\jj(\xx,\yy)}{\jj\in[1,\nW]\sub\set{\ii}}.
-\]
-For any \twotype/ $\tpt$ over $\SigS$ and for $\ii\in[1,\nW]$, let $\mr\tpt\ii
-= \tpt\cup\qQ\ii(\xx)$ be a corresponding \twotype/ over $\mtr\SigS\nW$.
-Let $\ClSig\SigS\sms$ be a classified signature based on $\SigS$.
-For any type instance $\TI$ over $\ClSig\SigS\sms$, let
-$\mtr\TI\nW = \setbd{\mr\tpt\ii}{\tpt\in\TI,\ii\in[1,\nW]}$ be a type instance
-over $\ClSig{\mtr\SigS\nW}\sms$.
-A \emph{$\nW$-differentiated message promotion $\TIp\subseteq\mtr\TI\nW$} of
-$\TI$ is a type instance over $\ClSig{\mtr\SigS\nW}\sms$ such that for each
-$\tpt\in\TI$ there is some $\ii\in[1,\nW]$ such that $\mr\tpt\ii\in\TIp$ and for
-each $\tpt\in\TIamm$ there is a unique $\ii\in[1,\nW]$ such that
-$\mr\tpt\ii\in\TIp$.
-\begin{remark}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-Then $\TI$ has a (finite) chromatic model iff some $\nW$-differentiated message
-promotion $\TIp$ of $\TI$ has a (finite) chromatic model with differentiated
-message types, where $\nW = \nM$.
+\begin{remark}[Differentiated message types]\label{rem:prop-diff-msg-tp}
+The type instance $\TI$ over $\ClSig\SigS\sms$ has a (finite) model
+iff some $\nWW5$-\twotype/-promotion $\TIprr5$
+of some king-promotion $\TIprr4$
+of some $\nZZ3$-promotion $\TIprr3$
+of some $\nZZ2$-promotion $\TIprr2$
+of some $\nZZ1$-promotion $\TIprr1$ 
+of $\TI$ has a (finite) chromatic model with silent types
+and \emph{with differentiated message types} 
+where each king sends an invertible message type,
+where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$, $\nZZ3 = 3$ and $\nWW5 = \nM$.
 \end{remark}
 \begin{proof}
-First suppose that $\StrA$ is a chromatic model for $\TI$.
-We will define an enrichment $\StrAp$ of $\StrA$ to a $\mtr\SigS\nW$-structure
-such that $\StrAp$ has differentiated message type and $\TIp = \TIS\StrAp$ is a
-$\nW$-differentiated message promotion of $\TI$.
-Recall that any element $\ea\in\domA$ sends at most $\nM$ $\xx$-message types.
-By chromaticity, no element $\ea\in\domA$ may send an invertible message type
-twice, since that would create a chain of length $2$ of invertible message types
-connecting elements of the same \onetype/.
-Hence we only have to worry about $\xx$-message $\yy$-silent types.
-For any element $\ea\in\domA$ and any $\xx$-message $\yy$-silent type
-$\tpt\in\TIams$, the set
-$B^{\ea,\tpt} = \setbd{\eb\in\domA\sub\set\ea}{\tpIab\StrA\ea\eb=\tpt}$ has
-cardinality at most $\nM$, so we can enumerate it $B^{\ea,\tpt} =
-\set{\eb^{\ea,\tpt}_1,\eb^{\ea,\tpt}_2,\dots,\eb^{\ea,\tpt}_{s(\ea,\tpt)}}$,
-where $s(\ea,\tpt)\in[1,\nW]$ and we can define the enrichment as follows:
-\begin{itemize}
-  \item $\tpIab\StrAp\ea{\eb^{\ea,\tpt}_\ii} =
-  \mr{\tpIab\StrA\ea{\eb^{\ea,\tpt}_\ii}}\ii$.
-  \item $\tpIab\StrAp\ea\eb = \mr{\tpIab\StrA\ea\eb}1$ otherwise.
-\end{itemize}
-By construction $\StrAp$ has differentiated message types; furthermore $\TIp$ is
-a $\nW$-differentiated message promotion for $\TI$ since $\StrA$ is a model for
-$\TI$.
-
-Next, let $\TIp$ be any $\nW$-differentiated message promotion for $\TI$ and
-suppose that $\StrAp$ is a chromatic model for $\StrA$. Then the reduct of
-$\StrAp$ to a $\SigS$-structure is a chromatic model for $\TI$ by the promotion
-condition.
-\end{proof}
-
-As a next step, we want to ensure that any king sends some invertible message
-type.
-\begin{remark}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-Then $\TI$ has a (finite) model iff some $\nZ$-differentiated promotion $\TIp$
-of $\TI$ has a (finite) model and also has at least two different king types,
-that is $\card{\TK\TIp}\geq2$, where $\nZ = 3$.
-\end{remark}
-\begin{proof}
-First let $\StrA$ be a model for $\TI$. Note that $\StrA$ contains at least two
+First suppose that $\TI$ has a (finite) model.
+By~\Cref{rem:prop-kingsinv},
+some king-promotion $\TIprr4$
+of some $\nZZ3$-promotion $\TIprr3$
+of some $\nZZ2$-promotion $\TIprr2$
+of some $\nZZ1$-promotion $\TIprr1$
+of $\TI$ has a (finite) chromatic model $\StrA$ with silent types where each
+king sends an invertible message type.
+Note that since $\StrA$ is chromatic, no $\ea\in\domA$ sends the same invertible
+message type twice.
+Hence we only have to take care of differentiating the $\xx$-message
+$\yy$-silent types sent by any element.
+But any element sends any $\xx$-message type at most $\nM$ times, so we can use
+the $\nWW5 = \nM$ fresh binary predicate symbols to differentiate them.
+The model stays chromatic, still has silent types, the kings are preserved and
+each king still sends an inveritble message type
+since we did not alter the kind of types between elements and the \onetypes/ of
 elements.
-We enrich $\StrA$ to a $\mr\SigS\nZ$-structure $\StrAp$ as follows:
-let $\eb\in\domA$, $\ec\in\domA\sub\set\ea$ be two arbitrary elements of
-$\StrA$. We turn them into kings.
-More precisely, for every $\ea\in\domA$ define the enrichment as follows:
-\begin{itemize}
-  \item $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}1$ if $\ea=\eb$
-  \item $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}2$ if $\ea=\ec$
-  \item $\tpIa\StrAp\ea = \mr{\tpIa\StrA\ea}3$ otherwise.
-\end{itemize}
-Let $\TIp = \TIS\StrAp$.
-Then $\TIp$ is a promotion for $\TI$ and $\StrAp$ contains at least two king
-types --- $\tpIa\StrAp\eb$ and $\tpIa\StrAp\ec$ --- by construction.
-
-Next if $\TIp$ is a $\nZ$-differentiated promotion of $\TI$,
-the reduct of any $\TIp$-model $\StrAp$ to $\SigS$ is a model for $\TI$.
-\end{proof}
-
-
-\begin{remark}\label{rem:kings-rare}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$ such that
-$\card{\TK\TI}\geq2$.
-Then $\TI$ has a (finite) model iff some king-differentiated promotion $\TIp$ of
-$\TI$ has a finite model in which every king sends some invertible message type.
-\end{remark}
-\begin{proof}
-First let $\StrA$ be a model for $\TI$.
-Then $\StrA$ contains exactly $\card{\TK\TI}$ kings.
-Let $\domB\subset\domA$ be any set of $\nMM{\nn+1} = \card{\TK\TI}-1$ kings.
-Define the enrichment $\StrAp$ of $\StrA$ to a $\SigSp$-structure as follows:
-for any $\ea\in\domA$ and $\eb\in\domA\sub\set\ea$, let $\tpt=\tpIab\StrA\ea\eb$
-and:
-\begin{itemize}
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\kk\kk$ if both $\ea$ and $\eb$ are kings
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\kk\bot$ if $\ea$ is worker and
-  $\eb\in\setB$.
-  \item $\tpIab\StrAp\ea\eb = \mrr\tpt\bot\bot$ if $\ea$ is worker otherwise,
-  that is when $\eb\not\in\domB$ is a king or if $\eb$ is also a worker.
-\end{itemize}
-Then if we take $\TIp = \TIS\StrAp$, it is evident that this is a
-king-differentiated promotion of $\TIp$ and that every king in $\StrAp$ sends an
-invertible message type.
-
-Next, if $\TIp$ is any king-differentiated promotion of $\TI$ and if $\StrAp$ is
-any model of $\TIp$, then the reduct of $\StrAp$ to a $\SigS$-structure is a
-model for $\TI$ by the promotion condition.
 \end{proof}
 
 \begin{definition}
@@ -596,169 +550,51 @@ The set of origins of $\tpt$ in $\StrA$ is $\atx\StrA\tpt$.
 Note that this set is nonempty.
 \end{definition}
 \begin{definition}
-Let $\nW\geq1$ be a parameter.
-A structure $\StrA$ for $\TI$ is $\nW$-invertible message type differentiated
+Let $\TI$ be a type instance over $\ClSig\SigS\sms$ and let $\nW\geq1$.
+A structure $\StrA$ for $\TI$ is \emph{$\nW$-origin-differentiated}
 if any invertible message type $\tpt\in\TIamm$ has either one or more than $\nW$
 origins.
 An invertible message type that is realized once in $\StrA$ is \emph{rare}.
-An origin of a rare message type is a \emph{rare element}.
+The remaining invertible message types are \emph{common}.
+An origin of a rare message type is a \emph{rare element} and the remaining
+elements are \emph{common elements}.
 \end{definition}
 
-\begin{remark}
-Any chromatic structure can be enriched into a $\nW$-invertible message type
-differentiated one.
+\begin{remark}[Origin-differentiated models]\label{rem:diff-msg-tp}
+Let $\nWW6\geq1$.
+The type instance $\TI$ has a (finite) model
+iff some $\nWW6$-\twotype/-promotion $\TIprr6$
+of some $\nWW5$-\twotype/-promotion $\TIprr5$
+of some king-promotion $\TIprr4$
+of some $\nZZ3$-promotion $\TIprr3$
+of some $\nZZ2$-promotion $\TIprr2$
+of some $\nZZ1$-promotion $\TIprr1$ 
+of $\TI$ has a (finite) \emph{$\nWW6$-origin-differentiated} chromatic model
+with silent types and with differentiated message types 
+where each king sends an invertible message type,
+where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$, $\nZZ3 = 3$ and $\nWW5 = \nM$.
 \end{remark}
 \begin{proof}
-TODO.
-By chromaticity, any realization $(a,b)$ is in a bijection with its origin $a$.
-Hence we can use $\nW$ new binary predicate symbols to color each realization to
-distinguish them.
+Suppose that $\TI$ has a (finite) model, so by~\Cref{rem:prop-diff-msg-tp}
+some $\nWW5$-\twotype/-promotion $\TIprr5$
+of some king-promotion $\TIprr4$
+of some $\nZZ3$-promotion $\TIprr3$
+of some $\nZZ2$-promotion $\TIprr2$
+of some $\nZZ1$-promotion $\TIprr1$ 
+of $\TI$ has a (finite) chromatic model $\StrA$ with silent types and with
+differentiated message types where each king sends an invertible message type.
+By message differentiation, no element may send the same invertible message type
+twice.
+So any invertible message type is realized once per origin.
+For any invertible message type $\tpt\in\tput{(\TIprr5)}\arm\arm$ that has at
+most $\nWW6$ origins in $\StrA$, we can use the fresh $\nWW6$ binary symbols to
+differentiate the realizations at the different origins.
+The remaining properties are preserved since we didn't alter the kind of
+\twotypes/ between elements and the \onetypes/ of elements.
 \end{proof}
 
-\begin{definition}
-Let $\StrA$ be a $\nW$-invertible message type differentiated structure.
-The \emph{cage} of $\StrA$ is the set of rare elements.
-A structure \emph{has rare kings} if each king element in $\StrA$ is a rare
-element.
+\begin{definition}[Special Models]
+A model $\StrA$ for $\TI$ is \emph{special} if it is message-differentiated, has
+silent types, has rare kings and is $\nW$-origin-differentiated for $\nW =
+\card{\TI}+2$.
 \end{definition}
-
-\begin{remark}
-Any $\nW$-invertible message type differentiated structure can be enriched so
-that it has rare kings.
-\end{remark}
-
-\begin{remark}
-Let $\StrA$ be a $\nW$-differentiated invertible message type structure, where
-$\nW\geq\card\TI$.
-Then no rare invertible message type escapes the cage.
-In other words, whenever $\ea\in C$, $\eb\in\domA\sub C$ and $\tpIab\StrA\ea\eb$
-is an invertible message type, then there is some $\eap\in\domA\sub C$ and
-$\ebp\in\domA\sub C\sub\set\eap$ having $\tpIab\StrA\eap\ebp = \tpt$.
-\end{remark}
-
-\section{TODO}
-Strategy refinement:
-A Special Model is:
-\begin{enumerate}
-  \item Chromatic
-  \item Has silent types
-  \item Kings send invertible message types --- so that we don't multiply them
-  \item Message distinguished --- for star-types
-  \item Origin distinguished --- crucial for the invertible simulation lemma
-\end{enumerate}
-
-\subsection{Properties}
-Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
-
-\begin{definition}
-Let 
-\end{definition}
-
-
-\begin{remark}
-The type instance $\TI$ has a (finite) model
-iff some $\nZZ2$-promotion $\TIprr2$
-of some $\nZZ1$-promotion $\TIprr1$ of $\TI$
-has a (finite) chromatic model
-\emph{with silent types},
-where $\nZZ1 = \nM^2+1$ and $\nZZ2 = 2\nM+2$.
-\end{remark}
-
-\begin{remark}
-The type instance $\TI$ has a (finite) model
-iff some $\nZZ3$-promotion $\TIprr3$
-of some $\nZZ2$-promotion $\TIprr2$
-of some $\nZZ1$-promotion $\TIprr1$ of $\TI$
-has a (finite) chromatic model with silent types and
-\emph{at least two king types},
-where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$ and $\nZZ3 = 3$.
-\end{remark}
-
-\begin{remark}
-The type instance $\TI$ has a (finite) model
-iff the king promotion $\TIprr4$
-of some $\nZZ3$-promotion $\TIprr3$
-of some $\nZZ2$-promotion $\TIprr2$
-of some $\nZZ1$-promotion $\TIprr1$ of $\TI$
-has a (finite) chromatic model with silent types
-\emph{where the kings send invertible message types},
-where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$ and $\nZZ3 = 3$.
-\end{remark}
-
-\begin{remark}
-The type instance $\TI$ has a (finite) model
-iff some $\nWW5$-message promotion $\TIprr5$
-of the king promotion $\TIprr4$
-of some $\nZZ3$-promotion $\TIprr3$
-of some $\nZZ2$-promotion $\TIprr2$
-of some $\nZZ1$-promotion $\TIprr1$ of $\TI$
-has a (finite) chromatic model with silent types
-where the kings send invertible message types and
-that is message-distinguished,
-where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$, $\nZZ3 = 3$
-and $\nWW5 = \nMM4$.
-\end{remark}
-
-\begin{remark}
-The type instance $\TI$ has a (finite) model
-iff some $\nWW6$-message promotion $\TIprr6$
-of some $\nWW5$-message promotion $\TIprr5$
-of the king promotion $\TIprr4$
-of some $\nZZ3$-promotion $\TIprr3$
-of some $\nZZ2$-promotion $\TIprr2$
-of some $\nZZ1$-promotion $\TIprr1$ of $\TI$
-has a (finite) chromatic model with silent types
-where the kings send invertible message types and
-that is message-distinguished
-and origin-distinuished,
-where $\nZZ1 = \nM^2+1$, $\nZZ2 = 2\nM+2$, $\nZZ3 = 3$
-and $\nWW5 = \nMM4$.
-\end{remark}
-
-
-
-Next we will partition any structure $\StrA$ into the origins of rare invertible
-message types and the rest.
-Rare invertible message type: has a unique origin.
-Rare element: an origin of a rare invertible message type.
-
-Next, ensure that kings are rare.
-If a king sends any invertible message type, then the king is rare.
-However it might happen than a king sends no invertible message type.
-How to ensure that every king is rare?
-If there are no kings, there is no problem.
-Next suppose that there is at least one king.
-We are going to modify the type instance.
-We add a new message symbol of cardinality the number of king types.
-We introduce a new king type.
-The behavior of this fresh king type with respect to the old types is as
-follows:
-For the first old king type, there is a two-type between the new king type and
-the old king type that witnesses every old message type.
-
-If there are at least two kings, modify the message types connecting kings by
-appending one special message type at both ends.
-The new message type will have size $(K-1)$.
-For every type connecting a worker with a king, add the same type but witnessing
-one time the worker with the special symbol.
-
-So we can ensure that the kings are origins of rare invertible message types.
-
-Now if $R \subseteq A$ is the set of rare types, it has polynomial size.
-Indeed, its size is bounded by $\card{T}$ and it contains all king elements.
-
-Message type differentiation: no message type has the same origin.
-For invertible --- by chromaticity.
-For non-invertible --- by easy counting.
-
-So we may take the star-type to be a set.
-Then a star-type is just the same together with an updated~\refcondstpm.
-
-Then we would have to prove something in the lines of: no rare invertible
-message type escapes $R$.
-
-\section{General case}
-We model the cosmic spectrum in the same way.
-First we need to generate silent cosmic types.
-
-So we would like to do these constructions in general.
