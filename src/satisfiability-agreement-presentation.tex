@@ -1,0 +1,527 @@
+\documentclass{beamer}
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae} % for pdf files
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{upgreek}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bm}
+%\usepackage{enumitem}
+\usepackage{cancel} % for strikeout
+\usepackage{xspace} % for spaces after commands
+\usepackage{extpfeil} % for arrows
+\usepackage{tikz}
+
+\newtheorem{remark}{Remark}
+
+% Commands
+\input{introduction/notation/sets/sets.cmd.tex}
+\input{introduction/notation/relations/relations.cmd.tex}
+\input{introduction/notation/functions/functions.cmd.tex}
+\input{introduction/notation/sequences/sequences.cmd.tex}
+\input{introduction/notation/numbers/numbers.cmd.tex}
+\input{introduction/notation/tetration/tetration.cmd.tex}
+\input{introduction/notation/vectors/vectors.cmd.tex}
+\input{introduction/notation/permutations/permutations.cmd.tex}
+\input{introduction/notation/bounds/bounds.cmd.tex}
+\input{introduction/notation/alphabets/alphabets.cmd.tex}
+\input{introduction/notation/bits/bits.cmd.tex}
+
+\input{introduction/syntax/symbol-alphabet/symbol-alphabet.cmd.tex}
+\input{introduction/syntax/variables/variables.cmd.tex}
+\input{introduction/syntax/signatures/signatures.cmd.tex}
+\input{introduction/syntax/formulas/formulas.cmd.tex}
+\input{introduction/syntax/quantifier-rank/quantifier-rank.cmd.tex}
+
+\input{introduction/semantics/structures/structures.cmd.tex}
+\input{introduction/semantics/standard-translation/standard-translation.cmd.tex}
+\input{introduction/semantics/satisfiability/satisfiability.cmd.tex}
+\input{introduction/semantics/logic-equivalence/logic-equivalence.cmd.tex}
+
+\input{introduction/logic-games/logic-games.cmd.tex}
+
+\input{introduction/types/types.cmd.tex}
+
+\input{introduction/scott-nf/scott-nf.cmd.tex}
+
+\input{introduction/complexity/classes/classes.cmd.tex}
+\input{introduction/complexity/reductions/reductions.cmd.tex}
+\input{introduction/complexity/tilings/tilings.cmd.tex}
+
+\input{setups/makeup-formulas.cmd.tex}
+
+\input{equivalences/introduction/introduction.cmd.tex}
+\input{equivalences/agreement.cmd.tex}
+
+\input{reductions/introduction/introduction.cmd.tex}
+\input{reductions/global-to-refine/global-to-refine.cmd.tex}
+\input{reductions/local-to-refine/local-to-refine.cmd.tex}
+\input{reductions/granularity/granularity.cmd.tex}
+
+\input{monadic/cells/cells.cmd.tex}
+\input{monadic/organs/organs.cmd.tex}
+\input{monadic/satisfiability/satisfiability.cmd.tex}
+\input{monadic/hardness/hardness.cmd.tex}
+
+\input{two-variable/two-variable.cmd.tex}
+\input{two-variable/tpreal-twovar-many.cmd.tex}
+\input{two-variable/tpreal.cmd.tex}
+
+\input{counting/counting.cmd.tex}
+
+\begin{document}
+\title{Satisfiability with Equivalences in Agreement}
+\author{Krasimir Georgiev}
+\frame{\titlepage}
+
+\frame{\frametitle{Agenda}
+\begin{itemize}
+  \item Equivalences in Agreement
+  \item Setups
+  \item Reductions
+  \item Satisfiability of the Monadic Logic
+  \item The Two-Variable Fragment
+  \item Satisfiability of the Two-Variable Logic
+\end{itemize}
+}
+
+\frame{\frametitle{Equivalences in Agreement - Definitions}
+Let $\relEE1,\relEE2,\dots,\relEE\nn$ be a sequence of equivalence relations on
+$\domA$.
+\begin{itemize}
+  \item The sequence is in \emph{refinement} if it forms a chain under
+  inclusion,
+  that is if $\relEE1\subseteq\relEE2\subseteq\dots\subseteq\relEE\nn$.
+  \pause
+  \item The sequence is in \emph{global agreement} if it can be rearranged into
+  a chain under inclusion,
+  that is if $\relEE{\permnu(1)}\subseteq\relEE{\permnu(2)}\subseteq\dots
+  \subseteq\relEE{\permnu(\nn)}$ for some permutation $\permnu$ of $[1,\nn]$.
+  \pause
+  \item The sequence is in \emph{local agreement} if for every $\ea\in\domA$,
+  the sequence of equivalence classes
+  $\relEE1[\ea],\relEE2[\ea],\dots,\relEE\nn[\ea]$ can be rearranged into a
+  chain under inclusion, that is if for every $\ea\in\domA$ there
+  is some permutation $\permnu(\ea)$ of $[1,\nn]$ such that
+  $\relEE{\permnu(\ea)(1)}[\ea]\subseteq\relEE{\permnu(\ea)(2)}[\ea]\subseteq
+  \dots\subseteq\relEE{\permnu(\ea)(\nn)}[\ea]$.
+  \pause
+  \item $\text{refinement} \implies \text{global agreement} \implies
+  \text{local agreement}$
+\end{itemize}
+}
+
+\frame{\frametitle{Equivalences in Agreement - Intuitions}
+Intuitively,
+\begin{itemize}
+  \item 
+  $\text{global agreement} = \text{refinement} + \text{a permutation}$.
+  \pause
+  \item
+  $\text{local agreement} = \text{refinement} + \text{locally agreeing
+  permutations}$.
+\end{itemize}
+}
+
+\frame{\frametitle{Local Agreement - Example}
+Example of a sequence $E_1, E_2, E_3$ in local agreement:
+
+\begin{tikzpicture}
+\fill[color=orange] (-1.5,-0.5) rectangle (1.5,2.5);
+\draw (-1.5,-0.5) rectangle (1.5,2.5);
+\node[below] at (-1.3,2.6) {$E_3$};
+\fill[color=yellow] (-1,0) rectangle (1,2);
+\draw (-1,0) rectangle (1,2);
+\node[below] at (-0.8,2.1) {$E_2$};
+\fill[color=green] (-0.5,0.5) rectangle (0.5,1.5);
+\draw (-0.5,0.5) rectangle (0.5,1.5);
+\node[below] at (-0.3,1.6) {$E_1$};
+
+\fill (0,1) circle [radius=2pt];
+\node[right] at (0,1) {$a$};
+
+\fill[color=yellow] (2,-0.5) rectangle (7.5,2.5);
+\draw (2,-0.5) rectangle (7.5,2.5);
+\node[below] at (2.2,2.6) {$E_2$};
+
+\fill[color=orange] (2.5,-0.2) rectangle (4.5,2.2);
+\draw (2.5,-0.2) rectangle (4.5,2.2);
+\node[below] at (2.7,2.3) {$E_3$};
+
+\fill[color=green] (3,0) rectangle (4,0.9);
+\draw (3,0) rectangle (4,0.9);
+\node[below] at (3.2,1) {$E_1$};
+\fill (3.5,0.45) circle [radius=2pt];
+\node[right] at (3.5,0.45) {$b$};
+
+\fill[color=green] (3,1.1) rectangle (4,2);
+\draw (3,1.1) rectangle (4,2);
+\node[below] at (3.2,2.1) {$E_1$};
+\fill (3.5,1.55) circle [radius=2pt];
+
+\fill[color=green] (5,-0.2) rectangle (7,2.2);
+\draw (5,-0.2) rectangle (7,2.2);
+\node[below] at (5.2,2.3) {$E_1$};
+
+\fill[color=orange] (5.5,0) rectangle (6.5,0.9);
+\draw (5.5,0) rectangle (6.5,0.9);
+\node[below] at (5.7,1) {$E_3$};
+
+\fill[color=orange] (5.5,1.1) rectangle (6.5,2);
+\draw (5.5,1.1) rectangle (6.5,2);
+\node[below] at (5.7,2.1) {$E_3$};
+\fill (6,1.55) circle [radius=2pt];
+\node[right] at (6,1.55) {$c$};
+
+\draw (5.5,0) rectangle (6.5,0.9);
+\fill[color=orange] (5.5,0) rectangle (6.5,0.9);
+\node[below] at (5.7,1) {$E_3$};
+\fill (6,0.45) circle [radius=2pt];
+\end{tikzpicture}
+}
+
+\frame{\frametitle{Local Agreement - Characterization}
+\begin{lemma}
+The sequence $E_1, E_2$ of two equivalence relations on $A$ is in local
+agreement iff $E_1\cup E_2$ is an equivalence relation on $A$.
+\end{lemma}
+%\begin{proof}
+%\only<1>{
+%\let\qed\relax
+%First suppose that $E_1, E_2$ is a sequence of two equivalence relations on $A$
+%in local agreement. Since the union of reflexive and symmetric relations is
+%again a reflexive and symmetric relation, it is sufficient to show that
+%$E_1\cup E_2$ is transitive.
+%Suppose that $a,b,c\in A$ and $(a,b),(b,c)\in(E_1\cup E_2)$.
+%Without loss of generality assume that $E_1[b] \subseteq E_2[b]$.
+%Then $a \in E_2[b]$ and similarly $c \in E_2[b]$, so $(a,c)\in E_2 \subseteq
+%(E_1\cup E_2)$.
+%}
+%\only<2>{
+%Next suppose that $E_1, E_2$ is a sequence of two equivalence relations on $A$
+%such that $E_1\cup E_2$ is an equivalence relation on $A$ and suppose towards a
+%contradiction that neither $E_1[a]\subseteq E_2[a]$ nor $E_2[a]\subseteq
+% E_1[a]$ for some $a\in A$.
+%Then there is some $b \in E_1[a]\setminus E_2[a]$ and some $c \in
+%E_2[a]\setminus E_1[a]$, so neither $(b,c)\in E_1$ nor $(b,c)\in E_2$.
+%Then $b, c\in (E_1\cup E_2)[a]$, so since $E_1\cup E_2$ is transitive, we get
+%$(b, c) \in (E_1\cup E_2)$ --- a contradiction.
+%}
+%\end{proof}
+
+\begin{theorem}
+The sequence $E_1, E_2, \dots, E_n$ of equivalence relations on $A$ is in local
+agreement iff the union of any nonempty subsequence is an equivalence relation
+on $A$, that is for any $m \in [1,n]$ and $1 \leq i_1 < i_2 < \dots < i_m \leq
+n$ we have that $E_{i_1} \cup E_{i_2} \cup \dots \cup E_{i_m}$ is an equivalence
+relation on $A$.
+\end{theorem}
+}
+\frame{\frametitle{Local Agreement - Levels}
+The \emph{level sequence} $L_1,L_2,\dots,L_n$ of
+the sequence $E_1,E_2,\dots,E_n$ of equivalence relations on $A$ in local
+agreement is defined by:
+\[
+L_m = \bigcap\{E_{i_1} \cup E_{i_2} \cup \dots \cup E_{i_m} \mid 1\leq i_1 <
+i_2 < \dots < i_m \leq n\}.
+\]
+\begin{remark}
+The level sequence is a sequence of equivalence relations on $A$ in refinement.
+\end{remark}
+
+}
+
+\frame{\frametitle{Local Agreement - Example}
+Example $E_1, E_2, E_3$:
+\begin{tikzpicture}
+\fill[color=orange] (-1.5,-0.5) rectangle (1.5,2.5);
+\draw (-1.5,-0.5) rectangle (1.5,2.5);
+\node[below] at (-1.3,2.6) {$E_3$};
+\fill[color=yellow] (-1,0) rectangle (1,2);
+\draw (-1,0) rectangle (1,2);
+\node[below] at (-0.8,2.1) {$E_2$};
+\fill[color=green] (-0.5,0.5) rectangle (0.5,1.5);
+\draw (-0.5,0.5) rectangle (0.5,1.5);
+\node[below] at (-0.3,1.6) {$E_1$};
+
+\fill (0,1) circle [radius=2pt];
+\node[right] at (0,1) {$a$};
+
+\fill[color=yellow] (2,-0.5) rectangle (7.5,2.5);
+\draw (2,-0.5) rectangle (7.5,2.5);
+\node[below] at (2.2,2.6) {$E_2$};
+
+\fill[color=orange] (2.5,-0.2) rectangle (4.5,2.2);
+\draw (2.5,-0.2) rectangle (4.5,2.2);
+\node[below] at (2.7,2.3) {$E_3$};
+
+\fill[color=green] (3,0) rectangle (4,0.9);
+\draw (3,0) rectangle (4,0.9);
+\node[below] at (3.2,1) {$E_1$};
+\fill (3.5,0.45) circle [radius=2pt];
+\node[right] at (3.5,0.45) {$b$};
+
+\fill[color=green] (3,1.1) rectangle (4,2);
+\draw (3,1.1) rectangle (4,2);
+\node[below] at (3.2,2.1) {$E_1$};
+\fill (3.5,1.55) circle [radius=2pt];
+
+\fill[color=green] (5,-0.2) rectangle (7,2.2);
+\draw (5,-0.2) rectangle (7,2.2);
+\node[below] at (5.2,2.3) {$E_1$};
+
+\fill[color=orange] (5.5,0) rectangle (6.5,0.9);
+\draw (5.5,0) rectangle (6.5,0.9);
+\node[below] at (5.7,1) {$E_3$};
+
+\fill[color=orange] (5.5,1.1) rectangle (6.5,2);
+\draw (5.5,1.1) rectangle (6.5,2);
+\node[below] at (5.7,2.1) {$E_3$};
+\fill (6,1.55) circle [radius=2pt];
+\node[right] at (6,1.55) {$c$};
+
+\fill[color=orange] (5.5,0) rectangle (6.5,0.9);
+\draw (5.5,0) rectangle (6.5,0.9);
+\node[below] at (5.7,1) {$E_3$};
+\fill (6,0.45) circle [radius=2pt];
+\end{tikzpicture}
+
+Levels $L_1, L_2, L_3$:
+
+\begin{tikzpicture}
+\fill[color=orange] (-1.5,-0.5) rectangle (1.5,2.5);
+\draw (-1.5,-0.5) rectangle (1.5,2.5);
+\node[below] at (-1.3,2.6) {$L_3$};
+\fill[color=yellow] (-1,0) rectangle (1,2);
+\draw (-1,0) rectangle (1,2);
+\node[below] at (-0.8,2.1) {$L_2$};
+\fill[color=green] (-0.5,0.5) rectangle (0.5,1.5);
+\draw (-0.5,0.5) rectangle (0.5,1.5);
+\node[below] at (-0.3,1.6) {$L_1$};
+
+\fill (0,1) circle [radius=2pt];
+\node[right] at (0,1) {$a$};
+
+\fill[color=orange] (2,-0.5) rectangle (7.5,2.5);
+\draw (2,-0.5) rectangle (7.5,2.5);
+\node[below] at (2.2,2.6) {$L_3$};
+
+\fill[color=yellow] (2.5,-0.2) rectangle (4.5,2.2);
+\draw (2.5,-0.2) rectangle (4.5,2.2);
+\node[below] at (2.7,2.3) {$L_2$};
+
+\fill[color=green] (3,0) rectangle (4,0.9);
+\draw (3,0) rectangle (4,0.9);
+\node[below] at (3.2,1) {$L_1$};
+\fill (3.5,0.45) circle [radius=2pt];
+\node[right] at (3.5,0.45) {$b$};
+
+\fill[color=green] (3,1.1) rectangle (4,2);
+\draw (3,1.1) rectangle (4,2);
+\node[below] at (3.2,2.1) {$L_1$};
+\fill (3.5,1.55) circle [radius=2pt];
+
+\fill[color=yellow] (5,-0.2) rectangle (7,2.2);
+\draw (5,-0.2) rectangle (7,2.2);
+\node[below] at (5.2,2.3) {$L_2$};
+
+\fill[color=green] (5.5,0) rectangle (6.5,0.9);
+\draw (5.5,0) rectangle (6.5,0.9);
+\node[below] at (5.7,1) {$L_1$};
+
+\fill[color=green] (5.5,1.1) rectangle (6.5,2);
+\draw (5.5,1.1) rectangle (6.5,2);
+\node[below] at (5.7,2.1) {$L_1$};
+\fill (6,1.55) circle [radius=2pt];
+\node[right] at (6,1.55) {$c$};
+
+\fill[color=green] (5.5,0) rectangle (6.5,0.9);
+\draw (5.5,0) rectangle (6.5,0.9);
+\node[below] at (5.7,1) {$L_1$};
+\fill (6,0.45) circle [radius=2pt];
+\end{tikzpicture}
+}
+
+\frame{\frametitle{Local Agreement - Permutations}
+\begin{lemma}
+Let $E_1,E_2,\dots,E_n$ be a sequence of equivalence relations on $A$ in local
+agreement having level sequence $L_1,L_2,\dots,L_n$.
+Suppose that $a \in A$ and that $\nu$ is any permutation witnessing the local
+agreement at $a$:
+\[
+E_{\nu(1)}[a] \subseteq E_{\nu(2)}[a] \subseteq \dots \subseteq E_{\nu(n)}[a].
+\]
+Then $L_k[a] = E_{\nu(k)}[a]$ for any $k\in[1,n]$.
+\end{lemma}
+\begin{proof}
+First $L_k[a] \subseteq \left(E_{\nu(1)}\cup E_{\nu(2)} \cup \dots \cup
+E_{\nu(k)}\right)[a] = E_{\nu(k)}[a]$.
+
+Next if $1 \leq i_1 < i_2 < \dots < i_k \leq n$, then some $i_j = \nu(k')$
+for some $k' \geq k$, so $E_{\nu(k)}[a] \subseteq
+E_{i_1}[a]\cup E_{i_2}[a]\cup \dots \cup E_{i_k}[a]$.
+Hence $E_{\nu(k)}[a] \subseteq L_k[a]$.
+\end{proof}
+}
+
+\frame{\frametitle{Setups}
+\begin{itemize}
+\item Use unary predicate symbols to ``encode'' data at elements of structures.
+For example, a permutation setup ``encodes'' a permutation at every element of a
+structure.
+\item $\text{bits} \to \text{binary counters} \to \text{vectors} \to
+\text{permutations}$
+\end{itemize}
+}
+
+\frame{\frametitle{Bit Setups}
+\begin{itemize}
+  \item A \emph{bit setup} is a predicate signature $\BS = \seq{\su}$ consisting of a
+  single unary predicate symbol $\su$.
+
+  \item For any $\BS$-structure $\StrA$, define $\data\su\StrA : \domA \to \Bits
+  = \set{0,1}$ by:
+  \[
+    \data\su\StrA a = \begin{cases}
+      1 &\text{if } \StrA \vDash \su(a) \\
+      0 &\text{otherwise.}
+    \end{cases}
+  \]
+
+  \item
+  If $\datad\in\Bits$, define the formula $\feqA\su\datad(\xx)$ by:
+  \[
+  \feqA\su\datad(\xx) = \begin{cases}
+    \su(\xx) &\text{if } \datad = 1 \\
+    \lnot\su(\xx) &\text{otherwise.}
+  \end{cases}
+  \]
+
+  \item $\StrA\vDash\feqA\su\datad(\ea)$ iff $\data\su\StrA\ea = \datad$.
+\end{itemize}
+}
+
+\frame{\frametitle{Bit Setups Formulas}
+\begin{itemize}
+  \item Auxilliary formulas
+  \begin{align*}
+    \feq\su(\xx,\yy) &= \su(\xx) \lequ \su(\yy) \\
+    \feqOI\su(\xx,\yy) &= \lnot \su(\xx) \land \su(\yy) \\
+    \feqIO\su(\xx,\yy) &= \su(\xx) \land \lnot \su(\yy). \\
+  \end{align*}
+  \item $\StrA\vDash\feq\su(\ea,\eb)$ iff $\data\su\StrA\ea = \data\su\StrA\eb$.
+  \item $\StrA\vDash\feqOI\su(\ea,\eb)$ iff $\data\su\StrA\ea = 0$ and
+  $\data\su\StrA\eb = 1$.
+  \item $\StrA\vDash\feqIO\su(\ea,\eb)$ iff $\data\su\StrA\ea = 1$ and
+  $\data\su\StrA\eb = 0$.
+\end{itemize}
+}
+
+\frame{\frametitle{Counter Setups}
+\begin{itemize}
+  \item The set of \emph{$\tbit$-bit numbers} is $\Bitnumst = [0, 2^\tbit-1]$.
+  \item A \emph{$\tbit$-bit counter setup} is a predicate signature $\CS =
+  \seq{\suu1,\suu2,\dots,\suu\tbit}$ consisting of $\tbit$ unary predicate
+  symbols.
+  \item For any $\CS$-structure $\StrA$, define the function $\data\CS\StrA :
+  \domA \to \Bitnumst$ that returns a $\tbit$-bit number for any
+  $\ea\in\domA$ by:
+  \[
+    \data\CS\StrA\ea = \sum_{1 \leq \ii \leq \tbit} 2^{\ii-1} 
+    \data{\suu\ii}\StrA\ea.
+  \]
+\end{itemize}
+}
+
+\frame{\frametitle{Counter Setups Formulas}
+We can define \emph{small} formulas with the following properties:
+\begin{itemize}
+  \item $\StrA\vDash\feqA\CS\datad(\ea)$ iff $\data\CS\StrA\ea = \datad$.
+  \item $\StrA\vDash\feq\CS(\ea,\eb)$ iff $\data\CS\StrA\ea = \data\CS\StrA\eb$.
+  \item the $\tbit$-bit bitstring $\bstra$ encodes a number less than the
+  $\tbit$ bitstring $\bstrb$ iff there is a position $\jj\in[1,\tbit]$ such that
+  $\bstra_j = 0$, $\bstrb_j = 1$ and $\bstra_k = \bstrb_k$ for
+  $k\in[j+1,\tbit]$.
+  \[
+    \fless\CS(\xx,\yy) = \bigvee_{1 \leq \jj \leq \tbit} \feqOI{\suu\jj}(\xx,\yy)
+    \land \bigwedge_{\jj < \kk \leq \tbit} \feq{\suu\kk}(\xx,\yy).
+  \]
+  \item $\StrA\vDash\fsucc\CS(\ea,\eb)$ iff $\data\CS\StrA\eb = 1 +
+  \data\CS\StrA\ea$.
+  \item
+  $\StrA \vDash \fbetw\CS\datad\datae(\ea)$ iff
+  $\datad \leq \data\CS\StrA\ea \leq \datae$.
+\end{itemize}
+}
+
+\frame{\frametitle{Vector Setups}
+\begin{itemize}
+  \item The set of \emph{$n$-dimensional $t$-bit vectors} is
+  $\ntBitnums\nn\tbit$.
+  \item An \emph{$n$-dimensional $t$-bit vector setup} is a predicate signature 
+  $\VS = \seq{\suu{11}, \suu{12}, \dots, \suu{\nn\tbit}}$ of $(\nn\tbit)$
+  distinct unary predicate symbols.
+  \item The \emph{counter setup $\VSp\posp$} of $\VS$ at position $\posp \in [1,\nn]$
+  is $\VSp\posp = \seq{\suu{\posp1},\suu{\posp2},\dots,\suu{\posp\tbit}}$.
+  \item
+    $\data\VS\StrA\ea = \left(\data{\VSp1}\StrA\ea,\data{\VSp2}\StrA\ea, \dots,
+    \data{\VSp\nn}\StrA\ea\right)$.
+\end{itemize}
+}
+
+\frame{\frametitle{Vector Setups Formulas}
+\begin{itemize}
+  \item $\StrA\vDash\feqP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea =
+  \data{\VSp\posq}\StrA\ea$.
+  \item $\StrA\vDash\flessP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea <
+  \data{\VSp\posq}\StrA\ea$.
+  \item $\StrA\vDash\fsuccP\VS\posp\posq(\ea)$ iff $\data{\VSp\posq}\StrA\ea =
+  1 + \data{\VSp\posp}\StrA\ea$.
+\end{itemize}
+}
+
+% TODO
+\frame{\frametitle{Reductions - Logic Notation}
+Notation: $\mathcal{L}_p^v e \mathrm{E}_{\mathsc{a}}$
+\begin{itemize}
+  \item $\mathcal{L}$ is the \emph{ground logic} - the first-order logic with
+  formal equality
+  \item $v$, if given, bounds the number of allowed variables
+  \item $e$, if given, bounds the number of builtin equivalence symbols
+  \item $\mathsc{a}\in\{\mathsc{refine},\mathsc{global},\mathsc{local}\}$, if
+  given, specifies an agreement condition between the builtin equivalence
+  symbols
+  \item $p$, the \emph{signature power}, specifies constraints on the signature:
+  \begin{itemize}
+    \item if $p = 0$ the signature consists of only constantly many unary
+    predicate symbols in addition to the builtin equivalence symbols
+    \item if $p = 1$ the signature consists of unboundedly many unary predicate
+    symbols in addition to the builtin equivalence symbols
+    \item if $p$ is not given, the signature consists of unboundedly many unary
+    and binary predicate symbols in addition to the builtin equivalence symbols
+   \end{itemize}
+\end{itemize}
+}
+
+\frame{\frametitle{Reductions - Logic Notation Examples}
+Examples:
+\begin{itemize}
+  \item $\mathcal{L}_01\mathrm{E}$ is the logic of a single equivalence
+  relation.
+  \item $\mathcal{L}_1$ is the monadic fragment of logic
+  \item $\mathcal{L}^22\mathrm{E}_{\mathsc{local}}$ is the two-variable fragment
+  featuring two builtin equivalence symbols in local agreement
+\end{itemize}
+}
+
+
+\end{document}
