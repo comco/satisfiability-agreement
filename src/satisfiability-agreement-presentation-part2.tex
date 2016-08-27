@@ -1,0 +1,234 @@
+\documentclass{beamer}
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae} % for pdf files
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{upgreek}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bm}
+%\usepackage{enumitem}
+\usepackage{cancel} % for strikeout
+\usepackage{xspace} % for spaces after commands
+\usepackage{extpfeil} % for arrows
+\usepackage{tikz}
+
+\usepackage{beamerthemesplit}
+
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+
+% Commands
+\input{introduction/notation/sets/sets.cmd.tex}
+\input{introduction/notation/relations/relations.cmd.tex}
+\input{introduction/notation/functions/functions.cmd.tex}
+\input{introduction/notation/sequences/sequences.cmd.tex}
+\input{introduction/notation/numbers/numbers.cmd.tex}
+\input{introduction/notation/tetration/tetration.cmd.tex}
+\input{introduction/notation/vectors/vectors.cmd.tex}
+\input{introduction/notation/permutations/permutations.cmd.tex}
+\input{introduction/notation/bounds/bounds.cmd.tex}
+\input{introduction/notation/alphabets/alphabets.cmd.tex}
+\input{introduction/notation/bits/bits.cmd.tex}
+
+\input{introduction/syntax/symbol-alphabet/symbol-alphabet.cmd.tex}
+\input{introduction/syntax/variables/variables.cmd.tex}
+\input{introduction/syntax/signatures/signatures.cmd.tex}
+\input{introduction/syntax/formulas/formulas.cmd.tex}
+\input{introduction/syntax/quantifier-rank/quantifier-rank.cmd.tex}
+
+\input{introduction/semantics/structures/structures.cmd.tex}
+\input{introduction/semantics/standard-translation/standard-translation.cmd.tex}
+\input{introduction/semantics/satisfiability/satisfiability.cmd.tex}
+\input{introduction/semantics/logic-equivalence/logic-equivalence.cmd.tex}
+
+\input{introduction/logic-games/logic-games.cmd.tex}
+
+\input{introduction/types/types.cmd.tex}
+
+\input{introduction/scott-nf/scott-nf.cmd.tex}
+
+\input{introduction/complexity/classes/classes.cmd.tex}
+\input{introduction/complexity/reductions/reductions.cmd.tex}
+\input{introduction/complexity/tilings/tilings.cmd.tex}
+
+\input{setups/makeup-formulas.cmd.tex}
+
+\input{equivalences/introduction/introduction.cmd.tex}
+\input{equivalences/agreement.cmd.tex}
+
+\input{reductions/introduction/introduction.cmd.tex}
+\input{reductions/global-to-refine/global-to-refine.cmd.tex}
+\input{reductions/local-to-refine/local-to-refine.cmd.tex}
+\input{reductions/granularity/granularity.cmd.tex}
+
+\input{monadic/cells/cells.cmd.tex}
+\input{monadic/organs/organs.cmd.tex}
+\input{monadic/satisfiability/satisfiability.cmd.tex}
+\input{monadic/hardness/hardness.cmd.tex}
+
+\input{two-variable/two-variable.cmd.tex}
+\input{two-variable/tpreal-twovar-many.cmd.tex}
+\input{two-variable/tpreal.cmd.tex}
+
+\input{counting/counting.cmd.tex}
+
+\input{missinggreek.cmd.tex}
+
+\begin{document}
+\title{Satisfiability with Equivalences in Agreement, Part 2}
+\author{Krasimir Georgiev}
+\frame{\titlepage}
+
+\begin{frame}{Overview}
+\tableofcontents
+\end{frame}
+
+\section{Two-variable Logic}
+\begin{frame}{Two-variable Logic}
+\begin{itemize}
+  \item 
+  The two-variable logic $\vFo2$ is the fragment of first-order logic featuring
+  only the variables $\xx$ and $\yy$ (with formal equality and restricted to just
+  unary and binary predicate symbols).
+
+  \item
+  It is known that $\vFo2$ has the finite model property and its (finite)
+  satisfiability problem is $\cNExpTime$-complete.
+  
+  \item We develop a technique that allows us to show that the two-variable
+  logic with equivalences in refinement $\vFo2\Eea\sze\agrefine$ has the finite
+  model property and its (finite) satisfiability problem is in $\cNExpTime$.
+\end{itemize}
+\end{frame}
+\begin{frame}{Scott Normal Form}
+\begin{theorem}[Scott]
+There is a polynomial-time reduction $\sctr: \vFo2 \to \vFo2$ which reduces
+every sentence $\fphi$ to a sentence $\sctr\fphi$ in \emph{Scott normal form}:
+\[
+  \forall\xx\forall\yy(\falpp0(\xx,\yy) \lor \xx = \yy) \land
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
+  (\falpp\ii(\xx,\yy) \land \xx \neq \yy),
+\]
+where $\nm\geq1$, the formulas $\falpp\ii$ are quantifier-free and use at most
+linearly many new unary predicate symbols.
+The sentences $\fphi$ and $\sctr\fphi$ are satisfiable over the same domains of
+cardinality at least $2$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Scott Normal Form}
+Strategy: Consider a subformula $\fpsi$ of $\fphi$ of the form $Q x
+\alpha(x,y)$, where $\alpha$ is quantifier-free.
+Replace $\fphi$ by $\fphi' \land \forall y(\spe(y)\lequ Q x \alpha(x,y))$,
+where $\spe(y)$ is a new unary symbol and $\fphi'$ is obtained from $\fphi$ by
+replacing the subformula $\fpsi$ by $\spe(y)$.
+\end{frame}
+
+\begin{frame}{Classified Signatures}
+\begin{itemize}
+  \item
+  We can replace the existential parts $\alpha_i, i \geq 1$ with fresh binary
+  predicate symbols $\smm\ii$ with interpretation
+  $\forall\xx\forall\yy(\smm\ii(\xx,\yy)\lequ\alpha_i(\xx,\yy))$
+  \item A \emph{classified signature} $\ClSig\Sigma\sms$ consists of a signature
+  $\Sigma$ together with a sequence of distinct binary predicate symbols $\sms
+  = \smm1\smm2\dots\smm\nm$ from $\Sigma$.
+  \item A \emph{structure} $\StrA$ for $\ClSig\Sigma\sms$ is a structure for
+  $\Sigma$ satisfying the existential parts:
+  \[\bigwedge_{1\leq\ii\leq\nm}\forall\xx\exists\yy(\smm\ii(\xx,\yy)\land\xx\neq\yy)\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Classified Signatures}
+The (finite) classified satisfiability problem is: given a classified signature
+$\ClSig\Sigma\sms$ and a quantifier-free formula $\alpha(\xx,\yy)$, is there a
+$\ClSig\Sigma\sms$-structure $\StrA$ such that
+$\StrA\vDash\forall\xx\forall\yy\alpha(\xx,\yy)$.
+
+Scott tells us how (finite) satisfiability reduces to (finite) classified
+satisfiability.
+\end{frame}
+
+\section{Types}
+\begin{frame}{Types}
+Let $\Sigma = \seq{\spp1,\spp2,\dots,\spp\nn}$ be a predicate signature.
+\begin{itemize}
+\item A \emph{\onetype/} $\tpp$ over $\Sigma$ is a maximal consistent set of
+  literals featuring only the variable $\xx$ (in model theory known as atomic
+  type).
+  \item A \emph{\twotype/} $\tpt$ over $\Sigma$ is maximal consistent set of
+  literals featuring the variable symbols $\xx$ and $\yy$ and including
+  $(\xx \neq \yy)$.
+  \item If $\tpt$ is a \twotype/, the \emph{$\xx$-type} $\tpx\tpt$ is the
+  \onetype/ consisting of those literals featuring only the variable $\xx$,
+  \item the \emph{inverse} $\inv\tpt$ is the \twotype/ obtained from swapping
+  $\xx$ and $\yy$ in the literals of $\tpt$ 
+  \item and $\tpy\tpt = \tpx{(\inv\tpt)}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Type Instances}
+\begin{itemize}
+\item A \emph{type instance} $\TI$ over $\ClSig\Sigma\sms$ is a non-empty set of
+\twotypes/ that is closed under inversion.
+\item The type instance $\TIS\StrA$ of a $\ClSig\Sigma\sms$-structure $\StrA$
+is:
+\[
+  \TIS\StrA = \setbd{\tpIab\StrA\ea\eb}{\ea\in\domA,\eb\in\domA\sub\set\ea},
+\]
+where $\tpIab\StrA\ea\eb$ is the \twotype/ realized by $(a,b)$ in $\StrA$.
+\item Type instances are typically exponentially bigger than the classified
+signature.
+\end{itemize}
+\end{frame}
+
+\section{Type Realizability}
+\begin{frame}{Type Realizability}
+\begin{itemize}
+  \item 
+  The \emph{(finite) type realizability problem} is: given a classified signature
+  $\ClSig\Sigma\sms$ and a type instance $\TI$ over $\ClSig\Sigma\sms$, is there a
+  (finite) $\ClSig\Sigma\sms$-structure $\StrA$ such that $\TIS\StrA = \TI$.
+  \item We aim to show that the type realizability problem for $\vFo2$ is in
+  $\cNP$.
+  \item (Finite) Classified signature reduces in nondeterministic exponential
+  time to (finite) type realizability: guess a type instance consisting of
+  \twotypes/ consistent with $\alpha(x,y)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Kings and Workers}
+\begin{itemize}
+  \item 
+  Let $\TI$ be a type instance over $\ClSig\Sigma\sms$.
+  The \onetypes/ of $\TI$ are $\TP\TI = (\tpx\restriction\TI)$.
+  \item
+  A \onetype/ $\tpk\in \TP\TI$ is a \emph{king type} if no $\tpt\in\TI$ has
+  $\tpx\tpt = \tpy\tpt =\tpk$. The set of king types is $\TK\TI$.
+  \item
+  The other \onetypes/ are the \emph{worker types}. The set of worker types is
+  $\TW\TI$.
+  \item In models of $\TI$, king types are realized uniquely, while worker types
+  are realized by at least two elements.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Worker Multiplication}
+TODO: Picture
+\end{frame}
+
+\section{Satisfiability with Equivalences in Refinement}
+
+\begin{frame}
+\end{frame}
+
+\end{document}
