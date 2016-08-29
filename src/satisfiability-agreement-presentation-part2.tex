@@ -457,8 +457,35 @@ Let $\StrA$ be a $\vFo2\Eea1\noag$-structure for the type instance $\TI$.
 \end{frame}
 
 \begin{frame}{Noble Distinguishability}
-A structure is \emph{nobly distinguished} if every noble galaxy realizes only
-noble type
+\begin{itemize}
+  \item A structure is \emph{nobly distinguished} if every noble galaxy realizes
+  only noble type
+  \item Reduce type realizability in general to the class of nobly distinguished
+  structures?
+  \item Idea: Tag peasants in a noble galaxy with some noble type from that
+  galaxy
+\pause
+
+\begin{tikzpicture}
+\draw[dashed] (-0.5,-1) rectangle (2.7,1);
+\draw[fill] (0,0) circle[radius=2pt];
+\node[right] at (0,0) {$\tpk$};
+\draw[fill] (1,0.5) circle[radius=2pt];
+\node[right] at (1,0.5) {$\tpn$};
+\draw[fill] (1,-0.5) circle[radius=2pt];
+\node[right] at (1,-0.5) {$\tpn$};
+\draw[fill] (2,0) circle[radius=2pt];
+\node[right] at (2,0) {$\tpp_\tpn$};
+
+\draw[dashed] (3,-1) rectangle (4.5,-0.2);
+\draw[fill] (3.5,-0.6) circle[radius=2pt];
+\node[right] at (3.5,-0.6) {$\tpp_\bot$};
+
+\draw[dashed] (3,0.2) rectangle (4.5,1);
+\draw[fill] (3.5,0.6) circle[radius=2pt];
+\node[right] at (3.5,0.6) {$\tpp_\bot$};
+\end{tikzpicture}
+\end{itemize}
 \end{frame}
 
 \end{document}
