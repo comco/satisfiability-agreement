@@ -200,8 +200,8 @@ signature.
   (finite) $\ClSig\Sigma\sms$-structure $\StrA$ such that $\TIS\StrA = \TI$.
   \item We aim to show that the type realizability problem for $\vFo2$ is in
   $\cNP$.
-  \item (Finite) Classified signature reduces in nondeterministic exponential
-  time to (finite) type realizability: guess a type instance consisting of
+  \item (Finite) classified satisfiability reduces in nondeterministic
+  exponential time to (finite) type realizability: guess a type instance consisting of
   \twotypes/ consistent with $\alpha(x,y)$.
 \end{itemize}
 \end{frame}
@@ -222,13 +222,275 @@ signature.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Worker Multiplication}
-TODO: Picture
+\begin{frame}{Worker Copies}
+If $\StrA$ is a model for $\TI$, any worker element can be copied:
+
+$\tpp\in\TW\TI$, $\tpt\in\TI$, $\tpx\tpt = \tpy\tpt=\tpp$
+
+\begin{tikzpicture}
+\draw[fill] (0,0) circle [radius=2pt];
+\node[right] at (0,0) {$\tpp$};
+\draw[->] (0,0) to (-1,0.5);
+\node[above] at (-0.5,0.25) {$\tpt_1$};
+\draw[->] (0,0) to (-1,-0.5);
+\node[below] at (-0.5,-0.25) {$\tpt_2$};
+\node[left] at (0,0) {$\dots$};
+
+\node at(2,0) {$\implies$};
+
+\draw[fill] (4,0) circle [radius=2pt];
+\node[right] at (4,0) {$\tpp$};
+\draw[->] (4,0) to (3,0.5);
+\node[above] at (3.5,0.25) {$\tpt_1$};
+\draw[->] (4,0) to (3,-0.5);
+\node[below] at (3.5,-0.25) {$\tpt_2$};
+\node[left] at (4,0) {$\dots$};
+\draw[fill] (4,1) circle [radius=2pt];
+\draw[dashed,->] (4,1) to (3,-0.5);
+\draw[dashed,->] (4,1) to (3,0.5);
+\node[right] at (4,1) {$\tpp$};
+\draw[dashed] (4,1) to (4,0);
+\node[right] at (4,0.5) {$\tpt$};
+\end{tikzpicture}
+
+This doesn't work for kings!
+\[
+\TI[\tpp] = \begin{cases}
+\TP\TI \text{ if } \tpp \text{ is a worker type} \\
+\TP\TI\sub\set\tpp \text{ otherwise, if it is a king type}
+\end{cases}
+\]
 \end{frame}
 
-\section{Satisfiability with Equivalences in Refinement}
+\begin{frame}{Star-types}
+The \emph{star-type} of $\ea\in\domA$ is:
+$\stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb\in\domA\sub\set\ea}$
 
-\begin{frame}
+\begin{tikzpicture}
+\draw[fill] (0,0) circle [radius=2pt];
+\node[right] at (0,0) {$\ea$};
+\draw (0,0) to (-1,-0.3);
+\draw (0,0) to (-0.5,0.7);
+\draw (0,0) to (0,1);
+\draw (0,0) to (0.3,0.8);
+\draw (0,0) to (-0.3,-0.7);
+\draw (0,0) to (0.3,-0.7);
+\node[right] at (0.3,0.4) {$\dots$};
+\end{tikzpicture}
+
+Gives reason why the existential condition is satisfied locally at $\ea$.
+\end{frame}
+
+\begin{frame}{Star-types}
+A \emph{star-type} $\stps$ over $\TI$ is a nonempty subset
+$\stps\subseteq\TI$ satisfying:
+\begin{itemize}
+  \item[\condstpx]\label{cond:stpx}
+  If $\tpt, \tptp \in \stps$, then $\tpx\tpt = \tpx\tptp$.
+  Denote $\tpx\tpt$ for any $\tpt \in \stps$ by $\tpp=\tpx\stps$.
+  
+  \item[\condstppy]\label{cond:stppy}
+  If $\tppp \in \nb\TI\tpp$, then some $\tpt\in\stps$ has
+  $\tpy\tpt = \tppp$.
+  
+  \item[\condstpky]\label{cond:stpky}
+  If $\tpkp \in \nb\TI\tpp\cap\TK\TI$
+  and if $\tpt,\tptp \in \stps$ have $\tpy\tpt = \tpy\tptp = \tpkp$,
+  then $\tpt = \tptp$.
+  
+  \item[\condstpm]\label{cond:stpm}
+  If $\sm \in \sms$, then some $\tpt\in\stps$ has $\sm(\xx,\yy) \in \tpTt$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Certificates}
+A \emph{certificate} $\Cert$ for $\TI$ is a nonempty set of star-types
+satisfying:
+\begin{itemize}
+  \item[\condcertT]\label{cond:certT}
+  If $\tpt\in\TI$, then some $\stps\in\Cert$ has $\tpt\in\stps$,
+  that is there is a star-type containing each \twotype/.
+  \item[\condcertk]\label{cond:certk}
+  If $\tpk\in\TK\TI$ and if $\stps,\stpsp\in\Cert$
+  have $\tpx\stps = \tpx\stpsp = \tpk$, then $\stps = \stpsp$.
+\end{itemize}
+Then:
+\begin{itemize}
+  \item[\condcertp]\label{cond:certp}
+  If $\tpp \in \TP\TI$, then some $\stps\in\Cert$ has $\tpx\stps = \tpp$.
+  \item[\condcertku]\label{cond:certku}
+  If $\tpk \in \TK\TI$, then a unique $\stps\in\Cert$ has $\tpx\stps = \tpp$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Certificate Extraction}
+A star-type for every $\tpt\in\TI$ is sufficient!
+\begin{itemize}
+  \item Let $\StrA$ be a model for $\TI$
+  \item For every $\tpt\in\TI$ choose $\eat\tpt,\ebt\tpt\in\domA$ such that
+$\tpIab\StrA{\eat\tpt}{\ebt\tpt} = \tpt$
+  \item $\Cert = \setbd{\stpIa\StrA{\eat\tpt}}{\tpt\in\TI}$ is a
+  \emph{polynomial} certificate
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Certificate Expansion}
+\begin{theorem}
+Let $\Cert$ be a certificate for the type instance $\TI$ and let
+$\pt\geq\card{\TI}$.
+Then $\TI$ has a finite model in which every worker type is realized at least
+$\pt$ times.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Construction}
+\begin{tikzpicture}
+\draw[fill] (0,0) circle [radius=2pt];
+\node[left] at (0,0) {$\ea_\tpk$};
+\draw[dashed] (-1,-2.5) rectangle (1,1);
+\node[below right] at (-1,1) {kings};
+\node at (0,-1) {$\dots$};
+\draw[dashed] (1,-2.5) rectangle (6,1);
+\node[below right] at (1,1) {workers};
+
+\draw[dashed] (1.5,0) rectangle (4.5,0.5);
+\draw[fill] (1.75,0.25) circle [radius=2pt];
+\node[right] at(1.75,0.25) {$\ea_{01}^\stps$};
+\node at (3,0.25) {$\dots$};
+\draw[fill] (3.5,0.25) circle [radius=2pt];
+\node[right] at (3.5,0.25) {$\ea_{0t}^\stps$};
+
+\draw[dashed] (2.5,-1) rectangle (5.5,-0.5);
+\draw[fill] (2.75,-0.75) circle [radius=2pt];
+\node[right] at(2.75,-0.75) {$\ea_{11}^\stps$};
+\node at (4,-0.75) {$\dots$};
+\draw[fill] (4.5,-0.75) circle [radius=2pt];
+\node[right] at (4.5,-0.75) {$\ea_{1t}^\stps$};
+
+\draw[dashed] (1.5,-2) rectangle (4.5,-1.5);
+\draw[fill] (1.75,-1.75) circle [radius=2pt];
+\node[right] at(1.75,-1.75) {$\ea_{21}^\stps$};
+\node at (3,-1.75) {$\dots$};
+\draw[fill] (3.5,-1.75) circle [radius=2pt];
+\node[right] at (3.5,-1.75) {$\ea_{2t}^\stps$};
+
+\draw (0,0) to (1.75,0.25);
+\node[above] at (0.8,0.1) {$\tpt\in\stps$};
+\draw (1.75,0.25) to (2.75,-0.75);
+\draw (2.75,-0.75) to (1.75,-1.75);
+\draw (1.75,-1.75) to (1.75,0.25);
+\end{tikzpicture}
+\begin{itemize}
+  \item single element for each king
+  \item $3$ blocks of $t$ elements for each worker star-type
+  \item king--to--element determined by the star-type of the element
+  \item worker--to--worker between consecutive blocks
+  \item completion to a full structure
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{itemize}
+  \item Type realizability for $\vFo2$ is in $\cNP$
+  \item $\vFo2$ has the finite model property and its satisfiability problem is
+  in $\cNExpTime$
+\end{itemize}
+\end{frame}
+
+\section{Type Realizability with Equivalences in Refinement}
+\begin{frame}{Strategy}
+\begin{itemize}
+  \item Consider the two-variable logic with a single builtin equivalence symbol
+  $\vFo2\Eea1\noag$
+  \item Equivalence classes are structures for the \emph{simpler} $\vFo2$
+  \item Exploit the previous result to ensure \emph{classes are ``consistent''} and
+  figure out how to
+  \emph{glue them together}
+  \item Make sure the argument is suitable for induction to get to
+  $\vFo2\Eea\sze\agrefine$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Galaxies and Cosmos}
+Let $\StrA$ be a $\vFo2\Eea1\noag$-structure for the type instance $\TI$.
+\begin{itemize}
+  \item classes of $\StrA$ are the \emph{galaxies} of $\StrA$
+  \item $\StrA$ is \emph{the cosmos}
+  \item $\tpt\in\TI$ is \emph{galactic} if $\se(\xx,\yy)\in\tpt$,
+  $\TIg\subseteq\TI$
+  \item otherwise $\tpt$ is \emph{cosmic}, $\TIc\subseteq\TI$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Noble and Peasant Types}
+\begin{itemize}
+  \item $\tpn\in\TP\TI$ is \emph{noble} if no cosmic $\tpt$ has
+  $\tpx\tpt = \tpy\tpt = \tpn$
+  \item $\tpp\in\TP\TI$ is \emph{peasant} if it is not noble
+  \item kings are noble
+  \item peasants are workers
+  \item \emph{noble galaxy}: realizes a noble type
+  \item \emph{peasant galaxy}: realizes only peasant types
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{tikzpicture}
+\draw[dashed] (-0.5,-1) rectangle (2.7,1);
+\draw[fill] (0,0) circle[radius=2pt];
+\node[right] at (0,0) {$\tpk$};
+\draw[fill] (1,0.5) circle[radius=2pt];
+\node[right] at (1,0.5) {$\tpn$};
+\draw[fill] (1,-0.5) circle[radius=2pt];
+\node[right] at (1,-0.5) {$\tpn$};
+\draw[fill] (2,0) circle[radius=2pt];
+\node[right] at (2,0) {$\tpp$};
+
+\draw[dashed] (3,-1) rectangle (4,-0.2);
+\draw[fill] (3.5,-0.6) circle[radius=2pt];
+\node[right] at (3.5,-0.6) {$\tpp$};
+
+\draw[dashed] (3,0.2) rectangle (4,1);
+\draw[fill] (3.5,0.6) circle[radius=2pt];
+\node[right] at (3.5,0.6) {$\tpp$};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Noble Distinguishability}
+A structure is \emph{nobly distinguished} if every noble galaxy realizes only
+noble type
 \end{frame}
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
