@@ -204,7 +204,7 @@ We can define \emph{small} formulas with the following properties:
   \item $\StrA\vDash\fsuccP\VS\posp\posq(\ea)$ iff $\data{\VSp\posq}\StrA\ea =
   1 + \data{\VSp\posp}\StrA\ea$.
   \item $\StrA\vDash\fless\VS(\ea,\eb)$ iff
-  $\data{\VS}\StrA\ea\lexlt\data{\VS}\StrA\eb$: (anti-) lexicographic ordering,
+  $\data{\VS}\StrA\ea\lexlt\data{\VS}\StrA\eb$: antilexicographic ordering,
   e.g. $(1,1,0)\lexlt (0,0,1)$.
 \end{itemize}
 \end{frame}
@@ -537,8 +537,8 @@ Consider an $\Lvp\LL\nonv\nopow\Eea\sze\aglocal$-signature $\Sigma$ containing
 the $\sze$ builtin equivalence symbols $\ES = \seq{\see1,\see2,\dots,\see\sze}$.
 Supose that $\StrA$ is a $\Sigma$-structure, let $\relEE\ii =
 \at\StrA{\see\ii}$ and let $\ea\in\domA$.
-The \emph{characteristic permutation} $\nu$ at $\ea$ is the lexicographically
-smallest permutation satisfying:
+The \emph{characteristic permutation} $\nu$ at $\ea$ is the
+antilexicographically smallest permutation satisfying:
 \[
 \relEE{\nu(1)}[a] \subseteq \relEE{\nu(2)}[a] \subseteq \dots
 \subseteq \relEE{\nu(\sze)}[a].
