@@ -2,26 +2,21 @@
 In two-variable logics, a common technique of reducing formula quantifier rank
 while preserving satisfiability is Skolemization~\cite{gradel1999logics}:
 Let $\fphi$ be a $\vFo2$-sentence.
-By replacing universally quantified subformulas $\forall\gx \fpsi$ by twofold
-existential negations $\lnot\exists\gx \lnot\fpsi$, without loss of generality
-assume that only existential quantifiers occur in $\fphi$.
-Consider a subformula $\fpsi$ of $\fphi$ that has the lowest possible nontrivial
-quantifier rank $1$.
-Then $\psi = \psi(\gy) = \exists\gx \falp(\gx,\gy)$, where the formula
-$\falp$ is quantifier-free, $\set{\gx,\gy} = \set{\xx,\yy}$ and $\gy$ may
-or may not necessarly occur freely in $\falp$.
+Consider a subformula $\fpsi = \psi(\gy) = Q\gx \falp(\gx,\gy)$ of $\fphi$ that
+has the lowest possible nontrivial quantifier rank $1$, where
+$\gy\in\set{\xx,\yy}$ may not necessarily occur freely in $\falp$, $\gx \in
+\set{\xx,\yy}\sub\set\gy$ and $Q \in \set{\forall,\exists}$.
 Introduce a new unary predicate symbol $\suu\psi$ with the intended
-interpretation $\forall\gy(\suu\psi(\gy) \lequ \exists\gx \falp(\gx,\gy))$ and
+interpretation $\forall\gy(\suu\psi(\gy) \lequ Q\gx \falp(\gx,\gy))$ and
 let $\fphip$ be the formula obtained from $\fphi$ by replacing the subformula
 $\psi$ by $\suu\psi(\gy)$.
 The original formula $\fphi$ is equisatisfiable with
-$\fphi_1 = \forall\gy(\suu\psi(\gy) \lequ \exists\gx \falp(\gx,\gy)) \land
+$\fphi_1 = \forall\gy(\suu\psi(\gy) \lequ Q\gx \falp(\gx,\gy)) \land
 \fphip$ in a strinct sense, that is any model for $\fphi$ can be
 $\suu\fpsi$-enriched into a model for $\fphi_1$ and any model for $\fphi_1$ is a
 model for $\fphi$.
-By repeating this process linearly many times, we can bring the formula to a
-form where the quantifier rank is at most 
-$2$~\cite{scott1962decision,gradel1999logics}:
+By repeating this process, we can bring the formula to a form where the
+quantifier rank is at most $2$~\cite{scott1962decision,gradel1999logics}:
 \begin{theorem}[Scott]
 There is a polynomial-time reduction $\sctr: \vFo2 \to \vFo2$ which reduces
 every sentence $\fphi$ to a sentence $\sctr\fphi$ in \emph{Scott normal form}:
