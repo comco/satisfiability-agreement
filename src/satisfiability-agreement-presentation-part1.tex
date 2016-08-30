@@ -20,7 +20,6 @@
 \usepackage{xspace} % for spaces after commands
 \usepackage{extpfeil} % for arrows
 \usepackage{tikz}
-
 \usepackage{beamerthemesplit}
 
 \newtheorem{remark}{Remark}
@@ -94,27 +93,33 @@
 \section{Setups}
 \begin{frame}{Setups}
 \begin{itemize}
-\item Use unary predicate symbols to ``encode'' data at elements of structures.
-For example, a permutation setup ``encodes'' a permutation at every element of a
-structure.
-\item $\text{bits} \to \text{binary counters} \to \text{vectors} \to
-\text{permutations}$
+  \item
+   use unary predicate symbols to ``encode'' data at elements of structures
+  
+  \item
+  example: a permutation setup ``encodes'' a permutation at every
+  element of a structure
+  
+  \item
+  $\text{bits} \to \text{binary counters} \to \text{vectors} \to
+  \text{permutations}$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Bit Setups}
+The set of \emph{bits} is $\Bits = \set{0,1}$.
+A \emph{bit setup} is a predicate signature $\BS = \seq{\su}$ consisting of a
+single unary predicate symbol $\su$.
 \begin{itemize}
-  \item A \emph{bit setup} is a predicate signature $\BS = \seq{\su}$ consisting of a
-  single unary predicate symbol $\su$.
-  \item The set of \emph{bits} is $\Bits = \set{0,1}$.
-  \item For any $\BS$-structure $\StrA$, define $\data\su\StrA : \domA\to\Bits$ by:
+  \item Given $\StrA$, define the function $\data\su\StrA :
+  \domA\to\Bits$ by:
   \[
     \data\su\StrA a = \begin{cases}
       1 &\text{if } \StrA \vDash \su(a) \\
       0 &\text{otherwise.}
     \end{cases}
   \]
-
+  
   \item
   If $\datad\in\Bits$, define the formula $\feqA\su\datad(\xx)$ by:
   \[
@@ -123,36 +128,41 @@ structure.
     \lnot\su(\xx) &\text{otherwise.}
   \end{cases}
   \]
-
-  \item $\StrA\vDash\feqA\su\datad(\ea)$ iff $\data\su\StrA\ea = \datad$.
+  
+  \item Property: $\StrA\vDash\feqA\su\datad(\ea)$ iff $\data\su\StrA\ea =
+  \datad$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Bit Setups Formulas}
+\begin{align*}
+  \feq\su(\xx,\yy) &= \su(\xx) \lequ \su(\yy) \\
+  \feqOI\su(\xx,\yy) &= \lnot \su(\xx) \land \su(\yy) \\
+  \feqIO\su(\xx,\yy) &= \su(\xx) \land \lnot \su(\yy). \\
+\end{align*}
 \begin{itemize}
-  \item Auxiliary formulas
-  \begin{align*}
-    \feq\su(\xx,\yy) &= \su(\xx) \lequ \su(\yy) \\
-    \feqOI\su(\xx,\yy) &= \lnot \su(\xx) \land \su(\yy) \\
-    \feqIO\su(\xx,\yy) &= \su(\xx) \land \lnot \su(\yy). \\
-  \end{align*}
-  \item $\StrA\vDash\feq\su(\ea,\eb)$ iff $\data\su\StrA\ea = \data\su\StrA\eb$.
-  \item $\StrA\vDash\feqOI\su(\ea,\eb)$ iff $\data\su\StrA\ea = 0$ and
+  \item
+  $\StrA\vDash\feq\su(\ea,\eb)$ iff $\data\su\StrA\ea = \data\su\StrA\eb$.
+  
+  \item
+  $\StrA\vDash\feqOI\su(\ea,\eb)$ iff $\data\su\StrA\ea = 0$ and
   $\data\su\StrA\eb = 1$.
-  \item $\StrA\vDash\feqIO\su(\ea,\eb)$ iff $\data\su\StrA\ea = 1$ and
+  
+  \item
+  $\StrA\vDash\feqIO\su(\ea,\eb)$ iff $\data\su\StrA\ea = 1$ and
   $\data\su\StrA\eb = 0$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Counter Setups}
+The set of \emph{$\tbit$-bit numbers} is $\Bitnumst = [0, 2^\tbit-1]$.
+A \emph{$\tbit$-bit counter setup} is a predicate signature $\CS =
+\seq{\suu1,\suu2,\dots,\suu\tbit}$ consisting of $\tbit$ unary predicate
+symbols.
 \begin{itemize}
-  \item The set of \emph{$\tbit$-bit numbers} is $\Bitnumst = [0, 2^\tbit-1]$.
-  \item A \emph{$\tbit$-bit counter setup} is a predicate signature $\CS =
-  \seq{\suu1,\suu2,\dots,\suu\tbit}$ consisting of $\tbit$ unary predicate
-  symbols.
-  \item For any $\CS$-structure $\StrA$, define the function $\data\CS\StrA :
-  \domA \to \Bitnumst$ that returns a $\tbit$-bit number for any
-  $\ea\in\domA$ by:
+  \item
+  Given $\StrA$, define the function $\data\CS\StrA : \domA \to \Bitnumst$ that
+  returns a $\tbit$-bit number for any $\ea\in\domA$ by:
   \[
     \data\CS\StrA\ea = \sum_{1 \leq \ii \leq \tbit} 2^{\ii-1} 
     \data{\suu\ii}\StrA\ea.
@@ -163,9 +173,14 @@ structure.
 \begin{frame}{Counter Setups Formulas}
 We can define \emph{small} formulas with the following properties:
 \begin{itemize}
-  \item $\StrA\vDash\feqA\CS\datad(\ea)$ iff $\data\CS\StrA\ea = \datad$.
-  \item $\StrA\vDash\feq\CS(\ea,\eb)$ iff $\data\CS\StrA\ea = \data\CS\StrA\eb$.
-  \item the $\tbit$-bit bitstring $\bstra$ encodes a number less than the
+  \item
+  $\StrA\vDash\feqA\CS\datad(\ea)$ iff $\data\CS\StrA\ea = \datad$.
+  
+  \item
+  $\StrA\vDash\feq\CS(\ea,\eb)$ iff $\data\CS\StrA\ea = \data\CS\StrA\eb$.
+  
+  \item
+  the $\tbit$-bit bitstring $\bstra$ encodes a number less than the
   $\tbit$ bitstring $\bstrb$ iff there is a position $\jj\in[1,\tbit]$ such that
   $\bstra_j = 0$, $\bstrb_j = 1$ and $\bstra_k = \bstrb_k$ for
   $k\in[j+1,\tbit]$.
@@ -173,8 +188,11 @@ We can define \emph{small} formulas with the following properties:
     \fless\CS(\xx,\yy) = \bigvee_{1 \leq \jj \leq \tbit} \feqOI{\suu\jj}(\xx,\yy)
     \land \bigwedge_{\jj < \kk \leq \tbit} \feq{\suu\kk}(\xx,\yy).
   \]
-  \item $\StrA\vDash\fsucc\CS(\ea,\eb)$ iff $\data\CS\StrA\eb = 1 +
+  
+  \item
+  $\StrA\vDash\fsucc\CS(\ea,\eb)$ iff $\data\CS\StrA\eb = 1 +
   \data\CS\StrA\ea$.
+  
   \item
   $\StrA \vDash \fbetw\CS\datad\datae(\ea)$ iff
   $\datad \leq \data\CS\StrA\ea \leq \datae$.
@@ -182,89 +200,107 @@ We can define \emph{small} formulas with the following properties:
 \end{frame}
 
 \begin{frame}{Vector Setups}
+The set of \emph{$n$-dimensional $t$-bit vectors} is $\ntBitnums\nn\tbit$.
+An \emph{$n$-dimensional $t$-bit vector setup} is a predicate signature  $\VS =
+\seq{\suu{11}, \suu{12}, \dots, \suu{\nn\tbit}}$ of $(\nn\tbit)$ distinct unary
+predicate symbols.
 \begin{itemize}
-  \item The set of \emph{$n$-dimensional $t$-bit vectors} is
-  $\ntBitnums\nn\tbit$.
-  \item An \emph{$n$-dimensional $t$-bit vector setup} is a predicate signature 
-  $\VS = \seq{\suu{11}, \suu{12}, \dots, \suu{\nn\tbit}}$ of $(\nn\tbit)$
-  distinct unary predicate symbols.
-  \item The \emph{counter setup $\VSp\posp$} of $\VS$ at position $\posp \in [1,\nn]$
-  is $\VSp\posp = \seq{\suu{\posp1},\suu{\posp2},\dots,\suu{\posp\tbit}}$.
   \item
-    $\data\VS\StrA\ea = \left(\data{\VSp1}\StrA\ea,\data{\VSp2}\StrA\ea, \dots,
-    \data{\VSp\nn}\StrA\ea\right)$.
+  The \emph{counter setup $\VSp\posp$} of $\VS$ at position $\posp \in [1,\nn]$
+  is $\VSp\posp = \seq{\suu{\posp1},\suu{\posp2},\dots,\suu{\posp\tbit}}$.
+  
+  \item
+  $\data\VS\StrA\ea = \left(\data{\VSp1}\StrA\ea,\data{\VSp2}\StrA\ea, \dots,
+  \data{\VSp\nn}\StrA\ea\right)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Vector Setups Formulas}
 \begin{itemize}
-  \item $\StrA\vDash\feqP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea =
+  \item
+  $\StrA\vDash\feqP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea =
   \data{\VSp\posq}\StrA\ea$.
-  \item $\StrA\vDash\flessP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea <
+  
+  \item
+  $\StrA\vDash\flessP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea <
   \data{\VSp\posq}\StrA\ea$.
-  \item $\StrA\vDash\fsuccP\VS\posp\posq(\ea)$ iff $\data{\VSp\posq}\StrA\ea =
+  
+  \item
+  $\StrA\vDash\fsuccP\VS\posp\posq(\ea)$ iff $\data{\VSp\posq}\StrA\ea =
   1 + \data{\VSp\posp}\StrA\ea$.
-  \item $\StrA\vDash\fless\VS(\ea,\eb)$ iff
-  $\data{\VS}\StrA\ea\lexlt\data{\VS}\StrA\eb$: antilexicographic ordering,
-  e.g. $(1,1,0)\lexlt (0,0,1)$.
+  
+  \item
+  antilexicographic ordering, e.g. $(1,1,0)\lexlt (0,0,1)$:
+  $\StrA\vDash\fless\VS(\ea,\eb)$ iff
+  $\data{\VS}\StrA\ea\lexlt\data{\VS}\StrA\eb$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Permutation Setups}
+The set of permutations of $[1,n]$ is $\Perms\nn$.
+
+Encode an $n$-permutation $\permnu\in\Perms\nn$ by the
+$n$-dimensional $t$-bit vector $(\permnu(1), \permnu(2), \dots, \permnu(n))$,
+where $t$ is the bitsize of $n$.
+
+An \emph{$n$-permutation setup} $\PS =
+\seq{\suu{11},\suu{12},\dots,\suu{nt}}$ is just an $n$-dimensional $t$-bit
+vector.
 \begin{itemize}
-  \item The set of permutations of $[1,n]$ is $\Perms\nn$.
-  \item Encode an $n$-permutation $\permnu\in\Perms\nn$ by the
-  $n$-dimensional $t$-bit vector $(\permnu(1), \permnu(2), \dots, \permnu(n))$, where $t$ is the bitsize
-  of $n$.
-  \item An \emph{$n$-permutation setup} $\PS =
-  \seq{\suu{11},\suu{12},\dots,\suu{nt}}$ is just an $n$-dimensional $t$-bit
-  vector.
-  \item The formula
-  $\fperm\PS = \fbetw\PS1\nn \land \falldiff\PS$ asserts that the vector setup
-  encodes exactly the permutations.
+  
+  \item The formula $\fperm\PS = \fbetw\PS1\nn \land \falldiff\PS$ asserts that
+  the vector setup encodes exactly the permutations.
 \end{itemize}
 \end{frame}
 
 \section{Equivalence Relations}
 \begin{frame}{Agreement}
 Let $\relEE1,\relEE2,\dots,\relEE\nn$ be a sequence of equivalence relations on
-$\domA$.
+$\domA$. The sequence is in
 \begin{itemize}
-  \item The sequence is in \emph{refinement} if it forms a chain under
+  \item
+  \emph{refinement} if it forms a chain under
   inclusion,
-  that is if $\relEE1\subseteq\relEE2\subseteq\dots\subseteq\relEE\nn$.
+  that is if $\relEE1\subseteq\relEE2\subseteq\dots\subseteq\relEE\nn$
+  
   \pause
-  \item The sequence is in \emph{global agreement} if it can be rearranged into
+  \item
+  \emph{global agreement} if it can be rearranged into
   a chain under inclusion,
   that is if $\relEE{\permnu(1)}\subseteq\relEE{\permnu(2)}\subseteq\dots
-  \subseteq\relEE{\permnu(\nn)}$ for some permutation $\permnu$ of $[1,\nn]$.
+  \subseteq\relEE{\permnu(\nn)}$ for some permutation $\permnu$ of $[1,\nn]$
+  
   \pause
-  \item The sequence is in \emph{local agreement} if for every $\ea\in\domA$,
+  \item
+  \emph{local agreement} if for every $\ea\in\domA$,
   the sequence of equivalence classes
   $\relEE1[\ea],\relEE2[\ea],\dots,\relEE\nn[\ea]$ can be rearranged into a
   chain under inclusion, that is if for every $\ea\in\domA$ there
   is some permutation $\permnu(\ea)$ of $[1,\nn]$ such that
   $\relEE{\permnu(\ea)(1)}[\ea]\subseteq\relEE{\permnu(\ea)(2)}[\ea]\subseteq
-  \dots\subseteq\relEE{\permnu(\ea)(\nn)}[\ea]$.
+  \dots\subseteq\relEE{\permnu(\ea)(\nn)}[\ea]$
+  
   \pause
-  \item $\text{refinement} \implies \text{global agreement} \implies
-  \text{local agreement}$
+  \item
+  $\text{refinement} \implies \text{global agreement} \implies \text{local
+  agreement}$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Intuitions}
-Intuitively,
+\begin{frame}{Intuition}
+Intuitively
 \begin{itemize}
   \item 
-  $\text{global agreement} = \text{refinement} + \text{a permutation}$.
+  $\text{global agreement} = \text{refinement} + \text{a permutation}$
+  
   \pause
   \item
   $\text{local agreement} = \text{refinement} + \text{locally agreeing
-  permutations}$.
+  permutations}$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Local Agreement - Example}
+\begin{frame}{Example}
 Example of a sequence $E_1, E_2, E_3$ in local agreement:
 
 \begin{tikzpicture}
@@ -321,7 +357,7 @@ Example of a sequence $E_1, E_2, E_3$ in local agreement:
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Local Agreement - Characterization}
+\begin{frame}{Characterization}
 \begin{lemma}
 The sequence $E_1, E_2$ of two equivalence relations on $A$ is in local
 agreement iff $E_1\cup E_2$ is an equivalence relation on $A$.
@@ -468,75 +504,84 @@ E_{\nu(1)}[a] \subseteq E_{\nu(2)}[a] \subseteq \dots \subseteq E_{\nu(n)}[a].
 \]
 Then $L_k[a] = E_{\nu(k)}[a]$ for any $k\in[1,n]$.
 \end{lemma}
-%\begin{proof}
-%First $L_k[a] \subseteq \left(E_{\nu(1)}\cup E_{\nu(2)} \cup \dots \cup
-%E_{\nu(k)}\right)[a] = E_{\nu(k)}[a]$.
-%
-%Next if $1 \leq i_1 < i_2 < \dots < i_k \leq n$, then some $i_j = \nu(k')$
-%for some $k' \geq k$, so $E_{\nu(k)}[a] \subseteq
-%E_{i_1}[a]\cup E_{i_2}[a]\cup \dots \cup E_{i_k}[a]$.
-%Hence $E_{\nu(k)}[a] \subseteq L_k[a]$.
-%\end{proof}
 \end{frame}
 
 \section{Reductions}
 \begin{frame}{Notation}
-$\Lvp\LL\nv\pow\Eea\sze\ag$
+\[
+  \Lvp\LL\nv\pow\Eea\sze\ag
+\]
 \begin{itemize}
-  \item $\LL$, the \emph{ground logic}, is the first-order logic with formal
-  equality
-  \item $\nv$, if given, bounds the number of allowed variables
-  \item $\sze$, if given, specifies the number of builtin equivalence symbols
-  \item $\ag\in\set{\agrefine,\agglobal,\aglocal}$, if given, specifies the
-  agreement condition between the equivalence symbols
-  \item $\pow$, the \emph{signature power}, specifies constraints on the
-  signature:
-  \begin{itemize}
-    \item if $\pow = 0$, the signature consists of only constantly many unary
-    predicate symbols
-    \item if $\pow = 1$, the signature consists of arbitrary many unary
-    predicate symbols
-    \item if $\pow$ is not given, the signature consists of arbitrary many unary
-    and binary predicate symbols
-  \end{itemize}
+  \item
+  $\LL$, the \emph{ground logic}, is the first-order logic with formal equality
+  
+  \item
+  $\nv$, if given, bounds the number of allowed variables
+  
+  \item
+  $\sze$, if given, specifies the number of builtin equivalence symbols
+  
+  \item
+  $\ag\in\set{\agrefine,\agglobal,\aglocal}$, if given, specifies the agreement
+  condition between the equivalence symbols
+  
+  \item
+  if $\pow$ is not given, the signature consists of arbitrary many unary and
+  binary predicate symbols
+  
+  \item
+  if $\pow = 0$, the signature consists of only constantly many unary predicate
+  symbols
+  
+  \item
+  if $\pow = 1$, the signature consists of arbitrary many unary predicate
+  symbols
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Examples}
 \begin{itemize}
-  \item $\Lvp\LL\nonv0\Eea1\noag$ is the logic of a single equivalence
-  \item $\Lvp\LL\nonv1$ is the monadic fragment
-  \item $\Lvp\LL2\nopow\Eea2\aglocal$ is the two-variable logic featuring unary
-  and binary predicate symbols in addition to two builtin equivalence symbols in
+  \item
+  $\Lvp\LL\nonv0\Eea1\noag$ is the logic of a single equivalence
+  
+  \item
+  $\Lvp\LL\nonv1$ is the monadic fragment
+  
+  \item
+  $\Lvp\LL2\nopow\Eea2\aglocal$ is the two-variable logic featuring unary and
+  binary predicate symbols in addition to two builtin equivalence symbols in
   local agreement
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Strategy}
-Can we reduce $\FinASat{\Lvp\LL\nonv\nopow\Eea\sze\agglobal}$ and
-$\FinASat{\Lvp\LL\nonv\nopow\Eea\sze\aglocal}$ to
-$\FinASat{\Lvp\LL\nonv\nopow\Eea\sze\agrefine}$?
-\pause
-
-Idea (for local agreement):
+\begin{frame}{Reduction Strategy}
+To reduce $\FinASat{\Lvp\LL\nonv\nopow\Eea\sze\aglocal}$ to
+$\FinASat{\Lvp\LL\nonv\nopow\Eea\sze\agrefine}$,
 \begin{itemize}
-  \item Look at the levels
-  \item Encode a permutation witnessing the local agreement at each element in a
-  permutation setup
-  \item Define formulas that recover the original equivalences from the
+  \item
+  look at the levels
+  
+  \item
+  encode a permutation witnessing the local agreement in a permutation setup
+  
+  \item
+  define formulas that recover the original equivalences from the
   levels and the permutations
-  \item Not every combination of levels and permutations defines
-  local agreement $\implies$ need to constrain the permutations
+  
+  \item
+  not every combination of levels and permutations defines
+  local agreement $\implies$ need constraint on permutations
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Characteristic Permutations}
 Consider an $\Lvp\LL\nonv\nopow\Eea\sze\aglocal$-signature $\Sigma$ containing
-the $\sze$ builtin equivalence symbols $\ES = \seq{\see1,\see2,\dots,\see\sze}$.
-Suppose that $\StrA$ is a $\Sigma$-structure, let $\relEE\ii =
-\at\StrA{\see\ii}$ and let $\ea\in\domA$.
+$\ES = \seq{\see1,\see2,\dots,\see\sze}$.
+Let $\StrA$ be a $\Sigma$-structure, $\relEE\ii =
+\at\StrA{\see\ii}$ and $\ea\in\domA$.
+
 The \emph{characteristic permutation} $\nu$ at $\ea$ is the
-antilexicographically smallest permutation satisfying:
+antilexicographically smallest permutation of $[1,e]$ satisfying:
 \[
 \relEE{\nu(1)}[a] \subseteq \relEE{\nu(2)}[a] \subseteq \dots
 \subseteq \relEE{\nu(\sze)}[a].
@@ -547,14 +592,20 @@ Collect the characteristic permutations in $\chperm\Sigma\StrA : \domA \to
 
 \begin{frame}{Local Agreement of Permutations}
 \begin{remark}
-Let $\relLL1,\relLL2,\dots,\relLL\sze$ be the levels of $\relEE\ii$.
-For any two elements $\ea,\eb\in\domA$, let $\perma = \chperm\Sigma\StrA\ea$
-and $\permb = \chperm\Sigma\StrA\eb$ be their characteristic permutations.
+Let $\relLL1,\relLL2,\dots,\relLL\sze$ be the levels of $\relEE\ii$,
+$\ea,\eb\in\domA$,
+$\perma = \chperm\Sigma\StrA\ea$
+and $\permb = \chperm\Sigma\StrA\eb$.
 
 If $(\ea,\eb)\in\relLL\kk$, then $\perma(\kk) = \permb(\kk)$.
+
 That is, if $\ea$ and $\eb$ are connected at level $\kk$, then their
 characteristic permutations agree at position $\kk$.
 \end{remark}
+\begin{itemize}
+  \item
+  This doesn't hold in general for any set of witnessing permutations
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Levels and Permutations}
@@ -575,15 +626,15 @@ encodes the local agreement of permutations.
 The formulas
 \[
   \fel\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \sze}
-  \left(\feqA{\PS(\kk)}\ii(\xx) \limp \slee\kk(\xx,\yy)\right).
+  \left(\feqA{\PS(\kk)}\ii(\xx) \limp \slee\kk(\xx,\yy)\right)
 \]
 recover the original equivalences ($\ii\in[1,\sze]$).
 \begin{remark}
-Suppose that $\StrA$ is an $\LS$-structure satisfying
+Let $\StrA$ be an $\LS$-structure satisfying
 $\fperm\PS\land\ffixperm\LS$ such that the level symbols $\slee\ii$ are
 interpreted as a sequence of equivalence relations in refinement.
-Let $\relLL\ii = \at\StrA{\slee\ii}$ be the interpretation of the levels and let
-$\relEE\ii = \at\StrA{\fel\LS\ii}$.
+Let $\relLL\ii = \at\StrA{\slee\ii}$ and $\relEE\ii = \at\StrA{\fel\LS\ii}$.
+
 Then $\relEE\ii$ is a sequence of equivalence relations in local agreement and
 $\relLL\kk[\ea] = \relEE{\perma(\kk)}[\ea]$ for any $\ea\in\domA$ and $\perma =
 \data\PS\StrA$.
@@ -592,14 +643,11 @@ $\relLL\kk[\ea] = \relEE{\perma(\kk)}[\ea]$ for any $\ea\in\domA$ and $\perma =
 
 \begin{frame}{Translation}
 Let $\Sigma' = \Sigma + \LS$ and $\LS' = \Sigma' - \ES$.
-
-Translation $\ltr\fphi : \FoF\Sigma \to \FoF\LSp$:
+The translation $\ltr\fphi : \FoF\Sigma \to \FoF\LSp$ is defined by
 \[
-  \ltr\fphi = \fphip \land \flocperm\LS,
+  \ltr\fphi = \fphip \land \fperm\PS \land \ffixperm\LS,
 \]
-where
-$\flocperm\LS = \fperm\PS \land \ffixperm\LS$
-and $\fphip$ is obtained from $\fphi$ by replacing all occurrences
+where $\fphip$ is obtained from $\fphi$ by replacing all occurrences
 of $\see\ii(x,y)$ by $\fel\LS\ii(x,y)$.
 \begin{remark}
 $\fphi$ is (finitely) satisfiable over $\Lvp\LL\nonv\nopow\Eea\sze\aglocal$ iff
@@ -607,22 +655,30 @@ $\ltr\fphi$ is (finitely) satisfiable over
 $\Lvp\LL\nonv\nopow\Eea\sze\agrefine$.
 \end{remark}
 \begin{itemize}
-  \item If $\StrA\vDash\fphi$, interpret $\slee\ii$ as the levels and encode
+  \item
+  if $\StrA\vDash\fphi$, interpret $\slee\ii$ as the levels and encode
   $\chperm\Sigma\StrA$ in the permutation setup $\PS$.
-  \item If $\StrAp\vDash\ltr\fphi$, interpret $\see\ii$ as $\fel\LS\ii$.
+  
+  \item
+  if $\StrAp\vDash\ltr\fphi$, interpret $\see\ii$ as $\fel\LS\ii$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Translation}
-The translation just uses polynomially many new unary predicate symbols.
+The translation just uses polynomially many new unary predicate symbols (it can
+``reuse'' the builtin equivalences).
 \begin{proposition}
 \begin{itemize}
-  \item The logic $\Fo\Eea\sze\aglocal$ has the finite model property iff
-  the logic $\Fo\Eea\sze\agrefine$ has the finite model property.
-  \item The corresponding satisfiability problems are polynomial-time
-  equivalent.
-  \item Also works for $\Lvp\LL\nonv1\Eea\sze\aglocal$ and
-  $\Lvp\LL2\nopow\Eea\sze\aglocal$.
+  \item
+  the logic $\Fo\Eea\sze\aglocal$ has the finite model property iff
+  the logic $\Fo\Eea\sze\agrefine$ has the finite model property
+  
+  \item
+  the corresponding satisfiability problems are polynomial-time equivalent
+  
+  \item
+  also works for $\Lvp\LL\nonv1\Eea\sze\aglocal$ and
+  $\Lvp\LL2\nopow\Eea\sze\aglocal$
 \end{itemize}
 \end{proposition}
 \end{frame}
@@ -631,37 +687,48 @@ The translation just uses polynomially many new unary predicate symbols.
 \begin{frame}{Results}
 It is known that:
 \begin{itemize}
-  \item $\Lvp\LL\nonv1$ has the finite model property and
-  $\FinASat{\Lvp\LL\nonv1}$ is $\cNExpTime$-complete
-  \item $\Lvp\LL\nonv0\Eea1\noag$ has the finite model property and
-  $\FinASat{\Lvp\LL\nonv1}$ is $\cPSpace$-complete
-  \item $\Lvp\LL\nonv0\Eea2\noag$ lacks the finite model property and both
-  $\FinASat{\Lvp\LL\nonv2}$ are undecidable
-  \pause
-  \item How about $\Lvp\LL\nonv1\Eea1\noag$?
-  \pause
-  \item We show that $\Lvp\LL\nonv1\Eea1\noag$ has the finite model property and
-  its (finite) satisfiability problem is $\ceNExpTime2$-complete.
-  \item In general $\Lvp\LL\nonv1\Eea\sze\agrefine$ has the finite model
-  property and its (finite) satisfiability problem is
-  $\ceNExpTime{(\sze+1)}$-complete.
+  \item
+  $\Lvp\LL\nonv1$ has the finite model property~{[L{\"o}wenheim 1915]} and
+  and its satisfiability problem is $\cNExpTime$-complete
+  
+  \item
+  $\Lvp\LL\nonv0\Eea1\noag$ has the finite model property and
+  its satisfiability problem is $\cPSpace$-complete
+  
+  \item
+  $\Lvp\LL\nonv0\Eea2\noag$ lacks the finite model property
+  and both the satisfiability and finite satisfiability are
+  undecidable~{[Janiczak 1953]}
+\end{itemize}
+
+\pause
+How about $\Lvp\LL\nonv1\Eea1\noag$?
+\pause
+We show that:
+\begin{itemize}
+  \item
+  $\Lvp\LL\nonv1\Eea1\noag$ has the finite model property and its
+  satisfiability problem is $\ceNExpTime2$-complete
+  
+  \item
+  in general $\Lvp\LL\nonv1\Eea\sze\agrefine$ has the finite model property and
+  its satisfiability problem is $\ceNExpTime{(\sze+1)}$-complete
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Cells}
-Suppose that $\Sigma = \Sigma(\szu,1) = \seq{\suu1,\suu2,\dots,\suu\szu,\se}$,
-where the symbols $\suu\ii$ are unary and $\se$ is a builtin equivalence symbol.
+\begin{frame}{Complexity: Cells}
+\begin{columns}[T]
+\begin{column}{0.42\textwidth}
+Let $\Sigma = \seq{\suu1,\suu2,\dots,\suu\szu,\se}$ and $\StrA$ be a
+$\Sigma$-structure.
 
-Let $\StrA$ be a $\Sigma$-structure.
 A \emph{cell} $C\subseteq\domA$ is a maximal set of $\se$-equivalent elements
 satisfying the same $\su$-predicates.
-\end{frame}
-
-\begin{frame}{Example}
-$\Sigma = \seq{\suu1,\suu2,\se}$
+\end{column}%
+\begin{column}{0.6\textwidth}
+Example $\Sigma = \seq{\suu1,\suu2,\se}$
 
 \begin{tikzpicture}
-
 \draw[style=thick] (0,-2) rectangle (4,2);
 \node[above right] at (0,2) {$E[a]$};
 
@@ -689,6 +756,8 @@ $\Sigma = \seq{\suu1,\suu2,\se}$
 \draw[fill] (5,0) circle [radius=2pt];
 \draw[fill] (5,-1) circle [radius=2pt];
 \end{tikzpicture}
+\end{column}%
+\end{columns}
 \end{frame}
 
 \begin{frame}{Small Cells}
@@ -702,8 +771,7 @@ For every $\StrA$-cell, if it has less than $\nr$ elements select them all,
 otherwise select any $\nr$ elements. Consider $\StrB$ induced by the selected
 elements.
 Win the \emph{$\nr$-round Ehrenfeucht-Fra\"{i}ss\'{e} game} as Duplicator:
-If the challenge has already been played, reply as before.
-If the challenge is new, choose a new selected element from the same cell.
+if the challenge is new, choose a new selected element from the same cell.
 Since the game lasts $\nr$ rounds, you'll never run out of selected elements.
 \end{proof}
 \end{frame}
@@ -722,13 +790,12 @@ Let $\StrA$ be a $\Sigma(\szu,1)$-structure and let $\nr\geq1$.
 There is some $\StrB\subseteq\StrA$ such that $\StrB\requiv\nr\StrA$ and
 $\card\domB \leq r^2 2^u ((r+1)^{2^u}-1)$.
 \end{remark}
-\pause
 
 This is doubly exponential with respect to the size of $\fphi$, hence
 $\FinASat{\Lvp\LL\nonv1\Eea1\noag}$ is in $\ceNExpTime2$.
 \end{frame}
 
-\begin{frame}{Hardness}
+\begin{frame}{Hardness: Domino Problem}
 Reduce the $\ceNExpTime2$-complete Square Domino Tiling Problem to
 $\FinASat{\Lvp\LL\nonv1\Eea1\noag}$.
 
@@ -746,60 +813,89 @@ $t : [1,m]\cprod [1,m]\to T$ such that:
 \end{frame}
 
 \begin{frame}{Domino Problem}
+Example $T = [1,3]$, $H = \set{(1,3),(2,1),(2,2)}, V = \set{(2,2),(3,2),(1,2)}$
+
+\centering
+\begin{tikzpicture}
+\draw[->] (-0.2,0.2) to (-0.2,1.8);
+\draw[->] (0.2,-0.2) to (1.8,-0.2);
+\draw (0,0) rectangle (1,1);
+\draw (1,0) rectangle (2,1);
+\draw (0,1) rectangle (1,2);
+\draw (1,1) rectangle (2,2);
+\node at (0.5,0.5) {$1$};
+\node at (1.5,0.5) {$3$};
+\node at (0.5,1.5) {$2$};
+\node at (1.5,1.5) {$2$};
+
+\end{tikzpicture}
+
+\begin{theorem}
 There is a domino system $D_0$ such that the problem of asking if there exists a
 tiling for $D_0$ with initial condition $c_0$ of length $n$ for the
 $2^{2^n}\cprod 2^{2^n}$-square is $\ceNExpTime2$-complete.
+\end{theorem}
 \end{frame}
 
 \begin{frame}{Hardness}
-Main issue: given $\Sigma = \Sigma(u,1) = \seq{\suu1,\suu2,\dots,\suu\szu,\se}$,
+Main issue: given $\Sigma = \seq{\suu1,\suu2,\dots,\suu\szu,\se}$,
 how can we define a doubly exponential grid?
 \pause
-Idea:
 \begin{itemize}
-  \item Each class can contain exponentially many cells
-  \item If we encode bits in cells, the classes encode doubly exponential
-  numbers
+  \item
+  Each class can contain exponentially many cells
+  
+  \item
+  If we encode bits in cells, the classes encode doubly exponential numbers
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Encoding}
 \begin{itemize}
-  \item We can ensure that every class contains maximally many $2^u$ cells
-  \item A cell containing a single element encodes bit $0$:
+  \item
+  we can ensure that every class contains maximally many $2^u$ cells
+  
+  \item
+  a cell containing a single element encodes bit $0$:
   \[
     \fbitO\Sigma(\xx) = \forall\yy \left(
-    \se(\yy,\xx) \land \fposeq\Sigma(\yy,\xx) \limp \yy = \xx\right).
+    \se(\yy,\xx) \land \fposeq\Sigma(\yy,\xx) \limp \yy = \xx\right)
   \] 
-  \item A cell containing more elements encodes bit $1$:
+  
+  \item
+  a cell containing more elements encodes bit $1$:
   \[
     \fbitI\Sigma(\xx) = \exists\yy \left(
-    \se(\yy,\xx) \land \fposeq\Sigma(\yy,\xx) \land \yy \neq \xx\right).
+    \se(\yy,\xx) \land \fposeq\Sigma(\yy,\xx) \land \yy \neq \xx\right)
   \]
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Data}
 Let $\StrA$ be a $\Sigma$-structure and let $\relE = \at\StrA\se$.
+The equivalence classes of $\relE$ are $\Ecl\relE$.
 The number encoded by the bitstring $\bstrb$ is $\bdec{\bstrb}$.
-  
+With \emph{a bit of work} we can define:
 \begin{itemize}
-  \item With \emph{a bit of work} we can define
+  \item
   $\Data\Sigma\StrA : \Ecl\relE \to \tBitstrings{2^\szu}$ that assigns
   exponential bitstrings (hence doubly exponential numbers) to the classes of
-  $\StrA$.
+  $\StrA$
+  
   \item $\StrA\vDash\fZero\Sigma(\ea)$ iff
   $\bdec{\Data\Sigma\StrA{\relE[\ea]}} = 0$
+  
   \item $\StrA\vDash\fSucc\Sigma(\ea,\eb)$ iff
   $\bdec{\Data\Sigma\StrA{\relE[\eb]}} = 1 +
   \bdec{\Data\Sigma\StrA{\relE[\ea]}}$
+  
   \item etc.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Reduction}
-Given $D_0 = (T,V,H)$, $T = [1,k]$ and $c^0 = \seq{t_1^0,t_1^0,\dots,t_n^0}$,
-consider:
+Given $D_0 = (T,V,H)$, where $T = [1,k]$, and $c^0 =
+\seq{t_1^0,t_1^0,\dots,t_n^0}$, consider:
 \begin{align*}
 \Sigma &=
 \seq{\suu1^H,\suu2^H,\dots,\suu\nn^H;\suu1^V,\suu2^V,\dots,\suu\nn^V;
@@ -838,6 +934,17 @@ consider:
   \fEq{\DS^\verm}(\xx,\yy) \limp
   \bigvee_{(\ii,\jj) \in \horm} \suuu\tiles{\ii}(\xx) \land
   \suuu\tiles{\jj}(\yy)\Big)$ encodes the horizontal tiling condition
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{itemize}
+  \item
+  this shows that the satisfiability of $\vFo2\Eea1\noag$ is $\ceNExpTime2$-hard
+  
+  \item
+  the argument can be generalized and applied by induction to show that 
+  the satisfiability of $\vFo2\Eea\sze\agrefine$ is $\ceNExpTime{(\sze+1)}$-hard
 \end{itemize}
 \end{frame}
 \end{document}
