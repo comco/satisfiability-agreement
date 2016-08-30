@@ -102,8 +102,9 @@
   unary and binary predicate symbols).
 
   \item
-  It is known that $\vFo2$ has the finite model property and its (finite)
-  satisfiability problem is $\cNExpTime$-complete.
+  It is known that $\vFo2$ has the finite model property~{[Mortimer, 1975]} and
+  its (finite) satisfiability problem is $\cNExpTime$-complete~{[Gr{\"a}del,
+  Kolaitis, Vardi, 1997]}.
   
   \item We develop a technique that allows us to show that the two-variable
   logic with equivalences in refinement $\vFo2\Eea\sze\agrefine$ has the finite
@@ -111,7 +112,7 @@
 \end{itemize}
 \end{frame}
 \begin{frame}{Scott Normal Form}
-\begin{theorem}[Scott]
+\begin{theorem}[Scott, 1962]
 There is a polynomial-time reduction $\sctr: \vFo2 \to \vFo2$ which reduces
 every sentence $\fphi$ to a sentence $\sctr\fphi$ in \emph{Scott normal form}:
 \[
@@ -127,36 +128,49 @@ cardinality at least $2$.
 \end{frame}
 
 \begin{frame}{Scott Normal Form}
-Strategy: Consider a subformula $\fpsi$ of $\fphi$ of the form $Q x
-\alpha(x,y)$, where $\alpha$ is quantifier-free.
-Replace $\fphi$ by $\fphi' \land \forall y(\spe(y)\lequ Q x \alpha(x,y))$,
-where $\spe(y)$ is a new unary symbol and $\fphi'$ is obtained from $\fphi$ by
-replacing the subformula $\fpsi$ by $\spe(y)$.
+\[
+  \forall\xx\forall\yy(\falpp0(\xx,\yy) \lor \xx = \yy) \land
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
+  (\falpp\ii(\xx,\yy) \land \xx \neq \yy)
+\]
+Strategy: if $\fpsi$ is a subformula of $\fphi$ of the form $Q x
+\alpha(x,y)$, where $\alpha$ is quantifier-free, then
+$\fphi$ and $\fphi' \land \forall y(\spe(y)\lequ Q x \alpha(x,y))$ are
+equisatisfiable, where $\spe(y)$ is a new unary symbol and $\fphi'$ is obtained
+from $\fphi$ by replacing the subformula $\fpsi$ by $\spe(y)$.
 \end{frame}
 
 \begin{frame}{Classified Signatures}
 \begin{itemize}
   \item
-  We can replace the existential parts $\alpha_i, i \geq 1$ with fresh binary
+  we can replace the existential parts $\alpha_i, i \geq 1$ with fresh binary
   predicate symbols $\smm\ii$ with interpretation
   $\forall\xx\forall\yy(\smm\ii(\xx,\yy)\lequ\alpha_i(\xx,\yy))$
-  \item A \emph{classified signature} $\ClSig\Sigma\sms$ consists of a signature
+  
+  \item
+  A \emph{classified signature} $\ClSig\Sigma\sms$ consists of a signature
   $\Sigma$ together with a sequence of distinct binary predicate symbols $\sms
   = \smm1\smm2\dots\smm\nm$ from $\Sigma$.
-  \item A \emph{structure} $\StrA$ for $\ClSig\Sigma\sms$ is a structure for
+  
+  \item
+  A \emph{structure} $\StrA$ for $\ClSig\Sigma\sms$ is a structure for
   $\Sigma$ satisfying the existential parts:
   \[\bigwedge_{1\leq\ii\leq\nm}\forall\xx\exists\yy(\smm\ii(\xx,\yy)\land\xx\neq\yy)\]
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Classified Signatures}
-The (finite) classified satisfiability problem is: given a classified signature
-$\ClSig\Sigma\sms$ and a quantifier-free formula $\alpha(\xx,\yy)$, is there a
-$\ClSig\Sigma\sms$-structure $\StrA$ such that
-$\StrA\vDash\forall\xx\forall\yy\alpha(\xx,\yy)$.
+\begin{itemize}
+  \item
+  The (finite) classified satisfiability problem is: given a classified signature
+  $\ClSig\Sigma\sms$ and a quantifier-free formula $\alpha(\xx,\yy)$, is there a
+  $\ClSig\Sigma\sms$-structure $\StrA$ such that
+  $\StrA\vDash\forall\xx\forall\yy\alpha(\xx,\yy)$.
 
-Scott tells us how (finite) satisfiability reduces to (finite) classified
-satisfiability.
+  \item
+  Scott tells us how (finite) satisfiability reduces to (finite) classified
+  satisfiability.
+\end{itemize}
 \end{frame}
 
 \section{Types}
@@ -179,7 +193,7 @@ Let $\Sigma = \seq{\spp1,\spp2,\dots,\spp\nn}$ be a predicate signature.
 
 \begin{frame}{Type Instances}
 \begin{itemize}
-\item A \emph{type instance} $\TI$ over $\ClSig\Sigma\sms$ is a non-empty set of
+\item A \emph{type instance} $\TI$ over $\ClSig\Sigma\sms$ is a nonempty set of
 \twotypes/ that is closed under inversion.
 \item The type instance $\TIS\StrA$ of a $\ClSig\Sigma\sms$-structure $\StrA$
 is:
@@ -202,8 +216,8 @@ signature.
   \item We aim to show that the type realizability problem for $\vFo2$ is in
   $\cNP$.
   \item (Finite) classified satisfiability reduces in nondeterministic
-  exponential time to (finite) type realizability: guess a type instance consisting of
-  \twotypes/ consistent with $\alpha(x,y)$.
+  exponential time to (finite) type realizability: just guess a type instance
+  consisting of \twotypes/ consistent with $\alpha(x,y)$.
 \end{itemize}
 \end{frame}
 
@@ -212,12 +226,14 @@ signature.
   \item 
   Let $\TI$ be a type instance over $\ClSig\Sigma\sms$.
   The \onetypes/ of $\TI$ are $\TP\TI = (\tpx\restriction\TI)$.
+  
   \item
   A \onetype/ $\tpk\in \TP\TI$ is a \emph{king type} if no $\tpt\in\TI$ has
   $\tpx\tpt = \tpy\tpt =\tpk$. The set of king types is $\TK\TI$.
+  
   \item
-  The other \onetypes/ are the \emph{worker types}. The set of worker types is
-  $\TW\TI$.
+  The remaining \onetypes/ are the \emph{worker types}.
+  
   \item In models of $\TI$, king types are realized uniquely, while worker types
   are realized by at least two elements.
 \end{itemize}
@@ -425,13 +441,25 @@ Let $\StrA$ be a $\vFo2\Eea1\noag$-structure for the type instance $\TI$.
 
 \begin{frame}{Noble and Peasant Types}
 \begin{itemize}
-  \item $\tpn\in\TP\TI$ is \emph{noble} if no cosmic $\tpt$ has
-  $\tpx\tpt = \tpy\tpt = \tpn$
-  \item $\tpp\in\TP\TI$ is \emph{peasant} if it is not noble
-  \item kings are noble
-  \item peasants are workers
-  \item \emph{noble galaxy}: realizes a noble type
-  \item \emph{peasant galaxy}: realizes only peasant types
+  \item
+  $\tpn\in\TP\TI$ is \emph{noble} if no cosmic $\tpt$ has
+  $\tpx\tpt = \tpy\tpt = \tpn$; the set of noble types is $\TN\TI$
+  
+  \item
+  $\tpp\in\TP\TI$ is \emph{peasant} if it is not noble; the set of peasant types
+  is $\TP\TI$
+  
+  \item
+  kings are noble
+
+  \item
+  peasants are workers
+  
+  \item
+  a galaxy is \emph{noble} if it realizes a noble type
+  
+  \item
+  a galaxy is \emph{peasant} if it realizes only peasant types
 \end{itemize}
 \end{frame}
 
@@ -455,6 +483,8 @@ Let $\StrA$ be a $\vFo2\Eea1\noag$-structure for the type instance $\TI$.
 \draw[fill] (3.5,0.6) circle[radius=2pt];
 \node[right] at (3.5,0.6) {$\tpp$};
 \end{tikzpicture}
+
+Noble galaxies may contain peasants!
 \end{frame}
 
 \begin{frame}{Noble Distinguishability}
@@ -539,7 +569,7 @@ is a tuple satisfying:
   $\TI = \cii\csps \cup \cie\csps \cup \cei\csps \cup \cee\csps$.
 
   \item[\condcspNP]\label{cond:cspNP}
-  The (nonempty) set $(\tpx\restriction{\cie\csps})$ is
+  The (nonempty) set $\Tpx\csps = (\tpx\restriction{\cie\csps})$ is
   the set of \emph{internal \onetypes/} of~$\csps$.
   We require that either $\Tpx\csps \subseteq \TN\TI$, or $\Tpx\csps \subseteq
   \TPs\TI$.
@@ -556,7 +586,7 @@ where $\tpt_{\mathcal{X}{\mathcal{Y}}}$ works by ``removing $\se$ and tagging
 the ends with a new predicate symbol $\si$''.
 
 \item $\csps$ is \emph{locally consistent} if $\TIs$ is realizable over
-$\vFo2\Eea{(\sze-1)}\agrefine$.
+\emph{the simpler} $\vFo2\Eea{(\sze-1)}\agrefine$
 
 \begin{tikzpicture}
 \node[above right] at (-1,1) {$\StrA : \vFo2\Eea\sze\agrefine$};
