@@ -24,22 +24,23 @@ A summary of this work is as follows:
   
   \item
   In~\Cref{ch:setups} we define various \emph{setups} --- suites of appropriate
-  formulas --- that allow us to model bounded discrete objects such as $\tbit$
-  numbers or permutations of $[1,\nn]$ into logical structures.
-
+  formulas that allow us to model bounded discrete objects such as
+  $\tbit$-bit numbers or permutations of $[1,\nn]$ --- into logical structures.
+  
   \item
   In~\Cref{ch:equivalences} we define the three agreement properties: local,
   global agreement and refinement and develop the theory of equivalence
   relations in local agreement sufficiently for our purposes.
   In particular, we prove~\Cref{thm:local} that a sequence $\relE =
-  \relEE1,\relEE2,\dots,\relEE\nn$ of equivalence relations on $\domA$ is in
-  local agreement iff the union $\cup\setS$ of any nonempty subsequence $\setS$
+  \seq{\relEE1,\relEE2,\dots,\relEE\nn}$ of equivalence relations on $\domA$ is
+  in local agreement iff the union $\cup\setS$ of any nonempty subsequence $\setS$
   of $\relE$ is an equivalence relation on $\domA$.
   This allows us to define the \emph{level sequence} (\Cref{def:lvl-seq}) of a
-  sequence of equivalence relations in local agreement and to characterize as a
-  some kind of a ``skeleton'', which combined with a local permutation at every
-  element $\ea\in\domA$ completely characterizes the sequence $\relE$
-  (\Cref{lem:local-lvl-refine} and~\Cref{lem:local-lvl-perm}).
+  sequence of equivalence relations in local agreement and to characterize it as
+  a some kind of a ``skeleton'', which combined with a permutation witnessing
+  the local agreement at every element $\ea\in\domA$ completely characterizes
+  the original sequence $\relE$ (\Cref{lem:local-lvl-refine}
+  and~\Cref{lem:local-lvl-perm}).
   
   \item
   In~\Cref{ch:reductions} we provide deterministic polynomial-time reductions
