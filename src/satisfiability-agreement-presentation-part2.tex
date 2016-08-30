@@ -459,81 +459,168 @@ Let $\StrA$ be a $\vFo2\Eea1\noag$-structure for the type instance $\TI$.
 \begin{frame}{Noble Distinguishability}
 \begin{itemize}
   \item A structure is \emph{nobly distinguished} if every noble galaxy realizes
-  only noble type
-  \item Reduce type realizability in general to the class of nobly distinguished
-  structures?
-  \item Idea: Tag peasants in a noble galaxy with some noble type from that
+  only noble types
+  \pause
+  \item Reduction: tag peasants in a noble galaxy with some noble type from that
   galaxy
-\pause
+  
+  \begin{tikzpicture}
+  \draw[dashed] (-0.5,-1) rectangle (2.7,1);
+  \draw[fill] (0,0) circle[radius=2pt];
+  \node[right] at (0,0) {$\tpk$};
+  \draw[fill] (1,0.5) circle[radius=2pt];
+  \node[right] at (1,0.5) {$\tpn$};
+  \draw[fill] (1,-0.5) circle[radius=2pt];
+  \node[right] at (1,-0.5) {$\tpn$};
+  \draw[fill] (2,0) circle[radius=2pt];
+  \node[right] at (2,0) {$\tpp_\tpn$};
 
+  \draw[dashed] (3,-1) rectangle (4.5,-0.2);
+  \draw[fill] (3.5,-0.6) circle[radius=2pt];
+  \node[right] at (3.5,-0.6) {$\tpp_\bot$};
+
+  \draw[dashed] (3,0.2) rectangle (4.5,1);
+  \draw[fill] (3.5,0.6) circle[radius=2pt];
+  \node[right] at (3.5,0.6) {$\tpp_\bot$};
+  \end{tikzpicture}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Cosmic Spectrums}
+\begin{itemize}
+  \item Let $\StrA$ be a nobly distinguished model for $\TI$ having at least $2$
+  galaxies
+  \item The cosmic spectrum of a galaxy $\galX\subset\domA$ is
+   \[\cspIX\StrA\galX =
+  \csps = (\cii\csps,\cie\csps,\cei\csps,\cee\csps)\]
 \begin{tikzpicture}
-\draw[dashed] (-0.5,-1) rectangle (2.7,1);
-\draw[fill] (0,0) circle[radius=2pt];
-\node[right] at (0,0) {$\tpk$};
-\draw[fill] (1,0.5) circle[radius=2pt];
-\node[right] at (1,0.5) {$\tpn$};
-\draw[fill] (1,-0.5) circle[radius=2pt];
-\node[right] at (1,-0.5) {$\tpn$};
-\draw[fill] (2,0) circle[radius=2pt];
-\node[right] at (2,0) {$\tpp_\tpn$};
-
-\draw[dashed] (3,-1) rectangle (4.5,-0.2);
-\draw[fill] (3.5,-0.6) circle[radius=2pt];
-\node[right] at (3.5,-0.6) {$\tpp_\bot$};
-
-\draw[dashed] (3,0.2) rectangle (4.5,1);
-\draw[fill] (3.5,0.6) circle[radius=2pt];
-\node[right] at (3.5,0.6) {$\tpp_\bot$};
+\draw[dashed] (-1,-1) rectangle (1,1);
+\node[above right] at (-1,1) {$\galX$};
+\draw[fill] (-0.5,0.5) circle[radius=2pt];
+\draw[fill] (0.5,0.5) circle[radius=2pt];
+\draw (-0.5,0.5) to (0.5,0.5);
+\node[above] at (0.2,0.4) {$\tpt\in\cii\csps$};
+\draw[fill] (0.7,0) circle[radius=2pt];
+\draw[fill] (2.1,0) circle[radius=2pt];
+\draw (0.7,0) to (2.1,0);
+\node[above] at (1.7,-0.1) {$\tpt\in\cie\csps$};
+\node[below] at (1.8,0.1) {$\inv\tpt\in\cie\csps$};
+\draw[fill] (2.1,0.8) circle[radius=2pt];
+\draw[fill] (3.1,0.8) circle[radius=2pt];
+\draw (2.1,0.8) to (3.1,0.8);
+\node[above] at (2.8,0.7) {$\tpt\in\cee\csps$};
 \end{tikzpicture}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Cosmic Spectrums}
-TODO: Picture
+A cosmic spectrum $\csps=(\cii\csps,\cie\csps,\cei\csps,\cee\csps)$ over $\TI$
+is a tuple satisfying:
+\begin{itemize}
+  \item[\condcspII]\label{cond:cspII}
+  The set of \emph{internal types} $\cii\csps \subseteq \TIg$ is a set of
+  galactic types that is closed under inversion.
+  
+  \item[\condcspIE]\label{cond:cspIE}
+  The set of \emph{boundary types} $\cie\csps \subseteq \TIc$ is a nonempty set
+  of cosmic types.
+  
+  \item[\condcspEI]\label{cond:cspEI}
+  The set of \emph{inverted boundary types} is:
+  $\cei\csps = \setbd{\inv\tpt}{\tpt\in\cie\csps}$.
+  
+  \item[\condcspEE]\label{cond:cspEE}
+  The set of \emph{external types} $\cee\csps \subseteq \TI$ is a set of
+  \twotypes/ that is closed under inversion.
+
+  \item[\condcspT]\label{cond:cspT}
+  We require that
+  $\TI = \cii\csps \cup \cie\csps \cup \cei\csps \cup \cee\csps$.
+
+  \item[\condcspNP]\label{cond:cspNP}
+  The (nonempty) set $(\tpx\restriction{\cie\csps})$ is
+  the set of \emph{internal \onetypes/} of~$\csps$.
+  We require that either $\Tpx\csps \subseteq \TN\TI$, or $\Tpx\csps \subseteq
+  \TPs\TI$.
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Cosmic Spectrums}
-TODO: Conditions
+\begin{frame}{Locally consistent cosmic spectrums}
+\begin{itemize}
+\item The \emph{spectral type instance} $\TIs$ of the
+$\vFo2\Eea\sze\agrefine$-cosmic spectrum $\csps$ is $\TIs = \dii\TIs \cup \die\TIs \cup \dei\TIs \cup \dee\TIs$,
+where $\TIs_{\mathcal{X}{\mathcal{Y}}} =
+\setbd{\tpt_{\mathcal{X}{\mathcal{Y}}}}{\tpt\in\csps^{\mathcal{X}\mathcal{Y}}}$,
+where $\tpt_{\mathcal{X}{\mathcal{Y}}}$ works by ``removing $\se$ and tagging
+the ends with a new predicate symbol $\si$''.
+
+\item $\csps$ is \emph{locally consistent} if $\TIs$ is realizable over
+$\vFo2\Eea{(\sze-1)}\agrefine$.
+
+\begin{tikzpicture}
+\node[above right] at (-1,1) {$\StrA : \vFo2\Eea\sze\agrefine$};
+\draw (-1,-1) rectangle (2,1);
+\draw[dashed] (-0.8,-0.8) rectangle (0.5,0.8);
+\node[below right] at (-0.8,0.8) {$\galX$};
+\draw[fill] (-0.2,0) circle[radius=2pt];
+\node[right] at (-0.2,0) {$\tpp$};
+\draw[fill] (1,0) circle[radius=2pt];
+\node[right] at (1,0) {$\rho$};
+
+\node at (3,0) {$\implies$};
+
+\draw (4,-1) rectangle (9,1);
+\node[above right] at (4,1) {$\StrAp : \vFo2\Eea{(\sze-1)}\agrefine$};
+\draw[dashed] (4.2,-0.8) rectangle (6.3,0.8);
+\node[below right] at (4.2,0.8) {$\si$};
+\draw[fill] (4.5,0) circle[radius=2pt];
+\node[right] at (4.5,0) {$\tpp^{-\se}+\si$};
+\node[below right] at (6.3,0.8) {$\lnot\si$};
+\draw[fill] (6.6,0) circle[radius=2pt];
+\node[right] at (6.6,0) {$\tpr^{-\se}+(\lnot\si)$};
+\end{tikzpicture}
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Spectral Type Instance}
-TODO: Picture
+\begin{frame}{Certificates}
+A \emph{certificate} $\Cert$ for the type instance~$\TI$ is a nonempty set of
+locally consistent cosmic spectrums satisfying:
+\begin{itemize}
+  \item[\condcertTc]\label{cond:certTc}
+  If $\tpt\in\TIc$ then some $\csps\in\Cert$ has $\tpt\in\cie\csps$.
+  \item[\condcertTg]\label{cond:certTg}
+  If $\tpt\in\TIg$ then some $\csps\in\Cert$ has $\tpt\in\cii\csps$.
+  \item[\condcertn]\label{cond:certn}
+  If $\tpn\in\TN\TI$ and $\csps,\cspsp\in\Cert$ have $\tpn\in\Tpx\csps$ and
+  $\tpn\in\Tpx\cspsp$, then $\cspsp = \csps$.
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Locally consistent Cosmic Spectrums}
-TODO: Certificate
+\begin{frame}{Analogues}
+\begin{align*}
+  \vFo2 &\Longleftrightarrow \vFo2\Eea\sze\agrefine \\
+  \text{models} &\Longleftrightarrow \text{nobly distinguished models} \\
+  \text{elements} &\Longleftrightarrow \text{galaxies} \\
+  \text{kings} &\Longleftrightarrow \text{nobles} \\
+  \text{workers} &\Longleftrightarrow \text{peasants} \\
+  \text{star-types} &\Longleftrightarrow \text{locally consistent cosmic
+  spectrums} \\
+  \text{certificates} &\Longleftrightarrow \text{certificates}
+\end{align*}
 \end{frame}
 
+\begin{frame}{Certificate Expansion}
+\begin{theorem}
+Let $\Cert$ be a certificate for the type instance $\TI$ over the
+$\vFo2\Eea\sze\agrefine$-classified signature $\ClSig\Sigma\sms$.
+Then $\TI$ has a finite model in which each worker type is realized at least
+$\pt$ times.
+\end{theorem}
+\begin{itemize}
+  \item Type realizability for $\vFo2\Eea\sze\agrefine$ is in
+  $\cNP$
+  \item Satisfiability for $\vFo2\Eea\sze\agrefine$ is in
+  $\cNExpTime$
+\end{itemize}
+\end{frame}
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
