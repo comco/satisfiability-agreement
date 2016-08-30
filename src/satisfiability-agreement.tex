@@ -16,6 +16,7 @@
 \usepackage{cancel} % for strikeout
 \usepackage{xspace} % for spaces after commands
 \usepackage{extpfeil} % for arrows
+\usepackage{fancyhdr}
 
 \setlist[description]{leftmargin=\parindent,labelindent=\parindent} % for
 % labels
@@ -163,11 +164,44 @@
 
 \input{two-variable/tpreal-twovar.gls.tex}
 
+\fancypagestyle{title}{
+\fancyhead[C]{Sofia University ``St. Kliment Ohridski''\\
+Faculty of Mathematics and Informatics\\
+Department of Mathematical Logic and Applications}
+}
+
 \begin{document}
 \frontmatter
+\date{September, 2016}
 \title{Satisfiability with Equivalences in Agreement}
-\author{Krasimir Georgiev}
-\maketitle
+\subtitle{Master Thesis}
+\author{Krasimir Georgiev\\{Supervisor: Assoc. Prof. Tinko Tinchev}}
+%\maketitle\thispagestyle{title}
+
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.15\textwidth]{su_logo_imagelarge.jpg}\par\vspace{1cm}
+  {\Large Sofia University ``St. Kliment Ohridski'' \par
+  Faculty of Mathematics and Informatics \par
+  Department of Mathematical Logic and Applications}
+
+  \vspace{1cm}
+  {\scshape\LARGE Master Thesis\par}
+  \vspace{1.5cm}
+  {\huge{\bfseries \textsf{Satisfiability with Equivalences in
+  Agreement}\par}}
+  \vspace{2cm}
+  {\Large\itshape Krasimir Georgiev\par}
+  \vfill
+  {\large supervised by\par
+  Assoc. Prof.~Tinko \textsc{Tinchev}}
+
+  \vfill
+
+% Bottom of the page
+  {\large September, 2016\par}
+\end{titlepage}
+
 \tableofcontents
 \printglossary[style=mcolindex]
 
