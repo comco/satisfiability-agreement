@@ -86,6 +86,111 @@
 \date{September 1, 2016}
 \frame{\titlepage}
 
+\begin{frame}{Agreement}
+\begin{itemize}
+  \item The sets $A$ and $B$ \emph{intersect strictly} if $A\cap B$, $A\setminus
+  B$ and $B\setminus A$ are nonempty.
+  
+  {
+  \begin{tikzpicture}
+  \draw (0,0) circle[radius=1];
+  \draw[fill] (-0.3,0) circle[radius=2pt];
+  \draw (1.2,0) circle[radius=1];
+  \draw[fill] (0.6,0) circle[radius=2pt];
+  \draw[fill] (1.5,0) circle[radius=2pt];
+  \end{tikzpicture}
+  }
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Agreement}
+\begin{itemize}
+  \item The sets $A$ and $B$ \emph{intersect strictly} if $A\cap B$, $A\setminus
+  B$ and $B\setminus A$ are nonempty.
+  
+  {
+  \begin{tikzpicture}
+  \draw (0,0) circle[radius=1];
+  \draw[fill] (-0.3,0) circle[radius=2pt];
+  \draw (1.2,0) circle[radius=1];
+  \draw[fill] (0.6,0) circle[radius=2pt];
+  \draw[fill] (1.5,0) circle[radius=2pt];
+  \draw[thick,red] (-0.5,-1) to (1.5,1);
+  \draw[thick,red] (-0.5,1) to (1.5,-1);
+  \end{tikzpicture}
+  }
+  \item \textbf{What happens if we avoid these?}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Agreement}
+\begin{tikzpicture}
+\draw (0,0) circle[radius=1];
+\draw[fill] (-0.3,0) circle[radius=2pt];
+\draw (1.2,0) circle[radius=1];
+\draw[fill] (0.6,0) circle[radius=2pt];
+\draw[fill] (1.5,0) circle[radius=2pt];
+\draw[thick,red] (-0.5,-1) to (1.5,1);
+\draw[thick,red] (-0.5,1) to (1.5,-1);
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw[thick,green] (-0.5,1) to (0.5,-1);
+\draw[thick,green] (0.5,-1) to (2.5,1);
+\draw (0,0) circle[radius=1];
+\draw[fill] (-0.3,0) circle[radius=2pt];
+\draw (2.2,0) circle[radius=1];
+\draw[fill] (0.6,0) circle[radius=2pt];
+\draw[fill] (1.5,0) circle[radius=2pt];
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw[thick,green] (-1,1) to (-0.5,-1);
+\draw[thick,green] (-0.5,-1) to (1.5,1);
+\draw (0,0) circle[radius=1];
+\draw[fill] (-0.3,0) circle[radius=2pt];
+\draw (0.5,0) circle[radius=0.4];
+\draw[fill] (0.6,0) circle[radius=2pt];
+\end{tikzpicture}
+\begin{itemize}
+
+\item
+Two equivalence relations $G,E$ on $A$ are \emph{in local agreement} if their
+classes do not strictly intersect
+\pause
+\item equivalently either $G[a]\subseteq E[a]$ or
+$E[a]\subseteq G[a]$ for every $a\in A$
+\pause
+\item \emph{(colored) foam hierarchy: balloons in baloons}
+\pause
+\item \emph{siam twin matryoshkas}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Agreement}
+\begin{itemize}
+
+\item \emph{(colored) foam hierarchy: balloons in balloons}
+\begin{figure}
+\includegraphics[scale=0.07]{1-IMG_4360.JPG}
+
+{\tiny image © 2014 Asia Citro, reproduced with permission from \\
+\url{http://www.funathomewithkids.com/2014/07/magic-foaming-treasure-stars.html}}
+\end{figure}
+
+\pause
+\item \emph{siam twin matryoshkas}
+\end{itemize}
+\end{frame}
+\begin{frame}{This work}
+\begin{itemize}
+  \item define and characterize notions of agreement --
+  \emph{\textbf{refinement}, \textbf{local agreement} and \textbf{global
+  agreement}}
+  \item find the \textbf{computational complexity} of the
+  \textbf{satisfiability} of the \emph{\textbf{monadic}} and the
+  \emph{\textbf{two-variable}} fragment with respect to these notions
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Overview}
 \tableofcontents
 \end{frame}
@@ -171,7 +276,7 @@ symbols.
 \end{frame}
 
 \begin{frame}{Counter Setups Formulas}
-We can define \emph{small} formulas with the following properties:
+We can define \emph{\textbf{small formulas}} with the following properties:
 \begin{itemize}
   \item
   $\StrA\vDash\feqA\CS\datad(\ea)$ iff $\data\CS\StrA\ea = \datad$.
@@ -180,14 +285,7 @@ We can define \emph{small} formulas with the following properties:
   $\StrA\vDash\feq\CS(\ea,\eb)$ iff $\data\CS\StrA\ea = \data\CS\StrA\eb$.
   
   \item
-  the $\tbit$-bit bitstring $\bstra$ encodes a number less than the
-  $\tbit$ bitstring $\bstrb$ iff there is a position $\jj\in[1,\tbit]$ such that
-  $\bstra_j = 0$, $\bstrb_j = 1$ and $\bstra_k = \bstrb_k$ for
-  $k\in[j+1,\tbit]$.
-  \[
-    \fless\CS(\xx,\yy) = \bigvee_{1 \leq \jj \leq \tbit} \feqOI{\suu\jj}(\xx,\yy)
-    \land \bigwedge_{\jj < \kk \leq \tbit} \feq{\suu\kk}(\xx,\yy).
-  \]
+  $\StrA\vDash\fless\CS(\ea,\eb)$ iff $\data\CS\StrA\ea < \data\CS\StrA\eb$.
   
   \item
   $\StrA\vDash\fsucc\CS(\ea,\eb)$ iff $\data\CS\StrA\eb = 1 +
@@ -215,7 +313,7 @@ predicate symbols.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Vector Setups Formulas}
+\begin{frame}{Vector Setups \textbf{Small Formulas}}
 \begin{itemize}
   \item
   $\StrA\vDash\feqP\VS\posp\posq(\ea)$ iff $\data{\VSp\posp}\StrA\ea =
@@ -246,11 +344,9 @@ where $t$ is the bitsize of $n$.
 An \emph{$n$-permutation setup} $\PS =
 \seq{\suu{11},\suu{12},\dots,\suu{nt}}$ is just an $n$-dimensional $t$-bit
 vector.
-\begin{itemize}
-  
-  \item The formula $\fperm\PS = \fbetw\PS1\nn \land \falldiff\PS$ asserts that
-  the vector setup encodes exactly the permutations.
-\end{itemize}
+
+The \emph{\textbf{small formula}} $\fperm\PS = \fbetw\PS1\nn \land \falldiff\PS$
+asserts that the vector setup encodes exactly the permutations.
 \end{frame}
 
 \section{Equivalence Relations}
@@ -515,24 +611,30 @@ Then $L_k[a] = E_{\nu(k)}[a]$ for any $k\in[1,n]$.
   \item
   $\LL$, the \emph{ground logic}, is the first-order logic with formal equality
   
+  \pause
   \item
   $\nv$, if given, bounds the number of allowed variables
   
+  \pause
   \item
   $\sze$, if given, specifies the number of builtin equivalence symbols
   
+  \pause
   \item
   $\ag\in\set{\agrefine,\agglobal,\aglocal}$, if given, specifies the agreement
   condition between the equivalence symbols
   
+  \pause
   \item
   if $\pow$ is not given, the signature consists of arbitrary many unary and
   binary predicate symbols
   
+  \pause
   \item
   if $\pow = 0$, the signature consists of only constantly many unary predicate
   symbols
   
+  \pause
   \item
   if $\pow = 1$, the signature consists of arbitrary many unary predicate
   symbols
@@ -610,7 +712,7 @@ characteristic permutations agree at position $\kk$.
 
 \begin{frame}{Levels and Permutations}
 Let $\LS = \seq{\slee1,\slee2,\dots,\slee\sze} + \PS$ consist of the builtin
-equivalence symbols $\slee1$ (we intend to interpret them as the levels)
+equivalence symbols $\slee\ii$ (we intend to interpret them as the levels)
 together with the permutation setup $\PS$ (intended to encode the
 characteristic permutations).
 
@@ -684,17 +786,23 @@ The translation just uses polynomially many new unary predicate symbols (it can
 \end{frame}
 
 \section{Monadic Logics}
+\begin{frame}
+
+{\LARGE Monadic Logics}
+\end{frame}
 \begin{frame}{Results}
 It is known that:
 \begin{itemize}
   \item
   $\Lvp\LL\nonv1$ has the finite model property~{[L{\"o}wenheim 1915]} and
-  and its satisfiability problem is $\cNExpTime$-complete
+  its satisfiability problem is $\cNExpTime$-complete
   
+  \pause
   \item
   $\Lvp\LL\nonv0\Eea1\noag$ has the finite model property and
   its satisfiability problem is $\cPSpace$-complete
   
+  \pause
   \item
   $\Lvp\LL\nonv0\Eea2\noag$ lacks the finite model property
   and both the satisfiability and finite satisfiability are
@@ -704,15 +812,15 @@ It is known that:
 \pause
 How about $\Lvp\LL\nonv1\Eea1\noag$?
 \pause
-We show that:
+\textbf{We show that:}
 \begin{itemize}
-  \item
+  \item\textbf{
   $\Lvp\LL\nonv1\Eea1\noag$ has the finite model property and its
-  satisfiability problem is $\ceNExpTime2$-complete
+  satisfiability problem is $\ceNExpTime2$-complete}
   
-  \item
-  in general $\Lvp\LL\nonv1\Eea\sze\agrefine$ has the finite model property and
-  its satisfiability problem is $\ceNExpTime{(\sze+1)}$-complete
+  \item\textbf{
+  in general, $\Lvp\LL\nonv1\Eea\sze\agrefine$ has the finite model property and
+  its satisfiability problem is $\ceNExpTime{(\sze+1)}$-complete}
 \end{itemize}
 \end{frame}
 
@@ -796,12 +904,17 @@ $\FinASat{\Lvp\LL\nonv1\Eea1\noag}$ is in $\ceNExpTime2$.
 \end{frame}
 
 \begin{frame}{Hardness: Domino Problem}
+\begin{itemize}
+  \item 
 Reduce the $\ceNExpTime2$-complete Square Domino Tiling Problem to
 $\FinASat{\Lvp\LL\nonv1\Eea1\noag}$.
 
+\item
 A \emph{domino system} is a triple $D = (T,H,V)$, where
 $T = [1,k]$ is a set of \emph{tiles} and $H,V\subseteq T\cprod T$ are the
 \emph{horizontal} and \emph{vertical matching relations}.
+
+\item
 A \emph{tiling} of the $m\cprod m$ square for a domino system $D$ with initial
 condition $c^0 = \seq{t_1^0,t_2^0,\dots,t_n^0}$, where $n\leq m$, is a mapping
 $t : [1,m]\cprod [1,m]\to T$ such that:
@@ -809,6 +922,7 @@ $t : [1,m]\cprod [1,m]\to T$ such that:
   \item $(t(i,j),t(i+1,j))\in H$ for all $i\in[1,m-1], j\in[1,m]$
   \item $(t(i,j),t(i,j+1))\in V$ for all $i\in[1,m], j\in[1,m-1]$
   \item $t(i,1) = t_i^0$ for all $i\in[1,n]$
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -875,6 +989,7 @@ how can we define a doubly exponential grid?
 Let $\StrA$ be a $\Sigma$-structure and let $\relE = \at\StrA\se$.
 The equivalence classes of $\relE$ are $\Ecl\relE$.
 The number encoded by the bitstring $\bstrb$ is $\bdec{\bstrb}$.
+
 With \emph{a bit of work} we can define:
 \begin{itemize}
   \item
@@ -900,16 +1015,20 @@ Given $D_0 = (T,V,H)$, where $T = [1,k]$, and $c^0 =
 \Sigma &=
 \seq{\suu1^H,\suu2^H,\dots,\suu\nn^H;\suu1^V,\suu2^V,\dots,\suu\nn^V;
 \suu1^T,\suu2^T,\dots,\suu{k}^T;\se} \\
+ &\suu1^T,\suu2^T,\dots,\suu{k}^T \text{for tiles} \\
 \Sigma^{HV} &=
-\seq{\suu1^H,\suu2^H,\dots,\suu\nn^H;\suu1^V,\suu2^V,\dots,\suu\nn^V;\se} \\
+\seq{\suu1^H,\suu2^H,\dots,\suu\nn^H;\suu1^V,\suu2^V,\dots,\suu\nn^V;\se}
+\text{for the full grid}
+ \\
 \Sigma^{H} &=
-\seq{\suu1^H,\suu2^H,\dots,\suu\nn^H;\se} \\
+\seq{\suu1^H,\suu2^H,\dots,\suu\nn^H;\se} \text{for horizontal matching} \\
 \Sigma^{V} &=
-\seq{\suu1^V,\suu2^V,\dots,\suu\nn^V;\se}
+\seq{\suu1^V,\suu2^V,\dots,\suu\nn^V;\se} \text{for vertical matching}
 \end{align*}
 \end{frame}
 
 \begin{frame}{Reduction}
+\textbf{small formulas}
 \begin{itemize}
   \item
   $\fposfull{\Sigma^{HV}}\land\fFull{\Sigma^{HV}}\land\fAlldiff{\Sigma^{HV}}$
@@ -927,6 +1046,7 @@ Given $D_0 = (T,V,H)$, where $T = [1,k]$, and $c^0 =
 \end{frame}
 
 \begin{frame}{Reduction}
+\textbf{small formulas}
 \begin{itemize}
   \item $\forall\xx \Big(\fDataA{\DS^\horm}{(\jj-1)}(\xx) \land \fZero{\DS^\verm}(\xx)
   \limp \suuu\tiles{\icondt\jj}(\xx)\Big)$ encodes the inital condition

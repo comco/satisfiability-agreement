@@ -89,28 +89,51 @@
 \date{September 1, 2016}
 \frame{\titlepage}
 
-\begin{frame}{Overview}
-\tableofcontents
-\end{frame}
-
 \section{Two-variable Logic}
 \begin{frame}{Two-variable Logic}
 \begin{itemize}
   \item 
   The two-variable logic $\vFo2$ is the fragment of first-order logic featuring
-  only the variables $\xx$ and $\yy$ (with formal equality and restricted to just
-  unary and binary predicate symbols).
+  only the variables $\xx$ and $\yy$ (with formal equality and restricted to
+  just unary and binary predicate symbols).
+  
+  \item ``resource restriction''
+  \item connections with modal logic
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Satisfiability Results}
+\begin{itemize}
   \item
-  It is known that $\vFo2$ has the finite model property~{[Mortimer, 1975]} and
+  $\vFo2$ has the finite model property~{[Mortimer, 1975]} and
   its (finite) satisfiability problem is $\cNExpTime$-complete~{[Gr{\"a}del,
   Kolaitis, Vardi, 1997]}.
   
-  \item We develop a technique that allows us to show that the two-variable
-  logic with equivalences in refinement $\vFo2\Eea\sze\agrefine$ has the finite
-  model property and its (finite) satisfiability problem is in $\cNExpTime$.
+  \pause
+  \item $\vFo2\Eea1\noag$ has the finite model property and its satisfiability
+  problem is $\cNExpTime$-complete~{[Kiero{\'n}ski, 2005]}.
+  
+  \pause
+  \item $\vFo2\Eea2\noag$ lacks the finite model property and both its
+  satisfiability and finite satisfiability are
+  $\ceNExpTime2$-complete~{[Kieroński, Michaliszyn, Pratt-Hartmann, Tendera, 2014]},
+  
+  \pause
+  \item Both the satisfiability and finite satisfiability
+  problems for $\vFo2\Eea\sze\noag$ are undecidable for
+  $\sze\geq3$~{[Kieroński, Otto, 2005]}.
+  
+  \pause
+  \item
+  \textbf{We show that $\vFo2\Eea\sze\agrefine$ has the finite model
+  property and its satisfiability problem is in $\cNExpTime$ for $\sze\geq1$.}
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Overview}
+\tableofcontents
+\end{frame}
+
 \begin{frame}{Scott Normal Form}
 \begin{theorem}[Scott, 1962]
 There is a polynomial-time reduction $\sctr: \vFo2 \to \vFo2$ which reduces
@@ -120,10 +143,9 @@ every sentence $\fphi$ to a sentence $\sctr\fphi$ in \emph{Scott normal form}:
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
   (\falpp\ii(\xx,\yy) \land \xx \neq \yy),
 \]
-where $\nm\geq1$, the formulas $\falpp\ii$ are quantifier-free and use at most
-linearly many new unary predicate symbols.
-The sentences $\fphi$ and $\sctr\fphi$ are satisfiable over the same domains of
-cardinality at least $2$.
+where $\nm\geq1$, the formulas $\falpp\ii$ are quantifier-free and may use
+fresh unary predicate symbols, such that $\fphi$ and $\sctr\fphi$ are
+satisfiable over the same domains of cardinality at least~$2$.
 \end{theorem}
 \end{frame}
 
@@ -133,18 +155,26 @@ cardinality at least $2$.
   \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
   (\falpp\ii(\xx,\yy) \land \xx \neq \yy)
 \]
-Strategy: if $\fpsi$ is a subformula of $\fphi$ of the form $Q x
+
+Idea: if $\fpsi$ is a subformula of $\fphi$ of the form $Q x
 \alpha(x,y)$, where $\alpha$ is quantifier-free, then
-$\fphi$ and $\fphi' \land \forall y(\spe(y)\lequ Q x \alpha(x,y))$ are
-equisatisfiable, where $\spe(y)$ is a new unary symbol and $\fphi'$ is obtained
-from $\fphi$ by replacing the subformula $\fpsi$ by $\spe(y)$.
+\[
+  \fphi \text{ and } \fphi' \land \forall y(\spe(y)\lequ Q x \alpha(x,y))
+\]
+are satisfiable over the same domains, where $\spe$ is a new unary symbol and
+$\fphi'$ is obtained from $\fphi$ by replacing the subformula $\fpsi$ by $\spe(y)$.
 \end{frame}
 
 \begin{frame}{Classified Signatures}
+\[
+  \forall\xx\forall\yy(\falpp0(\xx,\yy) \lor \xx = \yy) \land
+  \bigwedge_{1 \leq \ii \leq \nm} \forall\xx\exists\yy
+  (\falpp\ii(\xx,\yy) \land \xx \neq \yy)
+\]
 \begin{itemize}
   \item
-  we can replace the existential parts $\alpha_i, i \geq 1$ with fresh binary
-  predicate symbols $\smm\ii$ with interpretation
+  replace $\alpha_i, i\in[1,m]$ with fresh binary predicate \emph{message}
+  symbols $\smm\ii$ with interpretation
   $\forall\xx\forall\yy(\smm\ii(\xx,\yy)\lequ\alpha_i(\xx,\yy))$
   
   \item
@@ -154,7 +184,7 @@ from $\fphi$ by replacing the subformula $\fpsi$ by $\spe(y)$.
   
   \item
   A \emph{structure} $\StrA$ for $\ClSig\Sigma\sms$ is a structure for
-  $\Sigma$ satisfying the existential parts:
+  $\Sigma$ satisfying:
   \[\bigwedge_{1\leq\ii\leq\nm}\forall\xx\exists\yy(\smm\ii(\xx,\yy)\land\xx\neq\yy)\]
 \end{itemize}
 \end{frame}
@@ -162,9 +192,9 @@ from $\fphi$ by replacing the subformula $\fpsi$ by $\spe(y)$.
 \begin{frame}{Classified Signatures}
 \begin{itemize}
   \item
-  The (finite) classified satisfiability problem is: given a classified signature
-  $\ClSig\Sigma\sms$ and a quantifier-free formula $\alpha(\xx,\yy)$, is there a
-  $\ClSig\Sigma\sms$-structure $\StrA$ such that
+  The (finite) \emph{classified satisfiability problem} is: given a classified
+  signature $\ClSig\Sigma\sms$ and a quantifier-free formula $\alpha(\xx,\yy)$,
+  is there a $\ClSig\Sigma\sms$-structure $\StrA$ such that
   $\StrA\vDash\forall\xx\forall\yy\alpha(\xx,\yy)$.
 
   \item
@@ -183,11 +213,21 @@ Let $\Sigma = \seq{\spp1,\spp2,\dots,\spp\nn}$ be a predicate signature.
   \item A \emph{\twotype/} $\tpt$ over $\Sigma$ is maximal consistent set of
   literals featuring the variable symbols $\xx$ and $\yy$ and including
   $(\xx \neq \yy)$.
+  \begin{tikzpicture}
+  \draw[fill] (0,0) circle[radius=2pt];
+  \draw[fill] (1,0) circle[radius=2pt];
+  \draw (0,0) to (1,0);
+  \node[left] at (0,0) {$\tpx\tpt$};
+  \node[right] at (1,0) {$\tpy\tpt$};
+  \node[above] at(0.5,0) {$\tpt$};
+  \node[below] at(0.5,0) {$\inv\tpt$};
+  \end{tikzpicture}
   \item If $\tpt$ is a \twotype/, the \emph{$\xx$-type} $\tpx\tpt$ is the
   \onetype/ consisting of those literals featuring only the variable $\xx$,
   \item the \emph{inverse} $\inv\tpt$ is the \twotype/ obtained from swapping
   $\xx$ and $\yy$ in the literals of $\tpt$ 
   \item and $\tpy\tpt = \tpx{(\inv\tpt)}$.
+  
 \end{itemize}
 \end{frame}
 
@@ -228,8 +268,8 @@ signature.
   The \onetypes/ of $\TI$ are $\TP\TI = (\tpx\restriction\TI)$.
   
   \item
-  A \onetype/ $\tpk\in \TP\TI$ is a \emph{king type} if no $\tpt\in\TI$ has
-  $\tpx\tpt = \tpy\tpt =\tpk$. The set of king types is $\TK\TI$.
+  A \onetype/ $\tpk\in \TP\TI$ is a \emph{king type} if no $\tpt\in\TI$ connects
+  $\tpk$ with itself. The set of king types is $\TK\TI$.
   
   \item
   The remaining \onetypes/ are the \emph{worker types}.
@@ -262,7 +302,7 @@ $\tpp\in\TW\TI$, $\tpt\in\TI$, $\tpx\tpt = \tpy\tpt=\tpp$
 \draw[->] (4,0) to (3,-0.5);
 \node[below] at (3.5,-0.25) {$\tpt_2$};
 \node[left] at (4,0) {$\dots$};
-\draw[fill] (4,1) circle [radius=2pt];
+\draw (4,1) circle [radius=2pt];
 \draw[dashed,->] (4,1) to (3,-0.5);
 \draw[dashed,->] (4,1) to (3,0.5);
 \node[right] at (4,1) {$\tpp$};
@@ -280,6 +320,8 @@ This doesn't work for kings!
 \end{frame}
 
 \begin{frame}{Star-types}
+\begin{columns}
+\begin{column}{0.6\textwidth}
 The \emph{star-type} of $\ea\in\domA$ is:
 $\stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb\in\domA\sub\set\ea}$
 
@@ -296,6 +338,17 @@ $\stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb\in\domA\sub\set\ea}$
 \end{tikzpicture}
 
 Gives reason why the existential condition is satisfied locally at $\ea$.
+\end{column}
+\begin{column}{0.4\textwidth}
+\begin{figure}
+\includegraphics[scale=0.07]{1-IMG_4360.JPG}
+
+{\tiny image © 2014 Asia Citro, reproduced with permission from \\
+\url{http://www.funathomewithkids.com/2014/07/magic-foaming-treasure-stars.html}}
+\end{figure}
+\end{column}
+\end{columns}
+
 \end{frame}
 
 \begin{frame}{Star-types}
@@ -317,6 +370,12 @@ $\stps\subseteq\TI$ satisfying:
   
   \item[\condstpm]\label{cond:stpm}
   If $\sm \in \sms$, then some $\tpt\in\stps$ has $\sm(\xx,\yy) \in \tpTt$.
+\end{itemize}
+Then:
+\begin{itemize}
+  \item[\condstpkyu]\label{cond:stpkyu}
+  If $\tpkp \in \nb\TI\tpp\cap\TK\TI$,
+  then a unique $\tpt\in\stps$ has $\tpy\tpt = \tpk$.
 \end{itemize}
 \end{frame}
 
