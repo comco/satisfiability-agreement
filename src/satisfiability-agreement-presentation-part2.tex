@@ -194,8 +194,12 @@ $\fphi'$ is obtained from $\fphi$ by replacing the subformula $\fpsi$ by $\spe(y
   \item
   The (finite) \emph{classified satisfiability problem} is: given a classified
   signature $\ClSig\Sigma\sms$ and a quantifier-free formula $\alpha(\xx,\yy)$,
-  is there a $\ClSig\Sigma\sms$-structure $\StrA$ such that
-  $\StrA\vDash\forall\xx\forall\yy\alpha(\xx,\yy)$.
+  is there a $\ClSig\Sigma\sms$-structure $\StrA$ satisfying
+  \[
+    \forall\xx\forall\yy(\alpha(\xx,\yy)\lor(\xx=\yy)) \land
+    \bigwedge_{1\leq\ii\leq\nm} \forall\xx\exists\yy
+    (\sm_i(\xx,\yy)\land(\xx\neq\yy)).
+  \]
 
   \item
   Scott tells us how (finite) satisfiability reduces to (finite) classified
@@ -319,9 +323,9 @@ This doesn't work for kings!
 \]
 \end{frame}
 
-\begin{frame}{Star-types}
-\begin{columns}
-\begin{column}{0.6\textwidth}
+\begin{frame}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
 The \emph{star-type} of $\ea\in\domA$ is:
 $\stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb\in\domA\sub\set\ea}$
 
@@ -339,9 +343,9 @@ $\stpIa\StrA\ea = \setbd{\tpIab\StrA\ea\eb}{\eb\in\domA\sub\set\ea}$
 
 Gives reason why the existential condition is satisfied locally at $\ea$.
 \end{column}
-\begin{column}{0.4\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{figure}
-\includegraphics[scale=0.07]{1-IMG_4360.JPG}
+\includegraphics[scale=0.1]{1-IMG_4360.JPG}
 
 {\tiny image © 2014 Asia Citro, reproduced with permission from \\
 \url{http://www.funathomewithkids.com/2014/07/magic-foaming-treasure-stars.html}}
@@ -400,9 +404,12 @@ Then:
 \end{frame}
 
 \begin{frame}{Certificate Extraction}
+Given a model $\StrA$ of $\TI$, $\Cert = \setbd{\stpIa\StrA\ea}{\ea\in\domA}$ is
+a certificate, but it is \emph{too big}!
+\pause
+
 A star-type for every $\tpt\in\TI$ is sufficient!
 \begin{itemize}
-  \item Let $\StrA$ be a model for $\TI$
   \item For every $\tpt\in\TI$ choose $\eat\tpt,\ebt\tpt\in\domA$ such that
 $\tpIab\StrA{\eat\tpt}{\ebt\tpt} = \tpt$
   \item $\Cert = \setbd{\stpIa\StrA{\eat\tpt}}{\tpt\in\TI}$ is a
