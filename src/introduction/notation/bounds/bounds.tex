@@ -1,14 +1,9 @@
 % Bounds
 
 A function $\ff : \Nats \to \Nats$ is \emph{polynomially bounded} if there is a
-polynomial $\polyp$ and a number $\nn_0 \in \Nats$ such
-that $\ff(\nn) \leq \polyp(\nn)$ for all $\nn \geq \nn_0$.
+polynomial $\polyp$ such that $\ff(\nn) \leq \polyp(\nn)$ for all $\nn\in\Nats$.
 The function $\ff$ is \emph{exponentially bounded} if there is a polynomial
-$\polyp$ and a number $\nn_0 \in \Nats$ such that
-$\ff(\nn) \leq 2^{\polyp(\nn)}$ for all $\nn \geq \nn_0$.
-%The function $\ff$ is \emph{exponentially larger} if there is a polynomial
-%$\polyp$ (with real coefficients) and a number $\nn_0 \in \Nats$ such that
-%$\ff(\nn) \geq 2^{\polyp(\nn)}$ for all $\nn \geq \nn_0$.
+$\polyp$ such that $\ff(\nn) \leq 2^{\polyp(\nn)}$ for all $\nn\in\Nats$.
 We are going to use these terms implicitly with respect to quantities that
 depend on one another. For example, the cardinality of $\Perms\nn$ is
 exponentially bounded by $\nn$.
