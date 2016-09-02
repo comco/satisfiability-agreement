@@ -5,7 +5,7 @@ symbols in refinement.
 
 We restrict our attention to binary predicate signatures only consisting of
 unary and binary predicate symbols.
-To denote various logics with builtin equivalence symbols, we use the notation
+To denote various logics with built-in equivalence symbols, we use the notation
 \[
   \gls{LvpEea}
 \]
@@ -13,18 +13,18 @@ where:
 \begin{itemize}
   \item $\LL$ is the \emph{ground logic}
   \item $\nv$, if given, bounds the number of variables
-  \item $\sze$, if given, bounds the number of builtin equivalence symbols
+  \item $\sze$, if given, bounds the number of built-in equivalence symbols
   \item $\ag \in \set{\agrefine, \agglobal, \aglocal}$, if given, gives the
-  agreement condition between the builtin equivalence symbols
+  agreement condition between the built-in equivalence symbols
   \item $\pow$, the \emph{signature power}, specifies constraints on the
   signature:
   \begin{itemize}
     \item if $\pow = 0$, the signature consists of only constantly many unary
-    predicate symbols in addition to the builtin equivalence symbols
+    predicate symbols in addition to the built-in equivalence symbols
     \item if $\pow = 1$, the signature consists of unboundedly many unary
-    predicate symbols in addition to the builtin equivalence symbols
+    predicate symbols in addition to the built-in equivalence symbols
     \item if $p$ is not given, the signature consists of unboundedly many unary
-    and binary predicate symbols in addition to the builtin equivalence symbols.
+    and binary predicate symbols in addition to the built-in equivalence symbols.
     This is the commonly investigated fragment with respect to satisfiability of
     the two-variable logics with or without counting quantifiers.
   \end{itemize}
@@ -35,9 +35,9 @@ unary predicate symbols.
 $\Lvp\Fo\nonv0\Eea1\noag$ is the first-order logic of a single equivalence
 relation.
 $\Lvp\Fo2\nonv\Eea2\noag$ is the two-variable logic, featuring unary, binary
-predicate symbols and two builtin equivalence symbols.
+predicate symbols and two built-in equivalence symbols.
 $\Lvp\Fo21\Eea2\aglocal$ is the two-variable logic,
-featuring unary predicate symbols and two builtin equivalence symbols in local
+featuring unary predicate symbols and two built-in equivalence symbols in local
 agreement.
 $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ is the monadic first-order logic featuring
 many equivalence symbols in global agreement.
@@ -45,10 +45,10 @@ many equivalence symbols in global agreement.
 When we working with a concrete logic, for example
 $\Lvp\Fo2\nopow\Eea2\aglocal$,
 we implicitly assume an appropriate generic predicate signature $\SigS$ for it.
-In this case, there are two builtin equivalence symbols $\sd$ and $\se$ in
+In this case, there are two built-in equivalence symbols $\sd$ and $\se$ in
 $\SigS$ and in addition $\SigS$ contains arbitrary many unary
 and binary predicate symbols.
-The \emph{intended interpretation} of the builtin equivalence symbols is fixed
+The \emph{intended interpretation} of the built-in equivalence symbols is fixed
 by an appropriate condition $\fthe$.
 In this case:
 \[
