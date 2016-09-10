@@ -1,10 +1,9 @@
 % Functions
 
 A \emph{function}
-$\gls{total-function-f-A-B}$.
-is formally just a functional relation
+$\gls{total-function-f-A-B}$ is formally just a functional relation
 $\funf\subseteq\setA\cprod\setB$.
-A \emph{injective} function from $\setA$ into $\setB$ is denoted
+An \emph{injective} function from $\setA$ into $\setB$ is denoted
 $\gls{injective-function-f-A-B}$.
 A \emph{surjective} function from $\setA$ onto $\setB$ is denoted
 $\gls{surjective-function-f-A-B}$.
@@ -15,6 +14,14 @@ A \emph{partial} function from $\setA$ to $\setB$ is denoted
 $\gls{partial-function-f-A-B}$. If $\ff : \setA \pto \setB$ is a partial
 function and $\ea \in \setA$, the notation $\gls{f-defined-a-b}$ means that
 $\ff$ is defined at $\ea$ and its value is $\eb$;
-the notation $\gls{f-undefined-a}$ means that $\ff$ is not defined at $\ea$.
-If $\setS \subseteq \setA$, the \emph{characteristic function} of $\setS$ in
-$\setA$ is $\gls{characteristic-function-S-A} : \setA \to \set{0,1}$.
+the notation $\gls{f-undefined-a}$ means that $\ff$ is not defined at $\ea$,
+where $\bot$ is specially chosen to never be an element of $\setB$.
+If $\setS \subseteq \setA$, the \emph{characteristic function}
+$\gls{characteristic-function-S-A} : \setA \to \set{0,1}$ of $\setS$ in $\setA$
+is defined by:
+\[
+\chfun\setA\setS\ea = \begin{cases}
+1 &\text{if } a \in S \\
+0 &\text{otherwise.}
+\end{cases}
+\]

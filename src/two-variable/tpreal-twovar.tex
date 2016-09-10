@@ -81,7 +81,7 @@ time to the problem of (finite) classified satisfiability:
 
 Note that (finite) satisfiability in the class of models of cardinality $1$ is
 trivially decidable in nondeterministic polynomial time --- just guess the
-atomic $1$-type (whose size is polynomially bounded by the size of the
+atomic $1$-type (whose size is polynomially bounded in the size of the
 predicate signature) of the unique element of the structure and check (in
 deterministic polynomial time) that it satisfies the original formula.
 
@@ -91,11 +91,13 @@ classified satisfiability.
 Hence the following nondeterministic polynomial time procedure reduces an
 instance $(\SigS, \fphi)$ of the (finite) satisfiability problem to an instance
 $(\ClSig\SigSp\sms, \falp)$ of the (finite) classified satisfiability problem:
-First check if $\fphi$ is satisfiable in the class of models of cardinality $1$.
-If that is the case, then extend $\SigS$ to $\SigSp$ by adding a single message
+Guess if $\fphi$ will be satisfiable in the class of models of cardinality
+$1$ or not.
+If you guessed so, extend $\SigS$ to $\SigSp$ by adding a single message
 symbol $\smm1$ and let $\falp = (\xx = \xx)$ be a fixed predicate tautology.
-Otherwise transform $\fphi$ into the form~\cref{eq:twovar-msg-nf} and let
-$\falp$ be the universal part of that normal form.
+If you guessed otherwise, transform $\fphi$ into the
+form~\cref{eq:twovar-msg-nf} and let $\falp$ be the universal part of that
+normal form.
 \end{proof}
 
 A \emph{type instance} $\gls{type-instance-T-S}$ over the classified signature
@@ -111,7 +113,7 @@ A \onetype/ $\gls{king-type-k}$ is a \emph{king type} if it is not connectable
 with itself; the set of king types over $\TI$ is $\gls{king-types-T}$.
 A \onetype/ $\tpp$ that is not a king type is a \emph{worker type};
 the set of worker types is $\gls{worker-types-T}$.
-So we have $\TW\TI = \TK\TI \cup \TW\TI$.
+So we have $\TP\TI = \TK\TI \cup \TW\TI$.
 
 If $\tpp\in\TP\TI$, the \emph{neighbours} $\gls{neighbours-p-T} \subseteq\TP\TI$
 of $\tpp$ are defined by:
@@ -150,15 +152,15 @@ by $\FinReal{\vFo2}$.
 \begin{remark}\label{rem:red-sat-to-real}
 Let $\ClSig\SigS\sms$ be a classified signature and let $\falp(\xx,\yy)$ be a
 quantifier-free $\vFoF2\SigS$-formula.
-Let $\TI^\falp \subseteq \TpT\SigS$ is the set of those \twotypes/ that are
+Let $\TI^\falp \subseteq \TpT\SigS$ be the set of those \twotypes/ that are
 consistent with $\falp(\xx,\yy)$ and the intended interpretation
 for classified signatures~\cref{eq:twovar-ms-iinter}.
 Then a $\ClSig\SigS\sms$-structure $\StrA$ is a classified model for
 $\falp(\xx,\yy)$ iff $\TIS\StrA \subseteq \TI^\falp$.
 
 Recall that the number of possible $1$-types or $2$-types over $\SigS$ is
-exponentially bounded by the size of $\SigS$ and that the size of a $1$-type or
-a $2$-type over $\SigS$ is linearly bounded by the size of $\SigS$.
+exponentially bounded in the size of $\SigS$ and that the size of a $1$-type or
+a $2$-type over $\SigS$ is linearly bounded in the size of $\SigS$.
 Hence the (finite) classified satisfiability problem reduces to the
 (finite) type realizability problem in nondeterministic exponential time:
 \[
@@ -269,7 +271,7 @@ We will be applying this lemma implicitly.
 \end{enumerate}
 \end{proof}
 
-\begin{definition}
+\begin{definition}\label{def:star-type}
 Let $\TI$ be a type instance over $\ClSig\SigS\sms$.
 A \emph{star-type} $\gls{star-type-s} \subseteq \TI$ over $\TI$ is a
 nonempty set of \twotypes/ satisfying the following conditions:
@@ -317,7 +319,8 @@ The \emph{star-type} $\gls{star-type-A-a}$ of $\ea$ is defined by:
 \]
 \end{definition}
 \begin{remark}
-Indeed $\stps = \stpIa\StrA\ea$ is a star-type over $\TI$.
+Indeed $\stps = \stpIa\StrA\ea$ is a star-type over $\TI$ in the sense
+of~\Cref{def:star-type}.
 \end{remark}
 \begin{proof}
 The set $\stps$ is nonempty since $\StrA$ has cardinality at least $2$.

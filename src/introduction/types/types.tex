@@ -1,29 +1,29 @@
 % Types
 Let $\SigS = \seq{\pp1, \pp2, \dots, \pp\sizes}$ be a predicate signature.
 A \emph{$1$-type} $\tpIp$ over $\SigS$ is a maximal consistent set of literals
-featuring only the variable symbol $\xx$\footnote{this is different than the
+featuring only the variable symbol\footnote{this is different than the
 commonly used notion of type in model theory, where types are sets of general
-formulas, not just literals}.
+formulas, not just literals} $\xx$.
 The set of $1$-types over $\SigS$ is $\gls{1-types-S}$.
-Note that consistency here is relativised by the intended interpretations of the
+Note that consistency here is relativized by the intended interpretations of the
 predicate signature. For example if $\SigS$ contains the binary predicate symbol
 $\se$ with intended interpretation as an equivalence, then every $1$-type over
 $\SigS$ includes the literal $\se(\xx,\xx)$.
 Also note that the cardinality of a $1$-type over $\SigS$ is polynomially
-bounded by the length $\sizes$ of $\SigS$ and the cardinality of $\TpI\SigS$ is
-exponentially bounded by $\sizes$.
+bounded in the length $\sizes$ of $\SigS$ and the cardinality of $\TpI\SigS$ is
+exponentially bounded in $\sizes$.
 
 A \emph{$2$-type} $\tpTt$ over $\SigS$ is a maximal consistent set of literals
 featuring only the variable symbols $\xx$ and $\yy$ and including the literal
 $(\xx \neq \yy)$.
 The set of $2$-types over $\SigS$ is $\gls{2-types-S}$.
-Again, consistency is relativised by the intended interpretation of the
+Again, consistency is relativized by the intended interpretation of the
 predicate signature.
 For example, if $\SigS$ contains the binary predicate
 symbol $\se$ with intended interpretation as an equivalence,
 then if $\se(\xx, \yy) \in \tpTt$, then $\se(\yy, \xx) \in \tpTt$.
-Again, the cardinality of a $2$-type over $\SigS$ is polynomially bounded by
-$\sizes$ and the cardinality of $\TpT\SigS$ is exponentially bounded by
+Again, the cardinality of a $2$-type over $\SigS$ is polynomially bounded in
+$\sizes$ and the cardinality of $\TpT\SigS$ is exponentially bounded in
 $\sizes$.
 
 If $\tpTt \in \TpT\SigS$, the \emph{inverse} $\gls{t-type-inverse}$ of $\tpTt$
