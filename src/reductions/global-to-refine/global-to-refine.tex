@@ -22,8 +22,8 @@ Hence:
   \FinASat{\Fo\Eea\sze\agrefine} \red\cP
   \FinASat{\Fo\Eea\sze\agglobal}.
 \]
-Since the length of the formula $\frefine{\see1,\see2,\dots,\see\sze}$ grows
-polynomially as $\sze$ grows:
+Since the formula $\frefine{\see1,\see2,\dots,\see\sze}$ is constructible in
+deterministic polynomial time from sequence of equivalence symbols:
 \[
   \FinASat{\Fo\Eea\nosze\agrefine} \red\cP
   \FinASat{\Fo\Eea\nosze\agglobal}.
@@ -38,28 +38,35 @@ Define the $\vFoF2\PS$-sentence $\gls{falleq-P}$ by:
   \falleq\PS = \forall\xx \forall\yy \bigwedge_{1 \leq \ii \leq \sze}
   \feq{\PS(\ii)}(\xx,\yy).
 \]
+Note that $\falleq\PS$ is constructible in deterministic polynomial time from
+$\PS$.
 \end{definition}
+\begin{remark}
 If $\StrA$ is a $\PS$-structure, then $\StrA \vDash \falleq\PS$ iff
 $\data\PS\StrA\ea = \data\PS\StrA\eb$ for all $\ea, \eb \in \domA$.
 If $\domA$ is a nonempty set and $\vectv \in \ntBitnums\sze\tbit$ is any
 $\sze$-dimensional $\tbit$-vector, there is a $\PS$-structure $\StrA$ over
 $\domA$ such that $\StrA \vDash \falleq\PS$ and
 $\data\PS\StrA\ea = \vectv$ for all $\ea \in \domA$.
+\end{remark}
 
 \begin{definition}
 Define the $\vFoF2\PS$-sentence $\gls{fglobperm-P}$ by:
 \[
   \fglobperm\PS = \fperm\PS \land \falleq\PS.
 \]
+Note that $\fglobperm\PS$ is constructible in deterministic polynomial time
+from $\PS$.
 \end{definition}
+\begin{remark}
 If $\StrA$ is a $\PS$-structure then $\StrA \vDash \fglobperm\PS$ iff there
 is a permutation $\permnu \in \Perms\sze$ such that
 $\data\PS\StrA\ea = \permnu$ for all $\ea \in \domA$.
-
 If $\domA$ is a nonempty set and $\permnu \in \Perms\sze$ is any permutation,
 there is a $\PS$-structure $\StrA$ over $\domA$ such that
 $\StrA \vDash \fglobperm\PS$ and $\data\PS\StrA\ea = \permnu$ for all 
 $\ea \in \domA$.
+\end{remark}
 
 Let $\LS = \seq{\slee1, \slee2, \dots, \slee\sze} + \PS$ be a predicate
 signature consisting of the binary predicate symbols $\slee\kk$ in addition to
@@ -72,6 +79,8 @@ $\gls{feg-L-i-x-y}$ by:
   \feg\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \sze}
   \left(\feqA{\PS(\kk)}\ii(\xx) \limp \slee\kk(\xx, \yy)\right).
 \]
+Note that $\feg\LS\ii(\xx,\yy)$ is constructible in deterministic polynomial
+time given $\LS$ and $\ii$.
 \end{definition}
 \begin{remark}\label{rem:global-e-m}
 Let $\StrA$ be an $\LS$-structure and suppose that 
@@ -130,7 +139,8 @@ Define the syntactic operation $\gls{gtr} : \FoF\SigS \to \FoF\LSp$ by:
 where $\fphip$ is obtained from $\fphi$ by replacing all occurrences of a
 subformula of the form $\see\ii(\gx,\gy)$ by the formula $\feg\LS\ii(\gx,\gy)$, 
 where $\gx$ and $\gy$ are (not necessarily distinct) variables and
-$\ii \in [1,\sze]$.
+$\ii \in [1,\sze]$. Note that the operation can be performed in deterministic
+polynomial time.
 \end{definition}
 
 \begin{remark}\label{rem:global-e-to-m}
@@ -203,8 +213,7 @@ The corresponding satisfiability problems are polynomial-time equivalent:
 $\FinASat{\Fo\Eea\sze\agglobal} \redeq\cP \FinASat{\Fo\Eea\sze\agrefine}$.
 \end{proposition}
 
-Since the relative size of $\gtr\fphi$ with respect to $\fphi$ grows
-polynomially as $\sze$ grows, we have shown:
+Since the translation $\gtr$ is in deterministic polynomial time, we have shown:
 \begin{proposition}\label{prop:global-to-refine}
 The logic $\Fo\Eea\nosze\agglobal$ has the finite model property iff
 the logic $\Fo\Eea\nosze\agrefine$ has the finite model property. 

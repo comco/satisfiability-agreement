@@ -12,21 +12,25 @@ symbols $\see\ii$ in refinement. Abbreviate the \emph{coarsest} equivalence
 symbol $\sd = \see\sze$.
 \begin{definition}
 Let $\sze \in \pNats$. An \emph{$\sze$-exponential setup} is a uniform
-effective polynomial-time process for creating the following data structure.
+effective deterministic polynomial time process for creating the following data
+structure.
 For every $\szu \in \pNats$, there is a predicate signature $\DS(\sze,\szu)$
 having length polynomial in $\szu$, consisting of unary predicate symbols and
 containing $\ES(\sze)$. The following data is effectively defined:
 \begin{enumerate}[label=E\arabic*]
   \item\label{eset:1} There is a $\vFoF3{\DS(\sze,\szu)}$-sentence
-  $\fposfull{\DS(\sze,\szu)}$, whose length grows polynomially as $\szu$ grows.
+  $\fposfull{\DS(\sze,\szu)}$ that is constructible in deterministic polynomial
+  time from $\DS(\sze,\szu)$.
+  
   \item\label{eset:2} If $\StrA$ is a $\DS(\sze,\szu)$-structure,
   $\StrA \vDash \fposfull{\DS(\sze,\szu)}$ and $\relD = \at\StrA\sd$, then there
   is a function
   $\Data{\DS(\sze,\szu)}\StrA : \Ecl\relD \to \tBitstrings{\tetr\sze2\szu}$
   that assigns an $\sze$-exponential bitstring to every $\relD$-class.
+  
   \item\label{eset:3} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fEq{\DS(\sze,\szu)}(\xx,\yy)$ whose length grows polynomially as $\szu$
-  grows, such that for all $\ea,\eb \in \domA$:
+  $\fEq{\DS(\sze,\szu)}(\xx,\yy)$ that is constructible in deterministic
+  polynomial time from $\DS(\sze,\szu)$, such that for all $\ea,\eb \in \domA$:
   \[
     \miff{
       \StrA \vDash \fEq{\DS(\sze,\szu)}(\ea,\eb)}{
@@ -34,16 +38,16 @@ containing $\ES(\sze)$. The following data is effectively defined:
       \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\eb]}}.
   \]
   \item\label{eset:4} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fZero{\DS(\sze,\szu)}(\xx)$, whose length grows polynomially as $\szu$
-  grows, such that for all $\ea \in \domA$:
+  $\fZero{\DS(\sze,\szu)}(\xx)$ that is constructible in deterministic
+  polynomial time from $\DS(\sze,\szu)$, such that for all $\ea \in \domA$:
   \[
     \miff{
       \StrA \vDash \fZero{\DS(\sze,\szu)}(\ea)}{
       \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\ea]} = 0}.
   \]
   \item\label{eset:5} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fLargest{\DS(\sze,\szu)}(\xx)$, whose length grows polynomially as $\szu$ grows,
-  such that for all $\ea \in \domA$:
+  $\fLargest{\DS(\sze,\szu)}(\xx)$ that is constructible in deterministic
+  polynomial time from $\DS(\sze,\szu)$, such that for all $\ea \in \domA$:
   \[
     \miff{
       \StrA \vDash \fLargest{\DS(\sze,\szu)}(\ea)}{
@@ -51,8 +55,9 @@ containing $\ES(\sze)$. The following data is effectively defined:
       \tetr{\sze+1}2\szu-1}.
   \]
   \item\label{eset:6} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fLess{\DS(\sze,\szu)}(\xx,\yy)$, whose length grows polynomially as $\szu$
-  grows, such that for all $\ea, \eb \in \domA$:
+  $\fLess{\DS(\sze,\szu)}(\xx,\yy)$ that is constructible in deterministic
+  polynomial time from $\DS(\sze,\szu)$,
+  such that for all $\ea, \eb \in \domA$:
   \[
     \miff{
       \StrA \vDash \fLess{\DS(\sze,\szu)}(\ea,\eb)}{
@@ -60,8 +65,8 @@ containing $\ES(\sze)$. The following data is effectively defined:
       \bdec{\Data{\DS(\sze,\szu)}\StrA\relD[\eb]}}.
   \]
   \item\label{eset:7} There is a $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fSucc{\DS(\sze,\szu)}(\xx,\yy)$, whose length grows polynomially as $\szu$
-  grows, such that for all $\ea, \eb \in \domA$:
+  $\fSucc{\DS(\sze,\szu)}(\xx,\yy)$ that is constructible in deterministic
+  polynomial time from $\DS(\sze,\szu)$, such that for all $\ea, \eb \in \domA$:
   \[
     \miff{
       \StrA \vDash \fSucc{\DS(\sze,\szu)}(\ea,\eb)}{
@@ -70,8 +75,9 @@ containing $\ES(\sze)$. The following data is effectively defined:
   \]
   \item\label{eset:8} For every $\tetr\sze2\szu$-bit number $\nM$, there is a
   $\vFoF3{\DS(\sze,\szu)}$-formula
-  $\fDataA{\DS(\sze,\szu)}\nM(\xx)$, whose length grows polynomially as $\szu$
-  and $\nM$ grow, such that for all $\ea \in  \domA$:
+  $\fDataA{\DS(\sze,\szu)}\nM(\xx)$, that is constructible in deterministic
+  polynomial time from $\DS(\sze,\szu)$,
+  such that for all $\ea \in  \domA$:
   \[
     \miff{
       \StrA \vDash \fDataA{\DS(\sze,\szu)}\nM(\ea)}{

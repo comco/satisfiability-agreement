@@ -9,8 +9,10 @@ Similar reductions where $f$ might be in another complexity class are defined
 analogously.
 The decision problems $\dpA$ and $\dpB$ are \emph{polynomial-time equivalent}
 (written $\gls{A-polyequ-B}$) if $\dpA \red\cP \dpB$ and $\dpB \red\cP \dpA$.
+In the context of a decision problem, the \emph{size} of an object is the number
+of bits required to represent it through some standard encoding.
 
 A decision problem is \emph{hard} for a complexity class if any decision problem
-of that complexity class is polynomial-time reducible to it. A decision problem
-is \emph{complete} for a complexity class if it is hard for that class and
-contained in that class.
+of that complexity class is polynomial-time reducible to it.
+A decision problem is \emph{complete} for a complexity class if it is hard for
+that class and contained in that class.

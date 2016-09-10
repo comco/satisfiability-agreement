@@ -11,8 +11,11 @@ Define the quantifier-free $\vFoF2\SigS$-formula $\gls{fcell-S-x-y}$ by:
   \fcell\SigS(\xx,\yy) = \sd(\xx,\yy) \land
   \bigwedge_{1 \leq i \leq \szu} (\suu\ii(\xx) \lequ \suu\ii(\yy)).
 \]
-If $\StrA$ is a $\SigS$-structure and $\relD = \at\StrA\sd$, then the
-interpretation $\relC = \at\StrA{\fcell\SigS} \subseteq \domAA$ is an
+Note that $\fcell\SigS(\xx,\yy)$ can be constructed in deterministic polynomial
+time from $\SigS$.
+
+If $\StrA$ is a $\SigS$-structure and $\relD = \at\StrA\sd$,
+then the interpretation $\relC = \at\StrA{\fcell\SigS} \subseteq \domAA$ is an
 equivalence relation on $\domA$ that refines $\relD$.
 The \emph{cells} of $\StrA$ are the equivalence classes of $\relC$.
 That is, a cell is a maximal set of $\relD$-equivalent elements satisfying the

@@ -65,6 +65,8 @@ $\gls{finer-granularity-G}(\xx,\yy)$ by:
 \[
   \fd\SigG(\xx,\yy) = \se(\xx,\yy) \land \feq\ColS(\xx,\yy).
 \]
+Note that $\fd\SigG(\xx,\yy)$ is constructible in deterministic polynomial time
+from $\SigS$.
 \end{definition}
 \begin{definition}
 Define the syntactic operation
@@ -75,6 +77,7 @@ $\gls{granularity-tr} : \FoF\SigS \to \FoF\SigG$ by:
 where $\fphip$ is obtained from the formula $\fphi$ by replacing all subformulas
 of the form $\sd(\gx,\gy)$ by $\fd\SigG(\gx,\gy)$, where $\gx$ and $\gy$ are
 (not necessarily distinct) variable symbols.
+Note that this translation can be performed in deterministic polynomial time.
 \end{definition}
 
 \begin{lemma}\label{lem:granular-f-to-tr}

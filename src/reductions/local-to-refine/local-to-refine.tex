@@ -22,8 +22,8 @@ Hence:
   \FinASat{\Fo\Eea\sze\agrefine} \red\cP
   \FinASat{\Fo\Eea\sze\aglocal}.
 \]
-Since the size of the formula $\frefine{\see1,\see2,\dots,\see\sze}$ grows 
-polynomially as $\sze$ grows, we have:
+Since $\frefine{\see1,\see2,\dots,\see\sze}$ is constructible in deterministic
+polynomial time from the sequence of equivalence symbols, we have:
 \[
   \FinASat{\Fo\Eea\nosze\agrefine} \red\cP
   \FinASat{\Fo\Eea\nosze\aglocal}.
@@ -163,12 +163,16 @@ Define the $\vFoF2\LS$-sentence $\gls{ffixperm-L}$ by:
   \ffixperm\LS = \forall\xx \forall\yy \bigwedge_{1 \leq \kk \leq \sze}
   \left(\slee\kk(\xx,\yy) \limp \feq{\PSp{\kk}}(\xx,\yy)\right).
 \]
+Note that $\ffixperm\LS$ is constructible in deterministic polynomial time from
+$\LS$.
 \end{definition}
 \begin{definition}
 Define the $\vFoF2\LS$-sentence $\gls{flocperm-L}$ by:
 \[
   \flocperm\LS = \fperm\PS \land \ffixperm\LS.
 \]
+Note that $\flocperm\LS$ is constructible in deterministic polynomial time from
+$\LS$.
 \end{definition}
 \begin{remark}\label{rem:local-perm-val-fixed}
 Let $\StrA$ be an $\LS$-structure and suppose that $\StrA \vDash \flocperm\LS$.
@@ -192,6 +196,8 @@ $\gls{fel-L-i}$ by:
   \fel\LS\ii(\xx,\yy) = \bigwedge_{1 \leq \kk \leq \sze}
   \left(\feqA{\PS(\kk)}\ii(\xx) \limp \slee\kk(\xx,\yy)\right).
 \]
+Note that $\fel\LS\ii(\xx,\yy)$ is constructible in deterministic polynomial
+time from $\LS$ and $\ii$.
 \end{definition}
 
 \begin{remark}\label{rem:local-e-m}
@@ -291,6 +297,7 @@ where $\fphip$ is obtained from $\fphi$ by replacing all occurrences of a
 subformula of the form $\see\ii(\gx,\gy)$ by the formula $\fel\LS\ii(\gx,\gy)$, 
 where $\gx$ and $\gy$ are (not necessarily distinct) variable symbols and
 $\ii \in [1,\sze]$.
+Note that this translation can be performed in deterministic polynomial time.
 \end{definition}
 \begin{remark}
 Let $\fphi$ be a $\SigS$-formula and let $\StrA$ be a $\SigS$-structure.
@@ -365,8 +372,8 @@ The corresponding satisfiability problems are polynomial-time equivalent:
 $\FinASat{\Fo\Eea\sze\aglocal} \redeq\cP \FinASat{\Fo\Eea\sze\agrefine}$.
 \end{proposition}
 
-Since the relative size of $\ltr\fphi$ with respect to $\fphi$ grows
-polynomially as $\sze$ grows, we have shown:
+Since the translation $\ltr$ can be performed in deterministic polynomial
+time, we have:
 \begin{proposition}\label{prop:local-to-refine}
 The logic $\Fo\Eea\nosze\aglocal$ has the finite model property iff
 the logic $\Fo\Eea\nosze\agrefine$ has the finite model property.
