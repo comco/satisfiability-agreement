@@ -159,8 +159,9 @@ Then a $\ClSig\SigS\sms$-structure $\StrA$ is a classified model for
 $\falp(\xx,\yy)$ iff $\TIS\StrA \subseteq \TI^\falp$.
 
 Recall that the number of possible $1$-types or $2$-types over $\SigS$ is
-exponentially bounded in the size of $\SigS$ and that the size of a $1$-type or
-a $2$-type over $\SigS$ is linearly bounded in the size of $\SigS$.
+exponentially bounded in the cardinality of $\SigS$ and that the size of a
+$1$-type or a $2$-type over $\SigS$ is polynomially bounded in the cardinality
+of $\SigS$.
 Hence the (finite) classified satisfiability problem reduces to the
 (finite) type realizability problem in nondeterministic exponential time:
 \[
@@ -399,7 +400,8 @@ Let
   \Cert = \setbd{\stpIa\StrA{\eat\tpt}}{\tpt \in \TI}.
 \]
 Then $\Cert$ is a certificate for $\TI$.
-The size of $\Cert$ is quadratic with respect to the size of $\TI$.
+Note that the size of $\Cert$ is polynomially bounded with respect to the
+size of $\TI$.
 \end{lemma}
 \begin{proof}
 Since $\TI$ is nonempty, $\Cert$ is nonempty.
