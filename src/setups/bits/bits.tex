@@ -22,8 +22,11 @@ $\gls{feqA-u-d-x}$ by:
   \end{cases}
 \]
 \end{definition}
+
+\begin{remark}
 If $\StrA$ is a $\BS$-structure, $\ea \in \domA$ and $\datad \in \Bits$,
 then $\StrA \vDash \feqA\su\datad(\ea)$ iff $\data\su\StrA\ea = \datad$.
+\end{remark}
 
 \begin{definition}
 Define the quantifier-free $\vFoF2\BS$-formulas 
@@ -34,6 +37,8 @@ $\gls{feq-u-d}$, $\gls{feq-01-u-d}$ and $\gls{feq-10-u-d}$ by:
   \feqIO\su(\xx,\yy) &= \su(\xx) \land \lnot \su(\yy). \\
 \end{align*}
 \end{definition}
+
+\begin{remark}
 If $\StrA$ is a $\BS$-structure and $a, b \in A$, then:
 \begin{itemize}
   \item $\StrA \vDash \feq\su(a, b)$ iff $\data\su\StrA a = \data\su\StrA b$
@@ -42,3 +47,4 @@ If $\StrA$ is a $\BS$-structure and $a, b \in A$, then:
   \item $\StrA \vDash \feqIO\su(a, b)$ iff $\data\su\StrA a = 1$ and
   $\data\su\StrA b = 0$.
 \end{itemize}
+\end{remark}

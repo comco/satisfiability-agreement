@@ -13,9 +13,11 @@ Define the quantifier-free $\vFoF1\PS$-sentence $\gls{falldiff-P}$ by:
   \lnot\feqP\PS\posp\posq(\xx).
 \]
 \end{definition}
+\begin{remark}
 If $\StrA$ is a $\PS$-structure then $\StrA \vDash \falldiff\PS$ iff
 $\data{\PSp\posp}\StrA\ea \neq \data{\PSp\posq}\StrA\ea$
 for all $\ea \in \domA$ and $\posp \neq \posq \in [1, \nn]$.
+\end{remark}
 
 \begin{definition}
 Define the quantifier-free $\vFoF1\PS$-sentence $\gls{fperm-P}$ by:
@@ -23,9 +25,11 @@ Define the quantifier-free $\vFoF1\PS$-sentence $\gls{fperm-P}$ by:
   \fperm\PS = \fbetw\PS1\nn \land \falldiff\PS.
 \]
 \end{definition}
+\begin{remark}
 If $\StrA$ is a $\PS$-structure then $\StrA \vDash \fperm\PS$ iff
 $\data\PS\StrA\ea \in \Perms\nn$ for all $\ea \in \domA$.
 
 If $\domA$ is a nonempty set and $\dataOP : \domA \to \Perms\nn$ is any
 function, then there is a $\PS$-structure $\StrA \vDash \fperm\PS$ over $\domA$
 such that $\data\PS\StrA = \dataOP$.
+\end{remark}
