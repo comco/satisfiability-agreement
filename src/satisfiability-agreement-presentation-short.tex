@@ -1,0 +1,295 @@
+% Short 15 minute presentation
+\documentclass{beamer}
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae} % for pdf files
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{upgreek}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bm}
+%\usepackage{enumitem}
+\usepackage{cancel} % for strikeout
+\usepackage{xspace} % for spaces after commands
+\usepackage{extpfeil} % for arrows
+\usepackage{tikz}
+\usepackage{beamerthemesplit}
+\usepackage{color}
+
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+
+% Commands
+\input{introduction/notation/sets/sets.cmd.tex}
+\input{introduction/notation/relations/relations.cmd.tex}
+\input{introduction/notation/functions/functions.cmd.tex}
+\input{introduction/notation/sequences/sequences.cmd.tex}
+\input{introduction/notation/numbers/numbers.cmd.tex}
+\input{introduction/notation/tetration/tetration.cmd.tex}
+\input{introduction/notation/vectors/vectors.cmd.tex}
+\input{introduction/notation/permutations/permutations.cmd.tex}
+\input{introduction/notation/bounds/bounds.cmd.tex}
+\input{introduction/notation/alphabets/alphabets.cmd.tex}
+\input{introduction/notation/bits/bits.cmd.tex}
+
+\input{introduction/syntax/symbol-alphabet/symbol-alphabet.cmd.tex}
+\input{introduction/syntax/variables/variables.cmd.tex}
+\input{introduction/syntax/signatures/signatures.cmd.tex}
+\input{introduction/syntax/formulas/formulas.cmd.tex}
+\input{introduction/syntax/quantifier-rank/quantifier-rank.cmd.tex}
+
+\input{introduction/semantics/structures/structures.cmd.tex}
+\input{introduction/semantics/standard-translation/standard-translation.cmd.tex}
+\input{introduction/semantics/satisfiability/satisfiability.cmd.tex}
+\input{introduction/semantics/logic-equivalence/logic-equivalence.cmd.tex}
+
+\input{introduction/logic-games/logic-games.cmd.tex}
+
+\input{introduction/types/types.cmd.tex}
+
+\input{introduction/scott-nf/scott-nf.cmd.tex}
+
+\input{introduction/complexity/classes/classes.cmd.tex}
+\input{introduction/complexity/reductions/reductions.cmd.tex}
+\input{introduction/complexity/tilings/tilings.cmd.tex}
+
+\input{setups/makeup-formulas.cmd.tex}
+
+\input{equivalences/introduction/introduction.cmd.tex}
+\input{equivalences/agreement.cmd.tex}
+
+\input{reductions/introduction/introduction.cmd.tex}
+\input{reductions/global-to-refine/global-to-refine.cmd.tex}
+\input{reductions/local-to-refine/local-to-refine.cmd.tex}
+\input{reductions/granularity/granularity.cmd.tex}
+
+\input{monadic/cells/cells.cmd.tex}
+\input{monadic/organs/organs.cmd.tex}
+\input{monadic/satisfiability/satisfiability.cmd.tex}
+\input{monadic/hardness/hardness.cmd.tex}
+
+\input{two-variable/two-variable.cmd.tex}
+\input{two-variable/tpreal-twovar-many.cmd.tex}
+\input{two-variable/tpreal.cmd.tex}
+
+\input{counting/counting.cmd.tex}
+
+\begin{document}
+\title{Satisfiability with Equivalences in Agreement}
+\author{Krasimir Georgiev}
+\date{September 12, 2016}
+\frame{\titlepage}
+
+\begin{frame}{Agreement}
+\setbeamercolor{normal text}{fg=gray,bg=}
+\setbeamercolor{alerted text}{fg=black,bg=}
+\usebeamercolor{normal text}
+A sequence $\relEE1,\relEE2,\dots,\relEE\sze$ of equivalence relations on
+$\domA$ is in:
+\pause
+\begin{itemize}
+  \item\alert<+>{\emph{refinement} if
+  $\relEE1\subseteq\relEE2\subseteq\dots\subseteq\relEE\sze$}
+  
+  \item\alert<+>{\emph{global agreement} if it forms a chain, that is
+  $\relEE{\permnu(1)}\subseteq\relEE{\permnu(2)}\subseteq\dots\subseteq\relEE{\permnu(\sze)}$
+  for some permutation $\permnu$ of $[1,\sze]$}
+  
+  \item\alert<+>{\emph{local agreement} if the equivalence classes of any point
+  form a chain, that is for any $\ea\in\domA$ there is some permutation $\permnu$ of
+  $[1,\sze]$ such that
+  $\relEE{\permnu(1)}[a]\subseteq\relEE{\permnu(2)}[a]\subseteq\dots\subseteq\relEE{\permnu(\sze)}$}
+\end{itemize}
+\only<1-2>{%
+\begin{center}%
+\begin{tikzpicture}
+\fill[color=orange] (-0.5,-0.5) rectangle (0.5,1.5);
+\fill[color=green] (-0.3,-0.3) rectangle (0.3,0.3);
+\fill[color=green] (-0.3,0.7) rectangle (0.3,1.3);
+\fill[color=orange] (0.7,-0.5) rectangle (1.7,1.5);
+\fill[color=green] (0.9,-0.3) rectangle (1.5,0.3);
+\fill[color=green] (0.9,0.7) rectangle (1.5,1.3);
+\draw[fill] (1.2,1) circle[radius=2pt];
+\draw[fill] (0,0) circle[radius=2pt];
+\draw[fill] (1.2,0) circle[radius=2pt];
+\draw[fill] (0,1) circle[radius=2pt];
+\node[fill=green,right] at (2.5,1) {equivalence class of $E_1$};
+\node[fill=orange,right] at (2.5,0) {equivalence class of $E_2$};
+\end{tikzpicture}
+\end{center}
+}
+\only<3>{%
+\begin{center}%
+\begin{tikzpicture}
+\fill[color=green] (-0.5,-0.5) rectangle (0.5,1.5);
+\fill[color=orange] (-0.3,-0.3) rectangle (0.3,0.3);
+\fill[color=orange] (-0.3,0.7) rectangle (0.3,1.3);
+\fill[color=green] (0.7,-0.5) rectangle (1.7,1.5);
+\fill[color=orange] (0.9,-0.3) rectangle (1.5,0.3);
+\fill[color=orange] (0.9,0.7) rectangle (1.5,1.3);
+\draw[fill] (1.2,1) circle[radius=2pt];
+\draw[fill] (0,0) circle[radius=2pt];
+\draw[fill] (1.2,0) circle[radius=2pt];
+\draw[fill] (0,1) circle[radius=2pt];
+\node[fill=green,right] at (2.5,1) {equivalence class of $E_1$};
+\node[fill=orange,right] at (2.5,0) {equivalence class of $E_2$};
+\end{tikzpicture}
+\end{center}
+}
+\only<4>{%
+\begin{center}%
+\begin{tikzpicture}
+\fill[color=green] (-0.5,-0.5) rectangle (0.5,1.5);
+\fill[color=orange] (-0.3,-0.3) rectangle (0.3,0.3);
+\fill[color=orange] (-0.3,0.7) rectangle (0.3,1.3);
+\fill[color=orange] (0.7,-0.5) rectangle (1.7,1.5);
+\fill[color=green] (0.9,-0.3) rectangle (1.5,0.3);
+\fill[color=green] (0.9,0.7) rectangle (1.5,1.3);
+\draw[fill] (1.2,1) circle[radius=2pt];
+\draw[fill] (0,0) circle[radius=2pt];
+\draw[fill] (1.2,0) circle[radius=2pt];
+\draw[fill] (0,1) circle[radius=2pt];
+\node[fill=green,right] at (2.5,1) {equivalence class of $E_1$};
+\node[fill=orange,right] at (2.5,0) {equivalence class of $E_2$};
+\end{tikzpicture}
+\end{center}
+}
+\end{frame}
+
+\begin{frame}{Notation}
+\setbeamercolor{normal text}{fg=gray,bg=}
+\setbeamercolor{alerted text}{fg=black,bg=}
+\usebeamercolor{normal text}
+$\Lvp\LL\szv\pow\Eea\sze\ag$
+\begin{itemize}
+  \item\alert<+>{$\LL$ is the first-order predicate logic with equality
+  featuring only unary and binary predicate symbols}
+  \item\alert<+>{$\szv$ bounds the number of variables}
+  \item\alert<+>{$\sze$ specifies the number of built-in equivalence symbols}
+  \item\alert<+>{$\ag\in\set{\agrefine,\aglocal,\agglobal}$ specifies an
+  agreement condition}
+  \item\alert<+>{if $\pow=0$ only constantly many additional unary predicate
+  symbols are allowed}
+  \item\alert<+>{if $\pow=1$ only additional unary predicate symbols are
+  allowed}
+\end{itemize}
+Examples
+\begin{itemize}
+  \item\alert<+>{$\Lvp\LL\nonv1$ is the monadic fragment}
+  \item\alert<+>{$\Lvp\LL\nonv0\Eea1\noag$ is the fragment of a single
+  equivalence}
+  \item\alert<+>{$\Lvp\LL2\nonv\Eea2\aglocal$ is the two-variable fragment of
+  two equivalences in local agreement}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Goal}
+In this work, we investigate the \emph{\textbf{computational complexity}} of the
+\emph{\textbf{satisfiability}} for the \emph{\textbf{monadic}} and the
+\emph{\textbf{two-variable fragment}} in the presence of
+\emph{\textbf{equivalences in agreement}}.
+\end{frame}
+
+\begin{frame}{Reductions}
+Refinement is the easiest condition to work with, so we define polynomial time
+reductions to its satisfiability problem:
+\begin{align*} 
+\Sat{\Lvp\LL\nv\pow\Eea\sze\agglobal} &\red{\cP}
+\Sat{\Lvp\LL\nv\pow\Eea\sze\agrefine} \\
+\Sat{\Lvp\LL\nv\pow\Eea\sze\aglocal} &\red{\cP}
+\Sat{\Lvp\LL\nv\pow\Eea\sze\agrefine}.
+\end{align*}
+Central to these reductions is the notion of \emph{\textbf{levels}}.
+\end{frame}
+
+\begin{frame}{Levels}
+The \emph{level sequence} $\relLL1,\relLL2,\dots,\relLL\sze$ of a sequence
+$\relEE1,\relEE2,\dots,\relEE\sze$ of equivalence relations on $\domA$ in local
+agreement is defined by:
+
+\[
+L_m = \bigcap\{E_{i_1} \cup E_{i_2} \cup \dots \cup E_{i_m} \mid 1\leq i_1 <
+i_2 < \dots < i_m \leq \sze\}.
+\]
+\pause
+\begin{remark}
+The level sequence is a sequence of equivalence relations on $\domA$ in
+refinement.
+\end{remark}
+\only<1-2>{%
+\begin{center}%
+\begin{tikzpicture}
+\fill[color=orange] (-0.5,-0.5) rectangle (0.5,1.5);
+\fill[color=green] (-0.3,-0.3) rectangle (0.3,0.3);
+\fill[color=green] (-0.3,0.7) rectangle (0.3,1.3);
+\fill[color=green] (0.7,-0.5) rectangle (1.7,1.5);
+\fill[color=orange] (0.9,-0.3) rectangle (1.5,0.3);
+\fill[color=orange] (0.9,0.7) rectangle (1.5,1.3);
+\draw[fill] (1.2,1) circle[radius=2pt];
+\draw[fill] (0,0) circle[radius=2pt];
+\draw[fill] (1.2,0) circle[radius=2pt];
+\draw[fill] (0,1) circle[radius=2pt];
+\fill[color=green] (2.5,0.7) rectangle (6.5,1.3);
+\node[fill=green,right] at (2.5,1) {equivalence class of $E_1$};
+\fill[color=orange] (2.5,-0.3) rectangle (6.5,0.3);
+\node[fill=orange,right] at (2.5,0) {equivalence class of $E_2$};
+\end{tikzpicture}
+\end{center}
+}
+\only<3>{%
+\begin{center}%
+\begin{tikzpicture}
+\fill[color=orange] (-0.5,-0.5) rectangle (0.5,1.5);
+\fill[color=green] (-0.3,-0.3) rectangle (0.3,0.3);
+\fill[color=green] (-0.3,0.7) rectangle (0.3,1.3);
+\fill[color=orange] (0.7,-0.5) rectangle (1.7,1.5);
+\fill[color=green] (0.9,-0.3) rectangle (1.5,0.3);
+\fill[color=green] (0.9,0.7) rectangle (1.5,1.3);
+\draw[fill] (1.2,1) circle[radius=2pt];
+\draw[fill] (0,0) circle[radius=2pt];
+\draw[fill] (1.2,0) circle[radius=2pt];
+\draw[fill] (0,1) circle[radius=2pt];
+\fill[color=green] (2.5,0.7) rectangle (6.5,1.3);
+\node[fill=green,right] at (2.5,1) {equivalence class of $L_1$};
+\fill[color=orange] (2.5,-0.3) rectangle (6.5,0.3);
+\node[fill=orange,right] at (2.5,0) {equivalence class of $L_2$};
+\end{tikzpicture}
+\end{center}
+}
+\end{frame}
+
+\begin{frame}{Monadic Fragments}
+\only<1-2>{It is known that
+\begin{itemize}
+  \item{$\Sat{\Lvp\LL\nonv1}$ is in $\cNExpTime$~{[L{\"o}wenheim 1915]}
+  and is $\cNExpTime$-hard}
+  \item{$\Sat{\Lvp\LL\nonv0\Eea1\noag}$ is $\cPSpace$-complete}
+  \item{$\Sat{\Lvp\LL\nonv0\Eea2\noag}$ is undecidable~{[Janiczak
+  1953]}}
+\end{itemize}}
+\pause
+\textbf{We show that}
+\begin{itemize}
+  \item{$\Sat{\Lvp\LL\nonv1\Eea1\noag}$ is $\ceNExpTime{2}$-complete}
+  \item{In general, $\Sat{\Lvp\LL\nonv1\Eea\sze\agrefine}$ is
+  $\ceNExpTime{(\sze+1)}$-complete for $\sze\geq1$}
+\end{itemize}
+\pause
+Approach: ``work at the quantifier rank level of abstraction''
+\begin{itemize}
+  \item for the upper bound, we use Ehrenfeucht-Fra\"{i}ss\'{e} games to bound
+  the size of a minimal model of a satisfiable formula
+
+  \item for hardness, we reduce a version of the domino tiling problem to
+satisfiability
+\end{itemize}
+\end{frame}
+\end{document}
