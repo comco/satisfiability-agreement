@@ -266,7 +266,7 @@ refinement.
 }
 \end{frame}
 
-\begin{frame}{Monadic Fragments}
+\begin{frame}{Monadic fragments}
 \only<1-2>{It is known that
 \begin{itemize}
   \item{$\Sat{\Lvp\LL\nonv1}$ is in $\cNExpTime$~{[L{\"o}wenheim 1915]}
@@ -280,7 +280,7 @@ refinement.
 \begin{itemize}
   \item{$\Sat{\Lvp\LL\nonv1\Eea1\noag}$ is $\ceNExpTime{2}$-complete}
   \item{In general, $\Sat{\Lvp\LL\nonv1\Eea\sze\agrefine}$ is
-  $\ceNExpTime{(\sze+1)}$-complete for $\sze\geq1$}
+  $\ceNExpTime{(\sze+1)}$-complete}
 \end{itemize}
 \pause
 Approach: ``work at the quantifier rank level of abstraction''
@@ -290,6 +290,98 @@ Approach: ``work at the quantifier rank level of abstraction''
 
   \item for hardness, we reduce a version of the domino tiling problem to
 satisfiability
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Two-variable fragments}
+Only the variables $\xx$ and $\yy$ are allowed.
+It is known that:
+\begin{itemize}
+  \item{$\Sat{\Lvp\LL2\nopow}$ is $\cNExpTime$-complete~{[Gr{\"a}del,
+  Kolaitis, Vardi, 1997]}}
+  \item{$\Sat{\Lvp\LL2\nopow\Eea1\noag}$ is
+  $\cNExpTime$-complete~{[Kiero{\'n}ski, 2005]}}
+  \item{$\Sat{\Lvp\LL2\nopow\Eea2\noag}$ is
+  $\ceNExpTime2$-complete~{[Kieroński, Michaliszyn, Pratt-Hartmann, Tendera,
+  2014]}}
+  \item{$\Sat{\Lvp\LL2\nopow\Eea3\noag}$ is undecidable~{[Kieroński, Otto,
+  2005]}}
+\end{itemize}
+\pause
+\textbf{We show that}
+\begin{itemize}
+  \item{$\Sat{\Lvp\LL2\nopow\Eea\sze\agrefine}$ is in $\cNExpTime$}
+\end{itemize}
+Approach: ``work at the level of abstraction of types''
+\end{frame}
+
+\begin{frame}{Types}
+\begin{itemize}
+  \item A \onetype/ $\tpp$ is a maximal consistent set of literals featuring
+  only the variable $\xx$
+  \item A \twotype/ $\tpt$ is a maximal consistent set of literals featuring the
+  variables $\xx$ and $\yy$ that contains $(\xx\neq\yy)$
+\begin{center}
+\begin{tikzpicture}
+\draw[fill] (0,0) circle[radius=2pt];
+\draw[fill] (1,0) circle[radius=2pt];
+\draw (0,0) to (1,0);
+\node[left] at (0,0) {$\tpx\tpt$};
+\node[right] at (1,0) {$\tpy\tpt$};
+\node[above] at(0.5,0) {$\tpt$};
+\node[below] at(0.5,0) {$\inv\tpt$};
+\end{tikzpicture}
+\end{center}
+  \item If $\tpt$ is a \twotype/, $\tpx\tpt$ is the one-type consisting of the
+  literals from $\tpt$ featuring only the variable $\xx$,
+  \item $\inv\tpt$ is the two-type obtained by swapping $\xx$ and $\yy$ in the
+  literals of $\tpt$
+  \item and $\tpy\tpt=\tpx{\inv\tpt}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Classified signatures}
+A \emph{classified signature} $\ClSig\Sigma\sms$ consists of a predicate
+signature $\Sigma$ together with a sequence $\sms=\smm1\smm2\dots\smm\nm$ of
+distinct binary predicate symbols from $\Sigma$.
+
+We say that the $\Sigma$-structure $\StrA$ is a structure for $\ClSig\Sigma\sms$
+if
+\[
+\StrA\vDash\bigwedge_{1\leq\ii\leq\nm}\forall\xx\exists\yy
+(\smm\ii(\xx,\yy)\land(\xx\neq\yy))
+\]
+\end{frame}
+
+\begin{frame}{Type instances}
+\begin{itemize}
+  \item 
+  A \emph{type instance} $\TI$ over the classified signature $\ClSig\Sigma\sms$
+  is a nonempty set of \twotypes/ that is closed under inversion.
+
+  \item 
+  The type instance of a structure $\StrA$ for $\ClSig\Sigma\sms$ is defined by
+  \[
+  \TI = \setbd{\tpIab\StrA\ea\eb}{\ea\in\domA,\eb\in\domA\sub\set\ea}.
+  \]
+
+  \item The \emph{type realizability problem} is: given a classified signature
+  $\ClSig\Sigma\sms$ and a type instance $\TI$ over $\ClSig\Sigma\sms$,
+  is $\TI$ the type instance of structure?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approach}
+\begin{itemize}
+  \item reduce the satisfiability problem for $\Lvp\LL2\nopow\Eea\sze\agrefine$
+  to an appropriate type realizability problem in nondeterministic exponential
+  time
+  \item show that the type realizability problem can be decided in
+  nondeterministic polynomial time
+  \item we do this by defining \emph{star-types} to ``witness the local
+  environment'' around elements in models
+  \item collecting them in ``not too big" \emph{certificates} and
+  \item constructing a model from a given certificate
 \end{itemize}
 \end{frame}
 \end{document}
