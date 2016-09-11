@@ -94,7 +94,6 @@
 \usebeamercolor{normal text}
 A sequence $\relEE1,\relEE2,\dots,\relEE\sze$ of equivalence relations on
 $\domA$ is in:
-\pause
 \begin{itemize}
   \item\alert<+>{\emph{refinement} if
   $\relEE1\subseteq\relEE2\subseteq\dots\subseteq\relEE\sze$}
@@ -108,7 +107,7 @@ $\domA$ is in:
   $[1,\sze]$ such that
   $\relEE{\permnu(1)}[a]\subseteq\relEE{\permnu(2)}[a]\subseteq\dots\subseteq\relEE{\permnu(\sze)}$}
 \end{itemize}
-\only<1-2>{%
+\only<1>{%
 \begin{center}%
 \begin{tikzpicture}
 \fill[color=orange] (-0.5,-0.5) rectangle (0.5,1.5);
@@ -126,7 +125,7 @@ $\domA$ is in:
 \end{tikzpicture}
 \end{center}
 }
-\only<3>{%
+\only<2>{%
 \begin{center}%
 \begin{tikzpicture}
 \fill[color=green] (-0.5,-0.5) rectangle (0.5,1.5);
@@ -144,7 +143,7 @@ $\domA$ is in:
 \end{tikzpicture}
 \end{center}
 }
-\only<4>{%
+\only<3>{%
 \begin{center}%
 \begin{tikzpicture}
 \fill[color=green] (-0.5,-0.5) rectangle (0.5,1.5);
@@ -336,7 +335,7 @@ Approach: ``work at the level of abstraction of types''
   literals from $\tpt$ featuring only the variable $\xx$,
   \item $\inv\tpt$ is the two-type obtained by swapping $\xx$ and $\yy$ in the
   literals of $\tpt$
-  \item and $\tpy\tpt=\tpx{\inv\tpt}$.
+  \item and $\tpy\tpt=\tpx{(\inv\tpt)}$.
 \end{itemize}
 \end{frame}
 
@@ -367,7 +366,7 @@ if
 
   \item The \emph{type realizability problem} is: given a classified signature
   $\ClSig\Sigma\sms$ and a type instance $\TI$ over $\ClSig\Sigma\sms$,
-  is $\TI$ the type instance of structure?
+  is $\TI$ the type instance of some $\ClSig\Sigma\sms$-structure?
 \end{itemize}
 \end{frame}
 
