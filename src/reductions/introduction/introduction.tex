@@ -13,8 +13,8 @@ where:
 \begin{itemize}
   \item $\LL$ is the \emph{ground logic}
   \item $\nv$, if given, bounds the number of variables
-  \item $\sze$, if given, bounds the number of built-in equivalence symbols
-  \item $\ag \in \set{\agrefine, \agglobal, \aglocal}$, if given, gives the
+  \item $\sze$, if given, specifies the number of built-in equivalence symbols
+  \item $\ag \in \set{\agrefine, \agglobal, \aglocal}$, if given, specifies the
   agreement condition between the built-in equivalence symbols
   \item $\pow$, the \emph{signature power}, specifies constraints on the
   signature:
@@ -34,20 +34,21 @@ For example $\Lvp\Fo\nonv1$ is the monadic first-order logic, featuring only
 unary predicate symbols.
 $\Lvp\Fo\nonv0\Eea1\noag$ is the first-order logic of a single equivalence
 relation.
-$\Lvp\Fo2\nonv\Eea2\noag$ is the two-variable logic, featuring unary, binary
-predicate symbols and two built-in equivalence symbols.
+$\Lvp\Fo2\nonv\Eea2\noag$ is the two-variable logic, featuring unary and binary
+predicate symbols and two built-in equivalence symbols with no agreement
+condition between them.
 $\Lvp\Fo21\Eea2\aglocal$ is the two-variable logic,
 featuring unary predicate symbols and two built-in equivalence symbols in local
 agreement.
 $\Lvp\Fo\nonv1\Eea\nosze\agglobal$ is the monadic first-order logic featuring
-many equivalence symbols in global agreement.
+arbitrary many equivalence symbols in global agreement.
 
-When we working with a concrete logic, for example
+When working with a concrete logic, for example
 $\Lvp\Fo2\nopow\Eea2\aglocal$,
 we implicitly assume an appropriate generic predicate signature $\SigS$ for it.
-In this case, there are two built-in equivalence symbols $\sd$ and $\se$ in
-$\SigS$ and in addition $\SigS$ contains arbitrary many unary
-and binary predicate symbols.
+In the $\Lvp\Fo2\nopow\Eea2\aglocal$ case for example, there will be two
+built-in equivalence symbols $\sd$ and $\se$ in $\SigS$ and in addition $\SigS$
+contains arbitrary many unary and binary predicate symbols.
 The \emph{intended interpretation} of the built-in equivalence symbols is fixed
 by an appropriate condition $\fthe$.
 In this case:

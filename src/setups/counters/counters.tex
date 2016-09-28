@@ -1,7 +1,8 @@
 % Counters
 A \emph{$\tbit$-bit counter setup} for $\tbit \in \pNats$ is a predicate
 signature $\gls{counter-setup-C} = \seq{\suu1, \suu2, \dots, \suu\tbit}$
-consisting of $\tbit$ distinct unary predicate symbols $\suu\ii$.
+consisting of $\tbit$ distinct unary predicate symbols.
+Recall that the set of $\tbit$-bit numbers is $\tBitnums\tbit = [0,2^t-1]$.
 
 \begin{definition}
 Let $\StrA$ be a $\CS$-structure. Define the function
@@ -12,8 +13,8 @@ $\gls{data-C-A} : \domA \to \tBitnums\tbit$ by:
 \]
 \end{definition}
 \begin{definition}
-Let $\datad \in \tBitnums\tbit$ be a $\tbit$-bit number. Define the
-quantifier-free $\vFoF1\CS$-formula $\gls{feqA-C-d-x}$ by:
+Let $\datad \in \tBitnums\tbit$ be a $\tbit$-bit number.
+Define the quantifier-free $\vFoF1\CS$-formula $\gls{feqA-C-d-x}$ by:
 \[
   \feqA\CS\datad(\xx) = \bigwedge_{1 \leq \ii \leq \tbit}
   \feqA{\suu\ii}{\benc{\datad}_\ii}(\xx).
@@ -40,11 +41,11 @@ If $\StrA$ is a $\CS$-structure and $\ea, \eb \in \domA$,
 then $\StrA \vDash \feq\CS(\ea, \eb)$ iff $\data\CS\StrA\ea = \data\CS\StrA\eb$.
 \end{remark}
 The bitstring $\bstra \in \tBitstrings\tbit$ encodes a number less than the
-number encoded by the bitstring $\bstrb \in \tBitstrings\tbit$, if they differ
-and at least position where they are different $\jj \in [1,\tbit]$ the bitstring
-$\bstra$ has value $0$ and the bitstring $\bstrb$ has value $1$, that is, iff
-there is a position $\jj \in [1,\tbit]$ such that the following two conditions
-hold:
+number encoded by the bitstring $\bstrb \in \tBitstrings\tbit$, if
+$\bstra\neq\bstrb$ and at the least position $\jj\in[1,\tbit]$ where they are
+different, the bitstring $\bstra$ has value $0$ and the bitstring $\bstrb$ has
+value $1$. That is, there is a position $\jj\in[1,\tbit]$ such that the
+following two conditions hold:
 \begin{align}
   \bstra_\jj = 0 \text{ and } \bstrb_\jj = 1 \tag{Less1}\label{Less1} \\
   \bstra_\kk = \bstrb_\kk \text{ for all } \kk \in [\jj+1,\tbit].
@@ -64,7 +65,7 @@ $\data\CS\StrA\ea < \data\CS\StrA\eb$.
 \end{remark}
 
 The bitstring $\bstrb \in \tBitstrings\tbit$ encodes the successor of the number
-encoded by the bitstring $\bstra$ if there is a position $\jj \in [1,\tbit]$
+encoded by the bitstring $\bstra$, if there is a position $\jj\in[1,\tbit]$
 such that the following four conditions hold:
 \begin{align}
   \bstra_\jj = 0 \text{ and } \bstrb_\jj = 1 \tag{Succ1}\label{Succ1} \\
@@ -107,7 +108,7 @@ If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad \in
 < \datad$.
 \end{remark}
 \begin{definition}
-Let $\datad \leq \datae \in \tBitnums\tbit$.
+Let $\datad,\datae\in\tBitnums\tbit$.
 Define the quantifier-free $\vFoF1\CS$-formula $\gls{fbetw-C-d-e-x}$ by:
 \[
   \fbetw\CS\datad\datae(\xx) = \lnot\flessA\CS\datad(\xx) \land 
@@ -115,8 +116,8 @@ Define the quantifier-free $\vFoF1\CS$-formula $\gls{fbetw-C-d-e-x}$ by:
 \]
 \end{definition}
 \begin{remark}
-If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad \leq \datae \in
-\tBitnums\tbit$, then 
+If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad,\datae \in
+\tBitnums\tbit$, then
 \[
   \miff{
   \StrA \vDash \fbetw\CS\datad\datae(\ea)}{
@@ -126,14 +127,17 @@ If $\StrA$ is a $\CS$-structure, $\ea \in \domA$ and $\datad \leq \datae \in
 \end{remark}
 
 \begin{definition}
-Let $\datad \leq \datae \in \tBitnums\tbit$.
+Let $\datad, \datae \in \tBitnums\tbit$.
 Define the $\vFoF1\CS$-sentence $\gls{fallbetw-C-d-e}$ by:
 \[
   \fallbetw\CS\datad\datae = \forall\xx\fbetw\CS\datad\datae(\xx).
 \]
 \end{definition}
 \begin{remark}
-If $\StrA$ is a $\CS$-structure and $\datad \leq \datae \in \tBitnums\tbit$,
-then $\StrA \vDash \fbetw\CS\datad\datae$ iff
-$\datad \leq \data\CS\StrA\ea \leq \datae$ for all $\ea \in \domA$.
+If $\StrA$ is a $\CS$-structure and $\datad,\datae \in \tBitnums\tbit$,
+then 
+\[
+\miff{\StrA \vDash \fbetw\CS\datad\datae}{
+\text{ for all } \ea \in \domA, \datad \leq \data\CS\StrA\ea \leq \datae.}
+\]
 \end{remark}
